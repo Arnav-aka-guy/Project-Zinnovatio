@@ -20,6 +20,7 @@ export interface Health {
   env?: 'development' | 'production';
   auth?: 'passcode' | 'accounts';
   reader_detail?: ReaderDetail;
+  notifications?: HealthNotifications;
 }
 
 export interface ReaderDetail {
@@ -367,4 +368,79 @@ export interface PatchRequestBody {
   service_type?: string;
   harvest_date?: string;
   deadline_date?: string;
+}
+
+// ── Notifications ───────────────────────────────────────────
+export interface HealthNotifications {
+  vapid_public_key: string | null;
+  farmer_mode: 'simulate' | 'live' | 'off';
+  farmer_channels: string[];
+  sms_provider: string;
+  whatsapp_provider: string;
+  staff: string;
+  worker: boolean;
+}
+
+export interface PushSubscriptionBody {
+  endpoint: string;
+  keys: { p256dh: string; auth: string };
+  label?: string | null;
+}
+
+export interface StaffAlert {
+  id: number;
+  kind: string;
+  audience: string;
+  title: string;
+  body: string;
+  url: string;
+  urgency: 'high' | 'normal';
+  request_id: number | null;
+  created_at: string;
+  read: boolean;
+}
+
+export interface Inbox {
+  unread: number;
+  items: StaffAlert[];
+}
+
+export type NotificationStatus = 'queued' | 'sending' | 'sent' | 'delivered' | 'simulated' | 'skipped' | 'failed';
+
+export interface OutboxItem {
+  id: number;
+  kind: string;
+  audience: string;
+  channel: string;
+  lang: string;
+  title: string | null;
+  body: string;
+  status: NotificationStatus;
+  status_reason: string | null;
+  attempts: number;
+  provider: string | null;
+  request_id: number | null;
+  slot_id: number | null;
+  machine_id: number | null;
+  created_at: string;
+  sent_at: string | null;
+  next_attempt_at: string | null;
+}
+
+export interface NotifySummary {
+  farmer_mode: 'simulate' | 'live' | 'off';
+  farmer_channels: string[];
+  sms_provider: string;
+  whatsapp_provider: string;
+  quiet_hours: string | null;
+  last_7_days: Record<string, Partial<Record<NotificationStatus, number>>>;
+  devices: { staff: number; driver: number };
+  worker_running: boolean;
+  worker_last_run_at: string | null;
+}
+
+export interface PushTestResult {
+  devices: number;
+  sent: number;
+  detail: string | null;
 }

@@ -19,7 +19,7 @@ import pytest
 SCHEMA_FILE = pathlib.Path(__file__).parent.parent.parent / "docs" / "openapi.json"
 
 # Number of paths the spec MUST have (update only when routes are intentionally added).
-EXPECTED_PATH_COUNT = 35  # +2: /api/voice/script, /api/voice/understand
+EXPECTED_PATH_COUNT = 44  # +9: notifications (/api/notify/*, /api/driver/{machine_token}/push*)
 
 
 def test_openapi_json_exists():

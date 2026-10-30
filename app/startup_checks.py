@@ -66,6 +66,28 @@ def reader_problems(s: Any) -> list[str]:
     return problems
 
 
+def notify_problems(s: Any, production: bool) -> list[str]:
+    """Settings that would make alerts or farmer messages silently not work."""
+    problems: list[str] = []
+    pub = str(getattr(s, "vapid_public_key", "") or "")
+    priv = str(getattr(s, "vapid_private_key", "") or "")
+    if bool(pub) != bool(priv):
+        problems.append("Set both VAARI_VAPID_PUBLIC_KEY and VAARI_VAPID_PRIVATE_KEY, or neither (python tasks.py vapid-keys).")
+    if production and getattr(s, "notify_mode", "simulate") == "live":
+        providers = {
+            "sms": getattr(s, "sms_provider", "log"),
+            "whatsapp": getattr(s, "whatsapp_provider", "log"),
+        }
+        channels = list(getattr(s, "farmer_channels", ["sms"]) or ["sms"])
+        if all(providers.get(c, "log") == "log" for c in channels):
+            problems.append(
+                "VAARI_NOTIFY_MODE=live but no SMS or WhatsApp provider is set for VAARI_FARMER_CHANNELS, "
+                "so no farmer would get a message. Set VAARI_SMS_PROVIDER or VAARI_WHATSAPP_PROVIDER, "
+                "or use VAARI_NOTIFY_MODE=simulate."
+            )
+    return problems
+
+
 def config_problems(s: Any) -> list[str]:
     """Return a list of problems with the settings. Empty means safe to start."""
     problems: list[str] = []
@@ -80,6 +102,7 @@ def config_problems(s: Any) -> list[str]:
         )
 
     problems.extend(reader_problems(s))
+    problems.extend(notify_problems(s, production=env == "production"))
 
     if env != "production":
         return problems

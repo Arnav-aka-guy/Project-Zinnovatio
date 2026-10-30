@@ -24,6 +24,7 @@ from app.db import get_engine
 ROOT_DIR = Path(__file__).resolve().parent.parent
 BASELINE_REVISION = "0001"  # v0.1.0 tables
 PILOT_ACCOUNTS_REVISION = "0002"  # Part A: accounts, sessions, link expiry
+NOTIFY_REVISION = "0003"  # pilot v0.4: notification outbox, push subscriptions
 
 
 def alembic_config(connection: Connection | None = None) -> Config:
@@ -52,6 +53,8 @@ def _legacy_revision(conn: Connection) -> str | None:
     if "alembic_version" in tables or "request" not in tables:
         return None
     machine_cols = {c["name"] for c in insp.get_columns("machine")}
+    if "notification" in tables and "push_subscription" in tables:
+        return NOTIFY_REVISION
     if "user_account" in tables and "link_expires_at" in machine_cols:
         return PILOT_ACCOUNTS_REVISION
     return BASELINE_REVISION

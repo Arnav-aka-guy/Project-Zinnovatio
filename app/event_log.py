@@ -1,5 +1,6 @@
 """Append-only audit event log for Vaari."""
 
+import logging
 from typing import Any
 
 from sqlalchemy.orm import Session
@@ -36,4 +37,17 @@ def log_event(
         at=clock.now_utc(),
     )
     session.add(entry)
+    _notify(session, actor, entity, entity_id, event, payload or {})
     return entry
+
+
+def _notify(session: Session, actor: str, entity: str, entity_id: int, event: str, payload: dict[str, Any]) -> None:
+    """Queue any notification this event calls for (same transaction). Never blocks the action."""
+    try:
+        from app.notify.rules import on_event
+
+        on_event(session, entity, entity_id, event, payload, actor)
+    except Exception:  # noqa: BLE001 - a notification problem must never undo real work
+        logging.getLogger("vaari.notify").exception(
+            "notify_rule_error", extra={"fields": {"event": "notify_rule_error", "where": f"{entity}/{event}"}}
+        )

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import FarmerMessages from './FarmerMessages';
 import { getSlotMessage, markMessageOpened, patchRequest, deleteRequest, revokeRecordLink, reissueRecordLink, ApiError } from '../api';
 import { friendlyError } from '../errors';
 import Badge from './Badge';
@@ -346,6 +347,8 @@ export default function RequestDetailPanel({ request, onClose, onUpdate }: Props
               ) : null}
             </div>
           )}
+
+          <FarmerMessages requestId={request.id} refreshKey={`${request.status}:${request.slot?.id ?? ''}:${request.slot?.status ?? ''}`} />
 
           {/* Edit Form Drawer */}
           {isEditing && (

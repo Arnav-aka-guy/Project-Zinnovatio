@@ -10,6 +10,7 @@ import {
 import { friendlyError } from '../errors';
 import { downscaleImage, getCurrentPosition, formatIST } from '../utils/image';
 import Badge from '../components/Badge';
+import DriverAlerts from '../components/DriverAlerts';
 import type { DriverResponse, SlotOut, SlotEvidenceOut } from '../types';
 
 const NOT_SERVED_REASONS = [
@@ -85,6 +86,15 @@ export default function DriverPage() {
       setFetchError('Machine token is missing.');
       setLoading(false);
     }
+  }, [machineToken, loadDriverJobs]);
+
+  // A job alert arrived while this page is open: show the new list at once.
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      if (e.data?.type === 'vaari-push' && machineToken) void loadDriverJobs(machineToken);
+    };
+    navigator.serviceWorker?.addEventListener('message', onMessage);
+    return () => navigator.serviceWorker?.removeEventListener('message', onMessage);
   }, [machineToken, loadDriverJobs]);
 
   // Open slot
@@ -315,6 +325,7 @@ export default function DriverPage() {
 
       {/* Main Jobs List in Sequence Order */}
       <main className="driver-content">
+        {machineToken && <DriverAlerts token={machineToken} />}
         <div className="driver-list-header">
           <h2>Today's Jobs ({driverData?.slots.length ?? 0})</h2>
           <span className="cab-hint">Tap job to execute in order</span>

@@ -14,6 +14,11 @@ os.environ["VAARI_DEMO_PASSCODE"] = "test-passcode"
 os.environ["VAARI_TZ"] = "Asia/Kolkata"
 os.environ["VAARI_READER"] = "mock"
 os.environ["VAARI_READER_PROBE"] = "false"
+# Notifications are sent by tests that call the sender directly, not by a background thread.
+os.environ["VAARI_NOTIFY_WORKER"] = "false"
+# A fixed push key pair for tests, so no vapid.json is written into the repo's data folder.
+os.environ.setdefault("VAARI_VAPID_PUBLIC_KEY", "BCSpKZnQzgoQzequLP3xid3oXC8uWz3yaf8z4Hn1c218gbSigxURRHdUMI4tA9OE9zPizHV4VK3unfZCFe_g8-M")
+os.environ.setdefault("VAARI_VAPID_PRIVATE_KEY", "blVxAhwXewuGml_2Nlb-y87h5fqQN9Oi2ENKb_uT8lo")  # test-only key
 
 from app.db import get_db, override_db
 from app.main import app

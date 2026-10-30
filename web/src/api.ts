@@ -10,12 +10,17 @@ import type {
   DashboardSummary,
   DriverResponse,
   Health,
+  Inbox,
   IntakeConfirmResult,
   IntakeConfirmRowIn,
   IntakeOut,
   LoginResult,
   MachineOut,
   MeResult,
+  NotifySummary,
+  OutboxItem,
+  PushSubscriptionBody,
+  PushTestResult,
   RecordLinkOut,
   PatchRequestBody,
   RecordOut,
@@ -501,3 +506,84 @@ export async function getAudioClip(url: string): Promise<ArrayBuffer> {
   return res.arrayBuffer();
 }
 
+
+// ── Notifications ────────────────────────────────────────────
+const JSON_HEADERS = { 'Content-Type': 'application/json' };
+
+/** Staff device: alerts for the signed-in role. */
+export function addPushSubscription(body: PushSubscriptionBody): Promise<{ id: number; roles: string[] }> {
+  return request('/api/notify/subscriptions', {
+    method: 'POST',
+    headers: { ...authHeaders('passcode'), ...JSON_HEADERS },
+    body: JSON.stringify(body),
+  });
+}
+
+export function removePushSubscription(endpoint: string): Promise<void> {
+  return request('/api/notify/subscriptions', {
+    method: 'DELETE',
+    headers: { ...authHeaders('passcode'), ...JSON_HEADERS },
+    body: JSON.stringify({ endpoint }),
+  });
+}
+
+export function sendTestAlert(endpoint?: string): Promise<PushTestResult> {
+  return request('/api/notify/test', {
+    method: 'POST',
+    headers: { ...authHeaders('passcode'), ...JSON_HEADERS },
+    body: JSON.stringify({ endpoint: endpoint ?? null }),
+  });
+}
+
+/** Driver phone: job alerts for one machine (the driver link is the key). */
+export function addDriverPush(machineToken: string, body: PushSubscriptionBody): Promise<{ id: number }> {
+  return request(`/api/driver/${encodeURIComponent(machineToken)}/push`, {
+    method: 'POST',
+    headers: JSON_HEADERS,
+    body: JSON.stringify(body),
+  });
+}
+
+export function removeDriverPush(machineToken: string, endpoint: string): Promise<void> {
+  return request(`/api/driver/${encodeURIComponent(machineToken)}/push`, {
+    method: 'DELETE',
+    headers: JSON_HEADERS,
+    body: JSON.stringify({ endpoint }),
+  });
+}
+
+export function sendDriverTestAlert(machineToken: string, endpoint?: string): Promise<PushTestResult> {
+  return request(`/api/driver/${encodeURIComponent(machineToken)}/push/test`, {
+    method: 'POST',
+    headers: JSON_HEADERS,
+    body: JSON.stringify({ endpoint: endpoint ?? null }),
+  });
+}
+
+export function getInbox(limit = 30): Promise<Inbox> {
+  return request<Inbox>(`/api/notify/inbox?limit=${limit}`, { headers: authHeaders('passcode') });
+}
+
+export function markAlertsRead(ids: number[] | 'all'): Promise<{ updated: number }> {
+  return request('/api/notify/inbox/read', {
+    method: 'POST',
+    headers: { ...authHeaders('passcode'), ...JSON_HEADERS },
+    body: JSON.stringify(ids === 'all' ? { all: true } : { ids }),
+  });
+}
+
+export function getOutbox(params: { request_id?: number; audience?: string; status?: string; limit?: number } = {}): Promise<{
+  items: OutboxItem[];
+}> {
+  const q = new URLSearchParams();
+  for (const [k, v] of Object.entries(params)) if (v !== undefined && v !== null) q.set(k, String(v));
+  return request(`/api/notify/outbox?${q.toString()}`, { headers: authHeaders('passcode') });
+}
+
+export function retryOutbox(id: number): Promise<OutboxItem> {
+  return request(`/api/notify/outbox/${id}/retry`, { method: 'POST', headers: authHeaders('passcode') });
+}
+
+export function getNotifySummary(): Promise<NotifySummary> {
+  return request<NotifySummary>('/api/notify/summary', { headers: authHeaders('passcode') });
+}

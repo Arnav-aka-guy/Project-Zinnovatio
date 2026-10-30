@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useIsPhone } from '../shell/useInstall';
 import StatusStrip from '../components/StatusStrip';
 import Badge from '../components/Badge';
@@ -15,6 +15,7 @@ import {
   getSchedule,
   runSchedule,
   getHealth,
+  getRequest,
   ApiError,
 } from '../api';
 import { triggerReauth } from '../components/PasscodeGate';
@@ -85,6 +86,37 @@ export default function DeskPage() {
   useEffect(() => {
     loadDeskData();
   }, [loadDeskData]);
+
+  // Deep link from an alert: /desk?request=12 opens that request's details.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const wantedId = Number(searchParams.get('request')) || 0;
+  useEffect(() => {
+    if (!wantedId || loading) return;
+    const clear = () => {
+      const next = new URLSearchParams(searchParams);
+      next.delete('request');
+      setSearchParams(next, { replace: true });
+    };
+    const found = requests.find(r => r.id === wantedId);
+    if (found) {
+      setSelectedRequest(found);
+      clear();
+      return;
+    }
+    // Not in the loaded list (made a moment ago): fetch it, and refresh the list.
+    let cancelled = false;
+    getRequest(wantedId)
+      .then(r => {
+        if (cancelled) return;
+        setSelectedRequest(r);
+        void loadDeskData();
+      })
+      .catch(() => undefined)
+      .finally(() => !cancelled && clear());
+    return () => {
+      cancelled = true;
+    };
+  }, [wantedId, loading, requests, searchParams, setSearchParams, loadDeskData]);
 
   const handleRunScheduler = async () => {
     setRunningScheduler(true);

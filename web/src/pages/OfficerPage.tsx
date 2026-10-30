@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
+import DeliveryCard from '../components/DeliveryCard';
 import { Link } from 'react-router-dom';
 import StatusStrip from '../components/StatusStrip';
 import {
@@ -492,6 +493,8 @@ export default function OfficerPage() {
           </div>
         )}
       </section>
+
+      <DeliveryCard />
 
       <footer className="officer-footer" id="officer-disclaimer">
         <p className="officer-disclaimer-text">

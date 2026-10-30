@@ -27,7 +27,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      testIgnore: /mobile\.spec\.ts/,
+      testIgnore: /(mobile|notifications)\.spec\.ts/,
       // The app's service worker would hide requests from page.route() mocks.
       use: { ...devices['Desktop Chrome'], serviceWorkers: 'block' },
     },
@@ -41,6 +41,12 @@ export default defineConfig({
       name: 'mobile-iphone',
       testMatch: /mobile\.spec\.ts/,
       use: { ...iphone, serviceWorkers: 'block' },
+    },
+    // Alerts (e2e/notifications.spec.ts): needs the real service worker and notification permission.
+    {
+      name: 'push',
+      testMatch: /notifications\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'], serviceWorkers: 'allow', permissions: ['notifications'] },
     },
   ],
 });

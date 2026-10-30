@@ -96,3 +96,19 @@ def test_app_refuses_to_start_in_production_with_default_secret(prod, temp_db):
 def test_app_starts_in_production_with_safe_settings(prod, temp_db):
     with TestClient(app) as c:
         assert c.get("/api/health").status_code == 200
+
+
+def test_production_refuses_live_messages_without_a_provider(prod):
+    prod.setenv("VAARI_NOTIFY_MODE", "live")
+    prod.setenv("VAARI_SMS_PROVIDER", "log")
+    problems = config_problems(settings)
+    assert len(problems) == 1 and "VAARI_NOTIFY_MODE=live" in problems[0]
+    prod.setenv("VAARI_SMS_PROVIDER", "twilio")
+    assert config_problems(settings) == []
+
+
+def test_half_a_push_key_pair_is_refused(monkeypatch):
+    monkeypatch.setenv("VAARI_ENV", "development")
+    monkeypatch.setenv("VAARI_VAPID_PRIVATE_KEY", "")
+    problems = config_problems(settings)
+    assert len(problems) == 1 and "VAARI_VAPID_PUBLIC_KEY" in problems[0]

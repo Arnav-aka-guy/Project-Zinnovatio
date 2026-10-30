@@ -269,3 +269,57 @@ class AuthSession(Base):
     created_at = Column(DateTime, nullable=False)
     expires_at = Column(DateTime, nullable=False)
     revoked_at = Column(DateTime, nullable=True)
+
+
+class Notification(Base):
+    """One message to one audience over one channel (pilot v0.4).
+
+    Written in the same transaction as the event that causes it (an outbox),
+    then delivered by the background sender. Farmer messages never copy the
+    phone number here; it is read from the farmer row when sending.
+    """
+
+    __tablename__ = "notification"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    kind = Column(String, nullable=False)  # slot_scheduled, will_miss, job_done, ...
+    audience = Column(String, nullable=False, index=True)  # farmer | driver | operator | officer
+    channel = Column(String, nullable=False)  # inapp | webpush | sms | whatsapp
+    dedupe_key = Column(String, unique=True, nullable=False)
+    farmer_id = Column(Integer, ForeignKey("farmer.id"), nullable=True)
+    machine_id = Column(Integer, ForeignKey("machine.id"), nullable=True)
+    request_id = Column(Integer, ForeignKey("request.id"), nullable=True, index=True)
+    slot_id = Column(Integer, ForeignKey("slot.id"), nullable=True)
+    lang = Column(String, nullable=False, default="en")
+    title = Column(String, nullable=True)
+    body = Column(Text, nullable=False)
+    url = Column(String, nullable=True)
+    urgency = Column(String, nullable=False, default="normal")  # low | normal | high
+    status = Column(String, nullable=False, index=True)  # queued | sending | sent | delivered | simulated | skipped | failed
+    status_reason = Column(String, nullable=True)
+    attempts = Column(Integer, nullable=False, default=0)
+    next_attempt_at = Column(DateTime, nullable=True, index=True)
+    provider = Column(String, nullable=True)
+    provider_ref = Column(String, nullable=True)
+    created_at = Column(DateTime, nullable=False)
+    sent_at = Column(DateTime, nullable=True)
+    read_at = Column(DateTime, nullable=True)
+
+
+class PushSubscription(Base):
+    """A browser or installed app that accepts web push (staff devices and driver phones)."""
+
+    __tablename__ = "push_subscription"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    endpoint = Column(Text, unique=True, nullable=False)
+    p256dh = Column(String, nullable=False)
+    auth = Column(String, nullable=False)
+    roles_json = Column(JsonText, nullable=False, default=list)  # ["operator"], ["officer"], ["driver"]
+    user_id = Column(Integer, ForeignKey("user_account.id"), nullable=True)
+    machine_id = Column(Integer, ForeignKey("machine.id"), nullable=True)
+    label = Column(String, nullable=True)
+    created_at = Column(DateTime, nullable=False)
+    last_success_at = Column(DateTime, nullable=True)
+    failures = Column(Integer, nullable=False, default=0)
+    revoked_at = Column(DateTime, nullable=True)

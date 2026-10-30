@@ -205,5 +205,78 @@ class Settings:
     def reader_timeout_s(self) -> int:
         return int(os.environ.get("VAARI_READER_TIMEOUT_S", "20"))
 
+    # ── Notifications (pilot v0.4) ───────────────────────────────────────
+    @property
+    def notify_mode(self) -> str:
+        """VAARI_NOTIFY_MODE: 'simulate' (default: farmer SMS/WhatsApp are recorded, not sent),
+        'live' (sent through the configured providers) or 'off' (no farmer messages at all).
+        Staff alerts (in the app and as web push) always work."""
+        v = os.environ.get("VAARI_NOTIFY_MODE", "simulate").strip().lower()
+        return v if v in ("simulate", "live", "off") else "simulate"
+
+    @property
+    def notify_worker(self) -> bool:
+        """Run the background sender inside the web server (default true)."""
+        return os.environ.get("VAARI_NOTIFY_WORKER", "true").strip().lower() in ("true", "1", "yes")
+
+    @property
+    def notify_interval_s(self) -> float:
+        return float(os.environ.get("VAARI_NOTIFY_INTERVAL_S", "5"))
+
+    @property
+    def farmer_channels(self) -> list[str]:
+        """Channels for farmer messages, in order of preference, e.g. 'whatsapp,sms'."""
+        raw = os.environ.get("VAARI_FARMER_CHANNELS", "sms")
+        out = [c.strip().lower() for c in raw.split(",") if c.strip().lower() in ("sms", "whatsapp")]
+        return out or ["sms"]
+
+    @property
+    def farmer_quiet_hours(self) -> tuple[int, int] | None:
+        """Hours (local time) when farmers are not messaged, e.g. '21-7'. Empty turns it off."""
+        raw = os.environ.get("VAARI_FARMER_QUIET_HOURS", "21-7").strip()
+        if not raw:
+            return None
+        try:
+            a, b = (int(x) for x in raw.split("-", 1))
+        except ValueError:
+            return None
+        if not (0 <= a <= 23 and 0 <= b <= 23) or a == b:
+            return None
+        return a, b
+
+    @property
+    def notify_test_numbers(self) -> set[str]:
+        """Outside production, live mode only messages these 10-digit numbers."""
+        raw = os.environ.get("VAARI_NOTIFY_TEST_NUMBERS", "")
+        return {n.strip()[-10:] for n in raw.split(",") if n.strip()}
+
+    @property
+    def sms_provider(self) -> str:
+        """'log' (default), 'twilio' or 'msg91'."""
+        return os.environ.get("VAARI_SMS_PROVIDER", "log").strip().lower() or "log"
+
+    @property
+    def whatsapp_provider(self) -> str:
+        """'log' (default) or 'cloud' (WhatsApp Business Cloud API)."""
+        return os.environ.get("VAARI_WHATSAPP_PROVIDER", "log").strip().lower() or "log"
+
+    @property
+    def vapid_public_key(self) -> str:
+        return os.environ.get("VAARI_VAPID_PUBLIC_KEY", "").strip()
+
+    @property
+    def vapid_private_key(self) -> str:
+        return os.environ.get("VAARI_VAPID_PRIVATE_KEY", "").strip()
+
+    @property
+    def vapid_subject(self) -> str:
+        """Contact for push services: 'mailto:you@example.org' or an https URL."""
+        return os.environ.get("VAARI_VAPID_SUBJECT", "").strip()
+
+    @property
+    def driver_digest_hour(self) -> int:
+        """Local hour for the drivers' morning job list push (-1 turns it off)."""
+        return int(os.environ.get("VAARI_DRIVER_DIGEST_HOUR", "6"))
+
 
 settings = Settings()

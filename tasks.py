@@ -316,6 +316,51 @@ def task_openapi() -> int:
     return 0
 
 
+def task_vapid_keys() -> int:
+    """Print a new web push (VAPID) key pair for .env. Keep the private key secret."""
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from app.notify.webpush import generate_vapid_keys
+
+    pub, priv = generate_vapid_keys()
+    print("# Web push keys. Changing them later means every device must turn alerts on again.")
+    print(f"VAARI_VAPID_PUBLIC_KEY={pub}")
+    print(f"VAARI_VAPID_PRIVATE_KEY={priv}")
+    print("VAARI_VAPID_SUBJECT=mailto:you@example.org")
+    return 0
+
+
+def task_notify(args: list[str]) -> int:
+    """Notification status (default), or --run to send everything that is due now."""
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from sqlalchemy import func
+
+    from app.config import settings
+    from app.db import get_session_factory
+    from app.migrate import ensure_schema
+    from app.models import Notification, PushSubscription
+    from app.notify.dispatch import process_due
+
+    ensure_schema()
+    with get_session_factory()() as session:
+        if "--run" in args:
+            print(f"Sent: {process_due(session) or 'nothing was due'}")
+        print(f"Farmer messages: {settings.notify_mode} via {', '.join(settings.farmer_channels)} "
+              f"(sms={settings.sms_provider}, whatsapp={settings.whatsapp_provider})")
+        rows = (
+            session.query(Notification.audience, Notification.channel, Notification.status, func.count())
+            .group_by(Notification.audience, Notification.channel, Notification.status)
+            .order_by(Notification.audience, Notification.channel)
+            .all()
+        )
+        for audience, channel, status, count in rows:
+            print(f"  {audience:9} {channel:9} {status:10} {count}")
+        devices = session.query(PushSubscription).filter(PushSubscription.revoked_at.is_(None)).count()
+        print(f"Devices with alerts on: {devices}")
+    return 0
+
+
 def task_migrate(args: list[str]) -> int:
     """Upgrade the database to the newest migration, or show the current revision (--status)."""
     if str(ROOT) not in sys.path:
@@ -614,7 +659,8 @@ def main():
         print(
             "Available tasks: setup, dev, test, seed, reset, smoke, serve, tunnel, "
             "build-web, e2e, reader-eval, purge-images, screenshots, check-config, "
-            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voices"
+            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voices, "
+            "vapid-keys, notify"
         )
         sys.exit(1)
 
@@ -662,6 +708,10 @@ def main():
         sys.exit(task_db_revision(extra_args))
     elif task == "openapi":
         sys.exit(task_openapi())
+    elif task == "vapid-keys":
+        sys.exit(task_vapid_keys())
+    elif task == "notify":
+        sys.exit(task_notify(extra_args))
     elif task == "check-config":
         sys.exit(task_check_config())
     elif task == "screenshots":

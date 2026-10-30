@@ -85,6 +85,7 @@ export default function PasscodeGate({ children, roles = ['operator'] }: Props) 
       // Verify passcode using getRequests
       await getRequests({ status: 'open' });
       setAuthed(true);
+      window.dispatchEvent(new Event('vaari-auth-changed'));
     } catch (err) {
       clearPasscode();
       if (err instanceof ApiError && err.status === 401) {

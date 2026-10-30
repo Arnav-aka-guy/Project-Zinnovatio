@@ -85,4 +85,25 @@ def get_health(session: Session = Depends(get_db)):
         "env": settings.env,
         "auth": settings.auth_mode,
         "reader_detail": reader_detail(),
+        "notifications": notifications_detail(),
+    }
+
+
+def notifications_detail() -> dict:
+    """How alerts and farmer messages go out. `messaging` above keeps its old meaning (the screen + wa.me link)."""
+    from app.notify.dispatch import current_worker
+    from app.notify.webpush import vapid_keys
+
+    try:
+        public_key = vapid_keys().public_b64
+    except Exception:  # noqa: BLE001 - a broken key turns push off, visibly
+        public_key = None
+    return {
+        "vapid_public_key": public_key,
+        "farmer_mode": settings.notify_mode,
+        "farmer_channels": settings.farmer_channels,
+        "sms_provider": settings.sms_provider,
+        "whatsapp_provider": settings.whatsapp_provider,
+        "staff": "inapp+webpush",
+        "worker": current_worker() is not None,
     }

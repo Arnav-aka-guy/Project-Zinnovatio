@@ -108,3 +108,19 @@ export function VaariMark({ size = 28 }: { size?: number }) {
     </svg>
   );
 }
+export const IconBell = () => (
+  <Svg>
+    <path d="M6 16.5V11a6 6 0 1 1 12 0v5.5l1.5 2H4.5z" />
+    <path d="M10 20.5a2.2 2.2 0 0 0 4 0" />
+  </Svg>
+);
+export const IconBellOff = () => (
+  <Svg>
+    <path d="M8.2 5.6A6 6 0 0 1 18 11v4M6 11v5.5l-1.5 2H17M10 20.5a2.2 2.2 0 0 0 4 0M3 3l18 18" />
+  </Svg>
+);
+export const IconCheck = () => (
+  <Svg>
+    <path d="M4.5 12.5l4.5 4.5 10.5-10.5" />
+  </Svg>
+);

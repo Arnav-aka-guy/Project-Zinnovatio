@@ -25,6 +25,8 @@ from app.routes.driver import router as driver_router
 from app.routes.health import router as health_router
 from app.routes.intake import router as intake_router
 from app.routes.machines import router as machines_router
+from app.routes.notify import driver_push_router
+from app.routes.notify import router as notify_router
 from app.routes.plots import router as plots_router
 from app.routes.records import router as records_router
 from app.routes.requests import router as requests_router
@@ -52,7 +54,14 @@ async def lifespan(app: FastAPI):
     with session_factory() as session:
         get_or_create_home_centre(session)
         session.commit()
-    yield
+    from app.notify import dispatch
+
+    if settings.notify_worker:
+        dispatch.start_worker(session_factory)
+    try:
+        yield
+    finally:
+        dispatch.stop_worker()
 
 
 app = FastAPI(title="Vaari Backend", version="0.1", lifespan=lifespan)
@@ -78,6 +87,8 @@ app.include_router(records_router, prefix="/api")
 app.include_router(dashboard_router, prefix="/api")
 app.include_router(intake_router, prefix="/api")
 app.include_router(voice_router, prefix="/api")
+app.include_router(notify_router, prefix="/api")
+app.include_router(driver_push_router, prefix="/api")
 
 web_dist = Path(__file__).parent.parent / "web" / "dist"
 

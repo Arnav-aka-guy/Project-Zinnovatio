@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, NavLink, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import PasscodeGate from './components/PasscodeGate';
 import SignOutButton from './components/SignOutButton';
+import AlertsBell from './components/AlertsBell';
 import DeskPage from './pages/DeskPage';
 import DriverPage from './pages/DriverPage';
 import OfficerPage from './pages/OfficerPage';
@@ -171,9 +172,22 @@ function Shell() {
   const isPublic = PUBLIC_PAGE.test(pathname);
   const title = PAGE_TITLES[pathname] ?? '';
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  // A tapped alert asks an open Vaari window to show its screen.
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      if (e.data && e.data.type === 'vaari-open' && typeof e.data.url === 'string' && e.data.url.startsWith('/')) {
+        navigate(e.data.url);
+      }
+    };
+    navigator.serviceWorker?.addEventListener('message', onMessage);
+    return () => navigator.serviceWorker?.removeEventListener('message', onMessage);
+  }, [navigate]);
 
   return (
     <div className={`app-shell ${isPublic ? 'is-public' : 'has-tabbar'}`}>
@@ -208,6 +222,7 @@ function Shell() {
               <SignOutButton />
             </nav>
           )}
+          {!isPublic && <AlertsBell />}
         </div>
       </header>
       <OfflineBar />
