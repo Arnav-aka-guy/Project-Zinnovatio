@@ -74,8 +74,8 @@ class MockVoiceEngine(VoiceEngine):
     def transcribe(self, wav_bytes: bytes) -> Tuple[str, float]:
         if self._test_transcript is not None:
             return self._test_transcript, 0.05
-        # Return default fallback text
-        return "ਹਾਂਜੀ", 0.05
+        # Return default fallback multi-field booking transcript
+        return "ਮੇਰਾ ਨੰਬਰ 9876543210 ਪਿੰਡ ਰਾਮਪੁਰ ਢਾਈ ਏਕੜ ਸੁਪਰ ਸੀਡਰ ਕੱਲ੍ਹ ਨੂੰ", 0.05
 
     def synthesize(self, text: str, reply_key: str) -> bytes:
         return make_dummy_wav()

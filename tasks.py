@@ -507,6 +507,9 @@ def _run_e2e_pass(mode: str, spec_args: list[str]) -> int:
     env["VAARI_PUBLIC_BASE_URL"] = f"http://127.0.0.1:{port}"
     env["VAARI_READER"] = "mock"
     env["VAARI_ALLOW_HOSTED_READER"] = "false"
+    env["VAARI_VOICE"] = "mock"
+    env["VAARI_VOICE_BOOKING"] = "true"
+    env["VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION"] = "true"
     if mode == "production":
         import secrets
 

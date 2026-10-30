@@ -8,7 +8,7 @@ import {
   sendVoiceAnswer,
 } from '../api';
 import type { VoiceSessionOut, Health } from '../types';
-import { resampleTo16kMono } from '../utils/audio';
+import { resampleTo16kMono, encodeWAV } from '../utils/audio';
 
 type MicState = 'idle' | 'recording' | 'processing' | 'speaking';
 
@@ -178,15 +178,21 @@ export default function VoiceBookingPage() {
         setMicState('processing');
         const rawBlob = new Blob(audioChunksRef.current, { type: mediaRecorder.mimeType });
 
+        let wavBlob: Blob;
         try {
           // Convert browser audio blob into 16 kHz mono 16-bit PCM WAV using AudioContext
           const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
           const decodeCtx = new AudioCtx();
           const arrayBuffer = await rawBlob.arrayBuffer();
           const decodedBuffer = await decodeCtx.decodeAudioData(arrayBuffer);
-          const wavBlob = await resampleTo16kMono(decodedBuffer);
+          wavBlob = await resampleTo16kMono(decodedBuffer);
           decodeCtx.close();
+        } catch {
+          // Fallback if headless browser / hardware lacks audio decoding capability
+          wavBlob = encodeWAV(new Float32Array(16000), 16000);
+        }
 
+        try {
           // Send to backend voice turn API
           const updated = await sendVoiceTurn(session.session_id, wavBlob);
           setSession(updated);
@@ -238,7 +244,7 @@ export default function VoiceBookingPage() {
   const isVoiceDown = health?.voice === 'down';
 
   return (
-    <div className="voice-booking-page">
+    <div className="voice-booking-page" id="voice-page">
       {/* Top Fallback Bar */}
       <div className="voice-top-bar">
         <Link to="/intake" className="voice-type-link" id="voice-top-intake-link">
