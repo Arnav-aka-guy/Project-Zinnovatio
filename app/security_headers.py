@@ -31,7 +31,7 @@ BASE_HEADERS = [
     (b"x-content-type-options", b"nosniff"),
     (b"x-frame-options", b"DENY"),
     (b"referrer-policy", b"no-referrer"),
-    (b"permissions-policy", b"camera=(self), geolocation=(self), microphone=(), payment=(), usb=()"),
+    (b"permissions-policy", b"camera=(self), geolocation=(self), microphone=(self), payment=(), usb=()"),
     (b"cross-origin-opener-policy", b"same-origin"),
     (b"cross-origin-resource-policy", b"same-origin"),
     (b"content-security-policy", CONTENT_SECURITY_POLICY.encode()),

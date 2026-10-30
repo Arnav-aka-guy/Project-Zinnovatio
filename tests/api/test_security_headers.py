@@ -15,6 +15,8 @@ def test_security_headers_on_api_responses(client):
     assert "frame-ancestors 'none'" in h["content-security-policy"]
     assert "default-src 'self'" in h["content-security-policy"]
     assert "camera=(self)" in h["permissions-policy"]
+    # Voice booking needs the mic on our own pages; still blocked for any embedded third party.
+    assert "microphone=(self)" in h["permissions-policy"]
     assert h["cache-control"] == "no-store"
     assert "strict-transport-security" not in h  # development
 
