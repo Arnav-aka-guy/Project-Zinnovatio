@@ -1,0 +1,50 @@
+{
+  "dialogue_id": 3,
+  "title": "Noisy Speech Retry and In-Sentence Acres Correction",
+  "turns": [
+    {
+      "turn": 1,
+      "text": "ਘੜ ਘੜ... ਆਵਾਜ਼ ਸਾਫ ਨਹੀਂ...",
+      "expected_extracted": {}
+    },
+    {
+      "turn": 2,
+      "text": "ਨੰਬਰ ਲਿਖੋ 9888877777",
+      "expected_extracted": { "phone": "9888877777" }
+    },
+    {
+      "turn": 3,
+      "text": "ਪਿੰਡ ਧਾਂਦਰਾਂ",
+      "expected_extracted": { "village": "Dhandra" }
+    },
+    {
+      "turn": 4,
+      "text": "ਤਿੰਨ ਏਕੜ... ਨਹੀਂ ਨਹੀਂ ਚਾਰ ਏਕੜ ਕਰ ਦਿਓ",
+      "expected_extracted": { "acres": 4.0 }
+    },
+    {
+      "turn": 5,
+      "text": "ਸੁਪਰਸੀਡਰ",
+      "expected_extracted": { "machine": "Super Seeder" }
+    },
+    {
+      "turn": 6,
+      "text": "ਪਰਸੋਂ ਨੂੰ",
+      "expected_extracted": { "harvest_date_offset_days": 2 }
+    },
+    {
+      "turn": 7,
+      "text": "ਆਹੋ ਜੀ ਸਹੀ ਹੈ",
+      "expected_extracted": { "confirm": true }
+    }
+  ],
+  "expected_final": {
+    "phone": "9888877777",
+    "village": "Dhandra",
+    "acres": 4.0,
+    "machine": "Super Seeder",
+    "harvest_date_offset_days": 2,
+    "confirmed": true,
+    "cancelled": false
+  }
+}

@@ -412,6 +412,12 @@ def task_smoke() -> int:
     return run_cmd([str(py), "-m", "pytest", "-q", "tests/api/test_smoke.py"])
 
 
+def task_voice_eval() -> int:
+    """Run the voice understanding evaluation on examples/voice/SCRIPT.md."""
+    py = get_venv_python()
+    return run_cmd([str(py), "-m", "app.voice.eval"])
+
+
 def task_reader_eval() -> int:
     """Run the configured reader on examples/register_pages/ and print counts."""
     py = get_venv_python()
@@ -638,7 +644,7 @@ def main():
         print(
             "Available tasks: setup, dev, test, seed, reset, smoke, serve, tunnel, "
             "build-web, e2e, reader-eval, purge-images, screenshots, check-config, "
-            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voice-serve, voice-cache"
+            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voice-serve, voice-cache, voice-eval"
         )
         sys.exit(1)
 
@@ -651,6 +657,8 @@ def main():
         sys.exit(task_voice_serve())
     elif task == "voice-cache":
         sys.exit(task_voice_cache(extra_args))
+    elif task == "voice-eval":
+        sys.exit(task_voice_eval())
     elif task == "dev":
         sys.exit(task_dev())
     elif task == "test":

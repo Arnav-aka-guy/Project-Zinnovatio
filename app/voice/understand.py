@@ -124,7 +124,7 @@ YES_WORDS = {
 }
 
 NO_WORDS = {
-    "ਨਹੀਂ", "ਨਹੀ", "ਨਾ", "ਨਹੀਂ ਜੀ", "ਗ਼ਲਤ", "ਗਲਤ", "ਰੱਦ", "ਰੱਦ ਕਰੋ",
+    "ਨਹੀਂ", "ਨਹੀ", "ਨਾ", "ਨਹੀਂ ਜੀ", "ਗ਼ਲਤ", "ਗਲਤ", "ਰੱਦ", "ਰੱਦ ਕਰੋ", "ਕੈਂਸਲ", "ਕੈਂਸਲ ਕਰੋ", "ਬੰਦ ਕਰੋ",
     "no", "nahin", "wrong", "cancel", "nope", "not correct",
 }
 
@@ -155,6 +155,19 @@ VILLAGE_CANONICAL = {
     "samana": "Samana", "ਸਮਾਣਾ": "Samana",
     "patiala": "Patiala", "ਪਟਿਆਲਾ": "Patiala",
     "dhablan": "Dhablan", "ਢਾਬਲਾਂ": "Dhablan",
+    "kila raipur": "Kila Raipur", "ਕਿਲਾ ਰਾਏਪੁਰ": "Kila Raipur", "ਕਿਲ੍ਹਾ ਰਾਏਪੁਰ": "Kila Raipur",
+    "dhandra": "Dhandra", "ਧਾਂਦਰਾਂ": "Dhandra", "ਧਾਂਦਰਾ": "Dhandra",
+    "mansuran": "Mansuran", "ਮਨਸੂਰਾਂ": "Mansuran", "ਮਨਸੂਰਾ": "Mansuran",
+    "jodhan": "Jodhan", "ਜੋਧਾਂ": "Jodhan", "ਜੋਧਾ": "Jodhan",
+    "pind kalan": "Pind Kalan", "ਪਿੰਡ ਕਲਾਂ": "Pind Kalan",
+    "bhucho khurd": "Bhucho Khurd", "ਭੁੱਚੋ ਖੁਰਦ": "Bhucho Khurd",
+    "rampura phul": "Rampura Phul", "ਰਾਮਪੁਰਾ ਫੂਲ": "Rampura Phul",
+    "kot shamir": "Kot Shamir", "ਕੋਟ ਸ਼ਮੀਰ": "Kot Shamir",
+    "maur mandi": "Maur Mandi", "ਮੌੜ ਮੰਡੀ": "Maur Mandi",
+    "sangat kalan": "Sangat Kalan", "ਸੰਗਤ ਕਲਾਂ": "Sangat Kalan",
+    "talwandi sabo": "Talwandi Sabo", "ਤਲਵੰਡੀ ਸਾਬੋ": "Talwandi Sabo",
+    "goniana mandi": "Goniana Mandi", "ਗੋਨਿਆਣਾ ਮੰਡੀ": "Goniana Mandi",
+    "tibbi far": "Tibbi Far", "ਟਿੱਬੀ ਫ਼ਾਰ": "Tibbi Far",
 }
 
 
@@ -210,57 +223,89 @@ def extract_phone(text: str) -> Optional[str]:
 
 
 def extract_acres(text: str) -> Optional[float]:
-    """Extract acres supporting fractions (ਢਾਈ=2.5, ਡੇਢ=1.5, ਸਾਢੇ=X+0.5, ਸਵਾ=X+0.25, ਪੌਣੇ=X-0.25)."""
+    """Extract acres supporting fractions (ਢਾਈ=2.5, ਡੇਢ=1.5, ਸਾਢੇ=X+0.5, ਸਵਾ=X+0.25, ਪੌਣੇ=X-0.25).
+
+    When multiple values are present (e.g. self-correction), returns the last mentioned value.
+    Prioritizes explicit acre mentions ('5 ਏਕੜ', 'ਢਾਈ ਏਕੜ') over unadorned digits (e.g. dates).
+    """
     clean = to_ascii_digits(text.lower())
     clean = clean.replace("ਕਿੱਲੇ", "ਏਕੜ").replace("ਕਿਲੇ", "ਏਕੜ").replace("acres", "ਏਕੜ").replace("acre", "ਏਕੜ")
     tokens = clean.split()
 
-    # 1. Standalone fraction words
-    for tok in tokens:
-        if tok in FRACTION_WORDS:
-            val = FRACTION_WORDS[tok]
-            if 0.5 <= val <= 500.0:
-                return val
+    explicit_candidates: list[tuple[int, float]] = []
+    fallback_candidates: list[tuple[int, float]] = []
+    compound_consumed = set()
 
-    # 2. Compound fractions: ਸਾਢੇ (X + 0.5), ਸਵਾ (X + 0.25), ਪੌਣੇ (X - 0.25)
+    # 1. Compound fractions: ਸਾਢੇ (X + 0.5), ਸਵਾ (X + 0.25), ਪੌਣੇ (X - 0.25)
     for i, tok in enumerate(tokens):
         if tok in ("ਸਾਢੇ", "saadhe") and i + 1 < len(tokens):
-            next_tok = tokens[i + 1]
-            base = _parse_number_token(next_tok)
+            base = _parse_number_token(tokens[i + 1])
             if base is not None:
                 val = base + 0.5
                 if 0.5 <= val <= 500.0:
-                    return val
+                    compound_consumed.add(i)
+                    compound_consumed.add(i + 1)
+                    has_unit = (i + 2 < len(tokens) and tokens[i + 2] == "ਏਕੜ") or (i > 0 and tokens[i - 1] == "ਏਕੜ")
+                    if has_unit:
+                        explicit_candidates.append((i, val))
+                    else:
+                        fallback_candidates.append((i, val))
         elif tok in ("ਸਵਾ", "sawa") and i + 1 < len(tokens):
-            next_tok = tokens[i + 1]
-            base = _parse_number_token(next_tok)
+            base = _parse_number_token(tokens[i + 1])
             if base is not None:
                 val = base + 0.25
                 if 0.5 <= val <= 500.0:
-                    return val
+                    compound_consumed.add(i)
+                    compound_consumed.add(i + 1)
+                    has_unit = (i + 2 < len(tokens) and tokens[i + 2] == "ਏਕੜ") or (i > 0 and tokens[i - 1] == "ਏਕੜ")
+                    if has_unit:
+                        explicit_candidates.append((i, val))
+                    else:
+                        fallback_candidates.append((i, val))
         elif tok in ("ਪੌਣੇ", "paune") and i + 1 < len(tokens):
-            next_tok = tokens[i + 1]
-            base = _parse_number_token(next_tok)
+            base = _parse_number_token(tokens[i + 1])
             if base is not None:
                 val = base - 0.25
                 if 0.5 <= val <= 500.0:
-                    return val
+                    compound_consumed.add(i)
+                    compound_consumed.add(i + 1)
+                    has_unit = (i + 2 < len(tokens) and tokens[i + 2] == "ਏਕੜ") or (i > 0 and tokens[i - 1] == "ਏਕੜ")
+                    if has_unit:
+                        explicit_candidates.append((i, val))
+                    else:
+                        fallback_candidates.append((i, val))
 
-    # 3. Direct numeric values preceding acre / ਏਕੜ or standalone numbers
-    m = re.search(r"(\d+(?:\.\d+)?)\s*(?:ਏਕੜ|acre)?", clean)
-    if m:
-        try:
-            val = float(m.group(1))
+    # 2. Standalone fractions and single number words/digits
+    date_words = {"ਤਾਰੀਖ਼", "ਤਾਰੀਖ", "tareekh", "date"}
+    for i, tok in enumerate(tokens):
+        if i in compound_consumed:
+            continue
+        has_unit = (i + 1 < len(tokens) and tokens[i + 1] == "ਏਕੜ") or (i > 0 and tokens[i - 1] == "ਏਕੜ")
+        followed_by_date = (i + 1 < len(tokens) and (tokens[i + 1] in MONTH_MAP or tokens[i + 1] in date_words))
+
+        if tok in FRACTION_WORDS:
+            val = FRACTION_WORDS[tok]
             if 0.5 <= val <= 500.0:
-                return val
-        except ValueError:
-            pass
+                if has_unit:
+                    explicit_candidates.append((i, val))
+                elif not followed_by_date:
+                    fallback_candidates.append((i, val))
+                continue
 
-    # 4. Word numbers: "ਪੰਜ ਏਕੜ", "ਦਸ ਏਕੜ"
-    for tok in tokens:
         val = _parse_number_token(tok)
         if val is not None and 0.5 <= float(val) <= 500.0:
-            return float(val)
+            if has_unit:
+                explicit_candidates.append((i, float(val)))
+            elif not followed_by_date:
+                fallback_candidates.append((i, float(val)))
+
+    if explicit_candidates:
+        explicit_candidates.sort(key=lambda c: c[0])
+        return explicit_candidates[-1][1]
+
+    if fallback_candidates:
+        fallback_candidates.sort(key=lambda c: c[0])
+        return fallback_candidates[-1][1]
 
     return None
 

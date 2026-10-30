@@ -1,0 +1,31 @@
+{
+  "dialogue_id": 2,
+  "title": "Happy Seeder Multi-field Turn and Explicit Date",
+  "turns": [
+    {
+      "turn": 1,
+      "text": "ਮੇਰਾ ਨੰਬਰ 9812345678 ਹੈ, ਪਿੰਡ ਕਿਲਾ ਰਾਏਪੁਰ, ਪੰਜ ਏਕੜ ਲਈ ਹੈਪੀ ਸੀਡਰ ਚਾਹੀਦਾ 2 ਨਵੰਬਰ ਨੂੰ",
+      "expected_extracted": {
+        "phone": "9812345678",
+        "village": "Kila Raipur",
+        "acres": 5.0,
+        "machine": "Happy Seeder",
+        "harvest_date": "2026-11-02"
+      }
+    },
+    {
+      "turn": 2,
+      "text": "ਹਾਂ ਜੀ ਠੀਕ ਹੈ ਬੁੱਕ ਕਰ ਦਿਓ",
+      "expected_extracted": { "confirm": true }
+    }
+  ],
+  "expected_final": {
+    "phone": "9812345678",
+    "village": "Kila Raipur",
+    "acres": 5.0,
+    "machine": "Happy Seeder",
+    "harvest_date": "2026-11-02",
+    "confirmed": true,
+    "cancelled": false
+  }
+}
