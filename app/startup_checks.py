@@ -109,6 +109,13 @@ def config_problems(s: Any) -> list[str]:
             "It sends register images to a third party and is for demonstration only. "
             "Turn it off, or set VAARI_ALLOW_HOSTED_READER_IN_PRODUCTION=true to override on purpose."
         )
+
+    if getattr(s, "voice_booking", False) and not getattr(s, "allow_voice_booking_in_production", False):
+        problems.append(
+            "Voice booking is enabled (VAARI_VOICE_BOOKING=true). "
+            "It is for local demonstration on a laptop. "
+            "Turn it off, or set VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION=true to override on purpose."
+        )
     return problems
 
 
