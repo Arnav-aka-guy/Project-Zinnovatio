@@ -6,6 +6,15 @@ All notable changes are recorded here. The format follows Keep a Changelog, and 
 
 - Removed the old voice service, replaced by the voice booking pack.
 
+### Voice booking in Punjabi and English (pilot v0.3, 30 Oct 2026)
+- **Two languages**: ਪੰਜਾਬੀ or English on the start screen, switchable mid-booking; English uses Indian English neural voices and `en-IN` speech recognition, and the engine understands English answers for all five steps.
+- **Voice booking page** at `/voice`: five spoken questions, hands-free (the mic opens after each question), every answer read back in Punjabi for a yes or no, corrections in the same breath ("ਨਹੀਂ, 28 ਅਕਤੂਬਰ"), a consent question, then the request is saved and the result is spoken.
+- **Voice engine** `app/voice/`: understands phone numbers (digits, Gurmukhi digits, number words, pairs, "double", said in two goes), villages (Gurmukhi, English, aliases, fuzzy), acres (ਸਵਾ, ਸਾਢੇ, ਪੌਣੇ, ਡੇਢ, ਢਾਈ, 5 ਕਿੱਲੇ, 4 ਕਨਾਲ, ਮਰਲੇ, hectare), machines, and dates (ਅੱਜ, ਕੱਲ੍ਹ by tense, ਪਰਸੋਂ, weekdays, "15 ਨਵੰਬਰ", "3 ਦਿਨ ਪਹਿਲਾਂ", festivals, "ਪਤਾ ਨਹੀਂ").
+- **New routes** `GET /api/voice/script` and `POST /api/voice/understand` (additive).
+- **Natural voice clips**: `python tasks.py voices` makes about 790 clips per language with Microsoft's neural `pa-IN` and `en-IN` voices; the browser trims silence per clip so stitched read-backs have no pauses.
+- **Fix**: `Permissions-Policy` blocked the microphone on every page (`microphone=()`); now `microphone=(self)`.
+- Tests: about 100 new unit and API tests, and `web/e2e/voice_booking.spec.ts`.
+
 ### Pilot build v0.2 (30 Oct 2026)
 - **A1 Production mode**: `VAARI_ENV=production` refuses to start with unsafe settings; new `python tasks.py check-config`.
 - **A2 Accounts and roles**: operator and officer accounts (argon2id), signed expiring sessions, role checks on every protected route, `create-user` / `disable-user` / `list-users`, sign-in screen in production, production-mode Playwright pass.

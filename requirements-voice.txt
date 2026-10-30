@@ -1,0 +1,3 @@
+# Only needed to (re)make the Punjabi voice clips: python tasks.py voices
+# Not needed to run the app; the clips ship in web/public/audio/pa/.
+edge-tts>=7.0,<8

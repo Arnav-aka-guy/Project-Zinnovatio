@@ -316,3 +316,23 @@ Production: follow [`docs/DEPLOY.md`](docs/DEPLOY.md) (Docker, `.env` from `.env
 6. **Logs.** Never pass personal data into a log call. `extra={"fields": ...}` only lets allow-listed keys through (`app/logging_setup.ALLOWED_FIELDS`), and `test_no_names_phones_tokens_or_images_in_logs` will catch most mistakes.
 7. **The e2e screenshot spec rewrites `docs/screenshots/`** on every run. Revert those files unless you meant to update them.
 8. **Branches.** Each part branch starts from the one before. `part-8-followups` contains everything plus `main` up to 23aac6a, so merging it into `main` is a fast-forward.
+
+## Voice booking in Punjabi and English (pilot v0.3)
+
+A farmer books by talking, in Punjabi or English (picked on the start screen, switchable at any time): five spoken questions (phone, village, acres, machine, harvest date), each answer read back in Punjabi for a yes or no, then a consent question and `POST /api/requests`. Page: `/voice`. Full notes: [docs/VOICE.md](docs/VOICE.md).
+
+### Contract changes (additive only, with the reason)
+- **New routes** (auth P): `GET /api/voice/script` (languages, questions, prompt texts in both languages, villages, machines, today) and `POST /api/voice/understand` (`{step, texts[1..5], context?, lang?: "pa"|"en"}` → `{ok, value, display_pa, display_en, readback, prompt, error_code, confidence, alternatives, partial, correction}`). A not-understood answer is HTTP 200 with `ok: false`; only a bad body is 422 `VALIDATION_ERROR`. Reason: voice booking. `EXPECTED_PATH_COUNT` in `tests/api/test_openapi_fresh.py` went from 33 to 35.
+- **`Permissions-Policy`** now has `microphone=(self)` instead of `microphone=()`. The old value switched the mic off for every page served by the backend, so the browser's Allow button could never turn it back on. Embedded third-party frames still get no mic.
+- **Static audio**: `web/public/audio/pa/` and `web/public/audio/en/` (`*.mp3` plus `manifest.json` each), served by the existing SPA file fallback. No route. Same clip ids in both languages.
+- **New dev-only dependency**: `edge-tts` in `requirements-voice.txt`, used only by `python tasks.py voices` to make the clips. The app itself needs nothing new.
+
+### Rules the voice code keeps
+- `app/voice/understand.py` is pure (no clock, no database); the route passes `clock.today()`.
+- Every sentence lives once, in `app/voice/catalog.py`. The clip maker and the engine both read it.
+- Every fallback is visible: no clips, missing clips, mic blocked, http on a LAN IP, no speech support, no internet for speech. Every step can be typed or tapped.
+- The page never calls `fetch` itself; `getVoiceScript`, `understandVoice`, `getVoiceManifest` and `getAudioClip` are in `web/src/api.ts`.
+
+### What was not verified
+- **Real speech recognition.** The e2e spec scripts the recogniser. Chrome's `pa-IN` and `en-IN` recognition should be tried with real farmers; the engine already accepts digits, Gurmukhi digits and number words in both languages.
+- **Punjabi wording** of the 42 prompts should be read by a native speaker before the pilot.

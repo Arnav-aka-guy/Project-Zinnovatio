@@ -30,6 +30,7 @@ from app.routes.records import router as records_router
 from app.routes.requests import router as requests_router
 from app.routes.schedule import router as schedule_router
 from app.routes.slots import router as slots_router
+from app.routes.voice import router as voice_router
 from app.security_headers import ConfiguredCORSMiddleware, SecurityHeadersMiddleware
 from app.startup_checks import UnsafeConfigError, enforce_startup_checks
 
@@ -76,6 +77,7 @@ app.include_router(driver_router, prefix="/api")
 app.include_router(records_router, prefix="/api")
 app.include_router(dashboard_router, prefix="/api")
 app.include_router(intake_router, prefix="/api")
+app.include_router(voice_router, prefix="/api")
 
 web_dist = Path(__file__).parent.parent / "web" / "dist"
 

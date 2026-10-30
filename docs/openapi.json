@@ -2825,6 +2825,142 @@
           }
         }
       }
+    },
+    "/api/voice/script": {
+      "get": {
+        "tags": [
+          "voice"
+        ],
+        "summary": "Voice Script",
+        "operationId": "voice_script_api_voice_script_get",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "name": "X-Vaari-Passcode",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Vaari-Passcode"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/voice/understand": {
+      "post": {
+        "tags": [
+          "voice"
+        ],
+        "summary": "Voice Understand",
+        "operationId": "voice_understand_api_voice_understand_post",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "name": "X-Vaari-Passcode",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Vaari-Passcode"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoiceUnderstandIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -4413,6 +4549,107 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "VoiceContext": {
+        "properties": {
+          "partial_phone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 12
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Partial Phone"
+          },
+          "pending": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "kal"
+                ],
+                "const": "kal"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pending"
+          },
+          "confirm_step": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "phone",
+                  "village",
+                  "acres",
+                  "machine",
+                  "date"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirm Step"
+          }
+        },
+        "type": "object",
+        "title": "VoiceContext"
+      },
+      "VoiceUnderstandIn": {
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "phone",
+              "village",
+              "acres",
+              "machine",
+              "date",
+              "confirm"
+            ],
+            "title": "Step"
+          },
+          "texts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Texts"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VoiceContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lang": {
+            "type": "string",
+            "enum": [
+              "pa",
+              "en"
+            ],
+            "title": "Lang",
+            "default": "pa"
+          }
+        },
+        "type": "object",
+        "required": [
+          "step",
+          "texts"
+        ],
+        "title": "VoiceUnderstandIn"
       }
     }
   }

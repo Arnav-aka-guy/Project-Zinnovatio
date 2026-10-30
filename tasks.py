@@ -412,6 +412,18 @@ def task_smoke() -> int:
     return run_cmd([str(py), "-m", "pytest", "-q", "tests/api/test_smoke.py"])
 
 
+def task_voices(args: list[str]) -> int:
+    """Make the Punjabi voice clips into web/public/audio/pa/ (needs internet once)."""
+    py = get_venv_python()
+    probe = subprocess.run([str(py), "-c", "import edge_tts"], cwd=ROOT, capture_output=True)
+    if probe.returncode != 0 and not ({"--dry-run", "--check"} & set(args)):
+        print("Installing edge-tts (requirements-voice.txt)...")
+        code = run_cmd([str(py), "-m", "pip", "install", "-q", "-r", "requirements-voice.txt"])
+        if code != 0:
+            return code
+    return run_cmd([str(py), str(ROOT / "scripts" / "make_voice_clips.py")] + args)
+
+
 def task_reader_eval() -> int:
     """Run the configured reader on examples/register_pages/ and print counts."""
     py = get_venv_python()
@@ -602,7 +614,7 @@ def main():
         print(
             "Available tasks: setup, dev, test, seed, reset, smoke, serve, tunnel, "
             "build-web, e2e, reader-eval, purge-images, screenshots, check-config, "
-            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore"
+            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voices"
         )
         sys.exit(1)
 
@@ -629,6 +641,8 @@ def main():
         sys.exit(task_tunnel())
     elif task == "e2e":
         sys.exit(task_e2e(extra_args))
+    elif task == "voices":
+        sys.exit(task_voices(extra_args))
     elif task == "reader-eval":
         sys.exit(task_reader_eval())
     elif task == "purge-images":
