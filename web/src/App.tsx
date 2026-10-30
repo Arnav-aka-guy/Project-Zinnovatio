@@ -8,6 +8,7 @@ import RecordPage from './pages/RecordPage';
 import DriverPickerPage from './pages/DriverPickerPage';
 import RecordPickerPage from './pages/RecordPickerPage';
 import IntakePage from './pages/IntakePage';
+import VoiceBookingPage from './pages/VoiceBookingPage';
 
 export default function App() {
   return (
@@ -34,6 +35,13 @@ export default function App() {
                 id="nav-intake"
               >
                 Register Intake
+              </NavLink>
+              <NavLink
+                to="/voice"
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                id="nav-voice"
+              >
+                Voice booking
               </NavLink>
               <NavLink
                 to="/officer"
@@ -77,6 +85,14 @@ export default function App() {
               element={
                 <PasscodeGate>
                   <IntakePage />
+                </PasscodeGate>
+              }
+            />
+            <Route
+              path="/voice"
+              element={
+                <PasscodeGate>
+                  <VoiceBookingPage />
                 </PasscodeGate>
               }
             />

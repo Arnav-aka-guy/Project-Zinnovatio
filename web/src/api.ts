@@ -28,6 +28,7 @@ import type {
   SlotOut,
   WillMissItem,
 } from './types';
+import type { VoiceLang, VoiceManifest, VoiceResult, VoiceScript, VoiceUnderstandBody } from './voice/types';
 
 // ── ApiError ─────────────────────────────────────────────────
 export class ApiError extends Error {
@@ -459,3 +460,44 @@ export function confirmIntakeDraft(
     body: JSON.stringify({ rows }),
   });
 }
+
+// ── Voice booking (passcode) ──────────────────────────────────
+export function getVoiceScript(): Promise<VoiceScript> {
+  return request<VoiceScript>('/api/voice/script', { headers: { ...authHeaders('passcode') } });
+}
+
+export function understandVoice(body: VoiceUnderstandBody): Promise<VoiceResult> {
+  return request<VoiceResult>('/api/voice/understand', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...authHeaders('passcode') },
+    body: JSON.stringify(body),
+  });
+}
+
+/** The clip manifest made by `python tasks.py voices`. Null when the clips were never made. */
+export async function getVoiceManifest(lang: VoiceLang): Promise<VoiceManifest | null> {
+  try {
+    const res = await fetch(`/audio/${lang}/manifest.json`, { cache: 'no-cache' });
+    if (!res.ok) return null;
+    const type = res.headers.get('content-type') ?? '';
+    if (!type.includes('json')) return null; // SPA fallback served index.html
+    return (await res.json()) as VoiceManifest;
+  } catch {
+    return null;
+  }
+}
+
+/** Raw bytes of one static voice clip (decoded by Web Audio in voice/player.ts). */
+export async function getAudioClip(url: string): Promise<ArrayBuffer> {
+  let res: Response;
+  try {
+    res = await fetch(url);
+  } catch {
+    throw new ApiError({ error_code: 'NETWORK_DOWN', message: 'Audio clip fetch failed.', details: { url } }, 0);
+  }
+  if (!res.ok) {
+    throw new ApiError({ error_code: 'CLIP_NOT_FOUND', message: `Clip missing: ${url}`, details: { url } }, res.status);
+  }
+  return res.arrayBuffer();
+}
+
