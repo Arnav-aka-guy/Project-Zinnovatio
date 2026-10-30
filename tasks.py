@@ -596,13 +596,36 @@ def task_e2e(args: list[str]) -> int:
     return dev_code or prod_code
 
 
+def task_voice_serve() -> int:
+    """Start local voice service on 127.0.0.1:8100 using voice_service/.venv."""
+    if os.name == "nt":
+        voice_py = ROOT / "voice_service" / ".venv" / "Scripts" / "python.exe"
+    else:
+        voice_py = ROOT / "voice_service" / ".venv" / "bin" / "python"
+    if not voice_py.exists():
+        print(f"Error: voice_service virtual environment not found at {voice_py}")
+        print("Please follow docs/VOICE.md to create voice_service/.venv and install requirements-voice.txt")
+        return 1
+    cmd = [
+        str(voice_py),
+        "-m",
+        "uvicorn",
+        "voice_service.server:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8100",
+    ]
+    return run_cmd(cmd, cwd=ROOT)
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python tasks.py <task> [args]")
         print(
             "Available tasks: setup, dev, test, seed, reset, smoke, serve, tunnel, "
             "build-web, e2e, reader-eval, purge-images, screenshots, check-config, "
-            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore"
+            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voice-serve"
         )
         sys.exit(1)
 
@@ -611,6 +634,8 @@ def main():
 
     if task == "setup":
         sys.exit(task_setup())
+    elif task == "voice-serve":
+        sys.exit(task_voice_serve())
     elif task == "dev":
         sys.exit(task_dev())
     elif task == "test":
