@@ -1,0 +1,4756 @@
+{
+ "clips": {
+  "acres/100": {
+   "bytes": 11952,
+   "file": "acres/100.mp3",
+   "sha": "e7e55359d85d",
+   "text": "one acre"
+  },
+  "acres/1000": {
+   "bytes": 12096,
+   "file": "acres/1000.mp3",
+   "sha": "dfb86e2502d0",
+   "text": "10 acres"
+  },
+  "acres/10000": {
+   "bytes": 14688,
+   "file": "acres/10000.mp3",
+   "sha": "77bf1e346c9a",
+   "text": "100 acres"
+  },
+  "acres/10100": {
+   "bytes": 16992,
+   "file": "acres/10100.mp3",
+   "sha": "37afdaac4656",
+   "text": "101 acres"
+  },
+  "acres/10200": {
+   "bytes": 16272,
+   "file": "acres/10200.mp3",
+   "sha": "1f37948013c7",
+   "text": "102 acres"
+  },
+  "acres/1025": {
+   "bytes": 17136,
+   "file": "acres/1025.mp3",
+   "sha": "4d0da55c2fc2",
+   "text": "10 and a quarter acres"
+  },
+  "acres/10300": {
+   "bytes": 16992,
+   "file": "acres/10300.mp3",
+   "sha": "35234ea77b33",
+   "text": "103 acres"
+  },
+  "acres/10400": {
+   "bytes": 16992,
+   "file": "acres/10400.mp3",
+   "sha": "f3fb96b1c54a",
+   "text": "104 acres"
+  },
+  "acres/1050": {
+   "bytes": 16128,
+   "file": "acres/1050.mp3",
+   "sha": "e9ed5159a208",
+   "text": "10 and a half acres"
+  },
+  "acres/10500": {
+   "bytes": 18000,
+   "file": "acres/10500.mp3",
+   "sha": "692198b70f3e",
+   "text": "105 acres"
+  },
+  "acres/10600": {
+   "bytes": 17280,
+   "file": "acres/10600.mp3",
+   "sha": "44235935ca02",
+   "text": "106 acres"
+  },
+  "acres/10700": {
+   "bytes": 17712,
+   "file": "acres/10700.mp3",
+   "sha": "10915a497c70",
+   "text": "107 acres"
+  },
+  "acres/1075": {
+   "bytes": 18432,
+   "file": "acres/1075.mp3",
+   "sha": "ebd550145d62",
+   "text": "10 and three quarter acres"
+  },
+  "acres/10800": {
+   "bytes": 16416,
+   "file": "acres/10800.mp3",
+   "sha": "d865fefcfc0e",
+   "text": "108 acres"
+  },
+  "acres/10900": {
+   "bytes": 16848,
+   "file": "acres/10900.mp3",
+   "sha": "6c9f58ba7b64",
+   "text": "109 acres"
+  },
+  "acres/1100": {
+   "bytes": 13104,
+   "file": "acres/1100.mp3",
+   "sha": "173a5a038b9c",
+   "text": "11 acres"
+  },
+  "acres/11000": {
+   "bytes": 16560,
+   "file": "acres/11000.mp3",
+   "sha": "31434fcc72f8",
+   "text": "110 acres"
+  },
+  "acres/11100": {
+   "bytes": 18000,
+   "file": "acres/11100.mp3",
+   "sha": "c151883aaf4d",
+   "text": "111 acres"
+  },
+  "acres/11200": {
+   "bytes": 17280,
+   "file": "acres/11200.mp3",
+   "sha": "ac02d4679118",
+   "text": "112 acres"
+  },
+  "acres/1125": {
+   "bytes": 18000,
+   "file": "acres/1125.mp3",
+   "sha": "1c2d729806ce",
+   "text": "11 and a quarter acres"
+  },
+  "acres/11300": {
+   "bytes": 18000,
+   "file": "acres/11300.mp3",
+   "sha": "45accab1203c",
+   "text": "113 acres"
+  },
+  "acres/11400": {
+   "bytes": 18144,
+   "file": "acres/11400.mp3",
+   "sha": "2388bf94a7c0",
+   "text": "114 acres"
+  },
+  "acres/1150": {
+   "bytes": 16848,
+   "file": "acres/1150.mp3",
+   "sha": "48106d9fb5b0",
+   "text": "11 and a half acres"
+  },
+  "acres/11500": {
+   "bytes": 18432,
+   "file": "acres/11500.mp3",
+   "sha": "42fdfb41342b",
+   "text": "115 acres"
+  },
+  "acres/11600": {
+   "bytes": 18576,
+   "file": "acres/11600.mp3",
+   "sha": "c7887d0af56d",
+   "text": "116 acres"
+  },
+  "acres/11700": {
+   "bytes": 18720,
+   "file": "acres/11700.mp3",
+   "sha": "9754e0849518",
+   "text": "117 acres"
+  },
+  "acres/1175": {
+   "bytes": 19296,
+   "file": "acres/1175.mp3",
+   "sha": "41c264571410",
+   "text": "11 and three quarter acres"
+  },
+  "acres/11800": {
+   "bytes": 17280,
+   "file": "acres/11800.mp3",
+   "sha": "28980ecc9703",
+   "text": "118 acres"
+  },
+  "acres/11900": {
+   "bytes": 18288,
+   "file": "acres/11900.mp3",
+   "sha": "780a980728d8",
+   "text": "119 acres"
+  },
+  "acres/1200": {
+   "bytes": 12816,
+   "file": "acres/1200.mp3",
+   "sha": "a40a34361e93",
+   "text": "12 acres"
+  },
+  "acres/12000": {
+   "bytes": 17424,
+   "file": "acres/12000.mp3",
+   "sha": "cddb289963fd",
+   "text": "120 acres"
+  },
+  "acres/12100": {
+   "bytes": 19152,
+   "file": "acres/12100.mp3",
+   "sha": "be6277a649d1",
+   "text": "121 acres"
+  },
+  "acres/12200": {
+   "bytes": 18576,
+   "file": "acres/12200.mp3",
+   "sha": "e56fa95f2e9e",
+   "text": "122 acres"
+  },
+  "acres/1225": {
+   "bytes": 17280,
+   "file": "acres/1225.mp3",
+   "sha": "f70d424220bf",
+   "text": "12 and a quarter acres"
+  },
+  "acres/12300": {
+   "bytes": 18864,
+   "file": "acres/12300.mp3",
+   "sha": "a2a912be1f11",
+   "text": "123 acres"
+  },
+  "acres/12400": {
+   "bytes": 19296,
+   "file": "acres/12400.mp3",
+   "sha": "6957f4cbfee6",
+   "text": "124 acres"
+  },
+  "acres/125": {
+   "bytes": 16848,
+   "file": "acres/125.mp3",
+   "sha": "4bdf66150035",
+   "text": "1 and a quarter acres"
+  },
+  "acres/1250": {
+   "bytes": 16704,
+   "file": "acres/1250.mp3",
+   "sha": "f9c87a665915",
+   "text": "12 and a half acres"
+  },
+  "acres/12500": {
+   "bytes": 19728,
+   "file": "acres/12500.mp3",
+   "sha": "982259d76304",
+   "text": "125 acres"
+  },
+  "acres/12600": {
+   "bytes": 19584,
+   "file": "acres/12600.mp3",
+   "sha": "5126bff44328",
+   "text": "126 acres"
+  },
+  "acres/12700": {
+   "bytes": 19440,
+   "file": "acres/12700.mp3",
+   "sha": "df0761d53cc5",
+   "text": "127 acres"
+  },
+  "acres/1275": {
+   "bytes": 19008,
+   "file": "acres/1275.mp3",
+   "sha": "e28e1b03d898",
+   "text": "12 and three quarter acres"
+  },
+  "acres/12800": {
+   "bytes": 19152,
+   "file": "acres/12800.mp3",
+   "sha": "fa287a483f56",
+   "text": "128 acres"
+  },
+  "acres/12900": {
+   "bytes": 19296,
+   "file": "acres/12900.mp3",
+   "sha": "e4635f1c5267",
+   "text": "129 acres"
+  },
+  "acres/1300": {
+   "bytes": 13248,
+   "file": "acres/1300.mp3",
+   "sha": "8db9ab9d6049",
+   "text": "13 acres"
+  },
+  "acres/13000": {
+   "bytes": 17136,
+   "file": "acres/13000.mp3",
+   "sha": "154b1f4bb290",
+   "text": "130 acres"
+  },
+  "acres/13100": {
+   "bytes": 19584,
+   "file": "acres/13100.mp3",
+   "sha": "a9a29743b50c",
+   "text": "131 acres"
+  },
+  "acres/13200": {
+   "bytes": 18288,
+   "file": "acres/13200.mp3",
+   "sha": "b38a37b05057",
+   "text": "132 acres"
+  },
+  "acres/1325": {
+   "bytes": 18576,
+   "file": "acres/1325.mp3",
+   "sha": "487a1d81172a",
+   "text": "13 and a quarter acres"
+  },
+  "acres/13300": {
+   "bytes": 19152,
+   "file": "acres/13300.mp3",
+   "sha": "ba7b4433c801",
+   "text": "133 acres"
+  },
+  "acres/13400": {
+   "bytes": 19008,
+   "file": "acres/13400.mp3",
+   "sha": "228183078e7a",
+   "text": "134 acres"
+  },
+  "acres/1350": {
+   "bytes": 17280,
+   "file": "acres/1350.mp3",
+   "sha": "4c095cc37e36",
+   "text": "13 and a half acres"
+  },
+  "acres/13500": {
+   "bytes": 19584,
+   "file": "acres/13500.mp3",
+   "sha": "3d84fb3b8ab3",
+   "text": "135 acres"
+  },
+  "acres/13600": {
+   "bytes": 19440,
+   "file": "acres/13600.mp3",
+   "sha": "f5a478d4abc3",
+   "text": "136 acres"
+  },
+  "acres/13700": {
+   "bytes": 19296,
+   "file": "acres/13700.mp3",
+   "sha": "5c4634989301",
+   "text": "137 acres"
+  },
+  "acres/1375": {
+   "bytes": 19440,
+   "file": "acres/1375.mp3",
+   "sha": "6b9b06fcacc5",
+   "text": "13 and three quarter acres"
+  },
+  "acres/13800": {
+   "bytes": 19008,
+   "file": "acres/13800.mp3",
+   "sha": "75f21a174eeb",
+   "text": "138 acres"
+  },
+  "acres/13900": {
+   "bytes": 19008,
+   "file": "acres/13900.mp3",
+   "sha": "c4fdf61951f8",
+   "text": "139 acres"
+  },
+  "acres/1400": {
+   "bytes": 13824,
+   "file": "acres/1400.mp3",
+   "sha": "d35fcd45cf6b",
+   "text": "14 acres"
+  },
+  "acres/14000": {
+   "bytes": 17712,
+   "file": "acres/14000.mp3",
+   "sha": "bd9d7ea239e2",
+   "text": "140 acres"
+  },
+  "acres/14100": {
+   "bytes": 19440,
+   "file": "acres/14100.mp3",
+   "sha": "9e66df64e2a1",
+   "text": "141 acres"
+  },
+  "acres/14200": {
+   "bytes": 18576,
+   "file": "acres/14200.mp3",
+   "sha": "56cb4f61d910",
+   "text": "142 acres"
+  },
+  "acres/1425": {
+   "bytes": 18864,
+   "file": "acres/1425.mp3",
+   "sha": "e8291caea3a9",
+   "text": "14 and a quarter acres"
+  },
+  "acres/14300": {
+   "bytes": 19296,
+   "file": "acres/14300.mp3",
+   "sha": "3712733bc266",
+   "text": "143 acres"
+  },
+  "acres/14400": {
+   "bytes": 19440,
+   "file": "acres/14400.mp3",
+   "sha": "738fca4775c9",
+   "text": "144 acres"
+  },
+  "acres/1450": {
+   "bytes": 18000,
+   "file": "acres/1450.mp3",
+   "sha": "7a5cce889db3",
+   "text": "14 and a half acres"
+  },
+  "acres/14500": {
+   "bytes": 20304,
+   "file": "acres/14500.mp3",
+   "sha": "554b0971fff9",
+   "text": "145 acres"
+  },
+  "acres/14600": {
+   "bytes": 19440,
+   "file": "acres/14600.mp3",
+   "sha": "bb12549afd26",
+   "text": "146 acres"
+  },
+  "acres/14700": {
+   "bytes": 19584,
+   "file": "acres/14700.mp3",
+   "sha": "339c8e3194ee",
+   "text": "147 acres"
+  },
+  "acres/1475": {
+   "bytes": 19872,
+   "file": "acres/1475.mp3",
+   "sha": "1162dc57798b",
+   "text": "14 and three quarter acres"
+  },
+  "acres/14800": {
+   "bytes": 19296,
+   "file": "acres/14800.mp3",
+   "sha": "d4c7eb70c311",
+   "text": "148 acres"
+  },
+  "acres/14900": {
+   "bytes": 19440,
+   "file": "acres/14900.mp3",
+   "sha": "23cc19ed22ca",
+   "text": "149 acres"
+  },
+  "acres/150": {
+   "bytes": 16272,
+   "file": "acres/150.mp3",
+   "sha": "b82e975d3ea9",
+   "text": "1 and a half acres"
+  },
+  "acres/1500": {
+   "bytes": 14112,
+   "file": "acres/1500.mp3",
+   "sha": "383b628d8707",
+   "text": "15 acres"
+  },
+  "acres/15000": {
+   "bytes": 17856,
+   "file": "acres/15000.mp3",
+   "sha": "1753000e0e60",
+   "text": "150 acres"
+  },
+  "acres/15100": {
+   "bytes": 20160,
+   "file": "acres/15100.mp3",
+   "sha": "9c43f1c4a0c5",
+   "text": "151 acres"
+  },
+  "acres/15200": {
+   "bytes": 18864,
+   "file": "acres/15200.mp3",
+   "sha": "716e93855c48",
+   "text": "152 acres"
+  },
+  "acres/1525": {
+   "bytes": 19152,
+   "file": "acres/1525.mp3",
+   "sha": "46b0059310fc",
+   "text": "15 and a quarter acres"
+  },
+  "acres/15300": {
+   "bytes": 19584,
+   "file": "acres/15300.mp3",
+   "sha": "90539645e14d",
+   "text": "153 acres"
+  },
+  "acres/15400": {
+   "bytes": 20016,
+   "file": "acres/15400.mp3",
+   "sha": "6caecbd74eb3",
+   "text": "154 acres"
+  },
+  "acres/1550": {
+   "bytes": 18288,
+   "file": "acres/1550.mp3",
+   "sha": "cd07f01c474b",
+   "text": "15 and a half acres"
+  },
+  "acres/15500": {
+   "bytes": 20448,
+   "file": "acres/15500.mp3",
+   "sha": "bad263e853af",
+   "text": "155 acres"
+  },
+  "acres/15600": {
+   "bytes": 19728,
+   "file": "acres/15600.mp3",
+   "sha": "c7ecc16728a7",
+   "text": "156 acres"
+  },
+  "acres/15700": {
+   "bytes": 20160,
+   "file": "acres/15700.mp3",
+   "sha": "7e6fa43e54e7",
+   "text": "157 acres"
+  },
+  "acres/1575": {
+   "bytes": 20448,
+   "file": "acres/1575.mp3",
+   "sha": "4c041cc5b1ae",
+   "text": "15 and three quarter acres"
+  },
+  "acres/15800": {
+   "bytes": 19584,
+   "file": "acres/15800.mp3",
+   "sha": "aab9a8b576f8",
+   "text": "158 acres"
+  },
+  "acres/15900": {
+   "bytes": 19584,
+   "file": "acres/15900.mp3",
+   "sha": "6544921d4e33",
+   "text": "159 acres"
+  },
+  "acres/1600": {
+   "bytes": 14400,
+   "file": "acres/1600.mp3",
+   "sha": "52c4193aea4e",
+   "text": "16 acres"
+  },
+  "acres/16000": {
+   "bytes": 17856,
+   "file": "acres/16000.mp3",
+   "sha": "45322c1f991f",
+   "text": "160 acres"
+  },
+  "acres/16100": {
+   "bytes": 20016,
+   "file": "acres/16100.mp3",
+   "sha": "dd2b29db294e",
+   "text": "161 acres"
+  },
+  "acres/16200": {
+   "bytes": 19008,
+   "file": "acres/16200.mp3",
+   "sha": "1d8a70c0f784",
+   "text": "162 acres"
+  },
+  "acres/1625": {
+   "bytes": 19440,
+   "file": "acres/1625.mp3",
+   "sha": "ef367121d220",
+   "text": "16 and a quarter acres"
+  },
+  "acres/16300": {
+   "bytes": 19872,
+   "file": "acres/16300.mp3",
+   "sha": "fb1786ee6a85",
+   "text": "163 acres"
+  },
+  "acres/16400": {
+   "bytes": 20016,
+   "file": "acres/16400.mp3",
+   "sha": "92ff95181698",
+   "text": "164 acres"
+  },
+  "acres/1650": {
+   "bytes": 18576,
+   "file": "acres/1650.mp3",
+   "sha": "bb0a0c51604b",
+   "text": "16 and a half acres"
+  },
+  "acres/16500": {
+   "bytes": 20448,
+   "file": "acres/16500.mp3",
+   "sha": "7b70e6656aa6",
+   "text": "165 acres"
+  },
+  "acres/16600": {
+   "bytes": 20160,
+   "file": "acres/16600.mp3",
+   "sha": "dbbec637e3d9",
+   "text": "166 acres"
+  },
+  "acres/16700": {
+   "bytes": 20304,
+   "file": "acres/16700.mp3",
+   "sha": "8dda295a4495",
+   "text": "167 acres"
+  },
+  "acres/1675": {
+   "bytes": 20448,
+   "file": "acres/1675.mp3",
+   "sha": "481d9c838c83",
+   "text": "16 and three quarter acres"
+  },
+  "acres/16800": {
+   "bytes": 19872,
+   "file": "acres/16800.mp3",
+   "sha": "3de65d4a0a9e",
+   "text": "168 acres"
+  },
+  "acres/16900": {
+   "bytes": 19728,
+   "file": "acres/16900.mp3",
+   "sha": "92288f9ddf86",
+   "text": "169 acres"
+  },
+  "acres/1700": {
+   "bytes": 14112,
+   "file": "acres/1700.mp3",
+   "sha": "d09f58f21261",
+   "text": "17 acres"
+  },
+  "acres/17000": {
+   "bytes": 18144,
+   "file": "acres/17000.mp3",
+   "sha": "1570681c17e0",
+   "text": "170 acres"
+  },
+  "acres/17100": {
+   "bytes": 19872,
+   "file": "acres/17100.mp3",
+   "sha": "47fc7f4ebec3",
+   "text": "171 acres"
+  },
+  "acres/17200": {
+   "bytes": 19296,
+   "file": "acres/17200.mp3",
+   "sha": "9f1b47fe938e",
+   "text": "172 acres"
+  },
+  "acres/1725": {
+   "bytes": 19728,
+   "file": "acres/1725.mp3",
+   "sha": "840b82206bcf",
+   "text": "17 and a quarter acres"
+  },
+  "acres/17300": {
+   "bytes": 19584,
+   "file": "acres/17300.mp3",
+   "sha": "1528f91f0307",
+   "text": "173 acres"
+  },
+  "acres/17400": {
+   "bytes": 19872,
+   "file": "acres/17400.mp3",
+   "sha": "1f1af7f6e932",
+   "text": "174 acres"
+  },
+  "acres/175": {
+   "bytes": 18144,
+   "file": "acres/175.mp3",
+   "sha": "04ebc589444f",
+   "text": "1 and three quarter acres"
+  },
+  "acres/1750": {
+   "bytes": 18720,
+   "file": "acres/1750.mp3",
+   "sha": "103b436a9164",
+   "text": "17 and a half acres"
+  },
+  "acres/17500": {
+   "bytes": 20448,
+   "file": "acres/17500.mp3",
+   "sha": "b1eb9fc8e27e",
+   "text": "175 acres"
+  },
+  "acres/17600": {
+   "bytes": 20160,
+   "file": "acres/17600.mp3",
+   "sha": "35818c43b922",
+   "text": "176 acres"
+  },
+  "acres/17700": {
+   "bytes": 20304,
+   "file": "acres/17700.mp3",
+   "sha": "0b232506d27c",
+   "text": "177 acres"
+  },
+  "acres/1775": {
+   "bytes": 21024,
+   "file": "acres/1775.mp3",
+   "sha": "50108f6546ca",
+   "text": "17 and three quarter acres"
+  },
+  "acres/17800": {
+   "bytes": 19584,
+   "file": "acres/17800.mp3",
+   "sha": "eeb3e1e923ca",
+   "text": "178 acres"
+  },
+  "acres/17900": {
+   "bytes": 19872,
+   "file": "acres/17900.mp3",
+   "sha": "2ccc4c1928e2",
+   "text": "179 acres"
+  },
+  "acres/1800": {
+   "bytes": 13536,
+   "file": "acres/1800.mp3",
+   "sha": "0940ca5abe5c",
+   "text": "18 acres"
+  },
+  "acres/18000": {
+   "bytes": 16992,
+   "file": "acres/18000.mp3",
+   "sha": "96af285d7978",
+   "text": "180 acres"
+  },
+  "acres/18100": {
+   "bytes": 19008,
+   "file": "acres/18100.mp3",
+   "sha": "59c033523eaf",
+   "text": "181 acres"
+  },
+  "acres/18200": {
+   "bytes": 17856,
+   "file": "acres/18200.mp3",
+   "sha": "e27267589778",
+   "text": "182 acres"
+  },
+  "acres/1825": {
+   "bytes": 18000,
+   "file": "acres/1825.mp3",
+   "sha": "559f2b2836fe",
+   "text": "18 and a quarter acres"
+  },
+  "acres/18300": {
+   "bytes": 18576,
+   "file": "acres/18300.mp3",
+   "sha": "968bccd96d1b",
+   "text": "183 acres"
+  },
+  "acres/18400": {
+   "bytes": 19440,
+   "file": "acres/18400.mp3",
+   "sha": "12f8be97acb0",
+   "text": "184 acres"
+  },
+  "acres/1850": {
+   "bytes": 17280,
+   "file": "acres/1850.mp3",
+   "sha": "f4d73c54576b",
+   "text": "18 and a half acres"
+  },
+  "acres/18500": {
+   "bytes": 19584,
+   "file": "acres/18500.mp3",
+   "sha": "89bbd343bc17",
+   "text": "185 acres"
+  },
+  "acres/18600": {
+   "bytes": 19296,
+   "file": "acres/18600.mp3",
+   "sha": "e9211e041f93",
+   "text": "186 acres"
+  },
+  "acres/18700": {
+   "bytes": 19296,
+   "file": "acres/18700.mp3",
+   "sha": "034f3c4cd418",
+   "text": "187 acres"
+  },
+  "acres/1875": {
+   "bytes": 18864,
+   "file": "acres/1875.mp3",
+   "sha": "9929336d7cd1",
+   "text": "18 and three quarter acres"
+  },
+  "acres/18800": {
+   "bytes": 18720,
+   "file": "acres/18800.mp3",
+   "sha": "ea2f5d1539da",
+   "text": "188 acres"
+  },
+  "acres/18900": {
+   "bytes": 18720,
+   "file": "acres/18900.mp3",
+   "sha": "577109be235c",
+   "text": "189 acres"
+  },
+  "acres/1900": {
+   "bytes": 13824,
+   "file": "acres/1900.mp3",
+   "sha": "da64c485a7c6",
+   "text": "19 acres"
+  },
+  "acres/19000": {
+   "bytes": 17856,
+   "file": "acres/19000.mp3",
+   "sha": "dd5e24a05aaf",
+   "text": "190 acres"
+  },
+  "acres/19100": {
+   "bytes": 19728,
+   "file": "acres/19100.mp3",
+   "sha": "e203ec26c1b1",
+   "text": "191 acres"
+  },
+  "acres/19200": {
+   "bytes": 18576,
+   "file": "acres/19200.mp3",
+   "sha": "b83ca15ca8ac",
+   "text": "192 acres"
+  },
+  "acres/1925": {
+   "bytes": 19440,
+   "file": "acres/1925.mp3",
+   "sha": "6f1aa7f3c238",
+   "text": "19 and a quarter acres"
+  },
+  "acres/19300": {
+   "bytes": 19440,
+   "file": "acres/19300.mp3",
+   "sha": "ef12287f7648",
+   "text": "193 acres"
+  },
+  "acres/19400": {
+   "bytes": 19440,
+   "file": "acres/19400.mp3",
+   "sha": "7ecb30c3b4dd",
+   "text": "194 acres"
+  },
+  "acres/1950": {
+   "bytes": 19008,
+   "file": "acres/1950.mp3",
+   "sha": "396508c42697",
+   "text": "19 and a half acres"
+  },
+  "acres/19500": {
+   "bytes": 19872,
+   "file": "acres/19500.mp3",
+   "sha": "4b35588ccf8e",
+   "text": "195 acres"
+  },
+  "acres/19600": {
+   "bytes": 19728,
+   "file": "acres/19600.mp3",
+   "sha": "84af11b5ae12",
+   "text": "196 acres"
+  },
+  "acres/19700": {
+   "bytes": 20160,
+   "file": "acres/19700.mp3",
+   "sha": "1ee2f659f036",
+   "text": "197 acres"
+  },
+  "acres/1975": {
+   "bytes": 20304,
+   "file": "acres/1975.mp3",
+   "sha": "66135312f374",
+   "text": "19 and three quarter acres"
+  },
+  "acres/19800": {
+   "bytes": 19584,
+   "file": "acres/19800.mp3",
+   "sha": "5f34692fc0fc",
+   "text": "198 acres"
+  },
+  "acres/19900": {
+   "bytes": 19440,
+   "file": "acres/19900.mp3",
+   "sha": "bbc380b105ba",
+   "text": "199 acres"
+  },
+  "acres/200": {
+   "bytes": 12096,
+   "file": "acres/200.mp3",
+   "sha": "4ac8bb082379",
+   "text": "2 acres"
+  },
+  "acres/2000": {
+   "bytes": 12528,
+   "file": "acres/2000.mp3",
+   "sha": "b73b7ec9925d",
+   "text": "20 acres"
+  },
+  "acres/20000": {
+   "bytes": 13968,
+   "file": "acres/20000.mp3",
+   "sha": "46f5679c8bf0",
+   "text": "200 acres"
+  },
+  "acres/2025": {
+   "bytes": 17712,
+   "file": "acres/2025.mp3",
+   "sha": "3f87c693469d",
+   "text": "20 and a quarter acres"
+  },
+  "acres/2050": {
+   "bytes": 16992,
+   "file": "acres/2050.mp3",
+   "sha": "57e30aaca689",
+   "text": "20 and a half acres"
+  },
+  "acres/2075": {
+   "bytes": 19008,
+   "file": "acres/2075.mp3",
+   "sha": "159d2cc47e03",
+   "text": "20 and three quarter acres"
+  },
+  "acres/2100": {
+   "bytes": 14400,
+   "file": "acres/2100.mp3",
+   "sha": "45480320a88a",
+   "text": "21 acres"
+  },
+  "acres/2125": {
+   "bytes": 20016,
+   "file": "acres/2125.mp3",
+   "sha": "e0f4d31f924e",
+   "text": "21 and a quarter acres"
+  },
+  "acres/2150": {
+   "bytes": 18864,
+   "file": "acres/2150.mp3",
+   "sha": "dedf6f1b3d35",
+   "text": "21 and a half acres"
+  },
+  "acres/2175": {
+   "bytes": 21024,
+   "file": "acres/2175.mp3",
+   "sha": "dcea9d48cf45",
+   "text": "21 and three quarter acres"
+  },
+  "acres/2200": {
+   "bytes": 13680,
+   "file": "acres/2200.mp3",
+   "sha": "562d75c4e304",
+   "text": "22 acres"
+  },
+  "acres/2225": {
+   "bytes": 19008,
+   "file": "acres/2225.mp3",
+   "sha": "2e87856b9978",
+   "text": "22 and a quarter acres"
+  },
+  "acres/225": {
+   "bytes": 15840,
+   "file": "acres/225.mp3",
+   "sha": "600464f4461c",
+   "text": "2 and a quarter acres"
+  },
+  "acres/2250": {
+   "bytes": 18000,
+   "file": "acres/2250.mp3",
+   "sha": "8164aeeb6209",
+   "text": "22 and a half acres"
+  },
+  "acres/2275": {
+   "bytes": 19872,
+   "file": "acres/2275.mp3",
+   "sha": "4d29b3a12138",
+   "text": "22 and three quarter acres"
+  },
+  "acres/2300": {
+   "bytes": 14112,
+   "file": "acres/2300.mp3",
+   "sha": "b590ebe28674",
+   "text": "23 acres"
+  },
+  "acres/2325": {
+   "bytes": 19584,
+   "file": "acres/2325.mp3",
+   "sha": "9b5202ae066c",
+   "text": "23 and a quarter acres"
+  },
+  "acres/2350": {
+   "bytes": 18432,
+   "file": "acres/2350.mp3",
+   "sha": "10c1bf9f0b08",
+   "text": "23 and a half acres"
+  },
+  "acres/2375": {
+   "bytes": 21024,
+   "file": "acres/2375.mp3",
+   "sha": "3e7afe0411cc",
+   "text": "23 and three quarter acres"
+  },
+  "acres/2400": {
+   "bytes": 14112,
+   "file": "acres/2400.mp3",
+   "sha": "fca409ca4e5e",
+   "text": "24 acres"
+  },
+  "acres/2425": {
+   "bytes": 18864,
+   "file": "acres/2425.mp3",
+   "sha": "3fa6827524c5",
+   "text": "24 and a quarter acres"
+  },
+  "acres/2450": {
+   "bytes": 18288,
+   "file": "acres/2450.mp3",
+   "sha": "6c0f345f366c",
+   "text": "24 and a half acres"
+  },
+  "acres/2475": {
+   "bytes": 20304,
+   "file": "acres/2475.mp3",
+   "sha": "8325da9698fe",
+   "text": "24 and three quarter acres"
+  },
+  "acres/25": {
+   "bytes": 13680,
+   "file": "acres/25.mp3",
+   "sha": "ec2a4e73be4d",
+   "text": "a quarter acre"
+  },
+  "acres/250": {
+   "bytes": 15120,
+   "file": "acres/250.mp3",
+   "sha": "b56aef4b5224",
+   "text": "2 and a half acres"
+  },
+  "acres/2500": {
+   "bytes": 14832,
+   "file": "acres/2500.mp3",
+   "sha": "a7d52b0f09a9",
+   "text": "25 acres"
+  },
+  "acres/2525": {
+   "bytes": 19440,
+   "file": "acres/2525.mp3",
+   "sha": "782aeb0476b6",
+   "text": "25 and a quarter acres"
+  },
+  "acres/2550": {
+   "bytes": 19008,
+   "file": "acres/2550.mp3",
+   "sha": "6bfd29c48380",
+   "text": "25 and a half acres"
+  },
+  "acres/2575": {
+   "bytes": 21024,
+   "file": "acres/2575.mp3",
+   "sha": "f3da5dad5dab",
+   "text": "25 and three quarter acres"
+  },
+  "acres/2600": {
+   "bytes": 14832,
+   "file": "acres/2600.mp3",
+   "sha": "489bc21230e2",
+   "text": "26 acres"
+  },
+  "acres/2625": {
+   "bytes": 19440,
+   "file": "acres/2625.mp3",
+   "sha": "61b827524abf",
+   "text": "26 and a quarter acres"
+  },
+  "acres/2650": {
+   "bytes": 18576,
+   "file": "acres/2650.mp3",
+   "sha": "bcdd75a713e5",
+   "text": "26 and a half acres"
+  },
+  "acres/2675": {
+   "bytes": 20448,
+   "file": "acres/2675.mp3",
+   "sha": "ec729b0ecca9",
+   "text": "26 and three quarter acres"
+  },
+  "acres/2700": {
+   "bytes": 14688,
+   "file": "acres/2700.mp3",
+   "sha": "3f3b234f4c56",
+   "text": "27 acres"
+  },
+  "acres/2725": {
+   "bytes": 20160,
+   "file": "acres/2725.mp3",
+   "sha": "878b76be0621",
+   "text": "27 and a quarter acres"
+  },
+  "acres/275": {
+   "bytes": 16992,
+   "file": "acres/275.mp3",
+   "sha": "344df203adf9",
+   "text": "2 and three quarter acres"
+  },
+  "acres/2750": {
+   "bytes": 19296,
+   "file": "acres/2750.mp3",
+   "sha": "b9cf927e79dd",
+   "text": "27 and a half acres"
+  },
+  "acres/2775": {
+   "bytes": 21456,
+   "file": "acres/2775.mp3",
+   "sha": "db60498bd78c",
+   "text": "27 and three quarter acres"
+  },
+  "acres/2800": {
+   "bytes": 14112,
+   "file": "acres/2800.mp3",
+   "sha": "e79aca46ae9f",
+   "text": "28 acres"
+  },
+  "acres/2825": {
+   "bytes": 19728,
+   "file": "acres/2825.mp3",
+   "sha": "ebb39fcfee36",
+   "text": "28 and a quarter acres"
+  },
+  "acres/2850": {
+   "bytes": 18288,
+   "file": "acres/2850.mp3",
+   "sha": "0e51f478d405",
+   "text": "28 and a half acres"
+  },
+  "acres/2875": {
+   "bytes": 20736,
+   "file": "acres/2875.mp3",
+   "sha": "68f3e83c8511",
+   "text": "28 and three quarter acres"
+  },
+  "acres/2900": {
+   "bytes": 14112,
+   "file": "acres/2900.mp3",
+   "sha": "5e0a210b9e08",
+   "text": "29 acres"
+  },
+  "acres/2925": {
+   "bytes": 19872,
+   "file": "acres/2925.mp3",
+   "sha": "5c8de0598a52",
+   "text": "29 and a quarter acres"
+  },
+  "acres/2950": {
+   "bytes": 19008,
+   "file": "acres/2950.mp3",
+   "sha": "0d26ed7fa4d4",
+   "text": "29 and a half acres"
+  },
+  "acres/2975": {
+   "bytes": 21024,
+   "file": "acres/2975.mp3",
+   "sha": "db6349e60351",
+   "text": "29 and three quarter acres"
+  },
+  "acres/300": {
+   "bytes": 12096,
+   "file": "acres/300.mp3",
+   "sha": "abe6c6072123",
+   "text": "3 acres"
+  },
+  "acres/3000": {
+   "bytes": 12384,
+   "file": "acres/3000.mp3",
+   "sha": "697ad5c40c47",
+   "text": "30 acres"
+  },
+  "acres/3050": {
+   "bytes": 16272,
+   "file": "acres/3050.mp3",
+   "sha": "0c4f95133a04",
+   "text": "30 and a half acres"
+  },
+  "acres/3100": {
+   "bytes": 14112,
+   "file": "acres/3100.mp3",
+   "sha": "64d9fba7022a",
+   "text": "31 acres"
+  },
+  "acres/3150": {
+   "bytes": 18144,
+   "file": "acres/3150.mp3",
+   "sha": "3f3f23292409",
+   "text": "31 and a half acres"
+  },
+  "acres/3200": {
+   "bytes": 13536,
+   "file": "acres/3200.mp3",
+   "sha": "7500a2a04c6f",
+   "text": "32 acres"
+  },
+  "acres/325": {
+   "bytes": 16992,
+   "file": "acres/325.mp3",
+   "sha": "ff13af2237e8",
+   "text": "3 and a quarter acres"
+  },
+  "acres/3250": {
+   "bytes": 17280,
+   "file": "acres/3250.mp3",
+   "sha": "9223a7f5c0a2",
+   "text": "32 and a half acres"
+  },
+  "acres/3300": {
+   "bytes": 14256,
+   "file": "acres/3300.mp3",
+   "sha": "a251a477c4d4",
+   "text": "33 acres"
+  },
+  "acres/3350": {
+   "bytes": 18432,
+   "file": "acres/3350.mp3",
+   "sha": "1b37445b14f4",
+   "text": "33 and a half acres"
+  },
+  "acres/3400": {
+   "bytes": 13968,
+   "file": "acres/3400.mp3",
+   "sha": "66a1c8685663",
+   "text": "34 acres"
+  },
+  "acres/3450": {
+   "bytes": 18000,
+   "file": "acres/3450.mp3",
+   "sha": "1b59d7b3ac6d",
+   "text": "34 and a half acres"
+  },
+  "acres/350": {
+   "bytes": 16272,
+   "file": "acres/350.mp3",
+   "sha": "f5d73b867b77",
+   "text": "3 and a half acres"
+  },
+  "acres/3500": {
+   "bytes": 14688,
+   "file": "acres/3500.mp3",
+   "sha": "8686f8f97606",
+   "text": "35 acres"
+  },
+  "acres/3550": {
+   "bytes": 18720,
+   "file": "acres/3550.mp3",
+   "sha": "03a0190f7cfa",
+   "text": "35 and a half acres"
+  },
+  "acres/3600": {
+   "bytes": 14832,
+   "file": "acres/3600.mp3",
+   "sha": "af85de130642",
+   "text": "36 acres"
+  },
+  "acres/3650": {
+   "bytes": 18576,
+   "file": "acres/3650.mp3",
+   "sha": "f0e4c4b40e1a",
+   "text": "36 and a half acres"
+  },
+  "acres/3700": {
+   "bytes": 14688,
+   "file": "acres/3700.mp3",
+   "sha": "9d81891f6605",
+   "text": "37 acres"
+  },
+  "acres/375": {
+   "bytes": 18576,
+   "file": "acres/375.mp3",
+   "sha": "54e5123edf1f",
+   "text": "3 and three quarter acres"
+  },
+  "acres/3750": {
+   "bytes": 19008,
+   "file": "acres/3750.mp3",
+   "sha": "5862c6cc6a4d",
+   "text": "37 and a half acres"
+  },
+  "acres/3800": {
+   "bytes": 14400,
+   "file": "acres/3800.mp3",
+   "sha": "4def5c0d2a3b",
+   "text": "38 acres"
+  },
+  "acres/3850": {
+   "bytes": 18144,
+   "file": "acres/3850.mp3",
+   "sha": "2df48dfa1c6f",
+   "text": "38 and a half acres"
+  },
+  "acres/3900": {
+   "bytes": 14112,
+   "file": "acres/3900.mp3",
+   "sha": "04123d03f9b1",
+   "text": "39 acres"
+  },
+  "acres/3950": {
+   "bytes": 18720,
+   "file": "acres/3950.mp3",
+   "sha": "c6990a3b3fd3",
+   "text": "39 and a half acres"
+  },
+  "acres/400": {
+   "bytes": 12528,
+   "file": "acres/400.mp3",
+   "sha": "673f54a7b75a",
+   "text": "4 acres"
+  },
+  "acres/4000": {
+   "bytes": 13248,
+   "file": "acres/4000.mp3",
+   "sha": "f8b276cae605",
+   "text": "40 acres"
+  },
+  "acres/4050": {
+   "bytes": 17136,
+   "file": "acres/4050.mp3",
+   "sha": "86171876d1e0",
+   "text": "40 and a half acres"
+  },
+  "acres/4100": {
+   "bytes": 14832,
+   "file": "acres/4100.mp3",
+   "sha": "8ee89863d7ba",
+   "text": "41 acres"
+  },
+  "acres/4150": {
+   "bytes": 19008,
+   "file": "acres/4150.mp3",
+   "sha": "7cf5a6e24f53",
+   "text": "41 and a half acres"
+  },
+  "acres/4200": {
+   "bytes": 14400,
+   "file": "acres/4200.mp3",
+   "sha": "a03c2a3358c9",
+   "text": "42 acres"
+  },
+  "acres/425": {
+   "bytes": 17136,
+   "file": "acres/425.mp3",
+   "sha": "87ef58f2214a",
+   "text": "4 and a quarter acres"
+  },
+  "acres/4250": {
+   "bytes": 18576,
+   "file": "acres/4250.mp3",
+   "sha": "48692e5ae550",
+   "text": "42 and a half acres"
+  },
+  "acres/4300": {
+   "bytes": 14688,
+   "file": "acres/4300.mp3",
+   "sha": "ef6c2bff2f47",
+   "text": "43 acres"
+  },
+  "acres/4350": {
+   "bytes": 18864,
+   "file": "acres/4350.mp3",
+   "sha": "c0c004069fd9",
+   "text": "43 and a half acres"
+  },
+  "acres/4400": {
+   "bytes": 14688,
+   "file": "acres/4400.mp3",
+   "sha": "00baa0fa2b96",
+   "text": "44 acres"
+  },
+  "acres/4450": {
+   "bytes": 18576,
+   "file": "acres/4450.mp3",
+   "sha": "7a481be88848",
+   "text": "44 and a half acres"
+  },
+  "acres/450": {
+   "bytes": 16128,
+   "file": "acres/450.mp3",
+   "sha": "c887a738518e",
+   "text": "4 and a half acres"
+  },
+  "acres/4500": {
+   "bytes": 15552,
+   "file": "acres/4500.mp3",
+   "sha": "5b6295978cad",
+   "text": "45 acres"
+  },
+  "acres/4550": {
+   "bytes": 19440,
+   "file": "acres/4550.mp3",
+   "sha": "ba09acb8af59",
+   "text": "45 and a half acres"
+  },
+  "acres/4600": {
+   "bytes": 15408,
+   "file": "acres/4600.mp3",
+   "sha": "5807b9cbee25",
+   "text": "46 acres"
+  },
+  "acres/4650": {
+   "bytes": 18864,
+   "file": "acres/4650.mp3",
+   "sha": "9957866808ea",
+   "text": "46 and a half acres"
+  },
+  "acres/4700": {
+   "bytes": 15264,
+   "file": "acres/4700.mp3",
+   "sha": "e4477e122706",
+   "text": "47 acres"
+  },
+  "acres/475": {
+   "bytes": 18576,
+   "file": "acres/475.mp3",
+   "sha": "c16b73086e5d",
+   "text": "4 and three quarter acres"
+  },
+  "acres/4750": {
+   "bytes": 19440,
+   "file": "acres/4750.mp3",
+   "sha": "a6654005cca1",
+   "text": "47 and a half acres"
+  },
+  "acres/4800": {
+   "bytes": 14832,
+   "file": "acres/4800.mp3",
+   "sha": "19e20ecc2770",
+   "text": "48 acres"
+  },
+  "acres/4850": {
+   "bytes": 18720,
+   "file": "acres/4850.mp3",
+   "sha": "2e6ea0477be2",
+   "text": "48 and a half acres"
+  },
+  "acres/4900": {
+   "bytes": 14544,
+   "file": "acres/4900.mp3",
+   "sha": "80245c10cca5",
+   "text": "49 acres"
+  },
+  "acres/4950": {
+   "bytes": 19584,
+   "file": "acres/4950.mp3",
+   "sha": "e881958b282d",
+   "text": "49 and a half acres"
+  },
+  "acres/50": {
+   "bytes": 12528,
+   "file": "acres/50.mp3",
+   "sha": "30ed9054ee0f",
+   "text": "half an acre"
+  },
+  "acres/500": {
+   "bytes": 13536,
+   "file": "acres/500.mp3",
+   "sha": "c3508ae87411",
+   "text": "5 acres"
+  },
+  "acres/5000": {
+   "bytes": 13536,
+   "file": "acres/5000.mp3",
+   "sha": "10659f2bd0a5",
+   "text": "50 acres"
+  },
+  "acres/5050": {
+   "bytes": 17568,
+   "file": "acres/5050.mp3",
+   "sha": "20bd88bd57e6",
+   "text": "50 and a half acres"
+  },
+  "acres/5100": {
+   "bytes": 15264,
+   "file": "acres/5100.mp3",
+   "sha": "88be27e09a0e",
+   "text": "51 acres"
+  },
+  "acres/5150": {
+   "bytes": 19296,
+   "file": "acres/5150.mp3",
+   "sha": "97c679a30aad",
+   "text": "51 and a half acres"
+  },
+  "acres/5200": {
+   "bytes": 14544,
+   "file": "acres/5200.mp3",
+   "sha": "7568ba55dbb9",
+   "text": "52 acres"
+  },
+  "acres/525": {
+   "bytes": 17568,
+   "file": "acres/525.mp3",
+   "sha": "48c3275700e0",
+   "text": "5 and a quarter acres"
+  },
+  "acres/5250": {
+   "bytes": 18864,
+   "file": "acres/5250.mp3",
+   "sha": "d236e2cca5ee",
+   "text": "52 and a half acres"
+  },
+  "acres/5300": {
+   "bytes": 14976,
+   "file": "acres/5300.mp3",
+   "sha": "419b052be693",
+   "text": "53 acres"
+  },
+  "acres/5350": {
+   "bytes": 19296,
+   "file": "acres/5350.mp3",
+   "sha": "80a79355653d",
+   "text": "53 and a half acres"
+  },
+  "acres/5400": {
+   "bytes": 14832,
+   "file": "acres/5400.mp3",
+   "sha": "22b5c96945fc",
+   "text": "54 acres"
+  },
+  "acres/5450": {
+   "bytes": 19008,
+   "file": "acres/5450.mp3",
+   "sha": "10c881d542e0",
+   "text": "54 and a half acres"
+  },
+  "acres/550": {
+   "bytes": 17136,
+   "file": "acres/550.mp3",
+   "sha": "979b59372f51",
+   "text": "5 and a half acres"
+  },
+  "acres/5500": {
+   "bytes": 15984,
+   "file": "acres/5500.mp3",
+   "sha": "5f92cd0cde3c",
+   "text": "55 acres"
+  },
+  "acres/5550": {
+   "bytes": 20016,
+   "file": "acres/5550.mp3",
+   "sha": "4ea7e8c93245",
+   "text": "55 and a half acres"
+  },
+  "acres/5600": {
+   "bytes": 15552,
+   "file": "acres/5600.mp3",
+   "sha": "cbc02cd1894e",
+   "text": "56 acres"
+  },
+  "acres/5650": {
+   "bytes": 19296,
+   "file": "acres/5650.mp3",
+   "sha": "204690d6c1a5",
+   "text": "56 and a half acres"
+  },
+  "acres/5700": {
+   "bytes": 15840,
+   "file": "acres/5700.mp3",
+   "sha": "e9d6cb421dcf",
+   "text": "57 acres"
+  },
+  "acres/575": {
+   "bytes": 19152,
+   "file": "acres/575.mp3",
+   "sha": "d4c0c855d986",
+   "text": "5 and three quarter acres"
+  },
+  "acres/5750": {
+   "bytes": 19872,
+   "file": "acres/5750.mp3",
+   "sha": "72762690a7a6",
+   "text": "57 and a half acres"
+  },
+  "acres/5800": {
+   "bytes": 15408,
+   "file": "acres/5800.mp3",
+   "sha": "ad4192051955",
+   "text": "58 acres"
+  },
+  "acres/5850": {
+   "bytes": 19008,
+   "file": "acres/5850.mp3",
+   "sha": "865963fc2265",
+   "text": "58 and a half acres"
+  },
+  "acres/5900": {
+   "bytes": 15120,
+   "file": "acres/5900.mp3",
+   "sha": "1b6e829e8426",
+   "text": "59 acres"
+  },
+  "acres/5950": {
+   "bytes": 19584,
+   "file": "acres/5950.mp3",
+   "sha": "0c9bb6178987",
+   "text": "59 and a half acres"
+  },
+  "acres/600": {
+   "bytes": 13392,
+   "file": "acres/600.mp3",
+   "sha": "391e7986766d",
+   "text": "6 acres"
+  },
+  "acres/6000": {
+   "bytes": 13968,
+   "file": "acres/6000.mp3",
+   "sha": "ebb5cc494b3e",
+   "text": "60 acres"
+  },
+  "acres/6050": {
+   "bytes": 18000,
+   "file": "acres/6050.mp3",
+   "sha": "f619dc3166fb",
+   "text": "60 and a half acres"
+  },
+  "acres/6100": {
+   "bytes": 15408,
+   "file": "acres/6100.mp3",
+   "sha": "2f0ae8bec955",
+   "text": "61 acres"
+  },
+  "acres/6150": {
+   "bytes": 19584,
+   "file": "acres/6150.mp3",
+   "sha": "6ce41d1de4c9",
+   "text": "61 and a half acres"
+  },
+  "acres/6200": {
+   "bytes": 15120,
+   "file": "acres/6200.mp3",
+   "sha": "9449a95a81d2",
+   "text": "62 acres"
+  },
+  "acres/625": {
+   "bytes": 17712,
+   "file": "acres/625.mp3",
+   "sha": "dac80011b251",
+   "text": "6 and a quarter acres"
+  },
+  "acres/6250": {
+   "bytes": 18864,
+   "file": "acres/6250.mp3",
+   "sha": "0935bab64c34",
+   "text": "62 and a half acres"
+  },
+  "acres/6300": {
+   "bytes": 15408,
+   "file": "acres/6300.mp3",
+   "sha": "1e58b97c0e60",
+   "text": "63 acres"
+  },
+  "acres/6350": {
+   "bytes": 19728,
+   "file": "acres/6350.mp3",
+   "sha": "4b7c84efeab4",
+   "text": "63 and a half acres"
+  },
+  "acres/6400": {
+   "bytes": 15408,
+   "file": "acres/6400.mp3",
+   "sha": "3ea2ec39725f",
+   "text": "64 acres"
+  },
+  "acres/6450": {
+   "bytes": 19296,
+   "file": "acres/6450.mp3",
+   "sha": "b7e517dc2100",
+   "text": "64 and a half acres"
+  },
+  "acres/650": {
+   "bytes": 16560,
+   "file": "acres/650.mp3",
+   "sha": "0110d1863899",
+   "text": "6 and a half acres"
+  },
+  "acres/6500": {
+   "bytes": 16416,
+   "file": "acres/6500.mp3",
+   "sha": "8e431c70370c",
+   "text": "65 acres"
+  },
+  "acres/6550": {
+   "bytes": 20304,
+   "file": "acres/6550.mp3",
+   "sha": "e1bc9c3d9e7e",
+   "text": "65 and a half acres"
+  },
+  "acres/6600": {
+   "bytes": 15840,
+   "file": "acres/6600.mp3",
+   "sha": "7a3f70873911",
+   "text": "66 acres"
+  },
+  "acres/6650": {
+   "bytes": 19728,
+   "file": "acres/6650.mp3",
+   "sha": "1c75f2ac3806",
+   "text": "66 and a half acres"
+  },
+  "acres/6700": {
+   "bytes": 15696,
+   "file": "acres/6700.mp3",
+   "sha": "b6423289424d",
+   "text": "67 acres"
+  },
+  "acres/675": {
+   "bytes": 18576,
+   "file": "acres/675.mp3",
+   "sha": "e7d5df4c08cc",
+   "text": "6 and three quarter acres"
+  },
+  "acres/6750": {
+   "bytes": 20160,
+   "file": "acres/6750.mp3",
+   "sha": "a4bf3932ea3b",
+   "text": "67 and a half acres"
+  },
+  "acres/6800": {
+   "bytes": 15840,
+   "file": "acres/6800.mp3",
+   "sha": "e3c3661b76c6",
+   "text": "68 acres"
+  },
+  "acres/6850": {
+   "bytes": 19584,
+   "file": "acres/6850.mp3",
+   "sha": "bcffab1df820",
+   "text": "68 and a half acres"
+  },
+  "acres/6900": {
+   "bytes": 15840,
+   "file": "acres/6900.mp3",
+   "sha": "499df3bbada1",
+   "text": "69 acres"
+  },
+  "acres/6950": {
+   "bytes": 20016,
+   "file": "acres/6950.mp3",
+   "sha": "cf7686baf2db",
+   "text": "69 and a half acres"
+  },
+  "acres/700": {
+   "bytes": 12816,
+   "file": "acres/700.mp3",
+   "sha": "bd2aa5c04377",
+   "text": "7 acres"
+  },
+  "acres/7000": {
+   "bytes": 13680,
+   "file": "acres/7000.mp3",
+   "sha": "32c227c225cd",
+   "text": "70 acres"
+  },
+  "acres/7050": {
+   "bytes": 17424,
+   "file": "acres/7050.mp3",
+   "sha": "b31ed98afc17",
+   "text": "70 and a half acres"
+  },
+  "acres/7100": {
+   "bytes": 15264,
+   "file": "acres/7100.mp3",
+   "sha": "6e03ac381ea8",
+   "text": "71 acres"
+  },
+  "acres/7150": {
+   "bytes": 19440,
+   "file": "acres/7150.mp3",
+   "sha": "d224a4082df6",
+   "text": "71 and a half acres"
+  },
+  "acres/7200": {
+   "bytes": 14832,
+   "file": "acres/7200.mp3",
+   "sha": "747e44a13aec",
+   "text": "72 acres"
+  },
+  "acres/725": {
+   "bytes": 18000,
+   "file": "acres/725.mp3",
+   "sha": "56d078596994",
+   "text": "7 and a quarter acres"
+  },
+  "acres/7250": {
+   "bytes": 18864,
+   "file": "acres/7250.mp3",
+   "sha": "ba26c23a70b4",
+   "text": "72 and a half acres"
+  },
+  "acres/7300": {
+   "bytes": 15264,
+   "file": "acres/7300.mp3",
+   "sha": "ccc80694bc43",
+   "text": "73 acres"
+  },
+  "acres/7350": {
+   "bytes": 19584,
+   "file": "acres/7350.mp3",
+   "sha": "8182d5a5e4ef",
+   "text": "73 and a half acres"
+  },
+  "acres/7400": {
+   "bytes": 15264,
+   "file": "acres/7400.mp3",
+   "sha": "6e219f7e27be",
+   "text": "74 acres"
+  },
+  "acres/7450": {
+   "bytes": 19296,
+   "file": "acres/7450.mp3",
+   "sha": "ee3ccb07ac4b",
+   "text": "74 and a half acres"
+  },
+  "acres/75": {
+   "bytes": 16560,
+   "file": "acres/75.mp3",
+   "sha": "182a226dbb66",
+   "text": "three quarters of an acre"
+  },
+  "acres/750": {
+   "bytes": 16992,
+   "file": "acres/750.mp3",
+   "sha": "c47405107369",
+   "text": "7 and a half acres"
+  },
+  "acres/7500": {
+   "bytes": 15840,
+   "file": "acres/7500.mp3",
+   "sha": "ac57248090c4",
+   "text": "75 acres"
+  },
+  "acres/7550": {
+   "bytes": 19872,
+   "file": "acres/7550.mp3",
+   "sha": "c581268f8ac3",
+   "text": "75 and a half acres"
+  },
+  "acres/7600": {
+   "bytes": 15984,
+   "file": "acres/7600.mp3",
+   "sha": "9d98f716234f",
+   "text": "76 acres"
+  },
+  "acres/7650": {
+   "bytes": 19584,
+   "file": "acres/7650.mp3",
+   "sha": "1f9123218052",
+   "text": "76 and a half acres"
+  },
+  "acres/7700": {
+   "bytes": 15984,
+   "file": "acres/7700.mp3",
+   "sha": "79df587dee7e",
+   "text": "77 acres"
+  },
+  "acres/775": {
+   "bytes": 19152,
+   "file": "acres/775.mp3",
+   "sha": "c8c17a54e2c0",
+   "text": "7 and three quarter acres"
+  },
+  "acres/7750": {
+   "bytes": 20304,
+   "file": "acres/7750.mp3",
+   "sha": "554fe8202988",
+   "text": "77 and a half acres"
+  },
+  "acres/7800": {
+   "bytes": 15120,
+   "file": "acres/7800.mp3",
+   "sha": "7598f2a33ff0",
+   "text": "78 acres"
+  },
+  "acres/7850": {
+   "bytes": 19008,
+   "file": "acres/7850.mp3",
+   "sha": "e3761a5f791a",
+   "text": "78 and a half acres"
+  },
+  "acres/7900": {
+   "bytes": 15264,
+   "file": "acres/7900.mp3",
+   "sha": "4c098750663d",
+   "text": "79 acres"
+  },
+  "acres/7950": {
+   "bytes": 22752,
+   "file": "acres/7950.mp3",
+   "sha": "1d9e2883bb8b",
+   "text": "79 and a half acres"
+  },
+  "acres/800": {
+   "bytes": 11808,
+   "file": "acres/800.mp3",
+   "sha": "e7de7650b22a",
+   "text": "8 acres"
+  },
+  "acres/8000": {
+   "bytes": 12816,
+   "file": "acres/8000.mp3",
+   "sha": "5b25d9d847fd",
+   "text": "80 acres"
+  },
+  "acres/8050": {
+   "bytes": 16704,
+   "file": "acres/8050.mp3",
+   "sha": "56b901e8d6b3",
+   "text": "80 and a half acres"
+  },
+  "acres/8100": {
+   "bytes": 14400,
+   "file": "acres/8100.mp3",
+   "sha": "efaea342078a",
+   "text": "81 acres"
+  },
+  "acres/8150": {
+   "bytes": 18288,
+   "file": "acres/8150.mp3",
+   "sha": "394300ee9342",
+   "text": "81 and a half acres"
+  },
+  "acres/8200": {
+   "bytes": 13824,
+   "file": "acres/8200.mp3",
+   "sha": "8b61d31d81df",
+   "text": "82 acres"
+  },
+  "acres/825": {
+   "bytes": 16560,
+   "file": "acres/825.mp3",
+   "sha": "3b54a298de4b",
+   "text": "8 and a quarter acres"
+  },
+  "acres/8250": {
+   "bytes": 17568,
+   "file": "acres/8250.mp3",
+   "sha": "14c40ef2b70b",
+   "text": "82 and a half acres"
+  },
+  "acres/8300": {
+   "bytes": 14112,
+   "file": "acres/8300.mp3",
+   "sha": "e88d842594aa",
+   "text": "83 acres"
+  },
+  "acres/8350": {
+   "bytes": 18288,
+   "file": "acres/8350.mp3",
+   "sha": "fdde368a7230",
+   "text": "83 and a half acres"
+  },
+  "acres/8400": {
+   "bytes": 14256,
+   "file": "acres/8400.mp3",
+   "sha": "28583c0f5e5c",
+   "text": "84 acres"
+  },
+  "acres/8450": {
+   "bytes": 18144,
+   "file": "acres/8450.mp3",
+   "sha": "0b353d78ab88",
+   "text": "84 and a half acres"
+  },
+  "acres/850": {
+   "bytes": 15552,
+   "file": "acres/850.mp3",
+   "sha": "efe6b4bafb9e",
+   "text": "8 and a half acres"
+  },
+  "acres/8500": {
+   "bytes": 14976,
+   "file": "acres/8500.mp3",
+   "sha": "9d55a0e6a7d1",
+   "text": "85 acres"
+  },
+  "acres/8550": {
+   "bytes": 18576,
+   "file": "acres/8550.mp3",
+   "sha": "c6c8ffb80ea7",
+   "text": "85 and a half acres"
+  },
+  "acres/8600": {
+   "bytes": 15120,
+   "file": "acres/8600.mp3",
+   "sha": "db0aaf65ff8e",
+   "text": "86 acres"
+  },
+  "acres/8650": {
+   "bytes": 18432,
+   "file": "acres/8650.mp3",
+   "sha": "9b1be947d9f6",
+   "text": "86 and a half acres"
+  },
+  "acres/8700": {
+   "bytes": 14544,
+   "file": "acres/8700.mp3",
+   "sha": "d5f14ae62225",
+   "text": "87 acres"
+  },
+  "acres/875": {
+   "bytes": 17712,
+   "file": "acres/875.mp3",
+   "sha": "49687292e1a2",
+   "text": "8 and three quarter acres"
+  },
+  "acres/8750": {
+   "bytes": 19008,
+   "file": "acres/8750.mp3",
+   "sha": "12bfc435d387",
+   "text": "87 and a half acres"
+  },
+  "acres/8800": {
+   "bytes": 14400,
+   "file": "acres/8800.mp3",
+   "sha": "c05058c4f633",
+   "text": "88 acres"
+  },
+  "acres/8850": {
+   "bytes": 18144,
+   "file": "acres/8850.mp3",
+   "sha": "b53084329c70",
+   "text": "88 and a half acres"
+  },
+  "acres/8900": {
+   "bytes": 14112,
+   "file": "acres/8900.mp3",
+   "sha": "9047b796296b",
+   "text": "89 acres"
+  },
+  "acres/8950": {
+   "bytes": 18720,
+   "file": "acres/8950.mp3",
+   "sha": "6aee0bd7781e",
+   "text": "89 and a half acres"
+  },
+  "acres/900": {
+   "bytes": 12816,
+   "file": "acres/900.mp3",
+   "sha": "62b00db04353",
+   "text": "9 acres"
+  },
+  "acres/9000": {
+   "bytes": 13536,
+   "file": "acres/9000.mp3",
+   "sha": "4cf490047de0",
+   "text": "90 acres"
+  },
+  "acres/9050": {
+   "bytes": 17856,
+   "file": "acres/9050.mp3",
+   "sha": "809adf26d840",
+   "text": "90 and a half acres"
+  },
+  "acres/9100": {
+   "bytes": 15120,
+   "file": "acres/9100.mp3",
+   "sha": "be2512726605",
+   "text": "91 acres"
+  },
+  "acres/9150": {
+   "bytes": 19584,
+   "file": "acres/9150.mp3",
+   "sha": "40d8e68501be",
+   "text": "91 and a half acres"
+  },
+  "acres/9200": {
+   "bytes": 14400,
+   "file": "acres/9200.mp3",
+   "sha": "3554077aca67",
+   "text": "92 acres"
+  },
+  "acres/925": {
+   "bytes": 17712,
+   "file": "acres/925.mp3",
+   "sha": "f209328598f2",
+   "text": "9 and a quarter acres"
+  },
+  "acres/9250": {
+   "bytes": 18864,
+   "file": "acres/9250.mp3",
+   "sha": "e0fc5852484c",
+   "text": "92 and a half acres"
+  },
+  "acres/9300": {
+   "bytes": 14832,
+   "file": "acres/9300.mp3",
+   "sha": "c37d89aa5bcd",
+   "text": "93 acres"
+  },
+  "acres/9350": {
+   "bytes": 19296,
+   "file": "acres/9350.mp3",
+   "sha": "f6ebe38c6509",
+   "text": "93 and a half acres"
+  },
+  "acres/9400": {
+   "bytes": 14832,
+   "file": "acres/9400.mp3",
+   "sha": "33bc06490db3",
+   "text": "94 acres"
+  },
+  "acres/9450": {
+   "bytes": 19296,
+   "file": "acres/9450.mp3",
+   "sha": "3c0ca6402808",
+   "text": "94 and a half acres"
+  },
+  "acres/950": {
+   "bytes": 16848,
+   "file": "acres/950.mp3",
+   "sha": "dbcfaba30ebf",
+   "text": "9 and a half acres"
+  },
+  "acres/9500": {
+   "bytes": 15696,
+   "file": "acres/9500.mp3",
+   "sha": "a03156a1e65a",
+   "text": "95 acres"
+  },
+  "acres/9550": {
+   "bytes": 19728,
+   "file": "acres/9550.mp3",
+   "sha": "f0352cbc6018",
+   "text": "95 and a half acres"
+  },
+  "acres/9600": {
+   "bytes": 15552,
+   "file": "acres/9600.mp3",
+   "sha": "37d347feda33",
+   "text": "96 acres"
+  },
+  "acres/9650": {
+   "bytes": 19584,
+   "file": "acres/9650.mp3",
+   "sha": "70bbc5e62fd6",
+   "text": "96 and a half acres"
+  },
+  "acres/9700": {
+   "bytes": 15408,
+   "file": "acres/9700.mp3",
+   "sha": "0ad3f662b9b3",
+   "text": "97 acres"
+  },
+  "acres/975": {
+   "bytes": 18576,
+   "file": "acres/975.mp3",
+   "sha": "f27391a188bc",
+   "text": "9 and three quarter acres"
+  },
+  "acres/9750": {
+   "bytes": 19728,
+   "file": "acres/9750.mp3",
+   "sha": "c8e51c96aa0e",
+   "text": "97 and a half acres"
+  },
+  "acres/9800": {
+   "bytes": 14832,
+   "file": "acres/9800.mp3",
+   "sha": "c8a52353d3df",
+   "text": "98 acres"
+  },
+  "acres/9850": {
+   "bytes": 19584,
+   "file": "acres/9850.mp3",
+   "sha": "724276a8f123",
+   "text": "98 and a half acres"
+  },
+  "acres/9900": {
+   "bytes": 14976,
+   "file": "acres/9900.mp3",
+   "sha": "31ac618bee9c",
+   "text": "99 acres"
+  },
+  "acres/9950": {
+   "bytes": 19872,
+   "file": "acres/9950.mp3",
+   "sha": "315aecb2c352",
+   "text": "99 and a half acres"
+  },
+  "date/01-01": {
+   "bytes": 13824,
+   "file": "date/01-01.mp3",
+   "sha": "5c09d6b96553",
+   "text": "1st January"
+  },
+  "date/01-02": {
+   "bytes": 13680,
+   "file": "date/01-02.mp3",
+   "sha": "0c6422173476",
+   "text": "2nd January"
+  },
+  "date/01-03": {
+   "bytes": 13392,
+   "file": "date/01-03.mp3",
+   "sha": "25502b79d8d7",
+   "text": "3rd January"
+  },
+  "date/01-04": {
+   "bytes": 13248,
+   "file": "date/01-04.mp3",
+   "sha": "f45ce4c42253",
+   "text": "4th January"
+  },
+  "date/01-05": {
+   "bytes": 13536,
+   "file": "date/01-05.mp3",
+   "sha": "0aef7f5b70ac",
+   "text": "5th January"
+  },
+  "date/01-06": {
+   "bytes": 13824,
+   "file": "date/01-06.mp3",
+   "sha": "f96d9ce322d1",
+   "text": "6th January"
+  },
+  "date/01-07": {
+   "bytes": 13824,
+   "file": "date/01-07.mp3",
+   "sha": "33f9015b958e",
+   "text": "7th January"
+  },
+  "date/01-08": {
+   "bytes": 12960,
+   "file": "date/01-08.mp3",
+   "sha": "ccbc6e2e6aa8",
+   "text": "8th January"
+  },
+  "date/01-09": {
+   "bytes": 13824,
+   "file": "date/01-09.mp3",
+   "sha": "185e070c20f3",
+   "text": "9th January"
+  },
+  "date/01-10": {
+   "bytes": 12960,
+   "file": "date/01-10.mp3",
+   "sha": "914ba87563c6",
+   "text": "10th January"
+  },
+  "date/01-11": {
+   "bytes": 14112,
+   "file": "date/01-11.mp3",
+   "sha": "d9cc31b21d3a",
+   "text": "11th January"
+  },
+  "date/01-12": {
+   "bytes": 13824,
+   "file": "date/01-12.mp3",
+   "sha": "7437826292af",
+   "text": "12th January"
+  },
+  "date/01-13": {
+   "bytes": 14544,
+   "file": "date/01-13.mp3",
+   "sha": "82058321a142",
+   "text": "13th January"
+  },
+  "date/01-14": {
+   "bytes": 14832,
+   "file": "date/01-14.mp3",
+   "sha": "87a87a4aa963",
+   "text": "14th January"
+  },
+  "date/01-15": {
+   "bytes": 14688,
+   "file": "date/01-15.mp3",
+   "sha": "5addff2e0285",
+   "text": "15th January"
+  },
+  "date/01-16": {
+   "bytes": 15120,
+   "file": "date/01-16.mp3",
+   "sha": "2b5eaa684f65",
+   "text": "16th January"
+  },
+  "date/01-17": {
+   "bytes": 15264,
+   "file": "date/01-17.mp3",
+   "sha": "60fc988b4a27",
+   "text": "17th January"
+  },
+  "date/01-18": {
+   "bytes": 13968,
+   "file": "date/01-18.mp3",
+   "sha": "b2ab09642f7f",
+   "text": "18th January"
+  },
+  "date/01-19": {
+   "bytes": 14832,
+   "file": "date/01-19.mp3",
+   "sha": "1cd234b17210",
+   "text": "19th January"
+  },
+  "date/01-20": {
+   "bytes": 14400,
+   "file": "date/01-20.mp3",
+   "sha": "14bbea1e59d3",
+   "text": "20th January"
+  },
+  "date/01-21": {
+   "bytes": 15264,
+   "file": "date/01-21.mp3",
+   "sha": "b46bfbc9e8d1",
+   "text": "21st January"
+  },
+  "date/01-22": {
+   "bytes": 15552,
+   "file": "date/01-22.mp3",
+   "sha": "c8075e5a64b3",
+   "text": "22nd January"
+  },
+  "date/01-23": {
+   "bytes": 15264,
+   "file": "date/01-23.mp3",
+   "sha": "93f58494fa8e",
+   "text": "23rd January"
+  },
+  "date/01-24": {
+   "bytes": 15264,
+   "file": "date/01-24.mp3",
+   "sha": "e670f229cdd2",
+   "text": "24th January"
+  },
+  "date/01-25": {
+   "bytes": 15408,
+   "file": "date/01-25.mp3",
+   "sha": "f1a1104452ee",
+   "text": "25th January"
+  },
+  "date/01-26": {
+   "bytes": 15408,
+   "file": "date/01-26.mp3",
+   "sha": "6b9812abfb26",
+   "text": "26th January"
+  },
+  "date/01-27": {
+   "bytes": 15552,
+   "file": "date/01-27.mp3",
+   "sha": "d3f85d02055b",
+   "text": "27th January"
+  },
+  "date/01-28": {
+   "bytes": 15408,
+   "file": "date/01-28.mp3",
+   "sha": "a6912c5edc6f",
+   "text": "28th January"
+  },
+  "date/01-29": {
+   "bytes": 15552,
+   "file": "date/01-29.mp3",
+   "sha": "11b4b10e8c52",
+   "text": "29th January"
+  },
+  "date/01-30": {
+   "bytes": 14544,
+   "file": "date/01-30.mp3",
+   "sha": "89fb01db0fda",
+   "text": "30th January"
+  },
+  "date/01-31": {
+   "bytes": 16128,
+   "file": "date/01-31.mp3",
+   "sha": "5a0f429b45c3",
+   "text": "31st January"
+  },
+  "date/02-01": {
+   "bytes": 13968,
+   "file": "date/02-01.mp3",
+   "sha": "43bcab2df3c2",
+   "text": "1st February"
+  },
+  "date/02-02": {
+   "bytes": 14112,
+   "file": "date/02-02.mp3",
+   "sha": "2b8e5203f442",
+   "text": "2nd February"
+  },
+  "date/02-03": {
+   "bytes": 13536,
+   "file": "date/02-03.mp3",
+   "sha": "892939b54b76",
+   "text": "3rd February"
+  },
+  "date/02-04": {
+   "bytes": 13248,
+   "file": "date/02-04.mp3",
+   "sha": "2d42d09a5cdf",
+   "text": "4th February"
+  },
+  "date/02-05": {
+   "bytes": 13392,
+   "file": "date/02-05.mp3",
+   "sha": "78ec76171d40",
+   "text": "5th February"
+  },
+  "date/02-06": {
+   "bytes": 13968,
+   "file": "date/02-06.mp3",
+   "sha": "5501999da318",
+   "text": "6th February"
+  },
+  "date/02-07": {
+   "bytes": 13536,
+   "file": "date/02-07.mp3",
+   "sha": "ee428ead881a",
+   "text": "7th February"
+  },
+  "date/02-08": {
+   "bytes": 12960,
+   "file": "date/02-08.mp3",
+   "sha": "8c97890def90",
+   "text": "8th February"
+  },
+  "date/02-09": {
+   "bytes": 13248,
+   "file": "date/02-09.mp3",
+   "sha": "6a7829bf7630",
+   "text": "9th February"
+  },
+  "date/02-10": {
+   "bytes": 12672,
+   "file": "date/02-10.mp3",
+   "sha": "684bc8e7355f",
+   "text": "10th February"
+  },
+  "date/02-11": {
+   "bytes": 13968,
+   "file": "date/02-11.mp3",
+   "sha": "eb2bb7b5cdb2",
+   "text": "11th February"
+  },
+  "date/02-12": {
+   "bytes": 13536,
+   "file": "date/02-12.mp3",
+   "sha": "3c55c90b86e4",
+   "text": "12th February"
+  },
+  "date/02-13": {
+   "bytes": 14400,
+   "file": "date/02-13.mp3",
+   "sha": "01bfa295b91e",
+   "text": "13th February"
+  },
+  "date/02-14": {
+   "bytes": 14832,
+   "file": "date/02-14.mp3",
+   "sha": "7f71569daf34",
+   "text": "14th February"
+  },
+  "date/02-15": {
+   "bytes": 14688,
+   "file": "date/02-15.mp3",
+   "sha": "6bccd37c2a6b",
+   "text": "15th February"
+  },
+  "date/02-16": {
+   "bytes": 14976,
+   "file": "date/02-16.mp3",
+   "sha": "d091d0af7ef8",
+   "text": "16th February"
+  },
+  "date/02-17": {
+   "bytes": 15120,
+   "file": "date/02-17.mp3",
+   "sha": "f7778d31e10b",
+   "text": "17th February"
+  },
+  "date/02-18": {
+   "bytes": 13680,
+   "file": "date/02-18.mp3",
+   "sha": "73f5a6d842de",
+   "text": "18th February"
+  },
+  "date/02-19": {
+   "bytes": 14688,
+   "file": "date/02-19.mp3",
+   "sha": "e02b54edeeca",
+   "text": "19th February"
+  },
+  "date/02-20": {
+   "bytes": 14688,
+   "file": "date/02-20.mp3",
+   "sha": "fbb00af4730b",
+   "text": "20th February"
+  },
+  "date/02-21": {
+   "bytes": 16128,
+   "file": "date/02-21.mp3",
+   "sha": "fb75671c7a5a",
+   "text": "21st February"
+  },
+  "date/02-22": {
+   "bytes": 15984,
+   "file": "date/02-22.mp3",
+   "sha": "43e00dc90717",
+   "text": "22nd February"
+  },
+  "date/02-23": {
+   "bytes": 15264,
+   "file": "date/02-23.mp3",
+   "sha": "1d8ee5e9a876",
+   "text": "23rd February"
+  },
+  "date/02-24": {
+   "bytes": 15264,
+   "file": "date/02-24.mp3",
+   "sha": "2dd930369630",
+   "text": "24th February"
+  },
+  "date/02-25": {
+   "bytes": 15408,
+   "file": "date/02-25.mp3",
+   "sha": "260f65d8f793",
+   "text": "25th February"
+  },
+  "date/02-26": {
+   "bytes": 15408,
+   "file": "date/02-26.mp3",
+   "sha": "51e2ff5fcd8f",
+   "text": "26th February"
+  },
+  "date/02-27": {
+   "bytes": 15840,
+   "file": "date/02-27.mp3",
+   "sha": "afc90d113e8a",
+   "text": "27th February"
+  },
+  "date/02-28": {
+   "bytes": 15552,
+   "file": "date/02-28.mp3",
+   "sha": "145340a2e844",
+   "text": "28th February"
+  },
+  "date/02-29": {
+   "bytes": 15120,
+   "file": "date/02-29.mp3",
+   "sha": "a4cb0d4b2a1d",
+   "text": "29th February"
+  },
+  "date/03-01": {
+   "bytes": 12816,
+   "file": "date/03-01.mp3",
+   "sha": "2e717346afb5",
+   "text": "1st March"
+  },
+  "date/03-02": {
+   "bytes": 12960,
+   "file": "date/03-02.mp3",
+   "sha": "0961584db65b",
+   "text": "2nd March"
+  },
+  "date/03-03": {
+   "bytes": 11952,
+   "file": "date/03-03.mp3",
+   "sha": "2737e9955f75",
+   "text": "3rd March"
+  },
+  "date/03-04": {
+   "bytes": 12384,
+   "file": "date/03-04.mp3",
+   "sha": "51aa38c03873",
+   "text": "4th March"
+  },
+  "date/03-05": {
+   "bytes": 12528,
+   "file": "date/03-05.mp3",
+   "sha": "ba34d6742ad1",
+   "text": "5th March"
+  },
+  "date/03-06": {
+   "bytes": 12960,
+   "file": "date/03-06.mp3",
+   "sha": "f7ae713549c0",
+   "text": "6th March"
+  },
+  "date/03-07": {
+   "bytes": 13104,
+   "file": "date/03-07.mp3",
+   "sha": "bbf9526baf1f",
+   "text": "7th March"
+  },
+  "date/03-08": {
+   "bytes": 12240,
+   "file": "date/03-08.mp3",
+   "sha": "238b56d6b788",
+   "text": "8th March"
+  },
+  "date/03-09": {
+   "bytes": 12672,
+   "file": "date/03-09.mp3",
+   "sha": "7880ff9d483f",
+   "text": "9th March"
+  },
+  "date/03-10": {
+   "bytes": 11952,
+   "file": "date/03-10.mp3",
+   "sha": "918582cd10c0",
+   "text": "10th March"
+  },
+  "date/03-11": {
+   "bytes": 13104,
+   "file": "date/03-11.mp3",
+   "sha": "6fa85433f836",
+   "text": "11th March"
+  },
+  "date/03-12": {
+   "bytes": 12960,
+   "file": "date/03-12.mp3",
+   "sha": "7cbb1fdc0c9f",
+   "text": "12th March"
+  },
+  "date/03-13": {
+   "bytes": 13536,
+   "file": "date/03-13.mp3",
+   "sha": "9a50587211e0",
+   "text": "13th March"
+  },
+  "date/03-14": {
+   "bytes": 13680,
+   "file": "date/03-14.mp3",
+   "sha": "4440d2ae4bbb",
+   "text": "14th March"
+  },
+  "date/03-15": {
+   "bytes": 13680,
+   "file": "date/03-15.mp3",
+   "sha": "20039579245e",
+   "text": "15th March"
+  },
+  "date/03-16": {
+   "bytes": 13968,
+   "file": "date/03-16.mp3",
+   "sha": "ee3f35544d9a",
+   "text": "16th March"
+  },
+  "date/03-17": {
+   "bytes": 14112,
+   "file": "date/03-17.mp3",
+   "sha": "71b0a7f371a3",
+   "text": "17th March"
+  },
+  "date/03-18": {
+   "bytes": 12816,
+   "file": "date/03-18.mp3",
+   "sha": "559fb51efde7",
+   "text": "18th March"
+  },
+  "date/03-19": {
+   "bytes": 13824,
+   "file": "date/03-19.mp3",
+   "sha": "0782b38cd142",
+   "text": "19th March"
+  },
+  "date/03-20": {
+   "bytes": 13536,
+   "file": "date/03-20.mp3",
+   "sha": "a67d49103b15",
+   "text": "20th March"
+  },
+  "date/03-21": {
+   "bytes": 14544,
+   "file": "date/03-21.mp3",
+   "sha": "cb39f9016fc9",
+   "text": "21st March"
+  },
+  "date/03-22": {
+   "bytes": 14688,
+   "file": "date/03-22.mp3",
+   "sha": "56fa729bf37a",
+   "text": "22nd March"
+  },
+  "date/03-23": {
+   "bytes": 13824,
+   "file": "date/03-23.mp3",
+   "sha": "079ff49d0d83",
+   "text": "23rd March"
+  },
+  "date/03-24": {
+   "bytes": 14400,
+   "file": "date/03-24.mp3",
+   "sha": "914c40a33488",
+   "text": "24th March"
+  },
+  "date/03-25": {
+   "bytes": 14544,
+   "file": "date/03-25.mp3",
+   "sha": "2ca18fc5f0c7",
+   "text": "25th March"
+  },
+  "date/03-26": {
+   "bytes": 14688,
+   "file": "date/03-26.mp3",
+   "sha": "0e1a357a0f58",
+   "text": "26th March"
+  },
+  "date/03-27": {
+   "bytes": 14976,
+   "file": "date/03-27.mp3",
+   "sha": "c45f8bdb7a59",
+   "text": "27th March"
+  },
+  "date/03-28": {
+   "bytes": 14544,
+   "file": "date/03-28.mp3",
+   "sha": "6bbfe542f968",
+   "text": "28th March"
+  },
+  "date/03-29": {
+   "bytes": 14400,
+   "file": "date/03-29.mp3",
+   "sha": "c8780b50f6b3",
+   "text": "29th March"
+  },
+  "date/03-30": {
+   "bytes": 13392,
+   "file": "date/03-30.mp3",
+   "sha": "c1111e35a27b",
+   "text": "30th March"
+  },
+  "date/03-31": {
+   "bytes": 14976,
+   "file": "date/03-31.mp3",
+   "sha": "13a51cc9541c",
+   "text": "31st March"
+  },
+  "date/04-01": {
+   "bytes": 12384,
+   "file": "date/04-01.mp3",
+   "sha": "dda59c84cead",
+   "text": "1st April"
+  },
+  "date/04-02": {
+   "bytes": 12816,
+   "file": "date/04-02.mp3",
+   "sha": "6c6de8afea8d",
+   "text": "2nd April"
+  },
+  "date/04-03": {
+   "bytes": 11808,
+   "file": "date/04-03.mp3",
+   "sha": "7d2b7b644d28",
+   "text": "3rd April"
+  },
+  "date/04-04": {
+   "bytes": 12096,
+   "file": "date/04-04.mp3",
+   "sha": "29c5e1da4dc6",
+   "text": "4th April"
+  },
+  "date/04-05": {
+   "bytes": 12240,
+   "file": "date/04-05.mp3",
+   "sha": "19d1d93ba797",
+   "text": "5th April"
+  },
+  "date/04-06": {
+   "bytes": 12528,
+   "file": "date/04-06.mp3",
+   "sha": "c1a3688259c7",
+   "text": "6th April"
+  },
+  "date/04-07": {
+   "bytes": 12384,
+   "file": "date/04-07.mp3",
+   "sha": "c1e86c18eff1",
+   "text": "7th April"
+  },
+  "date/04-08": {
+   "bytes": 11664,
+   "file": "date/04-08.mp3",
+   "sha": "129a2070cac9",
+   "text": "8th April"
+  },
+  "date/04-09": {
+   "bytes": 12240,
+   "file": "date/04-09.mp3",
+   "sha": "907efdbfc3af",
+   "text": "9th April"
+  },
+  "date/04-10": {
+   "bytes": 11376,
+   "file": "date/04-10.mp3",
+   "sha": "6aa667b3b06b",
+   "text": "10th April"
+  },
+  "date/04-11": {
+   "bytes": 12528,
+   "file": "date/04-11.mp3",
+   "sha": "07fb0b23da1e",
+   "text": "11th April"
+  },
+  "date/04-12": {
+   "bytes": 12528,
+   "file": "date/04-12.mp3",
+   "sha": "f336a6c73e9c",
+   "text": "12th April"
+  },
+  "date/04-13": {
+   "bytes": 13248,
+   "file": "date/04-13.mp3",
+   "sha": "6de21e0efae0",
+   "text": "13th April"
+  },
+  "date/04-14": {
+   "bytes": 13104,
+   "file": "date/04-14.mp3",
+   "sha": "5a8c2b9cfe37",
+   "text": "14th April"
+  },
+  "date/04-15": {
+   "bytes": 13680,
+   "file": "date/04-15.mp3",
+   "sha": "58a9b8a346e0",
+   "text": "15th April"
+  },
+  "date/04-16": {
+   "bytes": 13824,
+   "file": "date/04-16.mp3",
+   "sha": "d4675fe12fb4",
+   "text": "16th April"
+  },
+  "date/04-17": {
+   "bytes": 13536,
+   "file": "date/04-17.mp3",
+   "sha": "3a370ed5e74b",
+   "text": "17th April"
+  },
+  "date/04-18": {
+   "bytes": 12528,
+   "file": "date/04-18.mp3",
+   "sha": "a1deaa793616",
+   "text": "18th April"
+  },
+  "date/04-19": {
+   "bytes": 13536,
+   "file": "date/04-19.mp3",
+   "sha": "3dfd29038cb7",
+   "text": "19th April"
+  },
+  "date/04-20": {
+   "bytes": 13104,
+   "file": "date/04-20.mp3",
+   "sha": "7b5a1e2e44e5",
+   "text": "20th April"
+  },
+  "date/04-21": {
+   "bytes": 14400,
+   "file": "date/04-21.mp3",
+   "sha": "9fae4dafe0ff",
+   "text": "21st April"
+  },
+  "date/04-22": {
+   "bytes": 14544,
+   "file": "date/04-22.mp3",
+   "sha": "18159299fd7e",
+   "text": "22nd April"
+  },
+  "date/04-23": {
+   "bytes": 13824,
+   "file": "date/04-23.mp3",
+   "sha": "5c9f5e06d6a5",
+   "text": "23rd April"
+  },
+  "date/04-24": {
+   "bytes": 13968,
+   "file": "date/04-24.mp3",
+   "sha": "1342f2238a87",
+   "text": "24th April"
+  },
+  "date/04-25": {
+   "bytes": 13680,
+   "file": "date/04-25.mp3",
+   "sha": "24c94b9a3077",
+   "text": "25th April"
+  },
+  "date/04-26": {
+   "bytes": 14400,
+   "file": "date/04-26.mp3",
+   "sha": "baac6e905156",
+   "text": "26th April"
+  },
+  "date/04-27": {
+   "bytes": 14400,
+   "file": "date/04-27.mp3",
+   "sha": "898dd6e96d80",
+   "text": "27th April"
+  },
+  "date/04-28": {
+   "bytes": 14112,
+   "file": "date/04-28.mp3",
+   "sha": "b691dbf2d623",
+   "text": "28th April"
+  },
+  "date/04-29": {
+   "bytes": 14112,
+   "file": "date/04-29.mp3",
+   "sha": "9e5c343f4b5c",
+   "text": "29th April"
+  },
+  "date/04-30": {
+   "bytes": 12960,
+   "file": "date/04-30.mp3",
+   "sha": "d1379552ca1b",
+   "text": "30th April"
+  },
+  "date/05-01": {
+   "bytes": 11232,
+   "file": "date/05-01.mp3",
+   "sha": "061c10e46db5",
+   "text": "1st May"
+  },
+  "date/05-02": {
+   "bytes": 11664,
+   "file": "date/05-02.mp3",
+   "sha": "33ba2d131d56",
+   "text": "2nd May"
+  },
+  "date/05-03": {
+   "bytes": 11232,
+   "file": "date/05-03.mp3",
+   "sha": "ce814fa7d21c",
+   "text": "3rd May"
+  },
+  "date/05-04": {
+   "bytes": 11232,
+   "file": "date/05-04.mp3",
+   "sha": "ffa98902c082",
+   "text": "4th May"
+  },
+  "date/05-05": {
+   "bytes": 11232,
+   "file": "date/05-05.mp3",
+   "sha": "99b98999a354",
+   "text": "5th May"
+  },
+  "date/05-06": {
+   "bytes": 11520,
+   "file": "date/05-06.mp3",
+   "sha": "4d50b6a26d82",
+   "text": "6th May"
+  },
+  "date/05-07": {
+   "bytes": 11520,
+   "file": "date/05-07.mp3",
+   "sha": "aadc178c7008",
+   "text": "7th May"
+  },
+  "date/05-08": {
+   "bytes": 11232,
+   "file": "date/05-08.mp3",
+   "sha": "0175f5891393",
+   "text": "8th May"
+  },
+  "date/05-09": {
+   "bytes": 11520,
+   "file": "date/05-09.mp3",
+   "sha": "34e20e6e04a9",
+   "text": "9th May"
+  },
+  "date/05-10": {
+   "bytes": 11232,
+   "file": "date/05-10.mp3",
+   "sha": "61fafdd385ae",
+   "text": "10th May"
+  },
+  "date/05-11": {
+   "bytes": 11952,
+   "file": "date/05-11.mp3",
+   "sha": "2556ba72645f",
+   "text": "11th May"
+  },
+  "date/05-12": {
+   "bytes": 11520,
+   "file": "date/05-12.mp3",
+   "sha": "3a215beb8602",
+   "text": "12th May"
+  },
+  "date/05-13": {
+   "bytes": 12096,
+   "file": "date/05-13.mp3",
+   "sha": "76468fcc06a3",
+   "text": "13th May"
+  },
+  "date/05-14": {
+   "bytes": 12240,
+   "file": "date/05-14.mp3",
+   "sha": "addbc98b2ee1",
+   "text": "14th May"
+  },
+  "date/05-15": {
+   "bytes": 12672,
+   "file": "date/05-15.mp3",
+   "sha": "4d6d44f53b00",
+   "text": "15th May"
+  },
+  "date/05-16": {
+   "bytes": 12816,
+   "file": "date/05-16.mp3",
+   "sha": "5cfd8d648d40",
+   "text": "16th May"
+  },
+  "date/05-17": {
+   "bytes": 13104,
+   "file": "date/05-17.mp3",
+   "sha": "fd8d9ca3dc23",
+   "text": "17th May"
+  },
+  "date/05-18": {
+   "bytes": 11808,
+   "file": "date/05-18.mp3",
+   "sha": "b9a6f4b10dce",
+   "text": "18th May"
+  },
+  "date/05-19": {
+   "bytes": 12672,
+   "file": "date/05-19.mp3",
+   "sha": "b4933127d093",
+   "text": "19th May"
+  },
+  "date/05-20": {
+   "bytes": 12096,
+   "file": "date/05-20.mp3",
+   "sha": "647d93b5ce1a",
+   "text": "20th May"
+  },
+  "date/05-21": {
+   "bytes": 13536,
+   "file": "date/05-21.mp3",
+   "sha": "595e19876700",
+   "text": "21st May"
+  },
+  "date/05-22": {
+   "bytes": 13392,
+   "file": "date/05-22.mp3",
+   "sha": "8527acf82b0c",
+   "text": "22nd May"
+  },
+  "date/05-23": {
+   "bytes": 12960,
+   "file": "date/05-23.mp3",
+   "sha": "2e5aad706861",
+   "text": "23rd May"
+  },
+  "date/05-24": {
+   "bytes": 13104,
+   "file": "date/05-24.mp3",
+   "sha": "b21323b7a242",
+   "text": "24th May"
+  },
+  "date/05-25": {
+   "bytes": 13104,
+   "file": "date/05-25.mp3",
+   "sha": "224866e52885",
+   "text": "25th May"
+  },
+  "date/05-26": {
+   "bytes": 13104,
+   "file": "date/05-26.mp3",
+   "sha": "a18911a0cc5a",
+   "text": "26th May"
+  },
+  "date/05-27": {
+   "bytes": 13536,
+   "file": "date/05-27.mp3",
+   "sha": "eb5dfd037b2c",
+   "text": "27th May"
+  },
+  "date/05-28": {
+   "bytes": 13248,
+   "file": "date/05-28.mp3",
+   "sha": "cd065d9bde34",
+   "text": "28th May"
+  },
+  "date/05-29": {
+   "bytes": 13248,
+   "file": "date/05-29.mp3",
+   "sha": "366302210bee",
+   "text": "29th May"
+  },
+  "date/05-30": {
+   "bytes": 12240,
+   "file": "date/05-30.mp3",
+   "sha": "0cd6d22efe38",
+   "text": "30th May"
+  },
+  "date/05-31": {
+   "bytes": 13248,
+   "file": "date/05-31.mp3",
+   "sha": "cfd08a2146f5",
+   "text": "31st May"
+  },
+  "date/06-01": {
+   "bytes": 11808,
+   "file": "date/06-01.mp3",
+   "sha": "4df2a1fa7ad3",
+   "text": "1st June"
+  },
+  "date/06-02": {
+   "bytes": 12384,
+   "file": "date/06-02.mp3",
+   "sha": "37ba8eb01176",
+   "text": "2nd June"
+  },
+  "date/06-03": {
+   "bytes": 11232,
+   "file": "date/06-03.mp3",
+   "sha": "c33e9758a3ad",
+   "text": "3rd June"
+  },
+  "date/06-04": {
+   "bytes": 11520,
+   "file": "date/06-04.mp3",
+   "sha": "a22ae7c7022e",
+   "text": "4th June"
+  },
+  "date/06-05": {
+   "bytes": 11520,
+   "file": "date/06-05.mp3",
+   "sha": "5a954bdb9cc5",
+   "text": "5th June"
+  },
+  "date/06-06": {
+   "bytes": 11952,
+   "file": "date/06-06.mp3",
+   "sha": "e434920cb4de",
+   "text": "6th June"
+  },
+  "date/06-07": {
+   "bytes": 12384,
+   "file": "date/06-07.mp3",
+   "sha": "313c1e929e82",
+   "text": "7th June"
+  },
+  "date/06-08": {
+   "bytes": 11232,
+   "file": "date/06-08.mp3",
+   "sha": "31650567e732",
+   "text": "8th June"
+  },
+  "date/06-09": {
+   "bytes": 12096,
+   "file": "date/06-09.mp3",
+   "sha": "fb43035c8528",
+   "text": "9th June"
+  },
+  "date/06-10": {
+   "bytes": 11376,
+   "file": "date/06-10.mp3",
+   "sha": "40efe5d42a18",
+   "text": "10th June"
+  },
+  "date/06-11": {
+   "bytes": 12672,
+   "file": "date/06-11.mp3",
+   "sha": "0b8663ac349d",
+   "text": "11th June"
+  },
+  "date/06-12": {
+   "bytes": 11952,
+   "file": "date/06-12.mp3",
+   "sha": "4b7c1b977b87",
+   "text": "12th June"
+  },
+  "date/06-13": {
+   "bytes": 12816,
+   "file": "date/06-13.mp3",
+   "sha": "ad9f21776b53",
+   "text": "13th June"
+  },
+  "date/06-14": {
+   "bytes": 12816,
+   "file": "date/06-14.mp3",
+   "sha": "ff5b7247e442",
+   "text": "14th June"
+  },
+  "date/06-15": {
+   "bytes": 13104,
+   "file": "date/06-15.mp3",
+   "sha": "4b35770a830b",
+   "text": "15th June"
+  },
+  "date/06-16": {
+   "bytes": 13536,
+   "file": "date/06-16.mp3",
+   "sha": "fbfc5f04cba4",
+   "text": "16th June"
+  },
+  "date/06-17": {
+   "bytes": 13680,
+   "file": "date/06-17.mp3",
+   "sha": "8c6b3940956a",
+   "text": "17th June"
+  },
+  "date/06-18": {
+   "bytes": 12240,
+   "file": "date/06-18.mp3",
+   "sha": "5496bda14400",
+   "text": "18th June"
+  },
+  "date/06-19": {
+   "bytes": 13392,
+   "file": "date/06-19.mp3",
+   "sha": "fd5655aa3a12",
+   "text": "19th June"
+  },
+  "date/06-20": {
+   "bytes": 12672,
+   "file": "date/06-20.mp3",
+   "sha": "332bad8e3b01",
+   "text": "20th June"
+  },
+  "date/06-21": {
+   "bytes": 13680,
+   "file": "date/06-21.mp3",
+   "sha": "c0c0a9a175dc",
+   "text": "21st June"
+  },
+  "date/06-22": {
+   "bytes": 14112,
+   "file": "date/06-22.mp3",
+   "sha": "ee4802af5f3e",
+   "text": "22nd June"
+  },
+  "date/06-23": {
+   "bytes": 13248,
+   "file": "date/06-23.mp3",
+   "sha": "ba0705157f84",
+   "text": "23rd June"
+  },
+  "date/06-24": {
+   "bytes": 13824,
+   "file": "date/06-24.mp3",
+   "sha": "74a7c9e288b8",
+   "text": "24th June"
+  },
+  "date/06-25": {
+   "bytes": 13680,
+   "file": "date/06-25.mp3",
+   "sha": "04c0a1e16461",
+   "text": "25th June"
+  },
+  "date/06-26": {
+   "bytes": 13680,
+   "file": "date/06-26.mp3",
+   "sha": "6936627502b8",
+   "text": "26th June"
+  },
+  "date/06-27": {
+   "bytes": 14112,
+   "file": "date/06-27.mp3",
+   "sha": "53b08b52705f",
+   "text": "27th June"
+  },
+  "date/06-28": {
+   "bytes": 13968,
+   "file": "date/06-28.mp3",
+   "sha": "903bad8cd705",
+   "text": "28th June"
+  },
+  "date/06-29": {
+   "bytes": 13824,
+   "file": "date/06-29.mp3",
+   "sha": "73320cd5373b",
+   "text": "29th June"
+  },
+  "date/06-30": {
+   "bytes": 12528,
+   "file": "date/06-30.mp3",
+   "sha": "18cabd2e78a8",
+   "text": "30th June"
+  },
+  "date/07-01": {
+   "bytes": 12816,
+   "file": "date/07-01.mp3",
+   "sha": "4f388fcc5ede",
+   "text": "1st July"
+  },
+  "date/07-02": {
+   "bytes": 12960,
+   "file": "date/07-02.mp3",
+   "sha": "1e6a63e4df5b",
+   "text": "2nd July"
+  },
+  "date/07-03": {
+   "bytes": 12096,
+   "file": "date/07-03.mp3",
+   "sha": "d3b77c6c602c",
+   "text": "3rd July"
+  },
+  "date/07-04": {
+   "bytes": 12384,
+   "file": "date/07-04.mp3",
+   "sha": "e7c715d73687",
+   "text": "4th July"
+  },
+  "date/07-05": {
+   "bytes": 12384,
+   "file": "date/07-05.mp3",
+   "sha": "5fd0a153b9d1",
+   "text": "5th July"
+  },
+  "date/07-06": {
+   "bytes": 12672,
+   "file": "date/07-06.mp3",
+   "sha": "c344df75fa20",
+   "text": "6th July"
+  },
+  "date/07-07": {
+   "bytes": 12960,
+   "file": "date/07-07.mp3",
+   "sha": "85841b746ca6",
+   "text": "7th July"
+  },
+  "date/07-08": {
+   "bytes": 12096,
+   "file": "date/07-08.mp3",
+   "sha": "24a2e51883fa",
+   "text": "8th July"
+  },
+  "date/07-09": {
+   "bytes": 12672,
+   "file": "date/07-09.mp3",
+   "sha": "faf1beae87c8",
+   "text": "9th July"
+  },
+  "date/07-10": {
+   "bytes": 11952,
+   "file": "date/07-10.mp3",
+   "sha": "0f1a48349cf2",
+   "text": "10th July"
+  },
+  "date/07-11": {
+   "bytes": 13104,
+   "file": "date/07-11.mp3",
+   "sha": "2eb6000e2043",
+   "text": "11th July"
+  },
+  "date/07-12": {
+   "bytes": 12816,
+   "file": "date/07-12.mp3",
+   "sha": "deeb2323f2f1",
+   "text": "12th July"
+  },
+  "date/07-13": {
+   "bytes": 13536,
+   "file": "date/07-13.mp3",
+   "sha": "cd5cd74fbd15",
+   "text": "13th July"
+  },
+  "date/07-14": {
+   "bytes": 13680,
+   "file": "date/07-14.mp3",
+   "sha": "69742d774cf2",
+   "text": "14th July"
+  },
+  "date/07-15": {
+   "bytes": 13968,
+   "file": "date/07-15.mp3",
+   "sha": "a6fbd5361a1b",
+   "text": "15th July"
+  },
+  "date/07-16": {
+   "bytes": 14112,
+   "file": "date/07-16.mp3",
+   "sha": "8d40e1d0f3ea",
+   "text": "16th July"
+  },
+  "date/07-17": {
+   "bytes": 14256,
+   "file": "date/07-17.mp3",
+   "sha": "8c0ec1ec98c4",
+   "text": "17th July"
+  },
+  "date/07-18": {
+   "bytes": 13104,
+   "file": "date/07-18.mp3",
+   "sha": "94c6d6d9eaaf",
+   "text": "18th July"
+  },
+  "date/07-19": {
+   "bytes": 13824,
+   "file": "date/07-19.mp3",
+   "sha": "8b6e83a17805",
+   "text": "19th July"
+  },
+  "date/07-20": {
+   "bytes": 13536,
+   "file": "date/07-20.mp3",
+   "sha": "6a07ff590797",
+   "text": "20th July"
+  },
+  "date/07-21": {
+   "bytes": 14688,
+   "file": "date/07-21.mp3",
+   "sha": "2e11129ae9fa",
+   "text": "21st July"
+  },
+  "date/07-22": {
+   "bytes": 14832,
+   "file": "date/07-22.mp3",
+   "sha": "630b4af859c4",
+   "text": "22nd July"
+  },
+  "date/07-23": {
+   "bytes": 14112,
+   "file": "date/07-23.mp3",
+   "sha": "8ea3f41db5af",
+   "text": "23rd July"
+  },
+  "date/07-24": {
+   "bytes": 14688,
+   "file": "date/07-24.mp3",
+   "sha": "d497ecaadd46",
+   "text": "24th July"
+  },
+  "date/07-25": {
+   "bytes": 14544,
+   "file": "date/07-25.mp3",
+   "sha": "251c700110d1",
+   "text": "25th July"
+  },
+  "date/07-26": {
+   "bytes": 14544,
+   "file": "date/07-26.mp3",
+   "sha": "c7055cf76716",
+   "text": "26th July"
+  },
+  "date/07-27": {
+   "bytes": 15120,
+   "file": "date/07-27.mp3",
+   "sha": "cbade0c08bb4",
+   "text": "27th July"
+  },
+  "date/07-28": {
+   "bytes": 14544,
+   "file": "date/07-28.mp3",
+   "sha": "44dafb106bd4",
+   "text": "28th July"
+  },
+  "date/07-29": {
+   "bytes": 14400,
+   "file": "date/07-29.mp3",
+   "sha": "8dee916f6b0e",
+   "text": "29th July"
+  },
+  "date/07-30": {
+   "bytes": 13536,
+   "file": "date/07-30.mp3",
+   "sha": "fe91bc81366f",
+   "text": "30th July"
+  },
+  "date/07-31": {
+   "bytes": 14976,
+   "file": "date/07-31.mp3",
+   "sha": "9b3399e3fa91",
+   "text": "31st July"
+  },
+  "date/08-01": {
+   "bytes": 12960,
+   "file": "date/08-01.mp3",
+   "sha": "0749e5354de1",
+   "text": "1st August"
+  },
+  "date/08-02": {
+   "bytes": 13248,
+   "file": "date/08-02.mp3",
+   "sha": "8e0eb29d7eda",
+   "text": "2nd August"
+  },
+  "date/08-03": {
+   "bytes": 12384,
+   "file": "date/08-03.mp3",
+   "sha": "bab43fba6984",
+   "text": "3rd August"
+  },
+  "date/08-04": {
+   "bytes": 12240,
+   "file": "date/08-04.mp3",
+   "sha": "e60ac6b10271",
+   "text": "4th August"
+  },
+  "date/08-05": {
+   "bytes": 12672,
+   "file": "date/08-05.mp3",
+   "sha": "f9abf416269a",
+   "text": "5th August"
+  },
+  "date/08-06": {
+   "bytes": 12960,
+   "file": "date/08-06.mp3",
+   "sha": "79ec6f629d49",
+   "text": "6th August"
+  },
+  "date/08-07": {
+   "bytes": 12960,
+   "file": "date/08-07.mp3",
+   "sha": "1ce07feb36f6",
+   "text": "7th August"
+  },
+  "date/08-08": {
+   "bytes": 12240,
+   "file": "date/08-08.mp3",
+   "sha": "6cd8a60ee3ab",
+   "text": "8th August"
+  },
+  "date/08-09": {
+   "bytes": 12960,
+   "file": "date/08-09.mp3",
+   "sha": "60f3ebf30952",
+   "text": "9th August"
+  },
+  "date/08-10": {
+   "bytes": 12096,
+   "file": "date/08-10.mp3",
+   "sha": "e13119b88f63",
+   "text": "10th August"
+  },
+  "date/08-11": {
+   "bytes": 13536,
+   "file": "date/08-11.mp3",
+   "sha": "0828804c393e",
+   "text": "11th August"
+  },
+  "date/08-12": {
+   "bytes": 13104,
+   "file": "date/08-12.mp3",
+   "sha": "a90ab343de9e",
+   "text": "12th August"
+  },
+  "date/08-13": {
+   "bytes": 13680,
+   "file": "date/08-13.mp3",
+   "sha": "71b3d8f9838b",
+   "text": "13th August"
+  },
+  "date/08-14": {
+   "bytes": 13824,
+   "file": "date/08-14.mp3",
+   "sha": "cd29f2a05d27",
+   "text": "14th August"
+  },
+  "date/08-15": {
+   "bytes": 14256,
+   "file": "date/08-15.mp3",
+   "sha": "9213a415ebda",
+   "text": "15th August"
+  },
+  "date/08-16": {
+   "bytes": 14688,
+   "file": "date/08-16.mp3",
+   "sha": "dbe26647c542",
+   "text": "16th August"
+  },
+  "date/08-17": {
+   "bytes": 14400,
+   "file": "date/08-17.mp3",
+   "sha": "9beea6515696",
+   "text": "17th August"
+  },
+  "date/08-18": {
+   "bytes": 13392,
+   "file": "date/08-18.mp3",
+   "sha": "100fb65dd849",
+   "text": "18th August"
+  },
+  "date/08-19": {
+   "bytes": 14112,
+   "file": "date/08-19.mp3",
+   "sha": "0dfdb9188cc5",
+   "text": "19th August"
+  },
+  "date/08-20": {
+   "bytes": 13824,
+   "file": "date/08-20.mp3",
+   "sha": "599bca1e75d0",
+   "text": "20th August"
+  },
+  "date/08-21": {
+   "bytes": 15264,
+   "file": "date/08-21.mp3",
+   "sha": "e31e0f1fb234",
+   "text": "21st August"
+  },
+  "date/08-22": {
+   "bytes": 14976,
+   "file": "date/08-22.mp3",
+   "sha": "b8db1b4526df",
+   "text": "22nd August"
+  },
+  "date/08-23": {
+   "bytes": 14544,
+   "file": "date/08-23.mp3",
+   "sha": "5c2da5139b4e",
+   "text": "23rd August"
+  },
+  "date/08-24": {
+   "bytes": 14544,
+   "file": "date/08-24.mp3",
+   "sha": "11f4bdfe4e12",
+   "text": "24th August"
+  },
+  "date/08-25": {
+   "bytes": 14976,
+   "file": "date/08-25.mp3",
+   "sha": "bd196c9a34fe",
+   "text": "25th August"
+  },
+  "date/08-26": {
+   "bytes": 14976,
+   "file": "date/08-26.mp3",
+   "sha": "9cda70c92845",
+   "text": "26th August"
+  },
+  "date/08-27": {
+   "bytes": 15264,
+   "file": "date/08-27.mp3",
+   "sha": "5c9f4db176dc",
+   "text": "27th August"
+  },
+  "date/08-28": {
+   "bytes": 14976,
+   "file": "date/08-28.mp3",
+   "sha": "c5ab699a7ff9",
+   "text": "28th August"
+  },
+  "date/08-29": {
+   "bytes": 14688,
+   "file": "date/08-29.mp3",
+   "sha": "473c1a410618",
+   "text": "29th August"
+  },
+  "date/08-30": {
+   "bytes": 13680,
+   "file": "date/08-30.mp3",
+   "sha": "812f53c79896",
+   "text": "30th August"
+  },
+  "date/08-31": {
+   "bytes": 15120,
+   "file": "date/08-31.mp3",
+   "sha": "de1a8223f005",
+   "text": "31st August"
+  },
+  "date/09-01": {
+   "bytes": 13536,
+   "file": "date/09-01.mp3",
+   "sha": "e90a147557b8",
+   "text": "1st September"
+  },
+  "date/09-02": {
+   "bytes": 14112,
+   "file": "date/09-02.mp3",
+   "sha": "4f0954583a76",
+   "text": "2nd September"
+  },
+  "date/09-03": {
+   "bytes": 12816,
+   "file": "date/09-03.mp3",
+   "sha": "deaf9980aa42",
+   "text": "3rd September"
+  },
+  "date/09-04": {
+   "bytes": 13680,
+   "file": "date/09-04.mp3",
+   "sha": "84e2f932d480",
+   "text": "4th September"
+  },
+  "date/09-05": {
+   "bytes": 13536,
+   "file": "date/09-05.mp3",
+   "sha": "81574f2f024e",
+   "text": "5th September"
+  },
+  "date/09-06": {
+   "bytes": 13680,
+   "file": "date/09-06.mp3",
+   "sha": "e0a45a55200b",
+   "text": "6th September"
+  },
+  "date/09-07": {
+   "bytes": 13824,
+   "file": "date/09-07.mp3",
+   "sha": "7fe78cad7780",
+   "text": "7th September"
+  },
+  "date/09-08": {
+   "bytes": 13104,
+   "file": "date/09-08.mp3",
+   "sha": "7d09edd1535f",
+   "text": "8th September"
+  },
+  "date/09-09": {
+   "bytes": 13680,
+   "file": "date/09-09.mp3",
+   "sha": "72012aea5cdf",
+   "text": "9th September"
+  },
+  "date/09-10": {
+   "bytes": 12672,
+   "file": "date/09-10.mp3",
+   "sha": "816025b98181",
+   "text": "10th September"
+  },
+  "date/09-11": {
+   "bytes": 13968,
+   "file": "date/09-11.mp3",
+   "sha": "cc7f309708fa",
+   "text": "11th September"
+  },
+  "date/09-12": {
+   "bytes": 13824,
+   "file": "date/09-12.mp3",
+   "sha": "e54b1a3fab2e",
+   "text": "12th September"
+  },
+  "date/09-13": {
+   "bytes": 14112,
+   "file": "date/09-13.mp3",
+   "sha": "f20160cc1930",
+   "text": "13th September"
+  },
+  "date/09-14": {
+   "bytes": 14688,
+   "file": "date/09-14.mp3",
+   "sha": "515f9c77e55e",
+   "text": "14th September"
+  },
+  "date/09-15": {
+   "bytes": 14688,
+   "file": "date/09-15.mp3",
+   "sha": "c19680d4c756",
+   "text": "15th September"
+  },
+  "date/09-16": {
+   "bytes": 15120,
+   "file": "date/09-16.mp3",
+   "sha": "50d310367c46",
+   "text": "16th September"
+  },
+  "date/09-17": {
+   "bytes": 15120,
+   "file": "date/09-17.mp3",
+   "sha": "62e7bc6177b8",
+   "text": "17th September"
+  },
+  "date/09-18": {
+   "bytes": 13968,
+   "file": "date/09-18.mp3",
+   "sha": "d24d165ae814",
+   "text": "18th September"
+  },
+  "date/09-19": {
+   "bytes": 14832,
+   "file": "date/09-19.mp3",
+   "sha": "cf762289b53f",
+   "text": "19th September"
+  },
+  "date/09-20": {
+   "bytes": 14544,
+   "file": "date/09-20.mp3",
+   "sha": "82592d94c5a0",
+   "text": "20th September"
+  },
+  "date/09-21": {
+   "bytes": 15696,
+   "file": "date/09-21.mp3",
+   "sha": "53b01edd335f",
+   "text": "21st September"
+  },
+  "date/09-22": {
+   "bytes": 15984,
+   "file": "date/09-22.mp3",
+   "sha": "4a1347b96f28",
+   "text": "22nd September"
+  },
+  "date/09-23": {
+   "bytes": 15264,
+   "file": "date/09-23.mp3",
+   "sha": "eb40036ab3e2",
+   "text": "23rd September"
+  },
+  "date/09-24": {
+   "bytes": 15552,
+   "file": "date/09-24.mp3",
+   "sha": "466741b2ab10",
+   "text": "24th September"
+  },
+  "date/09-25": {
+   "bytes": 15552,
+   "file": "date/09-25.mp3",
+   "sha": "f616a3403370",
+   "text": "25th September"
+  },
+  "date/09-26": {
+   "bytes": 15408,
+   "file": "date/09-26.mp3",
+   "sha": "c27c700ca879",
+   "text": "26th September"
+  },
+  "date/09-27": {
+   "bytes": 15984,
+   "file": "date/09-27.mp3",
+   "sha": "72515b21e90b",
+   "text": "27th September"
+  },
+  "date/09-28": {
+   "bytes": 15264,
+   "file": "date/09-28.mp3",
+   "sha": "57bb99401f52",
+   "text": "28th September"
+  },
+  "date/09-29": {
+   "bytes": 15408,
+   "file": "date/09-29.mp3",
+   "sha": "fee6b7deeafc",
+   "text": "29th September"
+  },
+  "date/09-30": {
+   "bytes": 14400,
+   "file": "date/09-30.mp3",
+   "sha": "801448eac9a1",
+   "text": "30th September"
+  },
+  "date/10-01": {
+   "bytes": 13104,
+   "file": "date/10-01.mp3",
+   "sha": "b2ac47fd9daa",
+   "text": "1st October"
+  },
+  "date/10-02": {
+   "bytes": 13536,
+   "file": "date/10-02.mp3",
+   "sha": "2d998d900cb1",
+   "text": "2nd October"
+  },
+  "date/10-03": {
+   "bytes": 12672,
+   "file": "date/10-03.mp3",
+   "sha": "eea069f7ba4a",
+   "text": "3rd October"
+  },
+  "date/10-04": {
+   "bytes": 12816,
+   "file": "date/10-04.mp3",
+   "sha": "abb58932c136",
+   "text": "4th October"
+  },
+  "date/10-05": {
+   "bytes": 13248,
+   "file": "date/10-05.mp3",
+   "sha": "5cc49f616c86",
+   "text": "5th October"
+  },
+  "date/10-06": {
+   "bytes": 13248,
+   "file": "date/10-06.mp3",
+   "sha": "7b8df6cc063f",
+   "text": "6th October"
+  },
+  "date/10-07": {
+   "bytes": 13536,
+   "file": "date/10-07.mp3",
+   "sha": "a2be1694e3c3",
+   "text": "7th October"
+  },
+  "date/10-08": {
+   "bytes": 12960,
+   "file": "date/10-08.mp3",
+   "sha": "f14d5dc29235",
+   "text": "8th October"
+  },
+  "date/10-09": {
+   "bytes": 13104,
+   "file": "date/10-09.mp3",
+   "sha": "ba4cf5714370",
+   "text": "9th October"
+  },
+  "date/10-10": {
+   "bytes": 12384,
+   "file": "date/10-10.mp3",
+   "sha": "d5dcfea80e15",
+   "text": "10th October"
+  },
+  "date/10-11": {
+   "bytes": 13680,
+   "file": "date/10-11.mp3",
+   "sha": "6fe4fd7c619b",
+   "text": "11th October"
+  },
+  "date/10-12": {
+   "bytes": 13392,
+   "file": "date/10-12.mp3",
+   "sha": "34664a7fef0a",
+   "text": "12th October"
+  },
+  "date/10-13": {
+   "bytes": 13968,
+   "file": "date/10-13.mp3",
+   "sha": "7df36e1abb09",
+   "text": "13th October"
+  },
+  "date/10-14": {
+   "bytes": 14112,
+   "file": "date/10-14.mp3",
+   "sha": "1e62abc22e57",
+   "text": "14th October"
+  },
+  "date/10-15": {
+   "bytes": 14544,
+   "file": "date/10-15.mp3",
+   "sha": "97c3944cc732",
+   "text": "15th October"
+  },
+  "date/10-16": {
+   "bytes": 14832,
+   "file": "date/10-16.mp3",
+   "sha": "710124c5d77d",
+   "text": "16th October"
+  },
+  "date/10-17": {
+   "bytes": 14688,
+   "file": "date/10-17.mp3",
+   "sha": "18929dd9ca81",
+   "text": "17th October"
+  },
+  "date/10-18": {
+   "bytes": 13824,
+   "file": "date/10-18.mp3",
+   "sha": "91916ecd4d0b",
+   "text": "18th October"
+  },
+  "date/10-19": {
+   "bytes": 14400,
+   "file": "date/10-19.mp3",
+   "sha": "a0cd1ec43afe",
+   "text": "19th October"
+  },
+  "date/10-20": {
+   "bytes": 13680,
+   "file": "date/10-20.mp3",
+   "sha": "89af625a9d96",
+   "text": "20th October"
+  },
+  "date/10-21": {
+   "bytes": 15264,
+   "file": "date/10-21.mp3",
+   "sha": "4a35719b72a5",
+   "text": "21st October"
+  },
+  "date/10-22": {
+   "bytes": 15264,
+   "file": "date/10-22.mp3",
+   "sha": "73086747de26",
+   "text": "22nd October"
+  },
+  "date/10-23": {
+   "bytes": 14688,
+   "file": "date/10-23.mp3",
+   "sha": "f5b8effb6f10",
+   "text": "23rd October"
+  },
+  "date/10-24": {
+   "bytes": 14688,
+   "file": "date/10-24.mp3",
+   "sha": "6170c457e2e2",
+   "text": "24th October"
+  },
+  "date/10-25": {
+   "bytes": 14832,
+   "file": "date/10-25.mp3",
+   "sha": "a5260be05ce2",
+   "text": "25th October"
+  },
+  "date/10-26": {
+   "bytes": 14832,
+   "file": "date/10-26.mp3",
+   "sha": "77814d52474c",
+   "text": "26th October"
+  },
+  "date/10-27": {
+   "bytes": 15408,
+   "file": "date/10-27.mp3",
+   "sha": "cae015eadbca",
+   "text": "27th October"
+  },
+  "date/10-28": {
+   "bytes": 14976,
+   "file": "date/10-28.mp3",
+   "sha": "5f7af6293fa3",
+   "text": "28th October"
+  },
+  "date/10-29": {
+   "bytes": 15120,
+   "file": "date/10-29.mp3",
+   "sha": "0a1043dcec11",
+   "text": "29th October"
+  },
+  "date/10-30": {
+   "bytes": 13968,
+   "file": "date/10-30.mp3",
+   "sha": "888c9259a781",
+   "text": "30th October"
+  },
+  "date/10-31": {
+   "bytes": 15120,
+   "file": "date/10-31.mp3",
+   "sha": "dbe28773bde3",
+   "text": "31st October"
+  },
+  "date/11-01": {
+   "bytes": 13248,
+   "file": "date/11-01.mp3",
+   "sha": "dd3d81a7803e",
+   "text": "1st November"
+  },
+  "date/11-02": {
+   "bytes": 13680,
+   "file": "date/11-02.mp3",
+   "sha": "d942e4d3899f",
+   "text": "2nd November"
+  },
+  "date/11-03": {
+   "bytes": 12672,
+   "file": "date/11-03.mp3",
+   "sha": "0aab3c9de047",
+   "text": "3rd November"
+  },
+  "date/11-04": {
+   "bytes": 13104,
+   "file": "date/11-04.mp3",
+   "sha": "772fb75fde71",
+   "text": "4th November"
+  },
+  "date/11-05": {
+   "bytes": 13104,
+   "file": "date/11-05.mp3",
+   "sha": "12d6198cea7c",
+   "text": "5th November"
+  },
+  "date/11-06": {
+   "bytes": 13824,
+   "file": "date/11-06.mp3",
+   "sha": "9e6a5859d7b8",
+   "text": "6th November"
+  },
+  "date/11-07": {
+   "bytes": 13680,
+   "file": "date/11-07.mp3",
+   "sha": "3fe72ce887b1",
+   "text": "7th November"
+  },
+  "date/11-08": {
+   "bytes": 13104,
+   "file": "date/11-08.mp3",
+   "sha": "dae714911cc5",
+   "text": "8th November"
+  },
+  "date/11-09": {
+   "bytes": 13392,
+   "file": "date/11-09.mp3",
+   "sha": "e17336b0f241",
+   "text": "9th November"
+  },
+  "date/11-10": {
+   "bytes": 12672,
+   "file": "date/11-10.mp3",
+   "sha": "54920aeeb3cc",
+   "text": "10th November"
+  },
+  "date/11-11": {
+   "bytes": 13968,
+   "file": "date/11-11.mp3",
+   "sha": "4318fb788146",
+   "text": "11th November"
+  },
+  "date/11-12": {
+   "bytes": 13536,
+   "file": "date/11-12.mp3",
+   "sha": "190fad49b5dd",
+   "text": "12th November"
+  },
+  "date/11-13": {
+   "bytes": 13824,
+   "file": "date/11-13.mp3",
+   "sha": "ab63bc49c259",
+   "text": "13th November"
+  },
+  "date/11-14": {
+   "bytes": 14400,
+   "file": "date/11-14.mp3",
+   "sha": "a2988b13e906",
+   "text": "14th November"
+  },
+  "date/11-15": {
+   "bytes": 14400,
+   "file": "date/11-15.mp3",
+   "sha": "d819f732df59",
+   "text": "15th November"
+  },
+  "date/11-16": {
+   "bytes": 14832,
+   "file": "date/11-16.mp3",
+   "sha": "9c68c2484480",
+   "text": "16th November"
+  },
+  "date/11-17": {
+   "bytes": 14976,
+   "file": "date/11-17.mp3",
+   "sha": "4e72d10ffd8e",
+   "text": "17th November"
+  },
+  "date/11-18": {
+   "bytes": 13680,
+   "file": "date/11-18.mp3",
+   "sha": "de289ae30753",
+   "text": "18th November"
+  },
+  "date/11-19": {
+   "bytes": 14544,
+   "file": "date/11-19.mp3",
+   "sha": "15ca0fdb32c1",
+   "text": "19th November"
+  },
+  "date/11-20": {
+   "bytes": 13968,
+   "file": "date/11-20.mp3",
+   "sha": "56454758b2cb",
+   "text": "20th November"
+  },
+  "date/11-21": {
+   "bytes": 15696,
+   "file": "date/11-21.mp3",
+   "sha": "8d73ae405abe",
+   "text": "21st November"
+  },
+  "date/11-22": {
+   "bytes": 15408,
+   "file": "date/11-22.mp3",
+   "sha": "79ba4b80f170",
+   "text": "22nd November"
+  },
+  "date/11-23": {
+   "bytes": 14688,
+   "file": "date/11-23.mp3",
+   "sha": "f21ac7b29e86",
+   "text": "23rd November"
+  },
+  "date/11-24": {
+   "bytes": 15264,
+   "file": "date/11-24.mp3",
+   "sha": "693104fec468",
+   "text": "24th November"
+  },
+  "date/11-25": {
+   "bytes": 14832,
+   "file": "date/11-25.mp3",
+   "sha": "297554fd4cc0",
+   "text": "25th November"
+  },
+  "date/11-26": {
+   "bytes": 14976,
+   "file": "date/11-26.mp3",
+   "sha": "12874f056622",
+   "text": "26th November"
+  },
+  "date/11-27": {
+   "bytes": 15696,
+   "file": "date/11-27.mp3",
+   "sha": "8b0ad04b1ef4",
+   "text": "27th November"
+  },
+  "date/11-28": {
+   "bytes": 14976,
+   "file": "date/11-28.mp3",
+   "sha": "f7f7864bdc21",
+   "text": "28th November"
+  },
+  "date/11-29": {
+   "bytes": 15264,
+   "file": "date/11-29.mp3",
+   "sha": "178696958d45",
+   "text": "29th November"
+  },
+  "date/11-30": {
+   "bytes": 14256,
+   "file": "date/11-30.mp3",
+   "sha": "5ac785f6e2d7",
+   "text": "30th November"
+  },
+  "date/12-01": {
+   "bytes": 13680,
+   "file": "date/12-01.mp3",
+   "sha": "53e62e20a2f1",
+   "text": "1st December"
+  },
+  "date/12-02": {
+   "bytes": 14112,
+   "file": "date/12-02.mp3",
+   "sha": "641d49a6bd91",
+   "text": "2nd December"
+  },
+  "date/12-03": {
+   "bytes": 12816,
+   "file": "date/12-03.mp3",
+   "sha": "f796e6f1053b",
+   "text": "3rd December"
+  },
+  "date/12-04": {
+   "bytes": 13248,
+   "file": "date/12-04.mp3",
+   "sha": "f55b797cf5ab",
+   "text": "4th December"
+  },
+  "date/12-05": {
+   "bytes": 13392,
+   "file": "date/12-05.mp3",
+   "sha": "d74eba466c08",
+   "text": "5th December"
+  },
+  "date/12-06": {
+   "bytes": 13968,
+   "file": "date/12-06.mp3",
+   "sha": "d337236c917c",
+   "text": "6th December"
+  },
+  "date/12-07": {
+   "bytes": 13968,
+   "file": "date/12-07.mp3",
+   "sha": "be40b84c493e",
+   "text": "7th December"
+  },
+  "date/12-08": {
+   "bytes": 13248,
+   "file": "date/12-08.mp3",
+   "sha": "4662b9b86c62",
+   "text": "8th December"
+  },
+  "date/12-09": {
+   "bytes": 13536,
+   "file": "date/12-09.mp3",
+   "sha": "30a7e5523820",
+   "text": "9th December"
+  },
+  "date/12-10": {
+   "bytes": 12816,
+   "file": "date/12-10.mp3",
+   "sha": "d3c2871c2107",
+   "text": "10th December"
+  },
+  "date/12-11": {
+   "bytes": 14112,
+   "file": "date/12-11.mp3",
+   "sha": "d0b79b6e1743",
+   "text": "11th December"
+  },
+  "date/12-12": {
+   "bytes": 13968,
+   "file": "date/12-12.mp3",
+   "sha": "fc2ea7df6cd1",
+   "text": "12th December"
+  },
+  "date/12-13": {
+   "bytes": 14400,
+   "file": "date/12-13.mp3",
+   "sha": "255113e71321",
+   "text": "13th December"
+  },
+  "date/12-14": {
+   "bytes": 14688,
+   "file": "date/12-14.mp3",
+   "sha": "61934dd43096",
+   "text": "14th December"
+  },
+  "date/12-15": {
+   "bytes": 14976,
+   "file": "date/12-15.mp3",
+   "sha": "2518e47b54a1",
+   "text": "15th December"
+  },
+  "date/12-16": {
+   "bytes": 15408,
+   "file": "date/12-16.mp3",
+   "sha": "460cf70a2a48",
+   "text": "16th December"
+  },
+  "date/12-17": {
+   "bytes": 15120,
+   "file": "date/12-17.mp3",
+   "sha": "d23c6505767e",
+   "text": "17th December"
+  },
+  "date/12-18": {
+   "bytes": 14112,
+   "file": "date/12-18.mp3",
+   "sha": "9187c54dc44d",
+   "text": "18th December"
+  },
+  "date/12-19": {
+   "bytes": 14976,
+   "file": "date/12-19.mp3",
+   "sha": "1ff87fc8954a",
+   "text": "19th December"
+  },
+  "date/12-20": {
+   "bytes": 14112,
+   "file": "date/12-20.mp3",
+   "sha": "3a442ec08795",
+   "text": "20th December"
+  },
+  "date/12-21": {
+   "bytes": 15840,
+   "file": "date/12-21.mp3",
+   "sha": "6516fcb3b967",
+   "text": "21st December"
+  },
+  "date/12-22": {
+   "bytes": 15408,
+   "file": "date/12-22.mp3",
+   "sha": "4b9af355ab2e",
+   "text": "22nd December"
+  },
+  "date/12-23": {
+   "bytes": 14976,
+   "file": "date/12-23.mp3",
+   "sha": "7a9d0c2cbe28",
+   "text": "23rd December"
+  },
+  "date/12-24": {
+   "bytes": 15264,
+   "file": "date/12-24.mp3",
+   "sha": "cc0f25daecbd",
+   "text": "24th December"
+  },
+  "date/12-25": {
+   "bytes": 15264,
+   "file": "date/12-25.mp3",
+   "sha": "478d9c1e3279",
+   "text": "25th December"
+  },
+  "date/12-26": {
+   "bytes": 15408,
+   "file": "date/12-26.mp3",
+   "sha": "7b7fadc2ca23",
+   "text": "26th December"
+  },
+  "date/12-27": {
+   "bytes": 15984,
+   "file": "date/12-27.mp3",
+   "sha": "93eec7c7d0bc",
+   "text": "27th December"
+  },
+  "date/12-28": {
+   "bytes": 15264,
+   "file": "date/12-28.mp3",
+   "sha": "aad810b70d6e",
+   "text": "28th December"
+  },
+  "date/12-29": {
+   "bytes": 15120,
+   "file": "date/12-29.mp3",
+   "sha": "b3ad57fd51e5",
+   "text": "29th December"
+  },
+  "date/12-30": {
+   "bytes": 14400,
+   "file": "date/12-30.mp3",
+   "sha": "914b345cb800",
+   "text": "30th December"
+  },
+  "date/12-31": {
+   "bytes": 15696,
+   "file": "date/12-31.mp3",
+   "sha": "9b471f47ef70",
+   "text": "31st December"
+  },
+  "digit/0": {
+   "bytes": 11232,
+   "file": "digit/0.mp3",
+   "sha": "79db39daab5a",
+   "text": "zero"
+  },
+  "digit/1": {
+   "bytes": 11232,
+   "file": "digit/1.mp3",
+   "sha": "7b9583f590ba",
+   "text": "one"
+  },
+  "digit/2": {
+   "bytes": 11232,
+   "file": "digit/2.mp3",
+   "sha": "3a1ac33964bc",
+   "text": "two"
+  },
+  "digit/3": {
+   "bytes": 11232,
+   "file": "digit/3.mp3",
+   "sha": "5bb35c962de4",
+   "text": "three"
+  },
+  "digit/4": {
+   "bytes": 11232,
+   "file": "digit/4.mp3",
+   "sha": "ec96263ec248",
+   "text": "four"
+  },
+  "digit/5": {
+   "bytes": 11232,
+   "file": "digit/5.mp3",
+   "sha": "a67311a6ab91",
+   "text": "five"
+  },
+  "digit/6": {
+   "bytes": 11232,
+   "file": "digit/6.mp3",
+   "sha": "c82cef06c5d3",
+   "text": "six"
+  },
+  "digit/7": {
+   "bytes": 11232,
+   "file": "digit/7.mp3",
+   "sha": "ebd6b2145dc0",
+   "text": "seven"
+  },
+  "digit/8": {
+   "bytes": 11232,
+   "file": "digit/8.mp3",
+   "sha": "9d4679f568c7",
+   "text": "eight"
+  },
+  "digit/9": {
+   "bytes": 9792,
+   "file": "digit/9.mp3",
+   "sha": "c02bf3f240ac",
+   "text": "nine"
+  },
+  "machine/baler": {
+   "bytes": 11232,
+   "file": "machine/baler.mp3",
+   "sha": "81fcc4fa24b1",
+   "text": "Baler"
+  },
+  "machine/happy_seeder": {
+   "bytes": 12384,
+   "file": "machine/happy_seeder.mp3",
+   "sha": "d8f4f692fa38",
+   "text": "Happy Seeder"
+  },
+  "machine/mulcher": {
+   "bytes": 11232,
+   "file": "machine/mulcher.mp3",
+   "sha": "1f7462db7d57",
+   "text": "Mulcher"
+  },
+  "machine/super_seeder": {
+   "bytes": 12672,
+   "file": "machine/super_seeder.mp3",
+   "sha": "80d00993367e",
+   "text": "Super Seeder"
+  },
+  "prompt/about": {
+   "bytes": 11232,
+   "file": "prompt/about.mp3",
+   "sha": "f444141750e6",
+   "text": "about"
+  },
+  "prompt/acres_range": {
+   "bytes": 38016,
+   "file": "prompt/acres_range.mp3",
+   "sha": "bf9788f70bae",
+   "text": "Acres must be between a quarter and 200. Please say again."
+  },
+  "prompt/acres_unknown": {
+   "bytes": 40032,
+   "file": "prompt/acres_unknown.mp3",
+   "sha": "d7627a06f48d",
+   "text": "I did not get the acres. Say, for example, 5 acres."
+  },
+  "prompt/and_half": {
+   "bytes": 11232,
+   "file": "prompt/and_half.mp3",
+   "sha": "321691633e93",
+   "text": "and a half"
+  },
+  "prompt/and_quarter": {
+   "bytes": 11664,
+   "file": "prompt/and_quarter.mp3",
+   "sha": "896b29027283",
+   "text": "and a quarter"
+  },
+  "prompt/and_three_quarters": {
+   "bytes": 14400,
+   "file": "prompt/and_three_quarters.mp3",
+   "sha": "14b04f266d04",
+   "text": "and three quarters"
+  },
+  "prompt/ask_acres": {
+   "bytes": 47520,
+   "file": "prompt/ask_acres.mp3",
+   "sha": "01da5730267a",
+   "text": "How many acres need the machine? For example 5 acres or 3 and a half acres."
+  },
+  "prompt/ask_consent": {
+   "bytes": 53424,
+   "file": "prompt/ask_consent.mp3",
+   "sha": "dcacfef7fdea",
+   "text": "Your number and field details are used only for the machine turn and the work record. Shall we confirm the booking?"
+  },
+  "prompt/ask_date": {
+   "bytes": 72000,
+   "file": "prompt/ask_date.mp3",
+   "sha": "92513f2a2dc4",
+   "text": "When was or when will the paddy be harvested? For example today, tomorrow or 15 November. If you don't know, say 'don't know'."
+  },
+  "prompt/ask_machine": {
+   "bytes": 42768,
+   "file": "prompt/ask_machine.mp3",
+   "sha": "956408218a02",
+   "text": "Which machine do you need? Super Seeder, Happy Seeder, Baler or Mulcher?"
+  },
+  "prompt/ask_phone": {
+   "bytes": 22608,
+   "file": "prompt/ask_phone.mp3",
+   "sha": "de583db520dc",
+   "text": "Please tell me your 10-digit mobile number."
+  },
+  "prompt/ask_village": {
+   "bytes": 30096,
+   "file": "prompt/ask_village.mp3",
+   "sha": "586c88c56e03",
+   "text": "Which village is your field in? Say the village name."
+  },
+  "prompt/booking_cancelled": {
+   "bytes": 36144,
+   "file": "prompt/booking_cancelled.mp3",
+   "sha": "d2e2cc55fe21",
+   "text": "Okay, nothing was booked. Pick any step above to change it."
+  },
+  "prompt/confirm_q": {
+   "bytes": 12528,
+   "file": "prompt/confirm_q.mp3",
+   "sha": "88296ecc963d",
+   "text": "Is this correct?"
+  },
+  "prompt/confirm_unknown": {
+   "bytes": 16848,
+   "file": "prompt/confirm_unknown.mp3",
+   "sha": "8f238c917edc",
+   "text": "Please answer yes or no."
+  },
+  "prompt/date_not_yet": {
+   "bytes": 18432,
+   "file": "prompt/date_not_yet.mp3",
+   "sha": "b491195611b0",
+   "text": "Harvest date not fixed yet."
+  },
+  "prompt/date_range": {
+   "bytes": 32256,
+   "file": "prompt/date_range.mp3",
+   "sha": "6124e2a6e2d1",
+   "text": "That date is too far. Give a date within two months."
+  },
+  "prompt/date_unknown": {
+   "bytes": 40176,
+   "file": "prompt/date_unknown.mp3",
+   "sha": "98218002a557",
+   "text": "I did not get the date. Say today, tomorrow or 15 November."
+  },
+  "prompt/date_which_kal": {
+   "bytes": 15408,
+   "file": "prompt/date_which_kal.mp3",
+   "sha": "f7d1e543e440",
+   "text": "Yesterday or tomorrow?"
+  },
+  "prompt/done_needs_info": {
+   "bytes": 49680,
+   "file": "prompt/done_needs_info.mp3",
+   "sha": "17a4e110c422",
+   "text": "Your request is saved. The turn is fixed once the harvest date is known. Thank you."
+  },
+  "prompt/done_open": {
+   "bytes": 47232,
+   "file": "prompt/done_open.mp3",
+   "sha": "809fc8551dd4",
+   "text": "Your request is saved. The centre will tell you when your turn is fixed. Thank you."
+  },
+  "prompt/done_sched_post": {
+   "bytes": 11232,
+   "file": "prompt/done_sched_post.mp3",
+   "sha": "cbd7a9504274",
+   "text": "Thank you."
+  },
+  "prompt/done_sched_pre": {
+   "bytes": 33264,
+   "file": "prompt/done_sched_pre.mp3",
+   "sha": "a166c4487f1d",
+   "text": "Your turn is booked. The machine will come to your field on"
+  },
+  "prompt/done_will_miss": {
+   "bytes": 47808,
+   "file": "prompt/done_will_miss.mp3",
+   "sha": "7c557cccd470",
+   "text": "Your request is saved, but no machine is free in time yet. The centre will call you soon."
+  },
+  "prompt/machine_unknown": {
+   "bytes": 46800,
+   "file": "prompt/machine_unknown.mp3",
+   "sha": "22b98ebbe84e",
+   "text": "I did not get the machine. Say Super Seeder, Happy Seeder, Baler or Mulcher."
+  },
+  "prompt/machine_which_seeder": {
+   "bytes": 19584,
+   "file": "prompt/machine_which_seeder.mp3",
+   "sha": "4e2083959687",
+   "text": "Super Seeder or Happy Seeder?"
+  },
+  "prompt/mic_off": {
+   "bytes": 29952,
+   "file": "prompt/mic_off.mp3",
+   "sha": "e7bd8f320341",
+   "text": "The mic is off. You can type your answer below."
+  },
+  "prompt/no_speech": {
+   "bytes": 29664,
+   "file": "prompt/no_speech.mp3",
+   "sha": "b61189d613fb",
+   "text": "I heard nothing. Tap the mic and speak again."
+  },
+  "prompt/ok_next": {
+   "bytes": 11232,
+   "file": "prompt/ok_next.mp3",
+   "sha": "079013af5339",
+   "text": "Okay."
+  },
+  "prompt/phone_continue": {
+   "bytes": 26784,
+   "file": "prompt/phone_continue.mp3",
+   "sha": "ba14d6ec571d",
+   "text": "Okay. Now say the remaining digits."
+  },
+  "prompt/phone_long": {
+   "bytes": 37008,
+   "file": "prompt/phone_long.mp3",
+   "sha": "c0f0f731f348",
+   "text": "That has more than ten digits. Say just the ten digits again."
+  },
+  "prompt/phone_short": {
+   "bytes": 35424,
+   "file": "prompt/phone_short.mp3",
+   "sha": "7345c8ee10a9",
+   "text": "The number is incomplete. Say all ten digits slowly."
+  },
+  "prompt/phone_start": {
+   "bytes": 42480,
+   "file": "prompt/phone_start.mp3",
+   "sha": "778d344043fa",
+   "text": "A mobile number starts with 6, 7, 8 or 9. Say it again."
+  },
+  "prompt/rb_phone": {
+   "bytes": 12960,
+   "file": "prompt/rb_phone.mp3",
+   "sha": "10d16cc24f5e",
+   "text": "Your number is"
+  },
+  "prompt/rel_today": {
+   "bytes": 11232,
+   "file": "prompt/rel_today.mp3",
+   "sha": "619bcefde76d",
+   "text": "Today"
+  },
+  "prompt/rel_tomorrow": {
+   "bytes": 9936,
+   "file": "prompt/rel_tomorrow.mp3",
+   "sha": "b0ef791c3ed1",
+   "text": "Tomorrow"
+  },
+  "prompt/rel_yesterday": {
+   "bytes": 11232,
+   "file": "prompt/rel_yesterday.mp3",
+   "sha": "b2cccbc0e87d",
+   "text": "Yesterday"
+  },
+  "prompt/retry_generic": {
+   "bytes": 34272,
+   "file": "prompt/retry_generic.mp3",
+   "sha": "7792049e7dd5",
+   "text": "Sorry, I did not get that. Please say it again."
+  },
+  "prompt/say_again": {
+   "bytes": 16704,
+   "file": "prompt/say_again.mp3",
+   "sha": "4102dfa6f4aa",
+   "text": "Okay, tell me again."
+  },
+  "prompt/submit_failed": {
+   "bytes": 41040,
+   "file": "prompt/submit_failed.mp3",
+   "sha": "dcf6a9d4abe3",
+   "text": "Sorry, the booking was not saved. Try again or talk to the centre."
+  },
+  "prompt/village_unknown": {
+   "bytes": 40752,
+   "file": "prompt/village_unknown.mp3",
+   "sha": "c507f0e0de2f",
+   "text": "That village is not on the list. Say it again or pick from the list below."
+  },
+  "prompt/welcome": {
+   "bytes": 51696,
+   "file": "prompt/welcome.mp3",
+   "sha": "345f5b1fecbc",
+   "text": "Sat Sri Akal! Welcome to Vaari. Five quick questions and your machine turn is booked."
+  },
+  "village/bhucho_khurd": {
+   "bytes": 12384,
+   "file": "village/bhucho_khurd.mp3",
+   "sha": "1132964ed0df",
+   "text": "Bhucho Khurd"
+  },
+  "village/goniana_mandi": {
+   "bytes": 14112,
+   "file": "village/goniana_mandi.mp3",
+   "sha": "62c8f1d26d1f",
+   "text": "Goniana Mandi"
+  },
+  "village/kot_shamir": {
+   "bytes": 12096,
+   "file": "village/kot_shamir.mp3",
+   "sha": "9444e0b5246d",
+   "text": "Kot Shamir"
+  },
+  "village/maur_mandi": {
+   "bytes": 12384,
+   "file": "village/maur_mandi.mp3",
+   "sha": "69b007a815f5",
+   "text": "Maur Mandi"
+  },
+  "village/pind_kalan": {
+   "bytes": 11232,
+   "file": "village/pind_kalan.mp3",
+   "sha": "223426d263d1",
+   "text": "Pind Kalan"
+  },
+  "village/rampura_phul": {
+   "bytes": 13680,
+   "file": "village/rampura_phul.mp3",
+   "sha": "30c3f6513be9",
+   "text": "Rampura Phul"
+  },
+  "village/sangat_kalan": {
+   "bytes": 12384,
+   "file": "village/sangat_kalan.mp3",
+   "sha": "a2c289142dbb",
+   "text": "Sangat Kalan"
+  },
+  "village/talwandi_sabo": {
+   "bytes": 12816,
+   "file": "village/talwandi_sabo.mp3",
+   "sha": "8995efc9caf2",
+   "text": "Talwandi Sabo"
+  },
+  "village/tibbi_far": {
+   "bytes": 11232,
+   "file": "village/tibbi_far.mp3",
+   "sha": "012b0418eb50",
+   "text": "Tibbi Far"
+  }
+ },
+ "generated_at": "2026-10-30T19:32:57+00:00",
+ "lang": "en-IN",
+ "pitch": "+0Hz",
+ "rate": "-5%",
+ "version": 1,
+ "voice": "en-IN-NeerjaNeural"
+}

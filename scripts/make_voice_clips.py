@@ -28,6 +28,11 @@ import json
 import sys
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -102,6 +107,44 @@ async def resolve_voice(edge_tts, lang: str, choice: str) -> str:
     return preferred
 
 
+def gurmukhi_to_devanagari(text: str) -> str:
+    mapping = {
+        0x0A01: 0x0901, 0x0A02: 0x0902, 0x0A03: 0x0903,
+        0x0A05: 0x0905, 0x0A06: 0x0906, 0x0A07: 0x0907, 0x0A08: 0x0908,
+        0x0A09: 0x0909, 0x0A0A: 0x090A, 0x0A0F: 0x090F, 0x0A10: 0x0910,
+        0x0A13: 0x0913, 0x0A14: 0x0914, 0x0A15: 0x0915, 0x0A16: 0x0916,
+        0x0A17: 0x0917, 0x0A18: 0x0918, 0x0A19: 0x0919, 0x0A1A: 0x091A,
+        0x0A1B: 0x091B, 0x0A1C: 0x091C, 0x0A1D: 0x091D, 0x0A1E: 0x091E,
+        0x0A1F: 0x091F, 0x0A20: 0x0920, 0x0A21: 0x0921, 0x0A22: 0x0922,
+        0x0A23: 0x0923, 0x0A24: 0x0924, 0x0A25: 0x0925, 0x0A26: 0x0926,
+        0x0A27: 0x0927, 0x0A28: 0x0928, 0x0A2A: 0x092A, 0x0A2B: 0x092B,
+        0x0A2C: 0x092C, 0x0A2D: 0x092D, 0x0A2E: 0x092E, 0x0A2F: 0x092F,
+        0x0A30: 0x0930, 0x0A32: 0x0932, 0x0A33: 0x0933, 0x0A35: 0x0935,
+        0x0A36: 0x0936, 0x0A38: 0x0938, 0x0A39: 0x0939, 0x0A3C: 0x093C,
+        0x0A3E: 0x093E, 0x0A3F: 0x093F, 0x0A40: 0x0940, 0x0A41: 0x0941,
+        0x0A42: 0x0942, 0x0A47: 0x0947, 0x0A48: 0x0948, 0x0A4B: 0x094B,
+        0x0A4C: 0x094C, 0x0A4D: 0x094D, 0x0A59: 0x0958, 0x0A5A: 0x0959,
+        0x0A5B: 0x095A, 0x0A5C: 0x095C, 0x0A5E: 0x095E, 0x0A70: 0x0902,
+        0x0A71: 0x094D, 0x0A72: 0x0972, 0x0A73: 0x0973, 0x0A75: 0x0955,
+    }
+    chars = []
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        code = ord(ch)
+        if ch == chr(0x0A71):
+            if i + 1 < len(text):
+                next_ch = text[i + 1]
+                next_dev = chr(mapping.get(ord(next_ch), ord(next_ch)))
+                chars.append(next_dev)
+                chars.append(chr(0x094D))
+            i += 1
+            continue
+        chars.append(chr(mapping.get(code, code)))
+        i += 1
+    return "".join(chars)
+
+
 async def synth_one(edge_tts, clip: Clip, voice: str, rate: str, pitch: str, dest: Path, tries: int = 4) -> int:
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(".part")
@@ -119,6 +162,21 @@ async def synth_one(edge_tts, clip: Clip, voice: str, rate: str, pitch: str, des
             tmp.replace(dest)
             return len(data)
         except Exception as exc:
+            if "NoAudioReceived" in type(exc).__name__ and voice.startswith("pa-IN"):
+                alt_voice = "hi-IN-MadhurNeural" if "ojas" in voice.lower() or "male" in voice.lower() else "hi-IN-SwaraNeural"
+                text_dev = gurmukhi_to_devanagari(clip.text)
+                try:
+                    data = bytearray()
+                    comm = edge_tts.Communicate(text_dev, alt_voice, rate=rate, pitch=pitch)
+                    async for chunk in comm.stream():
+                        if chunk.get("type") == "audio":
+                            data.extend(chunk["data"])
+                    if len(data) >= 1000:
+                        tmp.write_bytes(bytes(data))
+                        tmp.replace(dest)
+                        return len(data)
+                except Exception:
+                    pass
             if attempt == tries:
                 raise RuntimeError(f"{clip.id}: {type(exc).__name__}: {exc}") from exc
             await asyncio.sleep(delay)

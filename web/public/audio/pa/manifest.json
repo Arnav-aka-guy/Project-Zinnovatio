@@ -1,0 +1,4756 @@
+{
+ "clips": {
+  "acres/100": {
+   "bytes": 11664,
+   "file": "acres/100.mp3",
+   "sha": "4dca5626d9e3",
+   "text": "ਇੱਕ ਏਕੜ"
+  },
+  "acres/1000": {
+   "bytes": 11952,
+   "file": "acres/1000.mp3",
+   "sha": "6a582f651e2c",
+   "text": "ਦਸ ਏਕੜ"
+  },
+  "acres/10000": {
+   "bytes": 12096,
+   "file": "acres/10000.mp3",
+   "sha": "2d46c8bf1ceb",
+   "text": "ਸੌ ਏਕੜ"
+  },
+  "acres/10100": {
+   "bytes": 15552,
+   "file": "acres/10100.mp3",
+   "sha": "7b0af29cc351",
+   "text": "ਇੱਕ ਸੌ ਇੱਕ ਏਕੜ"
+  },
+  "acres/10200": {
+   "bytes": 14976,
+   "file": "acres/10200.mp3",
+   "sha": "2d63b0fb09c5",
+   "text": "ਇੱਕ ਸੌ ਦੋ ਏਕੜ"
+  },
+  "acres/1025": {
+   "bytes": 14400,
+   "file": "acres/1025.mp3",
+   "sha": "8337415c9ee5",
+   "text": "ਸਵਾ ਦਸ ਏਕੜ"
+  },
+  "acres/10300": {
+   "bytes": 15552,
+   "file": "acres/10300.mp3",
+   "sha": "2741ea3479f9",
+   "text": "ਇੱਕ ਸੌ ਤਿੰਨ ਏਕੜ"
+  },
+  "acres/10400": {
+   "bytes": 15264,
+   "file": "acres/10400.mp3",
+   "sha": "dcb48c6f7db0",
+   "text": "ਇੱਕ ਸੌ ਚਾਰ ਏਕੜ"
+  },
+  "acres/1050": {
+   "bytes": 14832,
+   "file": "acres/1050.mp3",
+   "sha": "d4de9d7298cc",
+   "text": "ਸਾਢੇ ਦਸ ਏਕੜ"
+  },
+  "acres/10500": {
+   "bytes": 15264,
+   "file": "acres/10500.mp3",
+   "sha": "d75548cbe612",
+   "text": "ਇੱਕ ਸੌ ਪੰਜ ਏਕੜ"
+  },
+  "acres/10600": {
+   "bytes": 15408,
+   "file": "acres/10600.mp3",
+   "sha": "8a42b338b455",
+   "text": "ਇੱਕ ਸੌ ਛੇ ਏਕੜ"
+  },
+  "acres/10700": {
+   "bytes": 15840,
+   "file": "acres/10700.mp3",
+   "sha": "33eb3faf782d",
+   "text": "ਇੱਕ ਸੌ ਸੱਤ ਏਕੜ"
+  },
+  "acres/1075": {
+   "bytes": 15408,
+   "file": "acres/1075.mp3",
+   "sha": "7fc9113fee8b",
+   "text": "ਪੌਣੇ ਗਿਆਰਾਂ ਏਕੜ"
+  },
+  "acres/10800": {
+   "bytes": 16416,
+   "file": "acres/10800.mp3",
+   "sha": "73d83e3bf474",
+   "text": "ਇੱਕ ਸੌ ਅੱਠ ਏਕੜ"
+  },
+  "acres/10900": {
+   "bytes": 14976,
+   "file": "acres/10900.mp3",
+   "sha": "72732d75eb1b",
+   "text": "ਇੱਕ ਸੌ ਨੌਂ ਏਕੜ"
+  },
+  "acres/1100": {
+   "bytes": 12816,
+   "file": "acres/1100.mp3",
+   "sha": "2ce43f483c68",
+   "text": "ਗਿਆਰਾਂ ਏਕੜ"
+  },
+  "acres/11000": {
+   "bytes": 15408,
+   "file": "acres/11000.mp3",
+   "sha": "444dd2152308",
+   "text": "ਇੱਕ ਸੌ ਦਸ ਏਕੜ"
+  },
+  "acres/11100": {
+   "bytes": 16560,
+   "file": "acres/11100.mp3",
+   "sha": "4b0666119470",
+   "text": "ਇੱਕ ਸੌ ਗਿਆਰਾਂ ਏਕੜ"
+  },
+  "acres/11200": {
+   "bytes": 15984,
+   "file": "acres/11200.mp3",
+   "sha": "8340ea1ac5a3",
+   "text": "ਇੱਕ ਸੌ ਬਾਰਾਂ ਏਕੜ"
+  },
+  "acres/1125": {
+   "bytes": 15408,
+   "file": "acres/1125.mp3",
+   "sha": "41e79956ab52",
+   "text": "ਸਵਾ ਗਿਆਰਾਂ ਏਕੜ"
+  },
+  "acres/11300": {
+   "bytes": 16272,
+   "file": "acres/11300.mp3",
+   "sha": "7b08e1bae6f9",
+   "text": "ਇੱਕ ਸੌ ਤੇਰਾਂ ਏਕੜ"
+  },
+  "acres/11400": {
+   "bytes": 16560,
+   "file": "acres/11400.mp3",
+   "sha": "0c55675d4ecc",
+   "text": "ਇੱਕ ਸੌ ਚੌਦਾਂ ਏਕੜ"
+  },
+  "acres/1150": {
+   "bytes": 15984,
+   "file": "acres/1150.mp3",
+   "sha": "9c4b8c4b902d",
+   "text": "ਸਾਢੇ ਗਿਆਰਾਂ ਏਕੜ"
+  },
+  "acres/11500": {
+   "bytes": 16848,
+   "file": "acres/11500.mp3",
+   "sha": "484ecb79a3d6",
+   "text": "ਇੱਕ ਸੌ ਪੰਦਰਾਂ ਏਕੜ"
+  },
+  "acres/11600": {
+   "bytes": 16272,
+   "file": "acres/11600.mp3",
+   "sha": "b70bd5c7b30b",
+   "text": "ਇੱਕ ਸੌ ਸੋਲ਼ਾਂ ਏਕੜ"
+  },
+  "acres/11700": {
+   "bytes": 17136,
+   "file": "acres/11700.mp3",
+   "sha": "6e7ecdd63a09",
+   "text": "ਇੱਕ ਸੌ ਸਤਾਰਾਂ ਏਕੜ"
+  },
+  "acres/1175": {
+   "bytes": 14976,
+   "file": "acres/1175.mp3",
+   "sha": "6dc23482591a",
+   "text": "ਪੌਣੇ ਬਾਰਾਂ ਏਕੜ"
+  },
+  "acres/11800": {
+   "bytes": 17280,
+   "file": "acres/11800.mp3",
+   "sha": "67f47b91c095",
+   "text": "ਇੱਕ ਸੌ ਅਠਾਰਾਂ ਏਕੜ"
+  },
+  "acres/11900": {
+   "bytes": 15696,
+   "file": "acres/11900.mp3",
+   "sha": "fbdcf747e39d",
+   "text": "ਇੱਕ ਸੌ ਉੱਨੀ ਏਕੜ"
+  },
+  "acres/1200": {
+   "bytes": 12528,
+   "file": "acres/1200.mp3",
+   "sha": "9d32b0691824",
+   "text": "ਬਾਰਾਂ ਏਕੜ"
+  },
+  "acres/12000": {
+   "bytes": 15264,
+   "file": "acres/12000.mp3",
+   "sha": "02a8a8d5634e",
+   "text": "ਇੱਕ ਸੌ ਵੀਹ ਏਕੜ"
+  },
+  "acres/12100": {
+   "bytes": 16128,
+   "file": "acres/12100.mp3",
+   "sha": "024fabf3e9c6",
+   "text": "ਇੱਕ ਸੌ ਇੱਕੀ ਏਕੜ"
+  },
+  "acres/12200": {
+   "bytes": 15264,
+   "file": "acres/12200.mp3",
+   "sha": "3397d99c2713",
+   "text": "ਇੱਕ ਸੌ ਬਾਈ ਏਕੜ"
+  },
+  "acres/1225": {
+   "bytes": 14832,
+   "file": "acres/1225.mp3",
+   "sha": "13eadb1ae07d",
+   "text": "ਸਵਾ ਬਾਰਾਂ ਏਕੜ"
+  },
+  "acres/12300": {
+   "bytes": 15696,
+   "file": "acres/12300.mp3",
+   "sha": "c7c709d70fd1",
+   "text": "ਇੱਕ ਸੌ ਤੇਈ ਏਕੜ"
+  },
+  "acres/12400": {
+   "bytes": 16848,
+   "file": "acres/12400.mp3",
+   "sha": "9385629ffa22",
+   "text": "ਇੱਕ ਸੌ ਚੌਵੀ ਏਕੜ"
+  },
+  "acres/125": {
+   "bytes": 12384,
+   "file": "acres/125.mp3",
+   "sha": "c00d5d0727fe",
+   "text": "ਸਵਾ ਏਕੜ"
+  },
+  "acres/1250": {
+   "bytes": 15552,
+   "file": "acres/1250.mp3",
+   "sha": "27fed74d29ff",
+   "text": "ਸਾਢੇ ਬਾਰਾਂ ਏਕੜ"
+  },
+  "acres/12500": {
+   "bytes": 16128,
+   "file": "acres/12500.mp3",
+   "sha": "e6b7c1783bb3",
+   "text": "ਇੱਕ ਸੌ ਪੱਚੀ ਏਕੜ"
+  },
+  "acres/12600": {
+   "bytes": 16848,
+   "file": "acres/12600.mp3",
+   "sha": "958999f25d6b",
+   "text": "ਇੱਕ ਸੌ ਛੱਬੀ ਏਕੜ"
+  },
+  "acres/12700": {
+   "bytes": 16272,
+   "file": "acres/12700.mp3",
+   "sha": "319c31ac43ef",
+   "text": "ਇੱਕ ਸੌ ਸਤਾਈ ਏਕੜ"
+  },
+  "acres/1275": {
+   "bytes": 14688,
+   "file": "acres/1275.mp3",
+   "sha": "75b59db171ea",
+   "text": "ਪੌਣੇ ਤੇਰਾਂ ਏਕੜ"
+  },
+  "acres/12800": {
+   "bytes": 16560,
+   "file": "acres/12800.mp3",
+   "sha": "ae3027136c16",
+   "text": "ਇੱਕ ਸੌ ਅਠਾਈ ਏਕੜ"
+  },
+  "acres/12900": {
+   "bytes": 16704,
+   "file": "acres/12900.mp3",
+   "sha": "72a3e4a18fa6",
+   "text": "ਇੱਕ ਸੌ ਉਨੱਤੀ ਏਕੜ"
+  },
+  "acres/1300": {
+   "bytes": 12096,
+   "file": "acres/1300.mp3",
+   "sha": "04e88b959043",
+   "text": "ਤੇਰਾਂ ਏਕੜ"
+  },
+  "acres/13000": {
+   "bytes": 15552,
+   "file": "acres/13000.mp3",
+   "sha": "0ea88d5f7b61",
+   "text": "ਇੱਕ ਸੌ ਤੀਹ ਏਕੜ"
+  },
+  "acres/13100": {
+   "bytes": 16848,
+   "file": "acres/13100.mp3",
+   "sha": "27afb3857758",
+   "text": "ਇੱਕ ਸੌ ਇਕੱਤੀ ਏਕੜ"
+  },
+  "acres/13200": {
+   "bytes": 15984,
+   "file": "acres/13200.mp3",
+   "sha": "075edbc2d884",
+   "text": "ਇੱਕ ਸੌ ਬੱਤੀ ਏਕੜ"
+  },
+  "acres/1325": {
+   "bytes": 14976,
+   "file": "acres/1325.mp3",
+   "sha": "4dd6a22581f6",
+   "text": "ਸਵਾ ਤੇਰਾਂ ਏਕੜ"
+  },
+  "acres/13300": {
+   "bytes": 15984,
+   "file": "acres/13300.mp3",
+   "sha": "228c12ca9f39",
+   "text": "ਇੱਕ ਸੌ ਤੇਤੀ ਏਕੜ"
+  },
+  "acres/13400": {
+   "bytes": 16848,
+   "file": "acres/13400.mp3",
+   "sha": "cbade150ea1d",
+   "text": "ਇੱਕ ਸੌ ਚੌਂਤੀ ਏਕੜ"
+  },
+  "acres/1350": {
+   "bytes": 15696,
+   "file": "acres/1350.mp3",
+   "sha": "e0fdb5a7e2ed",
+   "text": "ਸਾਢੇ ਤੇਰਾਂ ਏਕੜ"
+  },
+  "acres/13500": {
+   "bytes": 16272,
+   "file": "acres/13500.mp3",
+   "sha": "be308a17f9a4",
+   "text": "ਇੱਕ ਸੌ ਪੈਂਤੀ ਏਕੜ"
+  },
+  "acres/13600": {
+   "bytes": 16560,
+   "file": "acres/13600.mp3",
+   "sha": "b6b8fc58f3c9",
+   "text": "ਇੱਕ ਸੌ ਛੱਤੀ ਏਕੜ"
+  },
+  "acres/13700": {
+   "bytes": 16272,
+   "file": "acres/13700.mp3",
+   "sha": "a7d4ee694060",
+   "text": "ਇੱਕ ਸੌ ਸੈਂਤੀ ਏਕੜ"
+  },
+  "acres/1375": {
+   "bytes": 15552,
+   "file": "acres/1375.mp3",
+   "sha": "4c9a09afbd53",
+   "text": "ਪੌਣੇ ਚੌਦਾਂ ਏਕੜ"
+  },
+  "acres/13800": {
+   "bytes": 17280,
+   "file": "acres/13800.mp3",
+   "sha": "8f33c031a715",
+   "text": "ਇੱਕ ਸੌ ਅਠੱਤੀ ਏਕੜ"
+  },
+  "acres/13900": {
+   "bytes": 17136,
+   "file": "acres/13900.mp3",
+   "sha": "84235976a481",
+   "text": "ਇੱਕ ਸੌ ਉਨਤਾਲੀ ਏਕੜ"
+  },
+  "acres/1400": {
+   "bytes": 12816,
+   "file": "acres/1400.mp3",
+   "sha": "410aa424f8d8",
+   "text": "ਚੌਦਾਂ ਏਕੜ"
+  },
+  "acres/14000": {
+   "bytes": 15696,
+   "file": "acres/14000.mp3",
+   "sha": "346d0a0d4c89",
+   "text": "ਇੱਕ ਸੌ ਚਾਲੀ ਏਕੜ"
+  },
+  "acres/14100": {
+   "bytes": 17136,
+   "file": "acres/14100.mp3",
+   "sha": "66a1697e644a",
+   "text": "ਇੱਕ ਸੌ ਇਕਤਾਲੀ ਏਕੜ"
+  },
+  "acres/14200": {
+   "bytes": 15984,
+   "file": "acres/14200.mp3",
+   "sha": "f16f9543db9a",
+   "text": "ਇੱਕ ਸੌ ਬਿਆਲੀ ਏਕੜ"
+  },
+  "acres/1425": {
+   "bytes": 15840,
+   "file": "acres/1425.mp3",
+   "sha": "1129a0df4e52",
+   "text": "ਸਵਾ ਚੌਦਾਂ ਏਕੜ"
+  },
+  "acres/14300": {
+   "bytes": 17280,
+   "file": "acres/14300.mp3",
+   "sha": "e1dbf7af502f",
+   "text": "ਇੱਕ ਸੌ ਤਰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/14400": {
+   "bytes": 16848,
+   "file": "acres/14400.mp3",
+   "sha": "ba7d22475681",
+   "text": "ਇੱਕ ਸੌ ਚੁਤਾਲੀ ਏਕੜ"
+  },
+  "acres/1450": {
+   "bytes": 16272,
+   "file": "acres/1450.mp3",
+   "sha": "c7d659952d83",
+   "text": "ਸਾਢੇ ਚੌਦਾਂ ਏਕੜ"
+  },
+  "acres/14500": {
+   "bytes": 17136,
+   "file": "acres/14500.mp3",
+   "sha": "39ed26385d98",
+   "text": "ਇੱਕ ਸੌ ਪੰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/14600": {
+   "bytes": 16416,
+   "file": "acres/14600.mp3",
+   "sha": "a46e748bc66c",
+   "text": "ਇੱਕ ਸੌ ਛਿਆਲੀ ਏਕੜ"
+  },
+  "acres/14700": {
+   "bytes": 17280,
+   "file": "acres/14700.mp3",
+   "sha": "6bcfdc960844",
+   "text": "ਇੱਕ ਸੌ ਸੰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/1475": {
+   "bytes": 15408,
+   "file": "acres/1475.mp3",
+   "sha": "e68d65d87838",
+   "text": "ਪੌਣੇ ਪੰਦਰਾਂ ਏਕੜ"
+  },
+  "acres/14800": {
+   "bytes": 17424,
+   "file": "acres/14800.mp3",
+   "sha": "f1953b884db0",
+   "text": "ਇੱਕ ਸੌ ਅਠਤਾਲੀ ਏਕੜ"
+  },
+  "acres/14900": {
+   "bytes": 16848,
+   "file": "acres/14900.mp3",
+   "sha": "6735f0c2cbbb",
+   "text": "ਇੱਕ ਸੌ ਉਨੰਜਾ ਏਕੜ"
+  },
+  "acres/150": {
+   "bytes": 11520,
+   "file": "acres/150.mp3",
+   "sha": "c5f55bced05d",
+   "text": "ਡੇਢ ਏਕੜ"
+  },
+  "acres/1500": {
+   "bytes": 12816,
+   "file": "acres/1500.mp3",
+   "sha": "04c520e53b2b",
+   "text": "ਪੰਦਰਾਂ ਏਕੜ"
+  },
+  "acres/15000": {
+   "bytes": 16272,
+   "file": "acres/15000.mp3",
+   "sha": "1003be3358ba",
+   "text": "ਇੱਕ ਸੌ ਪੰਜਾਹ ਏਕੜ"
+  },
+  "acres/15100": {
+   "bytes": 17136,
+   "file": "acres/15100.mp3",
+   "sha": "cb06200f3110",
+   "text": "ਇੱਕ ਸੌ ਇਕਵੰਜਾ ਏਕੜ"
+  },
+  "acres/15200": {
+   "bytes": 16560,
+   "file": "acres/15200.mp3",
+   "sha": "6f31db5e9876",
+   "text": "ਇੱਕ ਸੌ ਬਵੰਜਾ ਏਕੜ"
+  },
+  "acres/1525": {
+   "bytes": 15984,
+   "file": "acres/1525.mp3",
+   "sha": "781687a5854f",
+   "text": "ਸਵਾ ਪੰਦਰਾਂ ਏਕੜ"
+  },
+  "acres/15300": {
+   "bytes": 17424,
+   "file": "acres/15300.mp3",
+   "sha": "e18493238c1c",
+   "text": "ਇੱਕ ਸੌ ਤਰਵੰਜਾ ਏਕੜ"
+  },
+  "acres/15400": {
+   "bytes": 17568,
+   "file": "acres/15400.mp3",
+   "sha": "3606800673a9",
+   "text": "ਇੱਕ ਸੌ ਚਰਵੰਜਾ ਏਕੜ"
+  },
+  "acres/1550": {
+   "bytes": 16416,
+   "file": "acres/1550.mp3",
+   "sha": "005ce49bccba",
+   "text": "ਸਾਢੇ ਪੰਦਰਾਂ ਏਕੜ"
+  },
+  "acres/15500": {
+   "bytes": 17280,
+   "file": "acres/15500.mp3",
+   "sha": "afeefd05b32c",
+   "text": "ਇੱਕ ਸੌ ਪਚਵੰਜਾ ਏਕੜ"
+  },
+  "acres/15600": {
+   "bytes": 17280,
+   "file": "acres/15600.mp3",
+   "sha": "94668fb07622",
+   "text": "ਇੱਕ ਸੌ ਛਪੰਜਾ ਏਕੜ"
+  },
+  "acres/15700": {
+   "bytes": 17280,
+   "file": "acres/15700.mp3",
+   "sha": "ee26bf5553eb",
+   "text": "ਇੱਕ ਸੌ ਸਤਵੰਜਾ ਏਕੜ"
+  },
+  "acres/1575": {
+   "bytes": 15264,
+   "file": "acres/1575.mp3",
+   "sha": "1e75f7f400e0",
+   "text": "ਪੌਣੇ ਸੋਲ਼ਾਂ ਏਕੜ"
+  },
+  "acres/15800": {
+   "bytes": 17424,
+   "file": "acres/15800.mp3",
+   "sha": "a7310a6d35fa",
+   "text": "ਇੱਕ ਸੌ ਅਠਵੰਜਾ ਏਕੜ"
+  },
+  "acres/15900": {
+   "bytes": 16272,
+   "file": "acres/15900.mp3",
+   "sha": "3aa6f8019b2e",
+   "text": "ਇੱਕ ਸੌ ਉਨਾਹਠ ਏਕੜ"
+  },
+  "acres/1600": {
+   "bytes": 13104,
+   "file": "acres/1600.mp3",
+   "sha": "e215591cdc3b",
+   "text": "ਸੋਲ਼ਾਂ ਏਕੜ"
+  },
+  "acres/16000": {
+   "bytes": 16848,
+   "file": "acres/16000.mp3",
+   "sha": "442a28cb8d7c",
+   "text": "ਇੱਕ ਸੌ ਸੱਠ ਏਕੜ"
+  },
+  "acres/16100": {
+   "bytes": 16272,
+   "file": "acres/16100.mp3",
+   "sha": "dbbe08d743ee",
+   "text": "ਇੱਕ ਸੌ ਇਕਾਹਠ ਏਕੜ"
+  },
+  "acres/16200": {
+   "bytes": 15696,
+   "file": "acres/16200.mp3",
+   "sha": "4d0f877434a5",
+   "text": "ਇੱਕ ਸੌ ਬਾਹਠ ਏਕੜ"
+  },
+  "acres/1625": {
+   "bytes": 15552,
+   "file": "acres/1625.mp3",
+   "sha": "3f81da2027b0",
+   "text": "ਸਵਾ ਸੋਲ਼ਾਂ ਏਕੜ"
+  },
+  "acres/16300": {
+   "bytes": 15840,
+   "file": "acres/16300.mp3",
+   "sha": "d1e431531fbb",
+   "text": "ਇੱਕ ਸੌ ਤਰੇਹਠ ਏਕੜ"
+  },
+  "acres/16400": {
+   "bytes": 16848,
+   "file": "acres/16400.mp3",
+   "sha": "e8a9fb122389",
+   "text": "ਇੱਕ ਸੌ ਚੌਂਹਠ ਏਕੜ"
+  },
+  "acres/1650": {
+   "bytes": 16128,
+   "file": "acres/1650.mp3",
+   "sha": "4b979e4db1ed",
+   "text": "ਸਾਢੇ ਸੋਲ਼ਾਂ ਏਕੜ"
+  },
+  "acres/16500": {
+   "bytes": 16704,
+   "file": "acres/16500.mp3",
+   "sha": "78fe21ba5ccb",
+   "text": "ਇੱਕ ਸੌ ਪੈਂਹਠ ਏਕੜ"
+  },
+  "acres/16600": {
+   "bytes": 16128,
+   "file": "acres/16600.mp3",
+   "sha": "abff2f6ba677",
+   "text": "ਇੱਕ ਸੌ ਛਿਆਹਠ ਏਕੜ"
+  },
+  "acres/16700": {
+   "bytes": 16272,
+   "file": "acres/16700.mp3",
+   "sha": "c80e9f5e6414",
+   "text": "ਇੱਕ ਸੌ ਸਤਾਹਠ ਏਕੜ"
+  },
+  "acres/1675": {
+   "bytes": 15984,
+   "file": "acres/1675.mp3",
+   "sha": "f3e63d481ed6",
+   "text": "ਪੌਣੇ ਸਤਾਰਾਂ ਏਕੜ"
+  },
+  "acres/16800": {
+   "bytes": 16992,
+   "file": "acres/16800.mp3",
+   "sha": "9e0ba60ca4eb",
+   "text": "ਇੱਕ ਸੌ ਅਠਾਹਠ ਏਕੜ"
+  },
+  "acres/16900": {
+   "bytes": 16272,
+   "file": "acres/16900.mp3",
+   "sha": "a9982d900199",
+   "text": "ਇੱਕ ਸੌ ਉਨੱਤਰ ਏਕੜ"
+  },
+  "acres/1700": {
+   "bytes": 13680,
+   "file": "acres/1700.mp3",
+   "sha": "0babd01767c9",
+   "text": "ਸਤਾਰਾਂ ਏਕੜ"
+  },
+  "acres/17000": {
+   "bytes": 16128,
+   "file": "acres/17000.mp3",
+   "sha": "cdc135e2a204",
+   "text": "ਇੱਕ ਸੌ ਸੱਤਰ ਏਕੜ"
+  },
+  "acres/17100": {
+   "bytes": 16272,
+   "file": "acres/17100.mp3",
+   "sha": "d937536e48ec",
+   "text": "ਇੱਕ ਸੌ ਇਕਹੱਤਰ ਏਕੜ"
+  },
+  "acres/17200": {
+   "bytes": 16272,
+   "file": "acres/17200.mp3",
+   "sha": "ae79d70ecd67",
+   "text": "ਇੱਕ ਸੌ ਬਹੱਤਰ ਏਕੜ"
+  },
+  "acres/1725": {
+   "bytes": 16272,
+   "file": "acres/1725.mp3",
+   "sha": "4b10fc407e6e",
+   "text": "ਸਵਾ ਸਤਾਰਾਂ ਏਕੜ"
+  },
+  "acres/17300": {
+   "bytes": 16272,
+   "file": "acres/17300.mp3",
+   "sha": "4d2864de0cbc",
+   "text": "ਇੱਕ ਸੌ ਤਿਹੱਤਰ ਏਕੜ"
+  },
+  "acres/17400": {
+   "bytes": 17136,
+   "file": "acres/17400.mp3",
+   "sha": "2d064a9effdc",
+   "text": "ਇੱਕ ਸੌ ਚੌਹੱਤਰ ਏਕੜ"
+  },
+  "acres/175": {
+   "bytes": 13824,
+   "file": "acres/175.mp3",
+   "sha": "47d4900a5171",
+   "text": "ਪੌਣੇ ਦੋ ਏਕੜ"
+  },
+  "acres/1750": {
+   "bytes": 16416,
+   "file": "acres/1750.mp3",
+   "sha": "2151a2c65cf9",
+   "text": "ਸਾਢੇ ਸਤਾਰਾਂ ਏਕੜ"
+  },
+  "acres/17500": {
+   "bytes": 16848,
+   "file": "acres/17500.mp3",
+   "sha": "9cad5d38148a",
+   "text": "ਇੱਕ ਸੌ ਪਚੱਤਰ ਏਕੜ"
+  },
+  "acres/17600": {
+   "bytes": 16848,
+   "file": "acres/17600.mp3",
+   "sha": "e5f524ff0be5",
+   "text": "ਇੱਕ ਸੌ ਛਿਹੱਤਰ ਏਕੜ"
+  },
+  "acres/17700": {
+   "bytes": 16704,
+   "file": "acres/17700.mp3",
+   "sha": "fecfca93c712",
+   "text": "ਇੱਕ ਸੌ ਸਤੱਤਰ ਏਕੜ"
+  },
+  "acres/1775": {
+   "bytes": 16416,
+   "file": "acres/1775.mp3",
+   "sha": "e80262c4d9f1",
+   "text": "ਪੌਣੇ ਅਠਾਰਾਂ ਏਕੜ"
+  },
+  "acres/17800": {
+   "bytes": 16992,
+   "file": "acres/17800.mp3",
+   "sha": "b38ca74ce7e2",
+   "text": "ਇੱਕ ਸੌ ਅਠੱਤਰ ਏਕੜ"
+  },
+  "acres/17900": {
+   "bytes": 17280,
+   "file": "acres/17900.mp3",
+   "sha": "7196516ad791",
+   "text": "ਇੱਕ ਸੌ ਉਨਾਸੀ ਏਕੜ"
+  },
+  "acres/1800": {
+   "bytes": 12816,
+   "file": "acres/1800.mp3",
+   "sha": "c1562cf90d53",
+   "text": "ਅਠਾਰਾਂ ਏਕੜ"
+  },
+  "acres/18000": {
+   "bytes": 16560,
+   "file": "acres/18000.mp3",
+   "sha": "a5b8481429bb",
+   "text": "ਇੱਕ ਸੌ ਅੱਸੀ ਏਕੜ"
+  },
+  "acres/18100": {
+   "bytes": 17136,
+   "file": "acres/18100.mp3",
+   "sha": "954edb962dad",
+   "text": "ਇੱਕ ਸੌ ਇਕਾਸੀ ਏਕੜ"
+  },
+  "acres/18200": {
+   "bytes": 16848,
+   "file": "acres/18200.mp3",
+   "sha": "5a5992967486",
+   "text": "ਇੱਕ ਸੌ ਬਿਆਸੀ ਏਕੜ"
+  },
+  "acres/1825": {
+   "bytes": 16416,
+   "file": "acres/1825.mp3",
+   "sha": "27027bf7dafd",
+   "text": "ਸਵਾ ਅਠਾਰਾਂ ਏਕੜ"
+  },
+  "acres/18300": {
+   "bytes": 17280,
+   "file": "acres/18300.mp3",
+   "sha": "fb7f89cd1265",
+   "text": "ਇੱਕ ਸੌ ਤਿਰਾਸੀ ਏਕੜ"
+  },
+  "acres/18400": {
+   "bytes": 17856,
+   "file": "acres/18400.mp3",
+   "sha": "dbe3fdada8dc",
+   "text": "ਇੱਕ ਸੌ ਚੁਰਾਸੀ ਏਕੜ"
+  },
+  "acres/1850": {
+   "bytes": 16992,
+   "file": "acres/1850.mp3",
+   "sha": "b9e379beec60",
+   "text": "ਸਾਢੇ ਅਠਾਰਾਂ ਏਕੜ"
+  },
+  "acres/18500": {
+   "bytes": 16992,
+   "file": "acres/18500.mp3",
+   "sha": "82ea9215eace",
+   "text": "ਇੱਕ ਸੌ ਪਚਾਸੀ ਏਕੜ"
+  },
+  "acres/18600": {
+   "bytes": 17136,
+   "file": "acres/18600.mp3",
+   "sha": "38bea191bde4",
+   "text": "ਇੱਕ ਸੌ ਛਿਆਸੀ ਏਕੜ"
+  },
+  "acres/18700": {
+   "bytes": 17280,
+   "file": "acres/18700.mp3",
+   "sha": "3db0c381bbd2",
+   "text": "ਇੱਕ ਸੌ ਸਤਾਸੀ ਏਕੜ"
+  },
+  "acres/1875": {
+   "bytes": 14688,
+   "file": "acres/1875.mp3",
+   "sha": "cbcaacd83276",
+   "text": "ਪੌਣੇ ਉੱਨੀ ਏਕੜ"
+  },
+  "acres/18800": {
+   "bytes": 17568,
+   "file": "acres/18800.mp3",
+   "sha": "29e099fee35d",
+   "text": "ਇੱਕ ਸੌ ਅਠਾਸੀ ਏਕੜ"
+  },
+  "acres/18900": {
+   "bytes": 17280,
+   "file": "acres/18900.mp3",
+   "sha": "afc0b1d517c5",
+   "text": "ਇੱਕ ਸੌ ਉਨਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/1900": {
+   "bytes": 11808,
+   "file": "acres/1900.mp3",
+   "sha": "a33339a08024",
+   "text": "ਉੱਨੀ ਏਕੜ"
+  },
+  "acres/19000": {
+   "bytes": 15984,
+   "file": "acres/19000.mp3",
+   "sha": "240cec85590a",
+   "text": "ਇੱਕ ਸੌ ਨੱਬੇ ਏਕੜ"
+  },
+  "acres/19100": {
+   "bytes": 17136,
+   "file": "acres/19100.mp3",
+   "sha": "66e60cf69337",
+   "text": "ਇੱਕ ਸੌ ਇਕਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/19200": {
+   "bytes": 16848,
+   "file": "acres/19200.mp3",
+   "sha": "c7520bbd0d3b",
+   "text": "ਇੱਕ ਸੌ ਬਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/1925": {
+   "bytes": 14832,
+   "file": "acres/1925.mp3",
+   "sha": "73ae687e6b71",
+   "text": "ਸਵਾ ਉੱਨੀ ਏਕੜ"
+  },
+  "acres/19300": {
+   "bytes": 16992,
+   "file": "acres/19300.mp3",
+   "sha": "15e521619bbd",
+   "text": "ਇੱਕ ਸੌ ਤਰਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/19400": {
+   "bytes": 17280,
+   "file": "acres/19400.mp3",
+   "sha": "adba5fc450ca",
+   "text": "ਇੱਕ ਸੌ ਚੁਰਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/1950": {
+   "bytes": 15408,
+   "file": "acres/1950.mp3",
+   "sha": "a71a083323dd",
+   "text": "ਸਾਢੇ ਉੱਨੀ ਏਕੜ"
+  },
+  "acres/19500": {
+   "bytes": 17568,
+   "file": "acres/19500.mp3",
+   "sha": "3ca1f1b92065",
+   "text": "ਇੱਕ ਸੌ ਪਚਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/19600": {
+   "bytes": 16992,
+   "file": "acres/19600.mp3",
+   "sha": "e3779a50ae7f",
+   "text": "ਇੱਕ ਸੌ ਛਿਆਨਵੇਂ ਏਕੜ"
+  },
+  "acres/19700": {
+   "bytes": 17280,
+   "file": "acres/19700.mp3",
+   "sha": "534eaff0cec0",
+   "text": "ਇੱਕ ਸੌ ਸਤਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/1975": {
+   "bytes": 14256,
+   "file": "acres/1975.mp3",
+   "sha": "2029d6865d69",
+   "text": "ਪੌਣੇ ਵੀਹ ਏਕੜ"
+  },
+  "acres/19800": {
+   "bytes": 18000,
+   "file": "acres/19800.mp3",
+   "sha": "ccd80c85c15b",
+   "text": "ਇੱਕ ਸੌ ਅਠਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/19900": {
+   "bytes": 17136,
+   "file": "acres/19900.mp3",
+   "sha": "152297f44ae2",
+   "text": "ਇੱਕ ਸੌ ਨੜਿੱਨਵੇਂ ਏਕੜ"
+  },
+  "acres/200": {
+   "bytes": 11376,
+   "file": "acres/200.mp3",
+   "sha": "cad64280134a",
+   "text": "ਦੋ ਏਕੜ"
+  },
+  "acres/2000": {
+   "bytes": 11664,
+   "file": "acres/2000.mp3",
+   "sha": "6b1619380073",
+   "text": "ਵੀਹ ਏਕੜ"
+  },
+  "acres/20000": {
+   "bytes": 13536,
+   "file": "acres/20000.mp3",
+   "sha": "1b5cded2074d",
+   "text": "ਦੋ ਸੌ ਏਕੜ"
+  },
+  "acres/2025": {
+   "bytes": 14112,
+   "file": "acres/2025.mp3",
+   "sha": "a754666fa49f",
+   "text": "ਸਵਾ ਵੀਹ ਏਕੜ"
+  },
+  "acres/2050": {
+   "bytes": 14688,
+   "file": "acres/2050.mp3",
+   "sha": "9daea58cfc28",
+   "text": "ਸਾਢੇ ਵੀਹ ਏਕੜ"
+  },
+  "acres/2075": {
+   "bytes": 14976,
+   "file": "acres/2075.mp3",
+   "sha": "6036f2bf9f15",
+   "text": "ਪੌਣੇ ਇੱਕੀ ਏਕੜ"
+  },
+  "acres/2100": {
+   "bytes": 12096,
+   "file": "acres/2100.mp3",
+   "sha": "b9a524a147c9",
+   "text": "ਇੱਕੀ ਏਕੜ"
+  },
+  "acres/2125": {
+   "bytes": 14976,
+   "file": "acres/2125.mp3",
+   "sha": "607590cc53f6",
+   "text": "ਸਵਾ ਇੱਕੀ ਏਕੜ"
+  },
+  "acres/2150": {
+   "bytes": 16128,
+   "file": "acres/2150.mp3",
+   "sha": "1ce33c0891a1",
+   "text": "ਸਾਢੇ ਇੱਕੀ ਏਕੜ"
+  },
+  "acres/2175": {
+   "bytes": 14400,
+   "file": "acres/2175.mp3",
+   "sha": "c8c67e7fb60f",
+   "text": "ਪੌਣੇ ਬਾਈ ਏਕੜ"
+  },
+  "acres/2200": {
+   "bytes": 12096,
+   "file": "acres/2200.mp3",
+   "sha": "3b8eb450fa7f",
+   "text": "ਬਾਈ ਏਕੜ"
+  },
+  "acres/2225": {
+   "bytes": 14400,
+   "file": "acres/2225.mp3",
+   "sha": "f2617e38d777",
+   "text": "ਸਵਾ ਬਾਈ ਏਕੜ"
+  },
+  "acres/225": {
+   "bytes": 13968,
+   "file": "acres/225.mp3",
+   "sha": "e4829a8146a6",
+   "text": "ਸਵਾ ਦੋ ਏਕੜ"
+  },
+  "acres/2250": {
+   "bytes": 14688,
+   "file": "acres/2250.mp3",
+   "sha": "9dd4ecf2a406",
+   "text": "ਸਾਢੇ ਬਾਈ ਏਕੜ"
+  },
+  "acres/2275": {
+   "bytes": 14256,
+   "file": "acres/2275.mp3",
+   "sha": "8bff7f6db36e",
+   "text": "ਪੌਣੇ ਤੇਈ ਏਕੜ"
+  },
+  "acres/2300": {
+   "bytes": 11520,
+   "file": "acres/2300.mp3",
+   "sha": "39bc7e25571d",
+   "text": "ਤੇਈ ਏਕੜ"
+  },
+  "acres/2325": {
+   "bytes": 14544,
+   "file": "acres/2325.mp3",
+   "sha": "177d397bdccf",
+   "text": "ਸਵਾ ਤੇਈ ਏਕੜ"
+  },
+  "acres/2350": {
+   "bytes": 15264,
+   "file": "acres/2350.mp3",
+   "sha": "7d59b18bfeb2",
+   "text": "ਸਾਢੇ ਤੇਈ ਏਕੜ"
+  },
+  "acres/2375": {
+   "bytes": 15552,
+   "file": "acres/2375.mp3",
+   "sha": "7a4695ea842d",
+   "text": "ਪੌਣੇ ਚੌਵੀ ਏਕੜ"
+  },
+  "acres/2400": {
+   "bytes": 12960,
+   "file": "acres/2400.mp3",
+   "sha": "e6fb300f8c80",
+   "text": "ਚੌਵੀ ਏਕੜ"
+  },
+  "acres/2425": {
+   "bytes": 15696,
+   "file": "acres/2425.mp3",
+   "sha": "e991df68485c",
+   "text": "ਸਵਾ ਚੌਵੀ ਏਕੜ"
+  },
+  "acres/2450": {
+   "bytes": 16272,
+   "file": "acres/2450.mp3",
+   "sha": "98c66d7c9273",
+   "text": "ਸਾਢੇ ਚੌਵੀ ਏਕੜ"
+  },
+  "acres/2475": {
+   "bytes": 14832,
+   "file": "acres/2475.mp3",
+   "sha": "00a67ae3f245",
+   "text": "ਪੌਣੇ ਪੱਚੀ ਏਕੜ"
+  },
+  "acres/25": {
+   "bytes": 13824,
+   "file": "acres/25.mp3",
+   "sha": "cee8546b0d3b",
+   "text": "ਚੌਥਾਈ ਏਕੜ"
+  },
+  "acres/250": {
+   "bytes": 11664,
+   "file": "acres/250.mp3",
+   "sha": "69474a4585e9",
+   "text": "ਢਾਈ ਏਕੜ"
+  },
+  "acres/2500": {
+   "bytes": 12384,
+   "file": "acres/2500.mp3",
+   "sha": "8ab9b6c952b4",
+   "text": "ਪੱਚੀ ਏਕੜ"
+  },
+  "acres/2525": {
+   "bytes": 15696,
+   "file": "acres/2525.mp3",
+   "sha": "b347148ebf05",
+   "text": "ਸਵਾ ਪੱਚੀ ਏਕੜ"
+  },
+  "acres/2550": {
+   "bytes": 16128,
+   "file": "acres/2550.mp3",
+   "sha": "33901e93dfc6",
+   "text": "ਸਾਢੇ ਪੱਚੀ ਏਕੜ"
+  },
+  "acres/2575": {
+   "bytes": 15264,
+   "file": "acres/2575.mp3",
+   "sha": "535aa6f63a4b",
+   "text": "ਪੌਣੇ ਛੱਬੀ ਏਕੜ"
+  },
+  "acres/2600": {
+   "bytes": 12528,
+   "file": "acres/2600.mp3",
+   "sha": "e4a5de4415b1",
+   "text": "ਛੱਬੀ ਏਕੜ"
+  },
+  "acres/2625": {
+   "bytes": 15840,
+   "file": "acres/2625.mp3",
+   "sha": "7769cb8c9904",
+   "text": "ਸਵਾ ਛੱਬੀ ਏਕੜ"
+  },
+  "acres/2650": {
+   "bytes": 16416,
+   "file": "acres/2650.mp3",
+   "sha": "79d2e2bdd841",
+   "text": "ਸਾਢੇ ਛੱਬੀ ਏਕੜ"
+  },
+  "acres/2675": {
+   "bytes": 15264,
+   "file": "acres/2675.mp3",
+   "sha": "cbac2e82b9ed",
+   "text": "ਪੌਣੇ ਸਤਾਈ ਏਕੜ"
+  },
+  "acres/2700": {
+   "bytes": 13104,
+   "file": "acres/2700.mp3",
+   "sha": "865b2fd9822e",
+   "text": "ਸਤਾਈ ਏਕੜ"
+  },
+  "acres/2725": {
+   "bytes": 15408,
+   "file": "acres/2725.mp3",
+   "sha": "bfab369e51a4",
+   "text": "ਸਵਾ ਸਤਾਈ ਏਕੜ"
+  },
+  "acres/275": {
+   "bytes": 14400,
+   "file": "acres/275.mp3",
+   "sha": "746dffafe9cc",
+   "text": "ਪੌਣੇ ਤਿੰਨ ਏਕੜ"
+  },
+  "acres/2750": {
+   "bytes": 15696,
+   "file": "acres/2750.mp3",
+   "sha": "dc18f839c913",
+   "text": "ਸਾਢੇ ਸਤਾਈ ਏਕੜ"
+  },
+  "acres/2775": {
+   "bytes": 15984,
+   "file": "acres/2775.mp3",
+   "sha": "745df3ac1237",
+   "text": "ਪੌਣੇ ਅਠਾਈ ਏਕੜ"
+  },
+  "acres/2800": {
+   "bytes": 12672,
+   "file": "acres/2800.mp3",
+   "sha": "ab575102d822",
+   "text": "ਅਠਾਈ ਏਕੜ"
+  },
+  "acres/2825": {
+   "bytes": 15984,
+   "file": "acres/2825.mp3",
+   "sha": "d5dbbe78b8b7",
+   "text": "ਸਵਾ ਅਠਾਈ ਏਕੜ"
+  },
+  "acres/2850": {
+   "bytes": 16560,
+   "file": "acres/2850.mp3",
+   "sha": "38aa12f03b7d",
+   "text": "ਸਾਢੇ ਅਠਾਈ ਏਕੜ"
+  },
+  "acres/2875": {
+   "bytes": 15840,
+   "file": "acres/2875.mp3",
+   "sha": "ce10d750863b",
+   "text": "ਪੌਣੇ ਉਨੱਤੀ ਏਕੜ"
+  },
+  "acres/2900": {
+   "bytes": 12960,
+   "file": "acres/2900.mp3",
+   "sha": "6a8549866a88",
+   "text": "ਉਨੱਤੀ ਏਕੜ"
+  },
+  "acres/2925": {
+   "bytes": 15984,
+   "file": "acres/2925.mp3",
+   "sha": "a2e481a3d444",
+   "text": "ਸਵਾ ਉਨੱਤੀ ਏਕੜ"
+  },
+  "acres/2950": {
+   "bytes": 16704,
+   "file": "acres/2950.mp3",
+   "sha": "cd7956ccdcc4",
+   "text": "ਸਾਢੇ ਉਨੱਤੀ ਏਕੜ"
+  },
+  "acres/2975": {
+   "bytes": 14544,
+   "file": "acres/2975.mp3",
+   "sha": "b13d1d6e793c",
+   "text": "ਪੌਣੇ ਤੀਹ ਏਕੜ"
+  },
+  "acres/300": {
+   "bytes": 11808,
+   "file": "acres/300.mp3",
+   "sha": "f4d0fe726c71",
+   "text": "ਤਿੰਨ ਏਕੜ"
+  },
+  "acres/3000": {
+   "bytes": 11376,
+   "file": "acres/3000.mp3",
+   "sha": "0f3625932e5a",
+   "text": "ਤੀਹ ਏਕੜ"
+  },
+  "acres/3050": {
+   "bytes": 15120,
+   "file": "acres/3050.mp3",
+   "sha": "b3109f0fef2c",
+   "text": "ਸਾਢੇ ਤੀਹ ਏਕੜ"
+  },
+  "acres/3100": {
+   "bytes": 13104,
+   "file": "acres/3100.mp3",
+   "sha": "7d0678bb4dee",
+   "text": "ਇਕੱਤੀ ਏਕੜ"
+  },
+  "acres/3150": {
+   "bytes": 16848,
+   "file": "acres/3150.mp3",
+   "sha": "f67c8f1b09dd",
+   "text": "ਸਾਢੇ ਇਕੱਤੀ ਏਕੜ"
+  },
+  "acres/3200": {
+   "bytes": 12816,
+   "file": "acres/3200.mp3",
+   "sha": "6ec4560e0985",
+   "text": "ਬੱਤੀ ਏਕੜ"
+  },
+  "acres/325": {
+   "bytes": 14400,
+   "file": "acres/325.mp3",
+   "sha": "2142a73eef26",
+   "text": "ਸਵਾ ਤਿੰਨ ਏਕੜ"
+  },
+  "acres/3250": {
+   "bytes": 15696,
+   "file": "acres/3250.mp3",
+   "sha": "ed9e6e1ab062",
+   "text": "ਸਾਢੇ ਬੱਤੀ ਏਕੜ"
+  },
+  "acres/3300": {
+   "bytes": 12240,
+   "file": "acres/3300.mp3",
+   "sha": "a59a3762110c",
+   "text": "ਤੇਤੀ ਏਕੜ"
+  },
+  "acres/3350": {
+   "bytes": 15552,
+   "file": "acres/3350.mp3",
+   "sha": "0dbc1003fa5a",
+   "text": "ਸਾਢੇ ਤੇਤੀ ਏਕੜ"
+  },
+  "acres/3400": {
+   "bytes": 12960,
+   "file": "acres/3400.mp3",
+   "sha": "6c2af4ad93c4",
+   "text": "ਚੌਂਤੀ ਏਕੜ"
+  },
+  "acres/3450": {
+   "bytes": 16560,
+   "file": "acres/3450.mp3",
+   "sha": "1a498ab91675",
+   "text": "ਸਾਢੇ ਚੌਂਤੀ ਏਕੜ"
+  },
+  "acres/350": {
+   "bytes": 15264,
+   "file": "acres/350.mp3",
+   "sha": "6a0e10c80f49",
+   "text": "ਸਾਢੇ ਤਿੰਨ ਏਕੜ"
+  },
+  "acres/3500": {
+   "bytes": 12528,
+   "file": "acres/3500.mp3",
+   "sha": "471ba11ac913",
+   "text": "ਪੈਂਤੀ ਏਕੜ"
+  },
+  "acres/3550": {
+   "bytes": 16272,
+   "file": "acres/3550.mp3",
+   "sha": "2fd32ef9e479",
+   "text": "ਸਾਢੇ ਪੈਂਤੀ ਏਕੜ"
+  },
+  "acres/3600": {
+   "bytes": 12672,
+   "file": "acres/3600.mp3",
+   "sha": "27350414a63f",
+   "text": "ਛੱਤੀ ਏਕੜ"
+  },
+  "acres/3650": {
+   "bytes": 16128,
+   "file": "acres/3650.mp3",
+   "sha": "a2da85174706",
+   "text": "ਸਾਢੇ ਛੱਤੀ ਏਕੜ"
+  },
+  "acres/3700": {
+   "bytes": 12816,
+   "file": "acres/3700.mp3",
+   "sha": "6b4948dd6363",
+   "text": "ਸੈਂਤੀ ਏਕੜ"
+  },
+  "acres/375": {
+   "bytes": 14400,
+   "file": "acres/375.mp3",
+   "sha": "2c7d16b50818",
+   "text": "ਪੌਣੇ ਚਾਰ ਏਕੜ"
+  },
+  "acres/3750": {
+   "bytes": 15696,
+   "file": "acres/3750.mp3",
+   "sha": "402224a88d7e",
+   "text": "ਸਾਢੇ ਸੈਂਤੀ ਏਕੜ"
+  },
+  "acres/3800": {
+   "bytes": 13104,
+   "file": "acres/3800.mp3",
+   "sha": "570ecc2a52a4",
+   "text": "ਅਠੱਤੀ ਏਕੜ"
+  },
+  "acres/3850": {
+   "bytes": 17136,
+   "file": "acres/3850.mp3",
+   "sha": "e967a0b32d30",
+   "text": "ਸਾਢੇ ਅਠੱਤੀ ਏਕੜ"
+  },
+  "acres/3900": {
+   "bytes": 12960,
+   "file": "acres/3900.mp3",
+   "sha": "beae788798f9",
+   "text": "ਉਨਤਾਲੀ ਏਕੜ"
+  },
+  "acres/3950": {
+   "bytes": 17136,
+   "file": "acres/3950.mp3",
+   "sha": "27acc845d973",
+   "text": "ਸਾਢੇ ਉਨਤਾਲੀ ਏਕੜ"
+  },
+  "acres/400": {
+   "bytes": 11376,
+   "file": "acres/400.mp3",
+   "sha": "dab7f2608b1b",
+   "text": "ਚਾਰ ਏਕੜ"
+  },
+  "acres/4000": {
+   "bytes": 12672,
+   "file": "acres/4000.mp3",
+   "sha": "2279540a689d",
+   "text": "ਚਾਲੀ ਏਕੜ"
+  },
+  "acres/4050": {
+   "bytes": 15696,
+   "file": "acres/4050.mp3",
+   "sha": "862b69c41a11",
+   "text": "ਸਾਢੇ ਚਾਲੀ ਏਕੜ"
+  },
+  "acres/4100": {
+   "bytes": 13248,
+   "file": "acres/4100.mp3",
+   "sha": "925eae62e3c0",
+   "text": "ਇਕਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4150": {
+   "bytes": 16848,
+   "file": "acres/4150.mp3",
+   "sha": "8df7c802c22a",
+   "text": "ਸਾਢੇ ਇਕਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4200": {
+   "bytes": 12960,
+   "file": "acres/4200.mp3",
+   "sha": "3c49aa619784",
+   "text": "ਬਿਆਲੀ ਏਕੜ"
+  },
+  "acres/425": {
+   "bytes": 14400,
+   "file": "acres/425.mp3",
+   "sha": "06be5f50d939",
+   "text": "ਸਵਾ ਚਾਰ ਏਕੜ"
+  },
+  "acres/4250": {
+   "bytes": 15840,
+   "file": "acres/4250.mp3",
+   "sha": "7513a94a265a",
+   "text": "ਸਾਢੇ ਬਿਆਲੀ ਏਕੜ"
+  },
+  "acres/4300": {
+   "bytes": 13392,
+   "file": "acres/4300.mp3",
+   "sha": "75061d950e74",
+   "text": "ਤਰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4350": {
+   "bytes": 16992,
+   "file": "acres/4350.mp3",
+   "sha": "5392790d15e6",
+   "text": "ਸਾਢੇ ਤਰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4400": {
+   "bytes": 13104,
+   "file": "acres/4400.mp3",
+   "sha": "0e7871e3f899",
+   "text": "ਚੁਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4450": {
+   "bytes": 16416,
+   "file": "acres/4450.mp3",
+   "sha": "aa133e87bf0d",
+   "text": "ਸਾਢੇ ਚੁਤਾਲੀ ਏਕੜ"
+  },
+  "acres/450": {
+   "bytes": 15120,
+   "file": "acres/450.mp3",
+   "sha": "fc57132164ff",
+   "text": "ਸਾਢੇ ਚਾਰ ਏਕੜ"
+  },
+  "acres/4500": {
+   "bytes": 13536,
+   "file": "acres/4500.mp3",
+   "sha": "be01407c0ac2",
+   "text": "ਪੰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4550": {
+   "bytes": 16992,
+   "file": "acres/4550.mp3",
+   "sha": "50327fbd0209",
+   "text": "ਸਾਢੇ ਪੰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4600": {
+   "bytes": 12672,
+   "file": "acres/4600.mp3",
+   "sha": "f3d79c35a21e",
+   "text": "ਛਿਆਲੀ ਏਕੜ"
+  },
+  "acres/4650": {
+   "bytes": 16272,
+   "file": "acres/4650.mp3",
+   "sha": "38cb9d0596fc",
+   "text": "ਸਾਢੇ ਛਿਆਲੀ ਏਕੜ"
+  },
+  "acres/4700": {
+   "bytes": 14112,
+   "file": "acres/4700.mp3",
+   "sha": "af45f1465c39",
+   "text": "ਸੰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/475": {
+   "bytes": 13968,
+   "file": "acres/475.mp3",
+   "sha": "de817bff724d",
+   "text": "ਪੌਣੇ ਪੰਜ ਏਕੜ"
+  },
+  "acres/4750": {
+   "bytes": 17280,
+   "file": "acres/4750.mp3",
+   "sha": "82202b00ba94",
+   "text": "ਸਾਢੇ ਸੰਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4800": {
+   "bytes": 13104,
+   "file": "acres/4800.mp3",
+   "sha": "5961caabe70a",
+   "text": "ਅਠਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4850": {
+   "bytes": 17280,
+   "file": "acres/4850.mp3",
+   "sha": "b3d2509c0a1e",
+   "text": "ਸਾਢੇ ਅਠਤਾਲੀ ਏਕੜ"
+  },
+  "acres/4900": {
+   "bytes": 12816,
+   "file": "acres/4900.mp3",
+   "sha": "1cf8e193366c",
+   "text": "ਉਨੰਜਾ ਏਕੜ"
+  },
+  "acres/4950": {
+   "bytes": 16416,
+   "file": "acres/4950.mp3",
+   "sha": "bcabe1eb352e",
+   "text": "ਸਾਢੇ ਉਨੰਜਾ ਏਕੜ"
+  },
+  "acres/50": {
+   "bytes": 12096,
+   "file": "acres/50.mp3",
+   "sha": "49f649c4b85a",
+   "text": "ਅੱਧਾ ਏਕੜ"
+  },
+  "acres/500": {
+   "bytes": 11664,
+   "file": "acres/500.mp3",
+   "sha": "4fd71174ff1b",
+   "text": "ਪੰਜ ਏਕੜ"
+  },
+  "acres/5000": {
+   "bytes": 12816,
+   "file": "acres/5000.mp3",
+   "sha": "353ec60ef88a",
+   "text": "ਪੰਜਾਹ ਏਕੜ"
+  },
+  "acres/5050": {
+   "bytes": 15984,
+   "file": "acres/5050.mp3",
+   "sha": "ebf90b580c06",
+   "text": "ਸਾਢੇ ਪੰਜਾਹ ਏਕੜ"
+  },
+  "acres/5100": {
+   "bytes": 13104,
+   "file": "acres/5100.mp3",
+   "sha": "db189e06620f",
+   "text": "ਇਕਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5150": {
+   "bytes": 16992,
+   "file": "acres/5150.mp3",
+   "sha": "981fd676908b",
+   "text": "ਸਾਢੇ ਇਕਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5200": {
+   "bytes": 13392,
+   "file": "acres/5200.mp3",
+   "sha": "bc8a88ea4fd4",
+   "text": "ਬਵੰਜਾ ਏਕੜ"
+  },
+  "acres/525": {
+   "bytes": 14256,
+   "file": "acres/525.mp3",
+   "sha": "81a3d5467561",
+   "text": "ਸਵਾ ਪੰਜ ਏਕੜ"
+  },
+  "acres/5250": {
+   "bytes": 16272,
+   "file": "acres/5250.mp3",
+   "sha": "e49f37c2ef08",
+   "text": "ਸਾਢੇ ਬਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5300": {
+   "bytes": 13536,
+   "file": "acres/5300.mp3",
+   "sha": "078a7cb37ab8",
+   "text": "ਤਰਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5350": {
+   "bytes": 16992,
+   "file": "acres/5350.mp3",
+   "sha": "30f15575667f",
+   "text": "ਸਾਢੇ ਤਰਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5400": {
+   "bytes": 13824,
+   "file": "acres/5400.mp3",
+   "sha": "483be93aadfb",
+   "text": "ਚਰਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5450": {
+   "bytes": 16992,
+   "file": "acres/5450.mp3",
+   "sha": "e181d659173b",
+   "text": "ਸਾਢੇ ਚਰਵੰਜਾ ਏਕੜ"
+  },
+  "acres/550": {
+   "bytes": 14832,
+   "file": "acres/550.mp3",
+   "sha": "155ae3d8ac1d",
+   "text": "ਸਾਢੇ ਪੰਜ ਏਕੜ"
+  },
+  "acres/5500": {
+   "bytes": 13824,
+   "file": "acres/5500.mp3",
+   "sha": "313b3b709213",
+   "text": "ਪਚਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5550": {
+   "bytes": 17280,
+   "file": "acres/5550.mp3",
+   "sha": "6303fecfd136",
+   "text": "ਸਾਢੇ ਪਚਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5600": {
+   "bytes": 13536,
+   "file": "acres/5600.mp3",
+   "sha": "6ff446c6731a",
+   "text": "ਛਪੰਜਾ ਏਕੜ"
+  },
+  "acres/5650": {
+   "bytes": 17136,
+   "file": "acres/5650.mp3",
+   "sha": "fbef08e787c4",
+   "text": "ਸਾਢੇ ਛਪੰਜਾ ਏਕੜ"
+  },
+  "acres/5700": {
+   "bytes": 14112,
+   "file": "acres/5700.mp3",
+   "sha": "b029c555c26f",
+   "text": "ਸਤਵੰਜਾ ਏਕੜ"
+  },
+  "acres/575": {
+   "bytes": 14400,
+   "file": "acres/575.mp3",
+   "sha": "3f66e1627136",
+   "text": "ਪੌਣੇ ਛੇ ਏਕੜ"
+  },
+  "acres/5750": {
+   "bytes": 17136,
+   "file": "acres/5750.mp3",
+   "sha": "343a8b4760dc",
+   "text": "ਸਾਢੇ ਸਤਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5800": {
+   "bytes": 13248,
+   "file": "acres/5800.mp3",
+   "sha": "153b0b6d7eaa",
+   "text": "ਅਠਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5850": {
+   "bytes": 17280,
+   "file": "acres/5850.mp3",
+   "sha": "02bdac446201",
+   "text": "ਸਾਢੇ ਅਠਵੰਜਾ ਏਕੜ"
+  },
+  "acres/5900": {
+   "bytes": 12816,
+   "file": "acres/5900.mp3",
+   "sha": "f9337be24973",
+   "text": "ਉਨਾਹਠ ਏਕੜ"
+  },
+  "acres/5950": {
+   "bytes": 16272,
+   "file": "acres/5950.mp3",
+   "sha": "b1111b7b8475",
+   "text": "ਸਾਢੇ ਉਨਾਹਠ ਏਕੜ"
+  },
+  "acres/600": {
+   "bytes": 11376,
+   "file": "acres/600.mp3",
+   "sha": "95296f1e15d7",
+   "text": "ਛੇ ਏਕੜ"
+  },
+  "acres/6000": {
+   "bytes": 13104,
+   "file": "acres/6000.mp3",
+   "sha": "c509dd7e6008",
+   "text": "ਸੱਠ ਏਕੜ"
+  },
+  "acres/6050": {
+   "bytes": 15696,
+   "file": "acres/6050.mp3",
+   "sha": "68941b3f1ca1",
+   "text": "ਸਾਢੇ ਸੱਠ ਏਕੜ"
+  },
+  "acres/6100": {
+   "bytes": 12816,
+   "file": "acres/6100.mp3",
+   "sha": "a19da7264ff1",
+   "text": "ਇਕਾਹਠ ਏਕੜ"
+  },
+  "acres/6150": {
+   "bytes": 16704,
+   "file": "acres/6150.mp3",
+   "sha": "eaac4f649d1b",
+   "text": "ਸਾਢੇ ਇਕਾਹਠ ਏਕੜ"
+  },
+  "acres/6200": {
+   "bytes": 12816,
+   "file": "acres/6200.mp3",
+   "sha": "f148fbf5db85",
+   "text": "ਬਾਹਠ ਏਕੜ"
+  },
+  "acres/625": {
+   "bytes": 14400,
+   "file": "acres/625.mp3",
+   "sha": "2c166dc430d7",
+   "text": "ਸਵਾ ਛੇ ਏਕੜ"
+  },
+  "acres/6250": {
+   "bytes": 15408,
+   "file": "acres/6250.mp3",
+   "sha": "776ee20aa344",
+   "text": "ਸਾਢੇ ਬਾਹਠ ਏਕੜ"
+  },
+  "acres/6300": {
+   "bytes": 12384,
+   "file": "acres/6300.mp3",
+   "sha": "c9a163c8822c",
+   "text": "ਤਰੇਹਠ ਏਕੜ"
+  },
+  "acres/6350": {
+   "bytes": 15840,
+   "file": "acres/6350.mp3",
+   "sha": "6ff19d43c8ca",
+   "text": "ਸਾਢੇ ਤਰੇਹਠ ਏਕੜ"
+  },
+  "acres/6400": {
+   "bytes": 13104,
+   "file": "acres/6400.mp3",
+   "sha": "7918114f2b45",
+   "text": "ਚੌਂਹਠ ਏਕੜ"
+  },
+  "acres/6450": {
+   "bytes": 16416,
+   "file": "acres/6450.mp3",
+   "sha": "2a1d2e02de6e",
+   "text": "ਸਾਢੇ ਚੌਂਹਠ ਏਕੜ"
+  },
+  "acres/650": {
+   "bytes": 15264,
+   "file": "acres/650.mp3",
+   "sha": "f2994b19251d",
+   "text": "ਸਾਢੇ ਛੇ ਏਕੜ"
+  },
+  "acres/6500": {
+   "bytes": 12960,
+   "file": "acres/6500.mp3",
+   "sha": "a5514ba470a6",
+   "text": "ਪੈਂਹਠ ਏਕੜ"
+  },
+  "acres/6550": {
+   "bytes": 16416,
+   "file": "acres/6550.mp3",
+   "sha": "43fab3dd6038",
+   "text": "ਸਾਢੇ ਪੈਂਹਠ ਏਕੜ"
+  },
+  "acres/6600": {
+   "bytes": 12672,
+   "file": "acres/6600.mp3",
+   "sha": "503d3a4a013d",
+   "text": "ਛਿਆਹਠ ਏਕੜ"
+  },
+  "acres/6650": {
+   "bytes": 16272,
+   "file": "acres/6650.mp3",
+   "sha": "888b68e774de",
+   "text": "ਸਾਢੇ ਛਿਆਹਠ ਏਕੜ"
+  },
+  "acres/6700": {
+   "bytes": 13536,
+   "file": "acres/6700.mp3",
+   "sha": "3d58d7d19f6f",
+   "text": "ਸਤਾਹਠ ਏਕੜ"
+  },
+  "acres/675": {
+   "bytes": 14688,
+   "file": "acres/675.mp3",
+   "sha": "9717dc4e9cbf",
+   "text": "ਪੌਣੇ ਸੱਤ ਏਕੜ"
+  },
+  "acres/6750": {
+   "bytes": 16272,
+   "file": "acres/6750.mp3",
+   "sha": "a0627e4892a9",
+   "text": "ਸਾਢੇ ਸਤਾਹਠ ਏਕੜ"
+  },
+  "acres/6800": {
+   "bytes": 12960,
+   "file": "acres/6800.mp3",
+   "sha": "2c6b359ec256",
+   "text": "ਅਠਾਹਠ ਏਕੜ"
+  },
+  "acres/6850": {
+   "bytes": 16848,
+   "file": "acres/6850.mp3",
+   "sha": "098f24c72ff8",
+   "text": "ਸਾਢੇ ਅਠਾਹਠ ਏਕੜ"
+  },
+  "acres/6900": {
+   "bytes": 12528,
+   "file": "acres/6900.mp3",
+   "sha": "a7ec2e5a9392",
+   "text": "ਉਨੱਤਰ ਏਕੜ"
+  },
+  "acres/6950": {
+   "bytes": 16272,
+   "file": "acres/6950.mp3",
+   "sha": "16f4278d7630",
+   "text": "ਸਾਢੇ ਉਨੱਤਰ ਏਕੜ"
+  },
+  "acres/700": {
+   "bytes": 12528,
+   "file": "acres/700.mp3",
+   "sha": "5114467057d5",
+   "text": "ਸੱਤ ਏਕੜ"
+  },
+  "acres/7000": {
+   "bytes": 12672,
+   "file": "acres/7000.mp3",
+   "sha": "793cae61bfb8",
+   "text": "ਸੱਤਰ ਏਕੜ"
+  },
+  "acres/7050": {
+   "bytes": 15408,
+   "file": "acres/7050.mp3",
+   "sha": "505a8fc3b809",
+   "text": "ਸਾਢੇ ਸੱਤਰ ਏਕੜ"
+  },
+  "acres/7100": {
+   "bytes": 12672,
+   "file": "acres/7100.mp3",
+   "sha": "0ec7a70e481d",
+   "text": "ਇਕਹੱਤਰ ਏਕੜ"
+  },
+  "acres/7150": {
+   "bytes": 16560,
+   "file": "acres/7150.mp3",
+   "sha": "0af6fe3da40b",
+   "text": "ਸਾਢੇ ਇਕਹੱਤਰ ਏਕੜ"
+  },
+  "acres/7200": {
+   "bytes": 12960,
+   "file": "acres/7200.mp3",
+   "sha": "b1bac601f2a4",
+   "text": "ਬਹੱਤਰ ਏਕੜ"
+  },
+  "acres/725": {
+   "bytes": 14688,
+   "file": "acres/725.mp3",
+   "sha": "80eec840dfcd",
+   "text": "ਸਵਾ ਸੱਤ ਏਕੜ"
+  },
+  "acres/7250": {
+   "bytes": 15984,
+   "file": "acres/7250.mp3",
+   "sha": "818e66ac467b",
+   "text": "ਸਾਢੇ ਬਹੱਤਰ ਏਕੜ"
+  },
+  "acres/7300": {
+   "bytes": 12816,
+   "file": "acres/7300.mp3",
+   "sha": "f34371ca3cc1",
+   "text": "ਤਿਹੱਤਰ ਏਕੜ"
+  },
+  "acres/7350": {
+   "bytes": 16272,
+   "file": "acres/7350.mp3",
+   "sha": "96ccee011797",
+   "text": "ਸਾਢੇ ਤਿਹੱਤਰ ਏਕੜ"
+  },
+  "acres/7400": {
+   "bytes": 13680,
+   "file": "acres/7400.mp3",
+   "sha": "f2a1d519d7f7",
+   "text": "ਚੌਹੱਤਰ ਏਕੜ"
+  },
+  "acres/7450": {
+   "bytes": 17280,
+   "file": "acres/7450.mp3",
+   "sha": "f7e77ce191b1",
+   "text": "ਸਾਢੇ ਚੌਹੱਤਰ ਏਕੜ"
+  },
+  "acres/75": {
+   "bytes": 12528,
+   "file": "acres/75.mp3",
+   "sha": "75c389764819",
+   "text": "ਪੌਣਾ ਏਕੜ"
+  },
+  "acres/750": {
+   "bytes": 15264,
+   "file": "acres/750.mp3",
+   "sha": "15f9332922eb",
+   "text": "ਸਾਢੇ ਸੱਤ ਏਕੜ"
+  },
+  "acres/7500": {
+   "bytes": 13248,
+   "file": "acres/7500.mp3",
+   "sha": "e149a8b55ee0",
+   "text": "ਪਚੱਤਰ ਏਕੜ"
+  },
+  "acres/7550": {
+   "bytes": 16848,
+   "file": "acres/7550.mp3",
+   "sha": "60b617a8f38c",
+   "text": "ਸਾਢੇ ਪਚੱਤਰ ਏਕੜ"
+  },
+  "acres/7600": {
+   "bytes": 12960,
+   "file": "acres/7600.mp3",
+   "sha": "587a0a8ca958",
+   "text": "ਛਿਹੱਤਰ ਏਕੜ"
+  },
+  "acres/7650": {
+   "bytes": 16848,
+   "file": "acres/7650.mp3",
+   "sha": "c86300fa7e26",
+   "text": "ਸਾਢੇ ਛਿਹੱਤਰ ਏਕੜ"
+  },
+  "acres/7700": {
+   "bytes": 13536,
+   "file": "acres/7700.mp3",
+   "sha": "83769ce89887",
+   "text": "ਸਤੱਤਰ ਏਕੜ"
+  },
+  "acres/775": {
+   "bytes": 14976,
+   "file": "acres/775.mp3",
+   "sha": "4b449aec91c0",
+   "text": "ਪੌਣੇ ਅੱਠ ਏਕੜ"
+  },
+  "acres/7750": {
+   "bytes": 16560,
+   "file": "acres/7750.mp3",
+   "sha": "485e2ac3000b",
+   "text": "ਸਾਢੇ ਸਤੱਤਰ ਏਕੜ"
+  },
+  "acres/7800": {
+   "bytes": 12960,
+   "file": "acres/7800.mp3",
+   "sha": "2d71cde2621c",
+   "text": "ਅਠੱਤਰ ਏਕੜ"
+  },
+  "acres/7850": {
+   "bytes": 17136,
+   "file": "acres/7850.mp3",
+   "sha": "0df6a2a77fd1",
+   "text": "ਸਾਢੇ ਅਠੱਤਰ ਏਕੜ"
+  },
+  "acres/7900": {
+   "bytes": 13104,
+   "file": "acres/7900.mp3",
+   "sha": "34530535e07d",
+   "text": "ਉਨਾਸੀ ਏਕੜ"
+  },
+  "acres/7950": {
+   "bytes": 16848,
+   "file": "acres/7950.mp3",
+   "sha": "d8d584573720",
+   "text": "ਸਾਢੇ ਉਨਾਸੀ ਏਕੜ"
+  },
+  "acres/800": {
+   "bytes": 12384,
+   "file": "acres/800.mp3",
+   "sha": "4eb9d8507ce3",
+   "text": "ਅੱਠ ਏਕੜ"
+  },
+  "acres/8000": {
+   "bytes": 12528,
+   "file": "acres/8000.mp3",
+   "sha": "0438506ee874",
+   "text": "ਅੱਸੀ ਏਕੜ"
+  },
+  "acres/8050": {
+   "bytes": 16272,
+   "file": "acres/8050.mp3",
+   "sha": "fd7f26f91f58",
+   "text": "ਸਾਢੇ ਅੱਸੀ ਏਕੜ"
+  },
+  "acres/8100": {
+   "bytes": 13248,
+   "file": "acres/8100.mp3",
+   "sha": "a4e3c06a44a1",
+   "text": "ਇਕਾਸੀ ਏਕੜ"
+  },
+  "acres/8150": {
+   "bytes": 17136,
+   "file": "acres/8150.mp3",
+   "sha": "3ae1ab98ad17",
+   "text": "ਸਾਢੇ ਇਕਾਸੀ ਏਕੜ"
+  },
+  "acres/8200": {
+   "bytes": 13536,
+   "file": "acres/8200.mp3",
+   "sha": "ef4a218560b4",
+   "text": "ਬਿਆਸੀ ਏਕੜ"
+  },
+  "acres/825": {
+   "bytes": 15264,
+   "file": "acres/825.mp3",
+   "sha": "663591ffd3f8",
+   "text": "ਸਵਾ ਅੱਠ ਏਕੜ"
+  },
+  "acres/8250": {
+   "bytes": 16560,
+   "file": "acres/8250.mp3",
+   "sha": "a7861aaa014f",
+   "text": "ਸਾਢੇ ਬਿਆਸੀ ਏਕੜ"
+  },
+  "acres/8300": {
+   "bytes": 13248,
+   "file": "acres/8300.mp3",
+   "sha": "2555d5f4647d",
+   "text": "ਤਿਰਾਸੀ ਏਕੜ"
+  },
+  "acres/8350": {
+   "bytes": 16560,
+   "file": "acres/8350.mp3",
+   "sha": "f4ddf74fa142",
+   "text": "ਸਾਢੇ ਤਿਰਾਸੀ ਏਕੜ"
+  },
+  "acres/8400": {
+   "bytes": 13680,
+   "file": "acres/8400.mp3",
+   "sha": "3a8596aa3509",
+   "text": "ਚੁਰਾਸੀ ਏਕੜ"
+  },
+  "acres/8450": {
+   "bytes": 16992,
+   "file": "acres/8450.mp3",
+   "sha": "9680fc3e4361",
+   "text": "ਸਾਢੇ ਚੁਰਾਸੀ ਏਕੜ"
+  },
+  "acres/850": {
+   "bytes": 16272,
+   "file": "acres/850.mp3",
+   "sha": "cf5c9dc910bc",
+   "text": "ਸਾਢੇ ਅੱਠ ਏਕੜ"
+  },
+  "acres/8500": {
+   "bytes": 13680,
+   "file": "acres/8500.mp3",
+   "sha": "26183434e693",
+   "text": "ਪਚਾਸੀ ਏਕੜ"
+  },
+  "acres/8550": {
+   "bytes": 16848,
+   "file": "acres/8550.mp3",
+   "sha": "510628ebee85",
+   "text": "ਸਾਢੇ ਪਚਾਸੀ ਏਕੜ"
+  },
+  "acres/8600": {
+   "bytes": 13104,
+   "file": "acres/8600.mp3",
+   "sha": "293a20a718d1",
+   "text": "ਛਿਆਸੀ ਏਕੜ"
+  },
+  "acres/8650": {
+   "bytes": 16848,
+   "file": "acres/8650.mp3",
+   "sha": "4e316d85160a",
+   "text": "ਸਾਢੇ ਛਿਆਸੀ ਏਕੜ"
+  },
+  "acres/8700": {
+   "bytes": 13968,
+   "file": "acres/8700.mp3",
+   "sha": "9d14d0178345",
+   "text": "ਸਤਾਸੀ ਏਕੜ"
+  },
+  "acres/875": {
+   "bytes": 13680,
+   "file": "acres/875.mp3",
+   "sha": "2fdeb187697b",
+   "text": "ਪੌਣੇ ਨੌਂ ਏਕੜ"
+  },
+  "acres/8750": {
+   "bytes": 16560,
+   "file": "acres/8750.mp3",
+   "sha": "a5405142d098",
+   "text": "ਸਾਢੇ ਸਤਾਸੀ ਏਕੜ"
+  },
+  "acres/8800": {
+   "bytes": 13248,
+   "file": "acres/8800.mp3",
+   "sha": "a3ab83791db7",
+   "text": "ਅਠਾਸੀ ਏਕੜ"
+  },
+  "acres/8850": {
+   "bytes": 17424,
+   "file": "acres/8850.mp3",
+   "sha": "89bf01c8c7d7",
+   "text": "ਸਾਢੇ ਅਠਾਸੀ ਏਕੜ"
+  },
+  "acres/8900": {
+   "bytes": 13536,
+   "file": "acres/8900.mp3",
+   "sha": "f36e506ba0e1",
+   "text": "ਉਨਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/8950": {
+   "bytes": 16992,
+   "file": "acres/8950.mp3",
+   "sha": "99c7c0dca0e8",
+   "text": "ਸਾਢੇ ਉਨਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/900": {
+   "bytes": 11520,
+   "file": "acres/900.mp3",
+   "sha": "02a8bde0c05f",
+   "text": "ਨੌਂ ਏਕੜ"
+  },
+  "acres/9000": {
+   "bytes": 12960,
+   "file": "acres/9000.mp3",
+   "sha": "784680092928",
+   "text": "ਨੱਬੇ ਏਕੜ"
+  },
+  "acres/9050": {
+   "bytes": 15696,
+   "file": "acres/9050.mp3",
+   "sha": "c73d1a56ce86",
+   "text": "ਸਾਢੇ ਨੱਬੇ ਏਕੜ"
+  },
+  "acres/9100": {
+   "bytes": 13392,
+   "file": "acres/9100.mp3",
+   "sha": "4c479d898329",
+   "text": "ਇਕਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9150": {
+   "bytes": 16992,
+   "file": "acres/9150.mp3",
+   "sha": "943318ee0697",
+   "text": "ਸਾਢੇ ਇਕਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9200": {
+   "bytes": 13104,
+   "file": "acres/9200.mp3",
+   "sha": "74bb523722b8",
+   "text": "ਬਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/925": {
+   "bytes": 13968,
+   "file": "acres/925.mp3",
+   "sha": "58f20f2ad391",
+   "text": "ਸਵਾ ਨੌਂ ਏਕੜ"
+  },
+  "acres/9250": {
+   "bytes": 16416,
+   "file": "acres/9250.mp3",
+   "sha": "2259402ef55b",
+   "text": "ਸਾਢੇ ਬਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9300": {
+   "bytes": 13248,
+   "file": "acres/9300.mp3",
+   "sha": "44be72894a0e",
+   "text": "ਤਰਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9350": {
+   "bytes": 16704,
+   "file": "acres/9350.mp3",
+   "sha": "b071dfc65915",
+   "text": "ਸਾਢੇ ਤਰਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9400": {
+   "bytes": 13680,
+   "file": "acres/9400.mp3",
+   "sha": "d1e800f08dd4",
+   "text": "ਚੁਰਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9450": {
+   "bytes": 16992,
+   "file": "acres/9450.mp3",
+   "sha": "338ef7533af6",
+   "text": "ਸਾਢੇ ਚੁਰਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/950": {
+   "bytes": 14688,
+   "file": "acres/950.mp3",
+   "sha": "24c73c8ccdc7",
+   "text": "ਸਾਢੇ ਨੌਂ ਏਕੜ"
+  },
+  "acres/9500": {
+   "bytes": 13968,
+   "file": "acres/9500.mp3",
+   "sha": "3ae7849ee172",
+   "text": "ਪਚਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9550": {
+   "bytes": 17280,
+   "file": "acres/9550.mp3",
+   "sha": "939908a9bdcb",
+   "text": "ਸਾਢੇ ਪਚਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9600": {
+   "bytes": 13248,
+   "file": "acres/9600.mp3",
+   "sha": "d4ce198b8cc8",
+   "text": "ਛਿਆਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9650": {
+   "bytes": 16704,
+   "file": "acres/9650.mp3",
+   "sha": "d3f0e96c6fd0",
+   "text": "ਸਾਢੇ ਛਿਆਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9700": {
+   "bytes": 14112,
+   "file": "acres/9700.mp3",
+   "sha": "ece75d867ce4",
+   "text": "ਸਤਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/975": {
+   "bytes": 13968,
+   "file": "acres/975.mp3",
+   "sha": "d6f55d427044",
+   "text": "ਪੌਣੇ ਦਸ ਏਕੜ"
+  },
+  "acres/9750": {
+   "bytes": 17136,
+   "file": "acres/9750.mp3",
+   "sha": "ad9d8d810841",
+   "text": "ਸਾਢੇ ਸਤਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9800": {
+   "bytes": 13824,
+   "file": "acres/9800.mp3",
+   "sha": "ded388f3a728",
+   "text": "ਅਠਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9850": {
+   "bytes": 17856,
+   "file": "acres/9850.mp3",
+   "sha": "65053c6a35e4",
+   "text": "ਸਾਢੇ ਅਠਾਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9900": {
+   "bytes": 13680,
+   "file": "acres/9900.mp3",
+   "sha": "c63a82061480",
+   "text": "ਨੜਿੱਨਵੇਂ ਏਕੜ"
+  },
+  "acres/9950": {
+   "bytes": 17568,
+   "file": "acres/9950.mp3",
+   "sha": "861b35cca2d8",
+   "text": "ਸਾਢੇ ਨੜਿੱਨਵੇਂ ਏਕੜ"
+  },
+  "date/01-01": {
+   "bytes": 13824,
+   "file": "date/01-01.mp3",
+   "sha": "3328494dd2b4",
+   "text": "ਪਹਿਲੀ ਜਨਵਰੀ"
+  },
+  "date/01-02": {
+   "bytes": 12816,
+   "file": "date/01-02.mp3",
+   "sha": "8d4bd93b39bb",
+   "text": "ਦੋ ਜਨਵਰੀ"
+  },
+  "date/01-03": {
+   "bytes": 12816,
+   "file": "date/01-03.mp3",
+   "sha": "14d05bc161ba",
+   "text": "ਤਿੰਨ ਜਨਵਰੀ"
+  },
+  "date/01-04": {
+   "bytes": 13536,
+   "file": "date/01-04.mp3",
+   "sha": "3fd3e69c8def",
+   "text": "ਚਾਰ ਜਨਵਰੀ"
+  },
+  "date/01-05": {
+   "bytes": 13104,
+   "file": "date/01-05.mp3",
+   "sha": "9769790aab4c",
+   "text": "ਪੰਜ ਜਨਵਰੀ"
+  },
+  "date/01-06": {
+   "bytes": 12960,
+   "file": "date/01-06.mp3",
+   "sha": "623899d94f73",
+   "text": "ਛੇ ਜਨਵਰੀ"
+  },
+  "date/01-07": {
+   "bytes": 13968,
+   "file": "date/01-07.mp3",
+   "sha": "da66e0836a6e",
+   "text": "ਸੱਤ ਜਨਵਰੀ"
+  },
+  "date/01-08": {
+   "bytes": 13536,
+   "file": "date/01-08.mp3",
+   "sha": "d48e00ef6119",
+   "text": "ਅੱਠ ਜਨਵਰੀ"
+  },
+  "date/01-09": {
+   "bytes": 12816,
+   "file": "date/01-09.mp3",
+   "sha": "2aa4f7d801ea",
+   "text": "ਨੌਂ ਜਨਵਰੀ"
+  },
+  "date/01-10": {
+   "bytes": 13536,
+   "file": "date/01-10.mp3",
+   "sha": "bb7c149be1be",
+   "text": "ਦਸ ਜਨਵਰੀ"
+  },
+  "date/01-11": {
+   "bytes": 14112,
+   "file": "date/01-11.mp3",
+   "sha": "1a2297f2aea7",
+   "text": "ਗਿਆਰਾਂ ਜਨਵਰੀ"
+  },
+  "date/01-12": {
+   "bytes": 14112,
+   "file": "date/01-12.mp3",
+   "sha": "d23f154a7e4c",
+   "text": "ਬਾਰਾਂ ਜਨਵਰੀ"
+  },
+  "date/01-13": {
+   "bytes": 13968,
+   "file": "date/01-13.mp3",
+   "sha": "16e827cb38e3",
+   "text": "ਤੇਰਾਂ ਜਨਵਰੀ"
+  },
+  "date/01-14": {
+   "bytes": 14544,
+   "file": "date/01-14.mp3",
+   "sha": "9955a4010d2d",
+   "text": "ਚੌਦਾਂ ਜਨਵਰੀ"
+  },
+  "date/01-15": {
+   "bytes": 14400,
+   "file": "date/01-15.mp3",
+   "sha": "88876b30da81",
+   "text": "ਪੰਦਰਾਂ ਜਨਵਰੀ"
+  },
+  "date/01-16": {
+   "bytes": 14688,
+   "file": "date/01-16.mp3",
+   "sha": "c26eff606f32",
+   "text": "ਸੋਲ਼ਾਂ ਜਨਵਰੀ"
+  },
+  "date/01-17": {
+   "bytes": 15120,
+   "file": "date/01-17.mp3",
+   "sha": "cb9d83a27960",
+   "text": "ਸਤਾਰਾਂ ਜਨਵਰੀ"
+  },
+  "date/01-18": {
+   "bytes": 14400,
+   "file": "date/01-18.mp3",
+   "sha": "20474e879e93",
+   "text": "ਅਠਾਰਾਂ ਜਨਵਰੀ"
+  },
+  "date/01-19": {
+   "bytes": 12960,
+   "file": "date/01-19.mp3",
+   "sha": "d347f0129a0a",
+   "text": "ਉੱਨੀ ਜਨਵਰੀ"
+  },
+  "date/01-20": {
+   "bytes": 13248,
+   "file": "date/01-20.mp3",
+   "sha": "38ff039bd6b2",
+   "text": "ਵੀਹ ਜਨਵਰੀ"
+  },
+  "date/01-21": {
+   "bytes": 13680,
+   "file": "date/01-21.mp3",
+   "sha": "23467606a2c2",
+   "text": "ਇੱਕੀ ਜਨਵਰੀ"
+  },
+  "date/01-22": {
+   "bytes": 13248,
+   "file": "date/01-22.mp3",
+   "sha": "3cc42401cf7a",
+   "text": "ਬਾਈ ਜਨਵਰੀ"
+  },
+  "date/01-23": {
+   "bytes": 12672,
+   "file": "date/01-23.mp3",
+   "sha": "1ec272176484",
+   "text": "ਤੇਈ ਜਨਵਰੀ"
+  },
+  "date/01-24": {
+   "bytes": 14400,
+   "file": "date/01-24.mp3",
+   "sha": "26da74173c2c",
+   "text": "ਚੌਵੀ ਜਨਵਰੀ"
+  },
+  "date/01-25": {
+   "bytes": 13680,
+   "file": "date/01-25.mp3",
+   "sha": "19d93b064eb9",
+   "text": "ਪੱਚੀ ਜਨਵਰੀ"
+  },
+  "date/01-26": {
+   "bytes": 14112,
+   "file": "date/01-26.mp3",
+   "sha": "0ef3ac8b6fd7",
+   "text": "ਛੱਬੀ ਜਨਵਰੀ"
+  },
+  "date/01-27": {
+   "bytes": 14544,
+   "file": "date/01-27.mp3",
+   "sha": "d44396ddd2c9",
+   "text": "ਸਤਾਈ ਜਨਵਰੀ"
+  },
+  "date/01-28": {
+   "bytes": 13680,
+   "file": "date/01-28.mp3",
+   "sha": "30308570dcfa",
+   "text": "ਅਠਾਈ ਜਨਵਰੀ"
+  },
+  "date/01-29": {
+   "bytes": 13824,
+   "file": "date/01-29.mp3",
+   "sha": "2d1a2ec5a9ee",
+   "text": "ਉਨੱਤੀ ਜਨਵਰੀ"
+  },
+  "date/01-30": {
+   "bytes": 12960,
+   "file": "date/01-30.mp3",
+   "sha": "20bf23fdef8b",
+   "text": "ਤੀਹ ਜਨਵਰੀ"
+  },
+  "date/01-31": {
+   "bytes": 14112,
+   "file": "date/01-31.mp3",
+   "sha": "70b02536e18c",
+   "text": "ਇਕੱਤੀ ਜਨਵਰੀ"
+  },
+  "date/02-01": {
+   "bytes": 13680,
+   "file": "date/02-01.mp3",
+   "sha": "cb0bb1a3b1e2",
+   "text": "ਪਹਿਲੀ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-02": {
+   "bytes": 12816,
+   "file": "date/02-02.mp3",
+   "sha": "159bf2f75906",
+   "text": "ਦੋ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-03": {
+   "bytes": 12672,
+   "file": "date/02-03.mp3",
+   "sha": "136db531b370",
+   "text": "ਤਿੰਨ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-04": {
+   "bytes": 13680,
+   "file": "date/02-04.mp3",
+   "sha": "9c07c3fb315d",
+   "text": "ਚਾਰ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-05": {
+   "bytes": 12960,
+   "file": "date/02-05.mp3",
+   "sha": "8223ae2d7696",
+   "text": "ਪੰਜ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-06": {
+   "bytes": 12816,
+   "file": "date/02-06.mp3",
+   "sha": "e73ca1ba3322",
+   "text": "ਛੇ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-07": {
+   "bytes": 13248,
+   "file": "date/02-07.mp3",
+   "sha": "dfce3a320de7",
+   "text": "ਸੱਤ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-08": {
+   "bytes": 12672,
+   "file": "date/02-08.mp3",
+   "sha": "6a8fde8ec839",
+   "text": "ਅੱਠ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-09": {
+   "bytes": 12960,
+   "file": "date/02-09.mp3",
+   "sha": "4399dbc35408",
+   "text": "ਨੌਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-10": {
+   "bytes": 12960,
+   "file": "date/02-10.mp3",
+   "sha": "c08b9d11df04",
+   "text": "ਦਸ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-11": {
+   "bytes": 13824,
+   "file": "date/02-11.mp3",
+   "sha": "fd6fab42c62c",
+   "text": "ਗਿਆਰਾਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-12": {
+   "bytes": 13680,
+   "file": "date/02-12.mp3",
+   "sha": "53fbfff3d28b",
+   "text": "ਬਾਰਾਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-13": {
+   "bytes": 13248,
+   "file": "date/02-13.mp3",
+   "sha": "8201e6f2ef7c",
+   "text": "ਤੇਰਾਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-14": {
+   "bytes": 13968,
+   "file": "date/02-14.mp3",
+   "sha": "a63f329c6837",
+   "text": "ਚੌਦਾਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-15": {
+   "bytes": 13968,
+   "file": "date/02-15.mp3",
+   "sha": "8ac879f94ba2",
+   "text": "ਪੰਦਰਾਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-16": {
+   "bytes": 13968,
+   "file": "date/02-16.mp3",
+   "sha": "55ed0212ed1b",
+   "text": "ਸੋਲ਼ਾਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-17": {
+   "bytes": 14832,
+   "file": "date/02-17.mp3",
+   "sha": "d0336c6a5521",
+   "text": "ਸਤਾਰਾਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-18": {
+   "bytes": 13968,
+   "file": "date/02-18.mp3",
+   "sha": "cf58272ad4f3",
+   "text": "ਅਠਾਰਾਂ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-19": {
+   "bytes": 12672,
+   "file": "date/02-19.mp3",
+   "sha": "48952d1c5459",
+   "text": "ਉੱਨੀ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-20": {
+   "bytes": 13248,
+   "file": "date/02-20.mp3",
+   "sha": "bfd6c400313c",
+   "text": "ਵੀਹ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-21": {
+   "bytes": 13248,
+   "file": "date/02-21.mp3",
+   "sha": "61a08a08b0fa",
+   "text": "ਇੱਕੀ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-22": {
+   "bytes": 13104,
+   "file": "date/02-22.mp3",
+   "sha": "324af1feda65",
+   "text": "ਬਾਈ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-23": {
+   "bytes": 12384,
+   "file": "date/02-23.mp3",
+   "sha": "760409b50bc0",
+   "text": "ਤੇਈ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-24": {
+   "bytes": 13968,
+   "file": "date/02-24.mp3",
+   "sha": "b3582953c508",
+   "text": "ਚੌਵੀ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-25": {
+   "bytes": 13680,
+   "file": "date/02-25.mp3",
+   "sha": "c7b0ef25630f",
+   "text": "ਪੱਚੀ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-26": {
+   "bytes": 13680,
+   "file": "date/02-26.mp3",
+   "sha": "f34379575f2d",
+   "text": "ਛੱਬੀ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-27": {
+   "bytes": 14400,
+   "file": "date/02-27.mp3",
+   "sha": "0d06d1a9b687",
+   "text": "ਸਤਾਈ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-28": {
+   "bytes": 13392,
+   "file": "date/02-28.mp3",
+   "sha": "b380dab42028",
+   "text": "ਅਠਾਈ ਫ਼ਰਵਰੀ"
+  },
+  "date/02-29": {
+   "bytes": 13968,
+   "file": "date/02-29.mp3",
+   "sha": "4459dd0ac8ef",
+   "text": "ਉਨੱਤੀ ਫ਼ਰਵਰੀ"
+  },
+  "date/03-01": {
+   "bytes": 13824,
+   "file": "date/03-01.mp3",
+   "sha": "c14f6f2bed38",
+   "text": "ਪਹਿਲੀ ਮਾਰਚ"
+  },
+  "date/03-02": {
+   "bytes": 13104,
+   "file": "date/03-02.mp3",
+   "sha": "9d424f195a44",
+   "text": "ਦੋ ਮਾਰਚ"
+  },
+  "date/03-03": {
+   "bytes": 13248,
+   "file": "date/03-03.mp3",
+   "sha": "4cfe45090405",
+   "text": "ਤਿੰਨ ਮਾਰਚ"
+  },
+  "date/03-04": {
+   "bytes": 13824,
+   "file": "date/03-04.mp3",
+   "sha": "614a4e80c429",
+   "text": "ਚਾਰ ਮਾਰਚ"
+  },
+  "date/03-05": {
+   "bytes": 13392,
+   "file": "date/03-05.mp3",
+   "sha": "81be3be429f5",
+   "text": "ਪੰਜ ਮਾਰਚ"
+  },
+  "date/03-06": {
+   "bytes": 12960,
+   "file": "date/03-06.mp3",
+   "sha": "af1a714b2b8f",
+   "text": "ਛੇ ਮਾਰਚ"
+  },
+  "date/03-07": {
+   "bytes": 13824,
+   "file": "date/03-07.mp3",
+   "sha": "1dafa1113830",
+   "text": "ਸੱਤ ਮਾਰਚ"
+  },
+  "date/03-08": {
+   "bytes": 13536,
+   "file": "date/03-08.mp3",
+   "sha": "e0f8e1441f1d",
+   "text": "ਅੱਠ ਮਾਰਚ"
+  },
+  "date/03-09": {
+   "bytes": 12672,
+   "file": "date/03-09.mp3",
+   "sha": "637d12fd7dda",
+   "text": "ਨੌਂ ਮਾਰਚ"
+  },
+  "date/03-10": {
+   "bytes": 13536,
+   "file": "date/03-10.mp3",
+   "sha": "938cd6493d0f",
+   "text": "ਦਸ ਮਾਰਚ"
+  },
+  "date/03-11": {
+   "bytes": 13824,
+   "file": "date/03-11.mp3",
+   "sha": "3ca069756571",
+   "text": "ਗਿਆਰਾਂ ਮਾਰਚ"
+  },
+  "date/03-12": {
+   "bytes": 13680,
+   "file": "date/03-12.mp3",
+   "sha": "978a113681ba",
+   "text": "ਬਾਰਾਂ ਮਾਰਚ"
+  },
+  "date/03-13": {
+   "bytes": 13392,
+   "file": "date/03-13.mp3",
+   "sha": "41aeadb3bb6d",
+   "text": "ਤੇਰਾਂ ਮਾਰਚ"
+  },
+  "date/03-14": {
+   "bytes": 14400,
+   "file": "date/03-14.mp3",
+   "sha": "eebcfd375413",
+   "text": "ਚੌਦਾਂ ਮਾਰਚ"
+  },
+  "date/03-15": {
+   "bytes": 14112,
+   "file": "date/03-15.mp3",
+   "sha": "3b4adc20d7be",
+   "text": "ਪੰਦਰਾਂ ਮਾਰਚ"
+  },
+  "date/03-16": {
+   "bytes": 14400,
+   "file": "date/03-16.mp3",
+   "sha": "d0fa8723f983",
+   "text": "ਸੋਲ਼ਾਂ ਮਾਰਚ"
+  },
+  "date/03-17": {
+   "bytes": 14544,
+   "file": "date/03-17.mp3",
+   "sha": "6a2ca31cfcee",
+   "text": "ਸਤਾਰਾਂ ਮਾਰਚ"
+  },
+  "date/03-18": {
+   "bytes": 13968,
+   "file": "date/03-18.mp3",
+   "sha": "63f070dfd097",
+   "text": "ਅਠਾਰਾਂ ਮਾਰਚ"
+  },
+  "date/03-19": {
+   "bytes": 13104,
+   "file": "date/03-19.mp3",
+   "sha": "a56e66afe4f4",
+   "text": "ਉੱਨੀ ਮਾਰਚ"
+  },
+  "date/03-20": {
+   "bytes": 12960,
+   "file": "date/03-20.mp3",
+   "sha": "f5767048f854",
+   "text": "ਵੀਹ ਮਾਰਚ"
+  },
+  "date/03-21": {
+   "bytes": 13392,
+   "file": "date/03-21.mp3",
+   "sha": "aa4a6104cbf6",
+   "text": "ਇੱਕੀ ਮਾਰਚ"
+  },
+  "date/03-22": {
+   "bytes": 13536,
+   "file": "date/03-22.mp3",
+   "sha": "d46b2003bb27",
+   "text": "ਬਾਈ ਮਾਰਚ"
+  },
+  "date/03-23": {
+   "bytes": 12960,
+   "file": "date/03-23.mp3",
+   "sha": "3106d8e86f47",
+   "text": "ਤੇਈ ਮਾਰਚ"
+  },
+  "date/03-24": {
+   "bytes": 13968,
+   "file": "date/03-24.mp3",
+   "sha": "f9cd24049ba6",
+   "text": "ਚੌਵੀ ਮਾਰਚ"
+  },
+  "date/03-25": {
+   "bytes": 13824,
+   "file": "date/03-25.mp3",
+   "sha": "33908d73d7c2",
+   "text": "ਪੱਚੀ ਮਾਰਚ"
+  },
+  "date/03-26": {
+   "bytes": 14256,
+   "file": "date/03-26.mp3",
+   "sha": "8b57bfe72f46",
+   "text": "ਛੱਬੀ ਮਾਰਚ"
+  },
+  "date/03-27": {
+   "bytes": 14256,
+   "file": "date/03-27.mp3",
+   "sha": "19723f928c62",
+   "text": "ਸਤਾਈ ਮਾਰਚ"
+  },
+  "date/03-28": {
+   "bytes": 13680,
+   "file": "date/03-28.mp3",
+   "sha": "d4ff416304ba",
+   "text": "ਅਠਾਈ ਮਾਰਚ"
+  },
+  "date/03-29": {
+   "bytes": 13968,
+   "file": "date/03-29.mp3",
+   "sha": "73a26d78b435",
+   "text": "ਉਨੱਤੀ ਮਾਰਚ"
+  },
+  "date/03-30": {
+   "bytes": 12672,
+   "file": "date/03-30.mp3",
+   "sha": "17bc9aa9692c",
+   "text": "ਤੀਹ ਮਾਰਚ"
+  },
+  "date/03-31": {
+   "bytes": 14256,
+   "file": "date/03-31.mp3",
+   "sha": "1f8ea075cd3a",
+   "text": "ਇਕੱਤੀ ਮਾਰਚ"
+  },
+  "date/04-01": {
+   "bytes": 13968,
+   "file": "date/04-01.mp3",
+   "sha": "88d9eb7a504c",
+   "text": "ਪਹਿਲੀ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-02": {
+   "bytes": 12816,
+   "file": "date/04-02.mp3",
+   "sha": "3d121b49b449",
+   "text": "ਦੋ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-03": {
+   "bytes": 12384,
+   "file": "date/04-03.mp3",
+   "sha": "355271fe4818",
+   "text": "ਤਿੰਨ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-04": {
+   "bytes": 13104,
+   "file": "date/04-04.mp3",
+   "sha": "0bbafba7bf0a",
+   "text": "ਚਾਰ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-05": {
+   "bytes": 12672,
+   "file": "date/04-05.mp3",
+   "sha": "d4423c00c2a4",
+   "text": "ਪੰਜ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-06": {
+   "bytes": 12672,
+   "file": "date/04-06.mp3",
+   "sha": "89bd6a7d69e2",
+   "text": "ਛੇ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-07": {
+   "bytes": 13392,
+   "file": "date/04-07.mp3",
+   "sha": "f14158d019e7",
+   "text": "ਸੱਤ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-08": {
+   "bytes": 13104,
+   "file": "date/04-08.mp3",
+   "sha": "2256617aae1d",
+   "text": "ਅੱਠ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-09": {
+   "bytes": 12960,
+   "file": "date/04-09.mp3",
+   "sha": "a5262de69a70",
+   "text": "ਨੌਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-10": {
+   "bytes": 12528,
+   "file": "date/04-10.mp3",
+   "sha": "f2391011cb39",
+   "text": "ਦਸ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-11": {
+   "bytes": 13968,
+   "file": "date/04-11.mp3",
+   "sha": "1b889a1cecc2",
+   "text": "ਗਿਆਰਾਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-12": {
+   "bytes": 13536,
+   "file": "date/04-12.mp3",
+   "sha": "442607ac142f",
+   "text": "ਬਾਰਾਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-13": {
+   "bytes": 13104,
+   "file": "date/04-13.mp3",
+   "sha": "016e400dcdd1",
+   "text": "ਤੇਰਾਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-14": {
+   "bytes": 13824,
+   "file": "date/04-14.mp3",
+   "sha": "564ba7433c47",
+   "text": "ਚੌਦਾਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-15": {
+   "bytes": 14112,
+   "file": "date/04-15.mp3",
+   "sha": "67dc229ac1ca",
+   "text": "ਪੰਦਰਾਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-16": {
+   "bytes": 14400,
+   "file": "date/04-16.mp3",
+   "sha": "84fc1b589842",
+   "text": "ਸੋਲ਼ਾਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-17": {
+   "bytes": 14832,
+   "file": "date/04-17.mp3",
+   "sha": "fb4280249c79",
+   "text": "ਸਤਾਰਾਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-18": {
+   "bytes": 13824,
+   "file": "date/04-18.mp3",
+   "sha": "96fde027aedb",
+   "text": "ਅਠਾਰਾਂ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-19": {
+   "bytes": 13104,
+   "file": "date/04-19.mp3",
+   "sha": "035d9d2e1865",
+   "text": "ਉੱਨੀ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-20": {
+   "bytes": 13248,
+   "file": "date/04-20.mp3",
+   "sha": "fa008b1409cd",
+   "text": "ਵੀਹ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-21": {
+   "bytes": 13536,
+   "file": "date/04-21.mp3",
+   "sha": "7ac3efc7b332",
+   "text": "ਇੱਕੀ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-22": {
+   "bytes": 13248,
+   "file": "date/04-22.mp3",
+   "sha": "da18ff9211cb",
+   "text": "ਬਾਈ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-23": {
+   "bytes": 13104,
+   "file": "date/04-23.mp3",
+   "sha": "263448446a54",
+   "text": "ਤੇਈ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-24": {
+   "bytes": 14400,
+   "file": "date/04-24.mp3",
+   "sha": "1607d7344ff0",
+   "text": "ਚੌਵੀ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-25": {
+   "bytes": 13968,
+   "file": "date/04-25.mp3",
+   "sha": "51bfa80786ad",
+   "text": "ਪੱਚੀ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-26": {
+   "bytes": 13680,
+   "file": "date/04-26.mp3",
+   "sha": "80ca02f216c8",
+   "text": "ਛੱਬੀ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-27": {
+   "bytes": 14832,
+   "file": "date/04-27.mp3",
+   "sha": "89edc0b713de",
+   "text": "ਸਤਾਈ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-28": {
+   "bytes": 13824,
+   "file": "date/04-28.mp3",
+   "sha": "e02e470f2df4",
+   "text": "ਅਠਾਈ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-29": {
+   "bytes": 14112,
+   "file": "date/04-29.mp3",
+   "sha": "311ab5f9b74f",
+   "text": "ਉਨੱਤੀ ਅਪ੍ਰੈਲ"
+  },
+  "date/04-30": {
+   "bytes": 12816,
+   "file": "date/04-30.mp3",
+   "sha": "23acfdddc0df",
+   "text": "ਤੀਹ ਅਪ੍ਰੈਲ"
+  },
+  "date/05-01": {
+   "bytes": 12960,
+   "file": "date/05-01.mp3",
+   "sha": "b745e32b7789",
+   "text": "ਪਹਿਲੀ ਮਈ"
+  },
+  "date/05-02": {
+   "bytes": 11664,
+   "file": "date/05-02.mp3",
+   "sha": "e9f9d4d1053c",
+   "text": "ਦੋ ਮਈ"
+  },
+  "date/05-03": {
+   "bytes": 11952,
+   "file": "date/05-03.mp3",
+   "sha": "d56732822ee5",
+   "text": "ਤਿੰਨ ਮਈ"
+  },
+  "date/05-04": {
+   "bytes": 12384,
+   "file": "date/05-04.mp3",
+   "sha": "0276006f26bb",
+   "text": "ਚਾਰ ਮਈ"
+  },
+  "date/05-05": {
+   "bytes": 11808,
+   "file": "date/05-05.mp3",
+   "sha": "f130b2e3b013",
+   "text": "ਪੰਜ ਮਈ"
+  },
+  "date/05-06": {
+   "bytes": 11376,
+   "file": "date/05-06.mp3",
+   "sha": "31b1162faa8c",
+   "text": "ਛੇ ਮਈ"
+  },
+  "date/05-07": {
+   "bytes": 12384,
+   "file": "date/05-07.mp3",
+   "sha": "afc5e198b564",
+   "text": "ਸੱਤ ਮਈ"
+  },
+  "date/05-08": {
+   "bytes": 12096,
+   "file": "date/05-08.mp3",
+   "sha": "0ebeddce5f93",
+   "text": "ਅੱਠ ਮਈ"
+  },
+  "date/05-09": {
+   "bytes": 11520,
+   "file": "date/05-09.mp3",
+   "sha": "32ed206ac775",
+   "text": "ਨੌਂ ਮਈ"
+  },
+  "date/05-10": {
+   "bytes": 11664,
+   "file": "date/05-10.mp3",
+   "sha": "ea76618e674a",
+   "text": "ਦਸ ਮਈ"
+  },
+  "date/05-11": {
+   "bytes": 12960,
+   "file": "date/05-11.mp3",
+   "sha": "6e58fb8384e5",
+   "text": "ਗਿਆਰਾਂ ਮਈ"
+  },
+  "date/05-12": {
+   "bytes": 12816,
+   "file": "date/05-12.mp3",
+   "sha": "4aed26144a23",
+   "text": "ਬਾਰਾਂ ਮਈ"
+  },
+  "date/05-13": {
+   "bytes": 12240,
+   "file": "date/05-13.mp3",
+   "sha": "2c0928b2b9d2",
+   "text": "ਤੇਰਾਂ ਮਈ"
+  },
+  "date/05-14": {
+   "bytes": 13104,
+   "file": "date/05-14.mp3",
+   "sha": "b8fcba58e15d",
+   "text": "ਚੌਦਾਂ ਮਈ"
+  },
+  "date/05-15": {
+   "bytes": 13104,
+   "file": "date/05-15.mp3",
+   "sha": "badf4370185e",
+   "text": "ਪੰਦਰਾਂ ਮਈ"
+  },
+  "date/05-16": {
+   "bytes": 12960,
+   "file": "date/05-16.mp3",
+   "sha": "9ff66674507f",
+   "text": "ਸੋਲ਼ਾਂ ਮਈ"
+  },
+  "date/05-17": {
+   "bytes": 13824,
+   "file": "date/05-17.mp3",
+   "sha": "48e3bdb5a00e",
+   "text": "ਸਤਾਰਾਂ ਮਈ"
+  },
+  "date/05-18": {
+   "bytes": 12960,
+   "file": "date/05-18.mp3",
+   "sha": "ea8ee211958c",
+   "text": "ਅਠਾਰਾਂ ਮਈ"
+  },
+  "date/05-19": {
+   "bytes": 11808,
+   "file": "date/05-19.mp3",
+   "sha": "8806ca814b94",
+   "text": "ਉੱਨੀ ਮਈ"
+  },
+  "date/05-20": {
+   "bytes": 11664,
+   "file": "date/05-20.mp3",
+   "sha": "6b145d8cb3cb",
+   "text": "ਵੀਹ ਮਈ"
+  },
+  "date/05-21": {
+   "bytes": 12240,
+   "file": "date/05-21.mp3",
+   "sha": "1e40d0aafc20",
+   "text": "ਇੱਕੀ ਮਈ"
+  },
+  "date/05-22": {
+   "bytes": 12096,
+   "file": "date/05-22.mp3",
+   "sha": "247be5d2a71e",
+   "text": "ਬਾਈ ਮਈ"
+  },
+  "date/05-23": {
+   "bytes": 11664,
+   "file": "date/05-23.mp3",
+   "sha": "65c13ca4ca2c",
+   "text": "ਤੇਈ ਮਈ"
+  },
+  "date/05-24": {
+   "bytes": 12816,
+   "file": "date/05-24.mp3",
+   "sha": "d49a092e003b",
+   "text": "ਚੌਵੀ ਮਈ"
+  },
+  "date/05-25": {
+   "bytes": 12384,
+   "file": "date/05-25.mp3",
+   "sha": "5b44f58b5938",
+   "text": "ਪੱਚੀ ਮਈ"
+  },
+  "date/05-26": {
+   "bytes": 12528,
+   "file": "date/05-26.mp3",
+   "sha": "40e470a4a068",
+   "text": "ਛੱਬੀ ਮਈ"
+  },
+  "date/05-27": {
+   "bytes": 13248,
+   "file": "date/05-27.mp3",
+   "sha": "4fbd440aaed4",
+   "text": "ਸਤਾਈ ਮਈ"
+  },
+  "date/05-28": {
+   "bytes": 12672,
+   "file": "date/05-28.mp3",
+   "sha": "7ac63f22fa64",
+   "text": "ਅਠਾਈ ਮਈ"
+  },
+  "date/05-29": {
+   "bytes": 12672,
+   "file": "date/05-29.mp3",
+   "sha": "5a67c3bcac3b",
+   "text": "ਉਨੱਤੀ ਮਈ"
+  },
+  "date/05-30": {
+   "bytes": 11664,
+   "file": "date/05-30.mp3",
+   "sha": "eb8e9e2c245a",
+   "text": "ਤੀਹ ਮਈ"
+  },
+  "date/05-31": {
+   "bytes": 13248,
+   "file": "date/05-31.mp3",
+   "sha": "79035fa3c3f5",
+   "text": "ਇਕੱਤੀ ਮਈ"
+  },
+  "date/06-01": {
+   "bytes": 13248,
+   "file": "date/06-01.mp3",
+   "sha": "693e41741960",
+   "text": "ਪਹਿਲੀ ਜੂਨ"
+  },
+  "date/06-02": {
+   "bytes": 11952,
+   "file": "date/06-02.mp3",
+   "sha": "1f614cc95814",
+   "text": "ਦੋ ਜੂਨ"
+  },
+  "date/06-03": {
+   "bytes": 12240,
+   "file": "date/06-03.mp3",
+   "sha": "212dad76304b",
+   "text": "ਤਿੰਨ ਜੂਨ"
+  },
+  "date/06-04": {
+   "bytes": 12816,
+   "file": "date/06-04.mp3",
+   "sha": "a34b66a75521",
+   "text": "ਚਾਰ ਜੂਨ"
+  },
+  "date/06-05": {
+   "bytes": 13104,
+   "file": "date/06-05.mp3",
+   "sha": "6615332d1c1b",
+   "text": "ਪੰਜ ਜੂਨ"
+  },
+  "date/06-06": {
+   "bytes": 12240,
+   "file": "date/06-06.mp3",
+   "sha": "debb4a5b6f6f",
+   "text": "ਛੇ ਜੂਨ"
+  },
+  "date/06-07": {
+   "bytes": 13248,
+   "file": "date/06-07.mp3",
+   "sha": "4056be5c5714",
+   "text": "ਸੱਤ ਜੂਨ"
+  },
+  "date/06-08": {
+   "bytes": 12816,
+   "file": "date/06-08.mp3",
+   "sha": "786c38fba97d",
+   "text": "ਅੱਠ ਜੂਨ"
+  },
+  "date/06-09": {
+   "bytes": 11952,
+   "file": "date/06-09.mp3",
+   "sha": "71a1e3c723f5",
+   "text": "ਨੌਂ ਜੂਨ"
+  },
+  "date/06-10": {
+   "bytes": 12384,
+   "file": "date/06-10.mp3",
+   "sha": "f5a0e165b4fb",
+   "text": "ਦਸ ਜੂਨ"
+  },
+  "date/06-11": {
+   "bytes": 12960,
+   "file": "date/06-11.mp3",
+   "sha": "c76bbc97a9bb",
+   "text": "ਗਿਆਰਾਂ ਜੂਨ"
+  },
+  "date/06-12": {
+   "bytes": 12960,
+   "file": "date/06-12.mp3",
+   "sha": "6c0fec50fca8",
+   "text": "ਬਾਰਾਂ ਜੂਨ"
+  },
+  "date/06-13": {
+   "bytes": 12816,
+   "file": "date/06-13.mp3",
+   "sha": "118a0ce42297",
+   "text": "ਤੇਰਾਂ ਜੂਨ"
+  },
+  "date/06-14": {
+   "bytes": 13392,
+   "file": "date/06-14.mp3",
+   "sha": "bcbf3d0dd4db",
+   "text": "ਚੌਦਾਂ ਜੂਨ"
+  },
+  "date/06-15": {
+   "bytes": 13248,
+   "file": "date/06-15.mp3",
+   "sha": "30b9dc720fc8",
+   "text": "ਪੰਦਰਾਂ ਜੂਨ"
+  },
+  "date/06-16": {
+   "bytes": 13536,
+   "file": "date/06-16.mp3",
+   "sha": "b7dad9e50d6e",
+   "text": "ਸੋਲ਼ਾਂ ਜੂਨ"
+  },
+  "date/06-17": {
+   "bytes": 13968,
+   "file": "date/06-17.mp3",
+   "sha": "d0336cca1f9a",
+   "text": "ਸਤਾਰਾਂ ਜੂਨ"
+  },
+  "date/06-18": {
+   "bytes": 13392,
+   "file": "date/06-18.mp3",
+   "sha": "29d10bd6f86a",
+   "text": "ਅਠਾਰਾਂ ਜੂਨ"
+  },
+  "date/06-19": {
+   "bytes": 12096,
+   "file": "date/06-19.mp3",
+   "sha": "d73fcd31ee5b",
+   "text": "ਉੱਨੀ ਜੂਨ"
+  },
+  "date/06-20": {
+   "bytes": 11952,
+   "file": "date/06-20.mp3",
+   "sha": "5359ab0eaedb",
+   "text": "ਵੀਹ ਜੂਨ"
+  },
+  "date/06-21": {
+   "bytes": 12960,
+   "file": "date/06-21.mp3",
+   "sha": "fcf468639ff7",
+   "text": "ਇੱਕੀ ਜੂਨ"
+  },
+  "date/06-22": {
+   "bytes": 12384,
+   "file": "date/06-22.mp3",
+   "sha": "d81c8b5d28ec",
+   "text": "ਬਾਈ ਜੂਨ"
+  },
+  "date/06-23": {
+   "bytes": 11952,
+   "file": "date/06-23.mp3",
+   "sha": "49fc4abfb5ed",
+   "text": "ਤੇਈ ਜੂਨ"
+  },
+  "date/06-24": {
+   "bytes": 12960,
+   "file": "date/06-24.mp3",
+   "sha": "70689c8f0ccf",
+   "text": "ਚੌਵੀ ਜੂਨ"
+  },
+  "date/06-25": {
+   "bytes": 13248,
+   "file": "date/06-25.mp3",
+   "sha": "f903d8812cc9",
+   "text": "ਪੱਚੀ ਜੂਨ"
+  },
+  "date/06-26": {
+   "bytes": 13104,
+   "file": "date/06-26.mp3",
+   "sha": "b1cf5891b8e4",
+   "text": "ਛੱਬੀ ਜੂਨ"
+  },
+  "date/06-27": {
+   "bytes": 13392,
+   "file": "date/06-27.mp3",
+   "sha": "f3305f96d7a3",
+   "text": "ਸਤਾਈ ਜੂਨ"
+  },
+  "date/06-28": {
+   "bytes": 12960,
+   "file": "date/06-28.mp3",
+   "sha": "b5006f27f188",
+   "text": "ਅਠਾਈ ਜੂਨ"
+  },
+  "date/06-29": {
+   "bytes": 13248,
+   "file": "date/06-29.mp3",
+   "sha": "6eb88b716ae6",
+   "text": "ਉਨੱਤੀ ਜੂਨ"
+  },
+  "date/06-30": {
+   "bytes": 11952,
+   "file": "date/06-30.mp3",
+   "sha": "d09764b335b7",
+   "text": "ਤੀਹ ਜੂਨ"
+  },
+  "date/07-01": {
+   "bytes": 13536,
+   "file": "date/07-01.mp3",
+   "sha": "2eaa4fae829b",
+   "text": "ਪਹਿਲੀ ਜੁਲਾਈ"
+  },
+  "date/07-02": {
+   "bytes": 12528,
+   "file": "date/07-02.mp3",
+   "sha": "e806e5d6de7b",
+   "text": "ਦੋ ਜੁਲਾਈ"
+  },
+  "date/07-03": {
+   "bytes": 12816,
+   "file": "date/07-03.mp3",
+   "sha": "ca326bbd4da5",
+   "text": "ਤਿੰਨ ਜੁਲਾਈ"
+  },
+  "date/07-04": {
+   "bytes": 13248,
+   "file": "date/07-04.mp3",
+   "sha": "2128acd5a45b",
+   "text": "ਚਾਰ ਜੁਲਾਈ"
+  },
+  "date/07-05": {
+   "bytes": 13248,
+   "file": "date/07-05.mp3",
+   "sha": "29ce22930066",
+   "text": "ਪੰਜ ਜੁਲਾਈ"
+  },
+  "date/07-06": {
+   "bytes": 12528,
+   "file": "date/07-06.mp3",
+   "sha": "108d6eed5c50",
+   "text": "ਛੇ ਜੁਲਾਈ"
+  },
+  "date/07-07": {
+   "bytes": 13248,
+   "file": "date/07-07.mp3",
+   "sha": "64315eaceefe",
+   "text": "ਸੱਤ ਜੁਲਾਈ"
+  },
+  "date/07-08": {
+   "bytes": 12960,
+   "file": "date/07-08.mp3",
+   "sha": "501c8cf80b68",
+   "text": "ਅੱਠ ਜੁਲਾਈ"
+  },
+  "date/07-09": {
+   "bytes": 12384,
+   "file": "date/07-09.mp3",
+   "sha": "fb40884ba34c",
+   "text": "ਨੌਂ ਜੁਲਾਈ"
+  },
+  "date/07-10": {
+   "bytes": 12672,
+   "file": "date/07-10.mp3",
+   "sha": "d90c2584a2a2",
+   "text": "ਦਸ ਜੁਲਾਈ"
+  },
+  "date/07-11": {
+   "bytes": 13968,
+   "file": "date/07-11.mp3",
+   "sha": "ed0d74871697",
+   "text": "ਗਿਆਰਾਂ ਜੁਲਾਈ"
+  },
+  "date/07-12": {
+   "bytes": 13680,
+   "file": "date/07-12.mp3",
+   "sha": "df92ce092cac",
+   "text": "ਬਾਰਾਂ ਜੁਲਾਈ"
+  },
+  "date/07-13": {
+   "bytes": 13104,
+   "file": "date/07-13.mp3",
+   "sha": "857d05306f4e",
+   "text": "ਤੇਰਾਂ ਜੁਲਾਈ"
+  },
+  "date/07-14": {
+   "bytes": 13968,
+   "file": "date/07-14.mp3",
+   "sha": "a946e54112d5",
+   "text": "ਚੌਦਾਂ ਜੁਲਾਈ"
+  },
+  "date/07-15": {
+   "bytes": 14112,
+   "file": "date/07-15.mp3",
+   "sha": "e83e8118ba8d",
+   "text": "ਪੰਦਰਾਂ ਜੁਲਾਈ"
+  },
+  "date/07-16": {
+   "bytes": 13824,
+   "file": "date/07-16.mp3",
+   "sha": "6fb295f5a7aa",
+   "text": "ਸੋਲ਼ਾਂ ਜੁਲਾਈ"
+  },
+  "date/07-17": {
+   "bytes": 14688,
+   "file": "date/07-17.mp3",
+   "sha": "32a9999de633",
+   "text": "ਸਤਾਰਾਂ ਜੁਲਾਈ"
+  },
+  "date/07-18": {
+   "bytes": 14112,
+   "file": "date/07-18.mp3",
+   "sha": "cfc1763197bb",
+   "text": "ਅਠਾਰਾਂ ਜੁਲਾਈ"
+  },
+  "date/07-19": {
+   "bytes": 12672,
+   "file": "date/07-19.mp3",
+   "sha": "d85c5c8a813d",
+   "text": "ਉੱਨੀ ਜੁਲਾਈ"
+  },
+  "date/07-20": {
+   "bytes": 13104,
+   "file": "date/07-20.mp3",
+   "sha": "9ad914da9a72",
+   "text": "ਵੀਹ ਜੁਲਾਈ"
+  },
+  "date/07-21": {
+   "bytes": 12960,
+   "file": "date/07-21.mp3",
+   "sha": "b32cde5f34c0",
+   "text": "ਇੱਕੀ ਜੁਲਾਈ"
+  },
+  "date/07-22": {
+   "bytes": 12816,
+   "file": "date/07-22.mp3",
+   "sha": "faefc96fc452",
+   "text": "ਬਾਈ ਜੁਲਾਈ"
+  },
+  "date/07-23": {
+   "bytes": 12528,
+   "file": "date/07-23.mp3",
+   "sha": "214c801370ea",
+   "text": "ਤੇਈ ਜੁਲਾਈ"
+  },
+  "date/07-24": {
+   "bytes": 13824,
+   "file": "date/07-24.mp3",
+   "sha": "45ad74080036",
+   "text": "ਚੌਵੀ ਜੁਲਾਈ"
+  },
+  "date/07-25": {
+   "bytes": 13248,
+   "file": "date/07-25.mp3",
+   "sha": "e1e9f7228927",
+   "text": "ਪੱਚੀ ਜੁਲਾਈ"
+  },
+  "date/07-26": {
+   "bytes": 13248,
+   "file": "date/07-26.mp3",
+   "sha": "8f28d5af734f",
+   "text": "ਛੱਬੀ ਜੁਲਾਈ"
+  },
+  "date/07-27": {
+   "bytes": 13968,
+   "file": "date/07-27.mp3",
+   "sha": "66a792b3a684",
+   "text": "ਸਤਾਈ ਜੁਲਾਈ"
+  },
+  "date/07-28": {
+   "bytes": 13248,
+   "file": "date/07-28.mp3",
+   "sha": "41c8883fb7db",
+   "text": "ਅਠਾਈ ਜੁਲਾਈ"
+  },
+  "date/07-29": {
+   "bytes": 13680,
+   "file": "date/07-29.mp3",
+   "sha": "eb766dd139cf",
+   "text": "ਉਨੱਤੀ ਜੁਲਾਈ"
+  },
+  "date/07-30": {
+   "bytes": 12960,
+   "file": "date/07-30.mp3",
+   "sha": "c40ce22901c9",
+   "text": "ਤੀਹ ਜੁਲਾਈ"
+  },
+  "date/07-31": {
+   "bytes": 13680,
+   "file": "date/07-31.mp3",
+   "sha": "c4e5aceb31fb",
+   "text": "ਇਕੱਤੀ ਜੁਲਾਈ"
+  },
+  "date/08-01": {
+   "bytes": 13824,
+   "file": "date/08-01.mp3",
+   "sha": "a4feba85caa6",
+   "text": "ਪਹਿਲੀ ਅਗਸਤ"
+  },
+  "date/08-02": {
+   "bytes": 13104,
+   "file": "date/08-02.mp3",
+   "sha": "eec5f4232ca8",
+   "text": "ਦੋ ਅਗਸਤ"
+  },
+  "date/08-03": {
+   "bytes": 12672,
+   "file": "date/08-03.mp3",
+   "sha": "363607146e6a",
+   "text": "ਤਿੰਨ ਅਗਸਤ"
+  },
+  "date/08-04": {
+   "bytes": 12816,
+   "file": "date/08-04.mp3",
+   "sha": "47448ddd4445",
+   "text": "ਚਾਰ ਅਗਸਤ"
+  },
+  "date/08-05": {
+   "bytes": 13104,
+   "file": "date/08-05.mp3",
+   "sha": "5011fc5477f1",
+   "text": "ਪੰਜ ਅਗਸਤ"
+  },
+  "date/08-06": {
+   "bytes": 13104,
+   "file": "date/08-06.mp3",
+   "sha": "9bb441dbf28a",
+   "text": "ਛੇ ਅਗਸਤ"
+  },
+  "date/08-07": {
+   "bytes": 13824,
+   "file": "date/08-07.mp3",
+   "sha": "725ff411ca72",
+   "text": "ਸੱਤ ਅਗਸਤ"
+  },
+  "date/08-08": {
+   "bytes": 13392,
+   "file": "date/08-08.mp3",
+   "sha": "bc79d843c9cb",
+   "text": "ਅੱਠ ਅਗਸਤ"
+  },
+  "date/08-09": {
+   "bytes": 12672,
+   "file": "date/08-09.mp3",
+   "sha": "c9b0c14c378c",
+   "text": "ਨੌਂ ਅਗਸਤ"
+  },
+  "date/08-10": {
+   "bytes": 12672,
+   "file": "date/08-10.mp3",
+   "sha": "4d2b89d0de9d",
+   "text": "ਦਸ ਅਗਸਤ"
+  },
+  "date/08-11": {
+   "bytes": 13824,
+   "file": "date/08-11.mp3",
+   "sha": "213208aef844",
+   "text": "ਗਿਆਰਾਂ ਅਗਸਤ"
+  },
+  "date/08-12": {
+   "bytes": 13680,
+   "file": "date/08-12.mp3",
+   "sha": "534ee07c921c",
+   "text": "ਬਾਰਾਂ ਅਗਸਤ"
+  },
+  "date/08-13": {
+   "bytes": 13392,
+   "file": "date/08-13.mp3",
+   "sha": "167895e7c455",
+   "text": "ਤੇਰਾਂ ਅਗਸਤ"
+  },
+  "date/08-14": {
+   "bytes": 14112,
+   "file": "date/08-14.mp3",
+   "sha": "9a045b329e8e",
+   "text": "ਚੌਦਾਂ ਅਗਸਤ"
+  },
+  "date/08-15": {
+   "bytes": 14400,
+   "file": "date/08-15.mp3",
+   "sha": "094efca3d6d5",
+   "text": "ਪੰਦਰਾਂ ਅਗਸਤ"
+  },
+  "date/08-16": {
+   "bytes": 14544,
+   "file": "date/08-16.mp3",
+   "sha": "191259774afd",
+   "text": "ਸੋਲ਼ਾਂ ਅਗਸਤ"
+  },
+  "date/08-17": {
+   "bytes": 14976,
+   "file": "date/08-17.mp3",
+   "sha": "ef7fdc16b34c",
+   "text": "ਸਤਾਰਾਂ ਅਗਸਤ"
+  },
+  "date/08-18": {
+   "bytes": 13824,
+   "file": "date/08-18.mp3",
+   "sha": "cfbfd50ae195",
+   "text": "ਅਠਾਰਾਂ ਅਗਸਤ"
+  },
+  "date/08-19": {
+   "bytes": 13248,
+   "file": "date/08-19.mp3",
+   "sha": "29eb116d2e50",
+   "text": "ਉੱਨੀ ਅਗਸਤ"
+  },
+  "date/08-20": {
+   "bytes": 13392,
+   "file": "date/08-20.mp3",
+   "sha": "4088a76f4cd6",
+   "text": "ਵੀਹ ਅਗਸਤ"
+  },
+  "date/08-21": {
+   "bytes": 13536,
+   "file": "date/08-21.mp3",
+   "sha": "2ef4b37c0948",
+   "text": "ਇੱਕੀ ਅਗਸਤ"
+  },
+  "date/08-22": {
+   "bytes": 13104,
+   "file": "date/08-22.mp3",
+   "sha": "7b66414564f1",
+   "text": "ਬਾਈ ਅਗਸਤ"
+  },
+  "date/08-23": {
+   "bytes": 12960,
+   "file": "date/08-23.mp3",
+   "sha": "677205ec4805",
+   "text": "ਤੇਈ ਅਗਸਤ"
+  },
+  "date/08-24": {
+   "bytes": 13824,
+   "file": "date/08-24.mp3",
+   "sha": "2acecbb74f24",
+   "text": "ਚੌਵੀ ਅਗਸਤ"
+  },
+  "date/08-25": {
+   "bytes": 13968,
+   "file": "date/08-25.mp3",
+   "sha": "23a746815cf0",
+   "text": "ਪੱਚੀ ਅਗਸਤ"
+  },
+  "date/08-26": {
+   "bytes": 13968,
+   "file": "date/08-26.mp3",
+   "sha": "0d951a78dbfe",
+   "text": "ਛੱਬੀ ਅਗਸਤ"
+  },
+  "date/08-27": {
+   "bytes": 14544,
+   "file": "date/08-27.mp3",
+   "sha": "bdb5ad134f3d",
+   "text": "ਸਤਾਈ ਅਗਸਤ"
+  },
+  "date/08-28": {
+   "bytes": 13680,
+   "file": "date/08-28.mp3",
+   "sha": "ef642ab796fb",
+   "text": "ਅਠਾਈ ਅਗਸਤ"
+  },
+  "date/08-29": {
+   "bytes": 13968,
+   "file": "date/08-29.mp3",
+   "sha": "4cc4ae4bc20c",
+   "text": "ਉਨੱਤੀ ਅਗਸਤ"
+  },
+  "date/08-30": {
+   "bytes": 12672,
+   "file": "date/08-30.mp3",
+   "sha": "e827164f8f52",
+   "text": "ਤੀਹ ਅਗਸਤ"
+  },
+  "date/08-31": {
+   "bytes": 14256,
+   "file": "date/08-31.mp3",
+   "sha": "d7c757915d74",
+   "text": "ਇਕੱਤੀ ਅਗਸਤ"
+  },
+  "date/09-01": {
+   "bytes": 14256,
+   "file": "date/09-01.mp3",
+   "sha": "479cb2397348",
+   "text": "ਪਹਿਲੀ ਸਤੰਬਰ"
+  },
+  "date/09-02": {
+   "bytes": 13248,
+   "file": "date/09-02.mp3",
+   "sha": "1dfa24326d6d",
+   "text": "ਦੋ ਸਤੰਬਰ"
+  },
+  "date/09-03": {
+   "bytes": 13680,
+   "file": "date/09-03.mp3",
+   "sha": "de4b39aa2a26",
+   "text": "ਤਿੰਨ ਸਤੰਬਰ"
+  },
+  "date/09-04": {
+   "bytes": 13824,
+   "file": "date/09-04.mp3",
+   "sha": "99dec39831d7",
+   "text": "ਚਾਰ ਸਤੰਬਰ"
+  },
+  "date/09-05": {
+   "bytes": 13248,
+   "file": "date/09-05.mp3",
+   "sha": "5e48c8d549eb",
+   "text": "ਪੰਜ ਸਤੰਬਰ"
+  },
+  "date/09-06": {
+   "bytes": 12960,
+   "file": "date/09-06.mp3",
+   "sha": "f14998bdb512",
+   "text": "ਛੇ ਸਤੰਬਰ"
+  },
+  "date/09-07": {
+   "bytes": 14112,
+   "file": "date/09-07.mp3",
+   "sha": "288f765bac4b",
+   "text": "ਸੱਤ ਸਤੰਬਰ"
+  },
+  "date/09-08": {
+   "bytes": 13536,
+   "file": "date/09-08.mp3",
+   "sha": "1cdcc5359b36",
+   "text": "ਅੱਠ ਸਤੰਬਰ"
+  },
+  "date/09-09": {
+   "bytes": 13248,
+   "file": "date/09-09.mp3",
+   "sha": "ffb845e99713",
+   "text": "ਨੌਂ ਸਤੰਬਰ"
+  },
+  "date/09-10": {
+   "bytes": 13104,
+   "file": "date/09-10.mp3",
+   "sha": "e9fd5a81413f",
+   "text": "ਦਸ ਸਤੰਬਰ"
+  },
+  "date/09-11": {
+   "bytes": 14400,
+   "file": "date/09-11.mp3",
+   "sha": "f3ee592c9b1a",
+   "text": "ਗਿਆਰਾਂ ਸਤੰਬਰ"
+  },
+  "date/09-12": {
+   "bytes": 14544,
+   "file": "date/09-12.mp3",
+   "sha": "bbd6025f4944",
+   "text": "ਬਾਰਾਂ ਸਤੰਬਰ"
+  },
+  "date/09-13": {
+   "bytes": 13824,
+   "file": "date/09-13.mp3",
+   "sha": "7234fc2fdd75",
+   "text": "ਤੇਰਾਂ ਸਤੰਬਰ"
+  },
+  "date/09-14": {
+   "bytes": 14832,
+   "file": "date/09-14.mp3",
+   "sha": "182d414553b2",
+   "text": "ਚੌਦਾਂ ਸਤੰਬਰ"
+  },
+  "date/09-15": {
+   "bytes": 14544,
+   "file": "date/09-15.mp3",
+   "sha": "530442ab5908",
+   "text": "ਪੰਦਰਾਂ ਸਤੰਬਰ"
+  },
+  "date/09-16": {
+   "bytes": 14688,
+   "file": "date/09-16.mp3",
+   "sha": "dae2a60dc3f5",
+   "text": "ਸੋਲ਼ਾਂ ਸਤੰਬਰ"
+  },
+  "date/09-17": {
+   "bytes": 15264,
+   "file": "date/09-17.mp3",
+   "sha": "969280add5cf",
+   "text": "ਸਤਾਰਾਂ ਸਤੰਬਰ"
+  },
+  "date/09-18": {
+   "bytes": 14544,
+   "file": "date/09-18.mp3",
+   "sha": "8cc47d0be428",
+   "text": "ਅਠਾਰਾਂ ਸਤੰਬਰ"
+  },
+  "date/09-19": {
+   "bytes": 13536,
+   "file": "date/09-19.mp3",
+   "sha": "d45747908cf0",
+   "text": "ਉੱਨੀ ਸਤੰਬਰ"
+  },
+  "date/09-20": {
+   "bytes": 13536,
+   "file": "date/09-20.mp3",
+   "sha": "a9951a5b893c",
+   "text": "ਵੀਹ ਸਤੰਬਰ"
+  },
+  "date/09-21": {
+   "bytes": 13824,
+   "file": "date/09-21.mp3",
+   "sha": "e47af8f9accd",
+   "text": "ਇੱਕੀ ਸਤੰਬਰ"
+  },
+  "date/09-22": {
+   "bytes": 13824,
+   "file": "date/09-22.mp3",
+   "sha": "04369fdaeb2c",
+   "text": "ਬਾਈ ਸਤੰਬਰ"
+  },
+  "date/09-23": {
+   "bytes": 13392,
+   "file": "date/09-23.mp3",
+   "sha": "6c015492b73c",
+   "text": "ਤੇਈ ਸਤੰਬਰ"
+  },
+  "date/09-24": {
+   "bytes": 14400,
+   "file": "date/09-24.mp3",
+   "sha": "c7ebf10bb490",
+   "text": "ਚੌਵੀ ਸਤੰਬਰ"
+  },
+  "date/09-25": {
+   "bytes": 14112,
+   "file": "date/09-25.mp3",
+   "sha": "8e9f1b0c6d4b",
+   "text": "ਪੱਚੀ ਸਤੰਬਰ"
+  },
+  "date/09-26": {
+   "bytes": 14256,
+   "file": "date/09-26.mp3",
+   "sha": "b9c755c1aafd",
+   "text": "ਛੱਬੀ ਸਤੰਬਰ"
+  },
+  "date/09-27": {
+   "bytes": 14688,
+   "file": "date/09-27.mp3",
+   "sha": "986f78d181c2",
+   "text": "ਸਤਾਈ ਸਤੰਬਰ"
+  },
+  "date/09-28": {
+   "bytes": 14112,
+   "file": "date/09-28.mp3",
+   "sha": "3dbeab571584",
+   "text": "ਅਠਾਈ ਸਤੰਬਰ"
+  },
+  "date/09-29": {
+   "bytes": 14544,
+   "file": "date/09-29.mp3",
+   "sha": "3a8ed965e7ff",
+   "text": "ਉਨੱਤੀ ਸਤੰਬਰ"
+  },
+  "date/09-30": {
+   "bytes": 13104,
+   "file": "date/09-30.mp3",
+   "sha": "e21b27fb7f95",
+   "text": "ਤੀਹ ਸਤੰਬਰ"
+  },
+  "date/10-01": {
+   "bytes": 13968,
+   "file": "date/10-01.mp3",
+   "sha": "f23cbb835d94",
+   "text": "ਪਹਿਲੀ ਅਕਤੂਬਰ"
+  },
+  "date/10-02": {
+   "bytes": 12816,
+   "file": "date/10-02.mp3",
+   "sha": "8930fa928cee",
+   "text": "ਦੋ ਅਕਤੂਬਰ"
+  },
+  "date/10-03": {
+   "bytes": 12960,
+   "file": "date/10-03.mp3",
+   "sha": "264f610918a6",
+   "text": "ਤਿੰਨ ਅਕਤੂਬਰ"
+  },
+  "date/10-04": {
+   "bytes": 12960,
+   "file": "date/10-04.mp3",
+   "sha": "9f6dd8f38b40",
+   "text": "ਚਾਰ ਅਕਤੂਬਰ"
+  },
+  "date/10-05": {
+   "bytes": 13248,
+   "file": "date/10-05.mp3",
+   "sha": "6a323430425c",
+   "text": "ਪੰਜ ਅਕਤੂਬਰ"
+  },
+  "date/10-06": {
+   "bytes": 12816,
+   "file": "date/10-06.mp3",
+   "sha": "63701fac8023",
+   "text": "ਛੇ ਅਕਤੂਬਰ"
+  },
+  "date/10-07": {
+   "bytes": 13536,
+   "file": "date/10-07.mp3",
+   "sha": "7be57a214cf5",
+   "text": "ਸੱਤ ਅਕਤੂਬਰ"
+  },
+  "date/10-08": {
+   "bytes": 13248,
+   "file": "date/10-08.mp3",
+   "sha": "6df02a58f860",
+   "text": "ਅੱਠ ਅਕਤੂਬਰ"
+  },
+  "date/10-09": {
+   "bytes": 13248,
+   "file": "date/10-09.mp3",
+   "sha": "58d5ec2d0ccc",
+   "text": "ਨੌਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-10": {
+   "bytes": 13104,
+   "file": "date/10-10.mp3",
+   "sha": "b768bcba45b7",
+   "text": "ਦਸ ਅਕਤੂਬਰ"
+  },
+  "date/10-11": {
+   "bytes": 14400,
+   "file": "date/10-11.mp3",
+   "sha": "999624899506",
+   "text": "ਗਿਆਰਾਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-12": {
+   "bytes": 14400,
+   "file": "date/10-12.mp3",
+   "sha": "bd916cc5c316",
+   "text": "ਬਾਰਾਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-13": {
+   "bytes": 13824,
+   "file": "date/10-13.mp3",
+   "sha": "74d87572198f",
+   "text": "ਤੇਰਾਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-14": {
+   "bytes": 14688,
+   "file": "date/10-14.mp3",
+   "sha": "b456a3b49f21",
+   "text": "ਚੌਦਾਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-15": {
+   "bytes": 14544,
+   "file": "date/10-15.mp3",
+   "sha": "27ec75386a50",
+   "text": "ਪੰਦਰਾਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-16": {
+   "bytes": 14832,
+   "file": "date/10-16.mp3",
+   "sha": "65fe86e2a142",
+   "text": "ਸੋਲ਼ਾਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-17": {
+   "bytes": 15264,
+   "file": "date/10-17.mp3",
+   "sha": "17bca897cefe",
+   "text": "ਸਤਾਰਾਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-18": {
+   "bytes": 14400,
+   "file": "date/10-18.mp3",
+   "sha": "28a8d057bb5e",
+   "text": "ਅਠਾਰਾਂ ਅਕਤੂਬਰ"
+  },
+  "date/10-19": {
+   "bytes": 13248,
+   "file": "date/10-19.mp3",
+   "sha": "6b4fba583457",
+   "text": "ਉੱਨੀ ਅਕਤੂਬਰ"
+  },
+  "date/10-20": {
+   "bytes": 13104,
+   "file": "date/10-20.mp3",
+   "sha": "07c4c30f2e72",
+   "text": "ਵੀਹ ਅਕਤੂਬਰ"
+  },
+  "date/10-21": {
+   "bytes": 13536,
+   "file": "date/10-21.mp3",
+   "sha": "443fcc6fb5f9",
+   "text": "ਇੱਕੀ ਅਕਤੂਬਰ"
+  },
+  "date/10-22": {
+   "bytes": 13680,
+   "file": "date/10-22.mp3",
+   "sha": "763a1c795bb7",
+   "text": "ਬਾਈ ਅਕਤੂਬਰ"
+  },
+  "date/10-23": {
+   "bytes": 13104,
+   "file": "date/10-23.mp3",
+   "sha": "15fe4db11686",
+   "text": "ਤੇਈ ਅਕਤੂਬਰ"
+  },
+  "date/10-24": {
+   "bytes": 14256,
+   "file": "date/10-24.mp3",
+   "sha": "5c65debdcbc3",
+   "text": "ਚੌਵੀ ਅਕਤੂਬਰ"
+  },
+  "date/10-25": {
+   "bytes": 13824,
+   "file": "date/10-25.mp3",
+   "sha": "57b83310a853",
+   "text": "ਪੱਚੀ ਅਕਤੂਬਰ"
+  },
+  "date/10-26": {
+   "bytes": 14112,
+   "file": "date/10-26.mp3",
+   "sha": "0dafff06fa62",
+   "text": "ਛੱਬੀ ਅਕਤੂਬਰ"
+  },
+  "date/10-27": {
+   "bytes": 14544,
+   "file": "date/10-27.mp3",
+   "sha": "74e5aca8ca6a",
+   "text": "ਸਤਾਈ ਅਕਤੂਬਰ"
+  },
+  "date/10-28": {
+   "bytes": 13968,
+   "file": "date/10-28.mp3",
+   "sha": "859cbe3aa140",
+   "text": "ਅਠਾਈ ਅਕਤੂਬਰ"
+  },
+  "date/10-29": {
+   "bytes": 14112,
+   "file": "date/10-29.mp3",
+   "sha": "bfe4f029a352",
+   "text": "ਉਨੱਤੀ ਅਕਤੂਬਰ"
+  },
+  "date/10-30": {
+   "bytes": 12960,
+   "file": "date/10-30.mp3",
+   "sha": "8d685f41fa53",
+   "text": "ਤੀਹ ਅਕਤੂਬਰ"
+  },
+  "date/10-31": {
+   "bytes": 14832,
+   "file": "date/10-31.mp3",
+   "sha": "4ac9b940d012",
+   "text": "ਇਕੱਤੀ ਅਕਤੂਬਰ"
+  },
+  "date/11-01": {
+   "bytes": 13536,
+   "file": "date/11-01.mp3",
+   "sha": "4f567af9ce95",
+   "text": "ਪਹਿਲੀ ਨਵੰਬਰ"
+  },
+  "date/11-02": {
+   "bytes": 12816,
+   "file": "date/11-02.mp3",
+   "sha": "275a5e712850",
+   "text": "ਦੋ ਨਵੰਬਰ"
+  },
+  "date/11-03": {
+   "bytes": 13248,
+   "file": "date/11-03.mp3",
+   "sha": "b7ca0d37ae82",
+   "text": "ਤਿੰਨ ਨਵੰਬਰ"
+  },
+  "date/11-04": {
+   "bytes": 13536,
+   "file": "date/11-04.mp3",
+   "sha": "82592651afcf",
+   "text": "ਚਾਰ ਨਵੰਬਰ"
+  },
+  "date/11-05": {
+   "bytes": 13104,
+   "file": "date/11-05.mp3",
+   "sha": "a6f7ba8ab9e8",
+   "text": "ਪੰਜ ਨਵੰਬਰ"
+  },
+  "date/11-06": {
+   "bytes": 12816,
+   "file": "date/11-06.mp3",
+   "sha": "be220276ed69",
+   "text": "ਛੇ ਨਵੰਬਰ"
+  },
+  "date/11-07": {
+   "bytes": 13968,
+   "file": "date/11-07.mp3",
+   "sha": "893829fcb494",
+   "text": "ਸੱਤ ਨਵੰਬਰ"
+  },
+  "date/11-08": {
+   "bytes": 13392,
+   "file": "date/11-08.mp3",
+   "sha": "bce88a10c9f2",
+   "text": "ਅੱਠ ਨਵੰਬਰ"
+  },
+  "date/11-09": {
+   "bytes": 13104,
+   "file": "date/11-09.mp3",
+   "sha": "2b748c13bf16",
+   "text": "ਨੌਂ ਨਵੰਬਰ"
+  },
+  "date/11-10": {
+   "bytes": 12960,
+   "file": "date/11-10.mp3",
+   "sha": "5780e03d2911",
+   "text": "ਦਸ ਨਵੰਬਰ"
+  },
+  "date/11-11": {
+   "bytes": 13968,
+   "file": "date/11-11.mp3",
+   "sha": "2bec665ebeba",
+   "text": "ਗਿਆਰਾਂ ਨਵੰਬਰ"
+  },
+  "date/11-12": {
+   "bytes": 14256,
+   "file": "date/11-12.mp3",
+   "sha": "73042af31364",
+   "text": "ਬਾਰਾਂ ਨਵੰਬਰ"
+  },
+  "date/11-13": {
+   "bytes": 13824,
+   "file": "date/11-13.mp3",
+   "sha": "bcccfff7d9f4",
+   "text": "ਤੇਰਾਂ ਨਵੰਬਰ"
+  },
+  "date/11-14": {
+   "bytes": 14832,
+   "file": "date/11-14.mp3",
+   "sha": "1c1dd2c74cb4",
+   "text": "ਚੌਦਾਂ ਨਵੰਬਰ"
+  },
+  "date/11-15": {
+   "bytes": 14400,
+   "file": "date/11-15.mp3",
+   "sha": "80d24f837e21",
+   "text": "ਪੰਦਰਾਂ ਨਵੰਬਰ"
+  },
+  "date/11-16": {
+   "bytes": 14688,
+   "file": "date/11-16.mp3",
+   "sha": "6e3d50bb3397",
+   "text": "ਸੋਲ਼ਾਂ ਨਵੰਬਰ"
+  },
+  "date/11-17": {
+   "bytes": 15120,
+   "file": "date/11-17.mp3",
+   "sha": "46f64b9992c8",
+   "text": "ਸਤਾਰਾਂ ਨਵੰਬਰ"
+  },
+  "date/11-18": {
+   "bytes": 14256,
+   "file": "date/11-18.mp3",
+   "sha": "92bc9f4ff9f3",
+   "text": "ਅਠਾਰਾਂ ਨਵੰਬਰ"
+  },
+  "date/11-19": {
+   "bytes": 12816,
+   "file": "date/11-19.mp3",
+   "sha": "f00bec20b666",
+   "text": "ਉੱਨੀ ਨਵੰਬਰ"
+  },
+  "date/11-20": {
+   "bytes": 13392,
+   "file": "date/11-20.mp3",
+   "sha": "6502d5237174",
+   "text": "ਵੀਹ ਨਵੰਬਰ"
+  },
+  "date/11-21": {
+   "bytes": 13536,
+   "file": "date/11-21.mp3",
+   "sha": "c0287250043a",
+   "text": "ਇੱਕੀ ਨਵੰਬਰ"
+  },
+  "date/11-22": {
+   "bytes": 13392,
+   "file": "date/11-22.mp3",
+   "sha": "eb647fe59e1f",
+   "text": "ਬਾਈ ਨਵੰਬਰ"
+  },
+  "date/11-23": {
+   "bytes": 12960,
+   "file": "date/11-23.mp3",
+   "sha": "b44dec170b94",
+   "text": "ਤੇਈ ਨਵੰਬਰ"
+  },
+  "date/11-24": {
+   "bytes": 14112,
+   "file": "date/11-24.mp3",
+   "sha": "bf7cd375d810",
+   "text": "ਚੌਵੀ ਨਵੰਬਰ"
+  },
+  "date/11-25": {
+   "bytes": 13824,
+   "file": "date/11-25.mp3",
+   "sha": "92eff8b11883",
+   "text": "ਪੱਚੀ ਨਵੰਬਰ"
+  },
+  "date/11-26": {
+   "bytes": 13680,
+   "file": "date/11-26.mp3",
+   "sha": "76b2948506aa",
+   "text": "ਛੱਬੀ ਨਵੰਬਰ"
+  },
+  "date/11-27": {
+   "bytes": 14400,
+   "file": "date/11-27.mp3",
+   "sha": "36fdbed12a5a",
+   "text": "ਸਤਾਈ ਨਵੰਬਰ"
+  },
+  "date/11-28": {
+   "bytes": 13824,
+   "file": "date/11-28.mp3",
+   "sha": "44131e6d83bf",
+   "text": "ਅਠਾਈ ਨਵੰਬਰ"
+  },
+  "date/11-29": {
+   "bytes": 14256,
+   "file": "date/11-29.mp3",
+   "sha": "8ba72c77d2a3",
+   "text": "ਉਨੱਤੀ ਨਵੰਬਰ"
+  },
+  "date/11-30": {
+   "bytes": 12960,
+   "file": "date/11-30.mp3",
+   "sha": "9575675741f4",
+   "text": "ਤੀਹ ਨਵੰਬਰ"
+  },
+  "date/12-01": {
+   "bytes": 14112,
+   "file": "date/12-01.mp3",
+   "sha": "64b8ba45a8cf",
+   "text": "ਪਹਿਲੀ ਦਸੰਬਰ"
+  },
+  "date/12-02": {
+   "bytes": 13104,
+   "file": "date/12-02.mp3",
+   "sha": "9535dc30376c",
+   "text": "ਦੋ ਦਸੰਬਰ"
+  },
+  "date/12-03": {
+   "bytes": 13392,
+   "file": "date/12-03.mp3",
+   "sha": "25bb66646329",
+   "text": "ਤਿੰਨ ਦਸੰਬਰ"
+  },
+  "date/12-04": {
+   "bytes": 13968,
+   "file": "date/12-04.mp3",
+   "sha": "87d648a54178",
+   "text": "ਚਾਰ ਦਸੰਬਰ"
+  },
+  "date/12-05": {
+   "bytes": 13536,
+   "file": "date/12-05.mp3",
+   "sha": "5bab5b6d3d09",
+   "text": "ਪੰਜ ਦਸੰਬਰ"
+  },
+  "date/12-06": {
+   "bytes": 13248,
+   "file": "date/12-06.mp3",
+   "sha": "205723202ccc",
+   "text": "ਛੇ ਦਸੰਬਰ"
+  },
+  "date/12-07": {
+   "bytes": 14400,
+   "file": "date/12-07.mp3",
+   "sha": "47cebf984e56",
+   "text": "ਸੱਤ ਦਸੰਬਰ"
+  },
+  "date/12-08": {
+   "bytes": 13536,
+   "file": "date/12-08.mp3",
+   "sha": "f6bc2f2fe719",
+   "text": "ਅੱਠ ਦਸੰਬਰ"
+  },
+  "date/12-09": {
+   "bytes": 13248,
+   "file": "date/12-09.mp3",
+   "sha": "59642199f15b",
+   "text": "ਨੌਂ ਦਸੰਬਰ"
+  },
+  "date/12-10": {
+   "bytes": 13536,
+   "file": "date/12-10.mp3",
+   "sha": "bee65b1333c6",
+   "text": "ਦਸ ਦਸੰਬਰ"
+  },
+  "date/12-11": {
+   "bytes": 14688,
+   "file": "date/12-11.mp3",
+   "sha": "151588a0e36f",
+   "text": "ਗਿਆਰਾਂ ਦਸੰਬਰ"
+  },
+  "date/12-12": {
+   "bytes": 14832,
+   "file": "date/12-12.mp3",
+   "sha": "d67b55a8728d",
+   "text": "ਬਾਰਾਂ ਦਸੰਬਰ"
+  },
+  "date/12-13": {
+   "bytes": 13968,
+   "file": "date/12-13.mp3",
+   "sha": "406562b0a4fc",
+   "text": "ਤੇਰਾਂ ਦਸੰਬਰ"
+  },
+  "date/12-14": {
+   "bytes": 14688,
+   "file": "date/12-14.mp3",
+   "sha": "259a199120fc",
+   "text": "ਚੌਦਾਂ ਦਸੰਬਰ"
+  },
+  "date/12-15": {
+   "bytes": 14976,
+   "file": "date/12-15.mp3",
+   "sha": "091de9f00665",
+   "text": "ਪੰਦਰਾਂ ਦਸੰਬਰ"
+  },
+  "date/12-16": {
+   "bytes": 15120,
+   "file": "date/12-16.mp3",
+   "sha": "397e8907157f",
+   "text": "ਸੋਲ਼ਾਂ ਦਸੰਬਰ"
+  },
+  "date/12-17": {
+   "bytes": 15408,
+   "file": "date/12-17.mp3",
+   "sha": "188f51fedcca",
+   "text": "ਸਤਾਰਾਂ ਦਸੰਬਰ"
+  },
+  "date/12-18": {
+   "bytes": 14688,
+   "file": "date/12-18.mp3",
+   "sha": "83c84a56111b",
+   "text": "ਅਠਾਰਾਂ ਦਸੰਬਰ"
+  },
+  "date/12-19": {
+   "bytes": 13248,
+   "file": "date/12-19.mp3",
+   "sha": "d6f13b7b8269",
+   "text": "ਉੱਨੀ ਦਸੰਬਰ"
+  },
+  "date/12-20": {
+   "bytes": 13680,
+   "file": "date/12-20.mp3",
+   "sha": "a9b5063233a4",
+   "text": "ਵੀਹ ਦਸੰਬਰ"
+  },
+  "date/12-21": {
+   "bytes": 13680,
+   "file": "date/12-21.mp3",
+   "sha": "82c0d68a6016",
+   "text": "ਇੱਕੀ ਦਸੰਬਰ"
+  },
+  "date/12-22": {
+   "bytes": 13824,
+   "file": "date/12-22.mp3",
+   "sha": "7dcec23e1c70",
+   "text": "ਬਾਈ ਦਸੰਬਰ"
+  },
+  "date/12-23": {
+   "bytes": 13248,
+   "file": "date/12-23.mp3",
+   "sha": "9f5f5b5b0b8b",
+   "text": "ਤੇਈ ਦਸੰਬਰ"
+  },
+  "date/12-24": {
+   "bytes": 14544,
+   "file": "date/12-24.mp3",
+   "sha": "9be2f9d29987",
+   "text": "ਚੌਵੀ ਦਸੰਬਰ"
+  },
+  "date/12-25": {
+   "bytes": 14256,
+   "file": "date/12-25.mp3",
+   "sha": "71d4744ab0e4",
+   "text": "ਪੱਚੀ ਦਸੰਬਰ"
+  },
+  "date/12-26": {
+   "bytes": 14544,
+   "file": "date/12-26.mp3",
+   "sha": "482bd92e7e57",
+   "text": "ਛੱਬੀ ਦਸੰਬਰ"
+  },
+  "date/12-27": {
+   "bytes": 14832,
+   "file": "date/12-27.mp3",
+   "sha": "4102f0f35a17",
+   "text": "ਸਤਾਈ ਦਸੰਬਰ"
+  },
+  "date/12-28": {
+   "bytes": 13968,
+   "file": "date/12-28.mp3",
+   "sha": "ad8e7afb7e27",
+   "text": "ਅਠਾਈ ਦਸੰਬਰ"
+  },
+  "date/12-29": {
+   "bytes": 14400,
+   "file": "date/12-29.mp3",
+   "sha": "bdababd84d27",
+   "text": "ਉਨੱਤੀ ਦਸੰਬਰ"
+  },
+  "date/12-30": {
+   "bytes": 13248,
+   "file": "date/12-30.mp3",
+   "sha": "20f215c21295",
+   "text": "ਤੀਹ ਦਸੰਬਰ"
+  },
+  "date/12-31": {
+   "bytes": 14688,
+   "file": "date/12-31.mp3",
+   "sha": "ea7f82254cd8",
+   "text": "ਇਕੱਤੀ ਦਸੰਬਰ"
+  },
+  "digit/0": {
+   "bytes": 11232,
+   "file": "digit/0.mp3",
+   "sha": "24f88722ee5a",
+   "text": "ਜ਼ੀਰੋ"
+  },
+  "digit/1": {
+   "bytes": 11232,
+   "file": "digit/1.mp3",
+   "sha": "6da19c9c886b",
+   "text": "ਇੱਕ"
+  },
+  "digit/2": {
+   "bytes": 11232,
+   "file": "digit/2.mp3",
+   "sha": "eefa85423dd5",
+   "text": "ਦੋ"
+  },
+  "digit/3": {
+   "bytes": 11232,
+   "file": "digit/3.mp3",
+   "sha": "d62387a95aa7",
+   "text": "ਤਿੰਨ"
+  },
+  "digit/4": {
+   "bytes": 11232,
+   "file": "digit/4.mp3",
+   "sha": "d05e6258e770",
+   "text": "ਚਾਰ"
+  },
+  "digit/5": {
+   "bytes": 11232,
+   "file": "digit/5.mp3",
+   "sha": "3051d2818292",
+   "text": "ਪੰਜ"
+  },
+  "digit/6": {
+   "bytes": 9936,
+   "file": "digit/6.mp3",
+   "sha": "a947a75a39e2",
+   "text": "ਛੇ"
+  },
+  "digit/7": {
+   "bytes": 11232,
+   "file": "digit/7.mp3",
+   "sha": "d98aa7ae7eab",
+   "text": "ਸੱਤ"
+  },
+  "digit/8": {
+   "bytes": 11232,
+   "file": "digit/8.mp3",
+   "sha": "a07aa1ad38d0",
+   "text": "ਅੱਠ"
+  },
+  "digit/9": {
+   "bytes": 11232,
+   "file": "digit/9.mp3",
+   "sha": "18099c651247",
+   "text": "ਨੌਂ"
+  },
+  "machine/baler": {
+   "bytes": 11232,
+   "file": "machine/baler.mp3",
+   "sha": "dc01cff9a02a",
+   "text": "ਬੇਲਰ"
+  },
+  "machine/happy_seeder": {
+   "bytes": 13104,
+   "file": "machine/happy_seeder.mp3",
+   "sha": "1fa0cdf8700e",
+   "text": "ਹੈਪੀ ਸੀਡਰ"
+  },
+  "machine/mulcher": {
+   "bytes": 11232,
+   "file": "machine/mulcher.mp3",
+   "sha": "53ce455161e9",
+   "text": "ਮਲਚਰ"
+  },
+  "machine/super_seeder": {
+   "bytes": 13536,
+   "file": "machine/super_seeder.mp3",
+   "sha": "ccd5c63082a8",
+   "text": "ਸੁਪਰ ਸੀਡਰ"
+  },
+  "prompt/about": {
+   "bytes": 11232,
+   "file": "prompt/about.mp3",
+   "sha": "bcf874df8e46",
+   "text": "ਲਗਭਗ"
+  },
+  "prompt/acres_range": {
+   "bytes": 45360,
+   "file": "prompt/acres_range.mp3",
+   "sha": "efb8a2d2068f",
+   "text": "ਏਕੜ ਚੌਥਾਈ ਤੋਂ ਦੋ ਸੌ ਦੇ ਵਿੱਚ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ ਜੀ। ਦੁਬਾਰਾ ਦੱਸੋ।"
+  },
+  "prompt/acres_unknown": {
+   "bytes": 33696,
+   "file": "prompt/acres_unknown.mp3",
+   "sha": "9ae3b716cfc6",
+   "text": "ਏਕੜ ਸਮਝ ਨਹੀਂ ਆਏ ਜੀ। ਜਿਵੇਂ ਬੋਲੋ ਪੰਜ ਏਕੜ।"
+  },
+  "prompt/ask_acres": {
+   "bytes": 45216,
+   "file": "prompt/ask_acres.mp3",
+   "sha": "d0ae29d4fb63",
+   "text": "ਕਿੰਨੇ ਏਕੜ ਵਿੱਚ ਕੰਮ ਕਰਵਾਉਣਾ ਹੈ ਜੀ? ਜਿਵੇਂ ਪੰਜ ਏਕੜ ਜਾਂ ਸਾਢੇ ਤਿੰਨ ਏਕੜ।"
+  },
+  "prompt/ask_consent": {
+   "bytes": 67824,
+   "file": "prompt/ask_consent.mp3",
+   "sha": "44e4767d837c",
+   "text": "ਤੁਹਾਡਾ ਨੰਬਰ ਤੇ ਖੇਤ ਦੀ ਜਾਣਕਾਰੀ ਸਿਰਫ਼ ਮਸ਼ੀਨ ਦੀ ਵਾਰੀ ਅਤੇ ਕੰਮ ਦੇ ਰਿਕਾਰਡ ਲਈ ਵਰਤੀ ਜਾਵੇਗੀ। ਕੀ ਬੁਕਿੰਗ ਪੱਕੀ ਕਰ ਦੇਈਏ ਜੀ?"
+  },
+  "prompt/ask_date": {
+   "bytes": 70848,
+   "file": "prompt/ask_date.mp3",
+   "sha": "883706cc9058",
+   "text": "ਝੋਨੇ ਦੀ ਕਟਾਈ ਕਦੋਂ ਹੋਈ ਹੈ ਜਾਂ ਕਦੋਂ ਹੋਣੀ ਹੈ ਜੀ? ਜਿਵੇਂ ਅੱਜ ਕੱਲ੍ਹ ਜਾਂ ਪੰਦਰਾਂ ਨਵੰਬਰ। ਜੇ ਪਤਾ ਨਹੀਂ ਤਾਂ ਕਹੋ ਪਤਾ ਨਹੀਂ।"
+  },
+  "prompt/ask_machine": {
+   "bytes": 47232,
+   "file": "prompt/ask_machine.mp3",
+   "sha": "84c21f7f28c4",
+   "text": "ਤੁਹਾਨੂੰ ਕਿਹੜੀ ਮਸ਼ੀਨ ਚਾਹੀਦੀ ਹੈ ਜੀ? ਸੁਪਰ ਸੀਡਰ ਹੈਪੀ ਸੀਡਰ ਬੇਲਰ ਜਾਂ ਮਲਚਰ?"
+  },
+  "prompt/ask_phone": {
+   "bytes": 32688,
+   "file": "prompt/ask_phone.mp3",
+   "sha": "7bd36d71e1cf",
+   "text": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਦਸ ਅੰਕਾਂ ਦਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦੱਸੋ ਜੀ।"
+  },
+  "prompt/ask_village": {
+   "bytes": 37152,
+   "file": "prompt/ask_village.mp3",
+   "sha": "6d452b99fac7",
+   "text": "ਤੁਹਾਡਾ ਖੇਤ ਕਿਹੜੇ ਪਿੰਡ ਵਿੱਚ ਹੈ ਜੀ? ਪਿੰਡ ਦਾ ਨਾਂ ਦੱਸੋ।"
+  },
+  "prompt/booking_cancelled": {
+   "bytes": 45936,
+   "file": "prompt/booking_cancelled.mp3",
+   "sha": "b2ff5b087b1f",
+   "text": "ਠੀਕ ਹੈ ਜੀ ਬੁਕਿੰਗ ਨਹੀਂ ਕੀਤੀ। ਕੋਈ ਜਾਣਕਾਰੀ ਬਦਲਣੀ ਹੋਵੇ ਤਾਂ ਉੱਪਰੋਂ ਚੁਣੋ।"
+  },
+  "prompt/confirm_q": {
+   "bytes": 15984,
+   "file": "prompt/confirm_q.mp3",
+   "sha": "751d6e7aa382",
+   "text": "ਕੀ ਇਹ ਠੀਕ ਹੈ ਜੀ?"
+  },
+  "prompt/confirm_unknown": {
+   "bytes": 21888,
+   "file": "prompt/confirm_unknown.mp3",
+   "sha": "950eedbb941a",
+   "text": "ਹਾਂ ਜਾਂ ਨਹੀਂ ਵਿੱਚ ਜਵਾਬ ਦਿਓ ਜੀ।"
+  },
+  "prompt/date_not_yet": {
+   "bytes": 22320,
+   "file": "prompt/date_not_yet.mp3",
+   "sha": "d7b4455d28e8",
+   "text": "ਕਟਾਈ ਦੀ ਤਾਰੀਖ਼ ਹਾਲੇ ਪੱਕੀ ਨਹੀਂ।"
+  },
+  "prompt/date_range": {
+   "bytes": 43200,
+   "file": "prompt/date_range.mp3",
+   "sha": "2a00cc71c908",
+   "text": "ਇਹ ਤਾਰੀਖ਼ ਬਹੁਤ ਦੂਰ ਹੈ ਜੀ। ਦੋ ਮਹੀਨਿਆਂ ਦੇ ਅੰਦਰ ਦੀ ਤਾਰੀਖ਼ ਦੱਸੋ।"
+  },
+  "prompt/date_unknown": {
+   "bytes": 44640,
+   "file": "prompt/date_unknown.mp3",
+   "sha": "8ec5703d7ba6",
+   "text": "ਤਾਰੀਖ਼ ਸਮਝ ਨਹੀਂ ਆਈ ਜੀ। ਜਿਵੇਂ ਬੋਲੋ ਅੱਜ ਕੱਲ੍ਹ ਜਾਂ ਪੰਦਰਾਂ ਨਵੰਬਰ।"
+  },
+  "prompt/date_which_kal": {
+   "bytes": 23040,
+   "file": "prompt/date_which_kal.mp3",
+   "sha": "67f5bfacc1c1",
+   "text": "ਬੀਤਿਆ ਕੱਲ੍ਹ ਜਾਂ ਆਉਣ ਵਾਲਾ ਕੱਲ੍ਹ ਜੀ?"
+  },
+  "prompt/done_needs_info": {
+   "bytes": 59904,
+   "file": "prompt/done_needs_info.mp3",
+   "sha": "182e5cfb67b2",
+   "text": "ਤੁਹਾਡੀ ਬੇਨਤੀ ਦਰਜ ਹੋ ਗਈ ਹੈ ਜੀ। ਕਟਾਈ ਦੀ ਤਾਰੀਖ਼ ਪੱਕੀ ਹੋਣ ਤੇ ਵਾਰੀ ਲੱਗੇਗੀ। ਧੰਨਵਾਦ ਜੀ।"
+  },
+  "prompt/done_open": {
+   "bytes": 61200,
+   "file": "prompt/done_open.mp3",
+   "sha": "51c80892e17c",
+   "text": "ਤੁਹਾਡੀ ਬੇਨਤੀ ਦਰਜ ਹੋ ਗਈ ਹੈ ਜੀ। ਵਾਰੀ ਲੱਗਣ ਤੇ ਸੈਂਟਰ ਤੋਂ ਤੁਹਾਨੂੰ ਦੱਸਿਆ ਜਾਵੇਗਾ। ਧੰਨਵਾਦ ਜੀ।"
+  },
+  "prompt/done_sched_post": {
+   "bytes": 30384,
+   "file": "prompt/done_sched_post.mp3",
+   "sha": "65e11686434e",
+   "text": "ਨੂੰ ਤੁਹਾਡੇ ਖੇਤ ਆਵੇਗੀ। ਧੰਨਵਾਦ ਜੀ।"
+  },
+  "prompt/done_sched_pre": {
+   "bytes": 30096,
+   "file": "prompt/done_sched_pre.mp3",
+   "sha": "ab16b07c885d",
+   "text": "ਤੁਹਾਡੀ ਵਾਰੀ ਲੱਗ ਗਈ ਹੈ ਜੀ। ਮਸ਼ੀਨ"
+  },
+  "prompt/done_will_miss": {
+   "bytes": 64224,
+   "file": "prompt/done_will_miss.mp3",
+   "sha": "3482603cf849",
+   "text": "ਤੁਹਾਡੀ ਬੇਨਤੀ ਦਰਜ ਹੋ ਗਈ ਹੈ ਜੀ ਪਰ ਹਾਲੇ ਸਮੇਂ ਸਿਰ ਮਸ਼ੀਨ ਖ਼ਾਲੀ ਨਹੀਂ ਹੈ। ਸੈਂਟਰ ਵਾਲੇ ਤੁਹਾਡੇ ਨਾਲ ਜਲਦੀ ਗੱਲ ਕਰਨਗੇ।"
+  },
+  "prompt/frac_paune": {
+   "bytes": 11232,
+   "file": "prompt/frac_paune.mp3",
+   "sha": "f41ba2668762",
+   "text": "ਪੌਣੇ"
+  },
+  "prompt/frac_saadhe": {
+   "bytes": 11232,
+   "file": "prompt/frac_saadhe.mp3",
+   "sha": "e75e15912239",
+   "text": "ਸਾਢੇ"
+  },
+  "prompt/frac_sava": {
+   "bytes": 11232,
+   "file": "prompt/frac_sava.mp3",
+   "sha": "f62b27a476c9",
+   "text": "ਸਵਾ"
+  },
+  "prompt/machine_unknown": {
+   "bytes": 55584,
+   "file": "prompt/machine_unknown.mp3",
+   "sha": "4706b2811cd1",
+   "text": "ਮਸ਼ੀਨ ਦਾ ਨਾਂ ਸਮਝ ਨਹੀਂ ਆਇਆ ਜੀ। ਸੁਪਰ ਸੀਡਰ ਹੈਪੀ ਸੀਡਰ ਬੇਲਰ ਜਾਂ ਮਲਚਰ ਵਿੱਚੋਂ ਇੱਕ ਬੋਲੋ।"
+  },
+  "prompt/machine_which_seeder": {
+   "bytes": 27648,
+   "file": "prompt/machine_which_seeder.mp3",
+   "sha": "8fc70e066ab6",
+   "text": "ਸੁਪਰ ਸੀਡਰ ਚਾਹੀਦਾ ਹੈ ਜਾਂ ਹੈਪੀ ਸੀਡਰ ਜੀ?"
+  },
+  "prompt/mic_off": {
+   "bytes": 39888,
+   "file": "prompt/mic_off.mp3",
+   "sha": "28df99bd2fc5",
+   "text": "ਮਾਈਕ ਬੰਦ ਹੈ ਜੀ। ਤੁਸੀਂ ਹੇਠਾਂ ਲਿਖ ਕੇ ਵੀ ਜਵਾਬ ਦੇ ਸਕਦੇ ਹੋ।"
+  },
+  "prompt/no_speech": {
+   "bytes": 35856,
+   "file": "prompt/no_speech.mp3",
+   "sha": "6d3e8a1e2afe",
+   "text": "ਕੋਈ ਆਵਾਜ਼ ਨਹੀਂ ਆਈ ਜੀ। ਮਾਈਕ ਦਬਾ ਕੇ ਫਿਰ ਬੋਲੋ।"
+  },
+  "prompt/ok_next": {
+   "bytes": 12960,
+   "file": "prompt/ok_next.mp3",
+   "sha": "f5aa6a38caea",
+   "text": "ਠੀਕ ਹੈ ਜੀ।"
+  },
+  "prompt/phone_continue": {
+   "bytes": 28656,
+   "file": "prompt/phone_continue.mp3",
+   "sha": "6a9b0f41d2bf",
+   "text": "ਠੀਕ ਹੈ ਜੀ। ਹੁਣ ਬਾਕੀ ਅੰਕ ਬੋਲੋ।"
+  },
+  "prompt/phone_long": {
+   "bytes": 44352,
+   "file": "prompt/phone_long.mp3",
+   "sha": "e345b121dc5a",
+   "text": "ਨੰਬਰ ਵਿੱਚ ਦਸ ਤੋਂ ਵੱਧ ਅੰਕ ਆ ਗਏ ਜੀ। ਸਿਰਫ਼ ਦਸ ਅੰਕ ਦੁਬਾਰਾ ਬੋਲੋ।"
+  },
+  "prompt/phone_short": {
+   "bytes": 41040,
+   "file": "prompt/phone_short.mp3",
+   "sha": "66281d391119",
+   "text": "ਨੰਬਰ ਪੂਰਾ ਨਹੀਂ ਆਇਆ ਜੀ। ਦਸੇ ਅੰਕ ਹੌਲੀ ਹੌਲੀ ਦੁਬਾਰਾ ਬੋਲੋ।"
+  },
+  "prompt/phone_start": {
+   "bytes": 49248,
+   "file": "prompt/phone_start.mp3",
+   "sha": "4d7870ffe592",
+   "text": "ਮੋਬਾਈਲ ਨੰਬਰ ਛੇ ਸੱਤ ਅੱਠ ਜਾਂ ਨੌਂ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਜੀ। ਨੰਬਰ ਦੁਬਾਰਾ ਬੋਲੋ।"
+  },
+  "prompt/rb_phone": {
+   "bytes": 13680,
+   "file": "prompt/rb_phone.mp3",
+   "sha": "d6b3b49151d4",
+   "text": "ਤੁਹਾਡਾ ਨੰਬਰ ਹੈ"
+  },
+  "prompt/rel_today": {
+   "bytes": 11232,
+   "file": "prompt/rel_today.mp3",
+   "sha": "98c1a3fc1b1c",
+   "text": "ਅੱਜ"
+  },
+  "prompt/rel_tomorrow": {
+   "bytes": 13968,
+   "file": "prompt/rel_tomorrow.mp3",
+   "sha": "0f753b150cf4",
+   "text": "ਆਉਣ ਵਾਲਾ ਕੱਲ੍ਹ"
+  },
+  "prompt/rel_yesterday": {
+   "bytes": 13392,
+   "file": "prompt/rel_yesterday.mp3",
+   "sha": "684d04b1d382",
+   "text": "ਬੀਤਿਆ ਕੱਲ੍ਹ"
+  },
+  "prompt/retry_generic": {
+   "bytes": 39888,
+   "file": "prompt/retry_generic.mp3",
+   "sha": "7e09d7531676",
+   "text": "ਮਾਫ਼ ਕਰਨਾ ਜੀ ਗੱਲ ਸਮਝ ਨਹੀਂ ਆਈ। ਇੱਕ ਵਾਰ ਫਿਰ ਬੋਲੋ ਜੀ।"
+  },
+  "prompt/say_again": {
+   "bytes": 18720,
+   "file": "prompt/say_again.mp3",
+   "sha": "c43493b7c5ae",
+   "text": "ਠੀਕ ਹੈ ਜੀ ਫਿਰ ਤੋਂ ਦੱਸੋ।"
+  },
+  "prompt/submit_failed": {
+   "bytes": 47520,
+   "file": "prompt/submit_failed.mp3",
+   "sha": "bf6c893f1700",
+   "text": "ਮਾਫ਼ ਕਰਨਾ ਜੀ ਬੁਕਿੰਗ ਸੇਵ ਨਹੀਂ ਹੋਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਸੈਂਟਰ ਤੇ ਗੱਲ ਕਰੋ।"
+  },
+  "prompt/village_unknown": {
+   "bytes": 50688,
+   "file": "prompt/village_unknown.mp3",
+   "sha": "80f41bf726cd",
+   "text": "ਇਹ ਪਿੰਡ ਸੂਚੀ ਵਿੱਚ ਨਹੀਂ ਮਿਲਿਆ ਜੀ। ਨਾਂ ਦੁਬਾਰਾ ਬੋਲੋ ਜਾਂ ਹੇਠਾਂ ਸੂਚੀ ਵਿੱਚੋਂ ਚੁਣੋ।"
+  },
+  "prompt/welcome": {
+   "bytes": 72432,
+   "file": "prompt/welcome.mp3",
+   "sha": "3c4c3967bf53",
+   "text": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ! ਵਾਰੀ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ। ਬੱਸ ਪੰਜ ਸਵਾਲਾਂ ਵਿੱਚ ਤੁਹਾਡੀ ਮਸ਼ੀਨ ਦੀ ਵਾਰੀ ਬੁੱਕ ਹੋ ਜਾਵੇਗੀ।"
+  },
+  "village/bhucho_khurd": {
+   "bytes": 15840,
+   "file": "village/bhucho_khurd.mp3",
+   "sha": "79a304a21c54",
+   "text": "ਪਿੰਡ ਭੁੱਚੋ ਖੁਰਦ"
+  },
+  "village/goniana_mandi": {
+   "bytes": 16128,
+   "file": "village/goniana_mandi.mp3",
+   "sha": "4981362fa1ac",
+   "text": "ਪਿੰਡ ਗੋਨਿਆਣਾ ਮੰਡੀ"
+  },
+  "village/kot_shamir": {
+   "bytes": 14544,
+   "file": "village/kot_shamir.mp3",
+   "sha": "a7491664bccd",
+   "text": "ਪਿੰਡ ਕੋਟ ਸ਼ਮੀਰ"
+  },
+  "village/maur_mandi": {
+   "bytes": 14400,
+   "file": "village/maur_mandi.mp3",
+   "sha": "bde765684f8f",
+   "text": "ਪਿੰਡ ਮੌੜ ਮੰਡੀ"
+  },
+  "village/pind_kalan": {
+   "bytes": 11952,
+   "file": "village/pind_kalan.mp3",
+   "sha": "184f3f936249",
+   "text": "ਪਿੰਡ ਕਲਾਂ"
+  },
+  "village/rampura_phul": {
+   "bytes": 15984,
+   "file": "village/rampura_phul.mp3",
+   "sha": "ba3ffe23b26a",
+   "text": "ਪਿੰਡ ਰਾਮਪੁਰਾ ਫੂਲ"
+  },
+  "village/sangat_kalan": {
+   "bytes": 14832,
+   "file": "village/sangat_kalan.mp3",
+   "sha": "7c3741209e57",
+   "text": "ਪਿੰਡ ਸੰਗਤ ਕਲਾਂ"
+  },
+  "village/talwandi_sabo": {
+   "bytes": 15840,
+   "file": "village/talwandi_sabo.mp3",
+   "sha": "67b860516894",
+   "text": "ਪਿੰਡ ਤਲਵੰਡੀ ਸਾਬੋ"
+  },
+  "village/tibbi_far": {
+   "bytes": 12528,
+   "file": "village/tibbi_far.mp3",
+   "sha": "40b598f19272",
+   "text": "ਪਿੰਡ ਟਿੱਬੀ"
+  }
+ },
+ "generated_at": "2026-10-30T19:49:25+00:00",
+ "lang": "pa-IN",
+ "pitch": "+0Hz",
+ "rate": "-5%",
+ "version": 1,
+ "voice": "pa-IN-VaaniNeural"
+}
