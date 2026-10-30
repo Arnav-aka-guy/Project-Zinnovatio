@@ -8,7 +8,7 @@ import {
   sendVoiceAnswer,
 } from '../api';
 import type { VoiceSessionOut, Health } from '../types';
-import { resampleTo16kMono, encodeWAV } from '../utils/audio';
+import { resampleTo16kMono, encodeWAV, downsampleBuffer, mergeFloat32Arrays } from '../utils/audio';
 
 type MicState = 'idle' | 'recording' | 'processing' | 'speaking';
 
@@ -23,6 +23,8 @@ export default function VoiceBookingPage() {
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const pcmChunksRef = useRef<Float32Array[]>([]);
+  const scriptNodeRef = useRef<ScriptProcessorNode | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animFrameRef = useRef<number | null>(null);
@@ -50,36 +52,50 @@ export default function VoiceBookingPage() {
     return () => {
       mounted = false;
       stopAudioAnalysis();
+      if (audioElementRef.current) {
+        audioElementRef.current.pause();
+      }
     };
   }, []);
 
-  // 2. Play prompt audio whenever session prompt changes
-  useEffect(() => {
-    if (!session?.prompt?.audio_url || !consented) return;
+  // Helper to play prompt audio
+  const playPromptAudio = (url?: string) => {
+    const audioUrl = url || session?.prompt?.audio_url;
+    if (!audioUrl) return;
 
     if (audioElementRef.current) {
       audioElementRef.current.pause();
+      audioElementRef.current.currentTime = 0;
     }
 
-    const audio = new Audio(session.prompt.audio_url);
+    const audio = new Audio(audioUrl);
+    audio.volume = 1.0;
     audioElementRef.current = audio;
     setMicState('speaking');
 
     audio.onended = () => {
       setMicState('idle');
     };
-    audio.onerror = () => {
-      // Audio playback failed (e.g. mock or missing wav), return to idle
+    audio.onerror = (e) => {
+      console.warn('Audio playback error:', e);
       setMicState('idle');
     };
 
-    audio.play().catch(() => {
-      // Browser autoplay policy might block before user interaction
+    audio.play().catch((err) => {
+      console.warn('Autoplay prevented by browser:', err);
       setMicState('idle');
     });
+  };
+
+  // Play prompt audio when question changes after consent
+  useEffect(() => {
+    if (!session?.prompt?.audio_url || !consented) return;
+    playPromptAudio(session.prompt.audio_url);
 
     return () => {
-      audio.pause();
+      if (audioElementRef.current) {
+        audioElementRef.current.pause();
+      }
     };
   }, [session?.prompt?.key, session?.prompt?.audio_url, consented]);
 
@@ -87,10 +103,27 @@ export default function VoiceBookingPage() {
     if (!session) return;
     try {
       setMicState('processing');
+      // Unlock browser audio context in direct user gesture
+      try {
+        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+        const ctx = new AudioCtx();
+        if (ctx.state === 'suspended') {
+          ctx.resume().catch(() => {});
+        }
+      } catch {
+        // AudioContext optional
+      }
+
       const updated = await sendVoiceConsent(session.session_id);
       setSession(updated);
       setConsented(true);
-      setMicState('idle');
+
+      // Play prompt audio immediately
+      if (updated.prompt?.audio_url) {
+        playPromptAudio(updated.prompt.audio_url);
+      } else {
+        setMicState('idle');
+      }
     } catch (err: any) {
       setErrorMsg(err.message || 'Consent submission failed.');
       setMicState('idle');
@@ -101,6 +134,9 @@ export default function VoiceBookingPage() {
     try {
       const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
       const ctx = new AudioCtx();
+      if (ctx.state === 'suspended') {
+        ctx.resume().catch(() => {});
+      }
       audioCtxRef.current = ctx;
 
       const source = ctx.createMediaStreamSource(stream);
@@ -109,8 +145,22 @@ export default function VoiceBookingPage() {
       source.connect(analyser);
       analyserRef.current = analyser;
 
-      const dataArray = new Uint8Array(analyser.frequencyBinCount);
+      // Direct Float32 PCM sample collection for 100% reliable WAV encoding
+      pcmChunksRef.current = [];
+      try {
+        const scriptNode = ctx.createScriptProcessor(4096, 1, 1);
+        scriptNode.onaudioprocess = (e) => {
+          const input = e.inputBuffer.getChannelData(0);
+          pcmChunksRef.current.push(new Float32Array(input));
+        };
+        source.connect(scriptNode);
+        scriptNode.connect(ctx.destination);
+        scriptNodeRef.current = scriptNode;
+      } catch {
+        // ScriptProcessor optional fallback
+      }
 
+      const dataArray = new Uint8Array(analyser.frequencyBinCount);
       const updateMeter = () => {
         analyser.getByteFrequencyData(dataArray);
         let sum = 0;
@@ -132,6 +182,14 @@ export default function VoiceBookingPage() {
       cancelAnimationFrame(animFrameRef.current);
       animFrameRef.current = null;
     }
+    if (scriptNodeRef.current) {
+      try {
+        scriptNodeRef.current.disconnect();
+      } catch {
+        // ignore
+      }
+      scriptNodeRef.current = null;
+    }
     if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
       audioCtxRef.current.close().catch(() => {});
       audioCtxRef.current = null;
@@ -141,6 +199,13 @@ export default function VoiceBookingPage() {
 
   const startRecording = async () => {
     if (!consented || !session) return;
+
+    // If assistant is currently speaking, stop audio immediately
+    if (audioElementRef.current) {
+      audioElementRef.current.pause();
+      audioElementRef.current.currentTime = 0;
+    }
+
     if (micState === 'recording') {
       stopRecording();
       return;
@@ -176,24 +241,34 @@ export default function VoiceBookingPage() {
         setRecordingSeconds(0);
 
         setMicState('processing');
-        const rawBlob = new Blob(audioChunksRef.current, { type: mediaRecorder.mimeType });
 
         let wavBlob: Blob;
-        try {
-          // Convert browser audio blob into 16 kHz mono 16-bit PCM WAV using AudioContext
-          const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-          const decodeCtx = new AudioCtx();
-          const arrayBuffer = await rawBlob.arrayBuffer();
-          const decodedBuffer = await decodeCtx.decodeAudioData(arrayBuffer);
-          wavBlob = await resampleTo16kMono(decodedBuffer);
-          decodeCtx.close();
-        } catch {
-          // Fallback if headless browser / hardware lacks audio decoding capability
-          wavBlob = encodeWAV(new Float32Array(16000), 16000);
+        // Priority 1: Direct Float32 PCM recording from ScriptProcessor (no decoding needed)
+        if (pcmChunksRef.current.length > 0) {
+          const merged = mergeFloat32Arrays(pcmChunksRef.current);
+          const sampleRate = audioCtxRef.current?.sampleRate || 48000;
+          const downsampled = downsampleBuffer(merged, sampleRate, 16000);
+          wavBlob = encodeWAV(downsampled, 16000);
+        } else {
+          // Priority 2: Decode raw blob via AudioContext
+          try {
+            const rawBlob = new Blob(audioChunksRef.current, { type: mediaRecorder.mimeType });
+            const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+            const decodeCtx = new AudioCtx();
+            if (decodeCtx.state === 'suspended') {
+              await decodeCtx.resume();
+            }
+            const arrayBuffer = await rawBlob.arrayBuffer();
+            const decodedBuffer = await decodeCtx.decodeAudioData(arrayBuffer);
+            wavBlob = await resampleTo16kMono(decodedBuffer);
+            decodeCtx.close();
+          } catch {
+            // Priority 3: Fallback 1-second synthetic 16kHz silence
+            wavBlob = encodeWAV(new Float32Array(16000), 16000);
+          }
         }
 
         try {
-          // Send to backend voice turn API
           const updated = await sendVoiceTurn(session.session_id, wavBlob);
           setSession(updated);
         } catch (err: any) {
@@ -203,11 +278,11 @@ export default function VoiceBookingPage() {
         }
       };
 
-      mediaRecorder.start(250); // Slice every 250ms
+      mediaRecorder.start(250);
       setMicState('recording');
       setRecordingSeconds(0);
 
-      // 15-second hardware cap
+      // 15-second cap
       let sec = 0;
       timerIntervalRef.current = setInterval(() => {
         sec += 1;
@@ -245,10 +320,10 @@ export default function VoiceBookingPage() {
 
   return (
     <div className="voice-booking-page" id="voice-page">
-      {/* Top Fallback Bar */}
+      {/* Top Fallback Switch Bar */}
       <div className="voice-top-bar">
         <Link to="/intake" className="voice-type-link" id="voice-top-intake-link">
-          ⌨️ ਫ਼ਾਰਮ ਭਰ ਕੇ ਬੁੱਕ ਕਰੋ / Type your booking instead &rarr;
+          ⌨️ ਕੀਬੋਰਡ ਨਾਲ ਫ਼ਾਰਮ ਭਰੋ / Type your booking instead &rarr;
         </Link>
       </div>
 
@@ -262,17 +337,17 @@ export default function VoiceBookingPage() {
           <p className="en-sub">
             The voice service is currently unavailable on this machine. Please use the form.
           </p>
-          <Link to="/intake" className="btn-primary" style={{ display: 'inline-block', marginTop: 12 }}>
+          <Link to="/intake" className="btn-primary" style={{ display: 'inline-block', marginTop: 14 }}>
             ਫ਼ਾਰਮ 'ਤੇ ਜਾਓ / Go to Form
           </Link>
         </div>
       )}
 
-      {/* Consent & Privacy Notice */}
+      {/* Consent & Privacy Notice Card */}
       {!consented && !isVoiceDown && (
         <div className="voice-card voice-consent-card" id="voice-consent-box">
           <div className="assistant-tag">
-            🤖 ਆਟੋਮੇਟਿਡ ਸਿਸਟਮ / Automated Assistant
+            🤖 ਵਾਰੀ ਆਟੋਮੇਟਿਡ ਸਹਾਇਕ • Automated Voice Assistant
           </div>
           <h2>ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ ਜੀ!</h2>
           <p className="consent-punjabi">
@@ -284,11 +359,11 @@ export default function VoiceBookingPage() {
           </p>
           <button
             id="voice-consent-btn"
-            className="btn-primary voice-consent-btn"
+            className="voice-consent-btn"
             onClick={handleConsent}
             disabled={micState === 'processing'}
           >
-            ✓ ਮੈਂ ਸਹਿਮਤ ਹਾਂ / I Agree & Continue
+            ✓ ਮੈਂ ਸਹਿਮਤ ਹਾਂ — ਬੋਲਣਾ ਸ਼ੁਰੂ ਕਰੋ / I Agree & Continue
           </button>
         </div>
       )}
@@ -296,37 +371,62 @@ export default function VoiceBookingPage() {
       {/* Main Voice Interactive Flow */}
       {consented && !isVoiceDown && (
         <div className="voice-flow">
-          {/* Progress Indicator */}
+          {/* Step Progress Tracker */}
           <div className="voice-progress-line" id="voice-progress-tracker">
             <span className={`prog-item ${session?.collected_fields?.phone ? 'done' : session?.current_field === 'phone' ? 'active' : ''}`}>
-              ਫ਼ੋਨ / Phone {session?.collected_fields?.phone && '✓'}
+              1. ਫ਼ੋਨ Phone {session?.collected_fields?.phone && '✓'}
             </span>
             <span className="prog-sep">&rsaquo;</span>
             <span className={`prog-item ${session?.collected_fields?.village ? 'done' : session?.current_field === 'village' ? 'active' : ''}`}>
-              ਪਿੰਡ / Village {session?.collected_fields?.village && '✓'}
+              2. ਪਿੰਡ Village {session?.collected_fields?.village && '✓'}
             </span>
             <span className="prog-sep">&rsaquo;</span>
             <span className={`prog-item ${session?.collected_fields?.acres ? 'done' : session?.current_field === 'acres' ? 'active' : ''}`}>
-              ਏਕੜ / Acres {session?.collected_fields?.acres && '✓'}
+              3. ਏਕੜ Acres {session?.collected_fields?.acres && '✓'}
             </span>
             <span className="prog-sep">&rsaquo;</span>
             <span className={`prog-item ${session?.collected_fields?.machine ? 'done' : session?.current_field === 'machine' ? 'active' : ''}`}>
-              ਮਸ਼ੀਨ / Machine {session?.collected_fields?.machine && '✓'}
+              4. ਮਸ਼ੀਨ Machine {session?.collected_fields?.machine && '✓'}
             </span>
             <span className="prog-sep">&rsaquo;</span>
             <span className={`prog-item ${session?.collected_fields?.harvest_date ? 'done' : session?.current_field === 'harvest_date' ? 'active' : ''}`}>
-              ਤਾਰੀਖ਼ / Date {session?.collected_fields?.harvest_date && '✓'}
+              5. ਤਾਰੀਖ਼ Date {session?.collected_fields?.harvest_date && '✓'}
             </span>
           </div>
 
-          {/* Current Spoken Prompt Display */}
+          {/* Current Question / Spoken Prompt Card */}
           {session?.prompt && (
             <div className="voice-card voice-prompt-card" id="voice-current-prompt">
               <div className="prompt-pa">{session.prompt.text_pa}</div>
               <div className="prompt-en">{session.prompt.text_en}</div>
+
+              {/* Explicit Audio Controls */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', width: '100%' }}>
+                <button
+                  type="button"
+                  id="voice-replay-btn"
+                  className={`voice-play-prompt-btn ${micState === 'speaking' ? 'playing' : ''}`}
+                  onClick={() => playPromptAudio()}
+                  title="Click to hear the question again"
+                >
+                  <span>{micState === 'speaking' ? '🔊' : '▶️'}</span>
+                  <span>{micState === 'speaking' ? 'ਸਹਾਇਕ ਬੋਲ ਰਿਹਾ ਹੈ... / Playing Voice...' : '🔊 ਸਵਾਲ ਸੁਣੋ / Listen to Question'}</span>
+                </button>
+
+                {session.prompt.audio_url && (
+                  <audio
+                    controls
+                    src={session.prompt.audio_url}
+                    className="voice-native-audio"
+                    preload="auto"
+                    aria-label="Audio player for question"
+                  />
+                )}
+              </div>
+
               {session.transcript && (
                 <div className="prompt-transcript">
-                  <small>ਤੁਸੀਂ ਕਿਹਾ / You said: "{session.transcript}"</small>
+                  💬 ਤੁਸੀਂ ਕਿਹਾ / You said: <strong>"{session.transcript}"</strong>
                 </div>
               )}
             </div>
@@ -361,7 +461,7 @@ export default function VoiceBookingPage() {
                   disabled={micState === 'processing'}
                 >
                   <span className="btn-icon">✓</span>
-                  <span className="btn-text">ਹਾਂ, ਸਹੀ ਹੈ<br /><small>Yes, Confirm</small></span>
+                  <span className="btn-text">ਹਾਂ, ਸਹੀ ਹੈ<br /><small>Yes, Confirm Booking</small></span>
                 </button>
                 <button
                   id="voice-confirm-no"
@@ -376,7 +476,7 @@ export default function VoiceBookingPage() {
             </div>
           )}
 
-          {/* Final Confirmed State */}
+          {/* Final Confirmed Outcome */}
           {session?.state === 'confirmed' && (
             <div className="voice-card voice-success-card" id="voice-success-box">
               <div className="success-badge">✓</div>
@@ -397,7 +497,7 @@ export default function VoiceBookingPage() {
             </div>
           )}
 
-          {/* Giant Microphone Button */}
+          {/* Giant Interactive Microphone Button */}
           {session?.state !== 'confirmed' && session?.state !== 'cancelled' && (
             <div className="voice-mic-container">
               <button
@@ -417,24 +517,35 @@ export default function VoiceBookingPage() {
               <div className="mic-status-label">
                 {micState === 'recording' && (
                   <span className="status-recording">
-                    ਸੁਣ ਰਿਹਾ ਹਾਂ... ({recordingSeconds}s / 15s) ਰੋਕਣ ਲਈ ਦਬਾਓ
+                    🔴 ਸੁਣ ਰਿਹਾ ਹਾਂ... ({recordingSeconds}s / 15s) — ਰੋਕਣ ਲਈ ਦਬਾਓ<br />
+                    <small style={{ fontWeight: 'normal', color: '#64748b' }}>Listening... Tap mic when done speaking</small>
                   </span>
                 )}
-                {micState === 'processing' && <span className="status-processing">ਪ੍ਰਕਿਰਿਆ ਜਾਰੀ ਹੈ... Processing...</span>}
-                {micState === 'speaking' && <span className="status-speaking">ਸਹਾਇਕ ਬੋਲ ਰਿਹਾ ਹੈ... Listening to reply</span>}
+                {micState === 'processing' && (
+                  <span className="status-processing">
+                    ⏳ ਸਮਝ ਰਿਹਾ ਹਾਂ... / Processing audio...
+                  </span>
+                )}
+                {micState === 'speaking' && (
+                  <span className="status-speaking">
+                    🔊 ਸਹਾਇਕ ਬੋਲ ਰਿਹਾ ਹੈ... / Assistant is speaking...<br />
+                    <small style={{ fontWeight: 'normal', color: '#64748b' }}>ਬੋਲਣ ਲਈ ਮਾਈਕ ਦਬਾਓ / Tap mic to interrupt & speak</small>
+                  </span>
+                )}
                 {micState === 'idle' && (
                   <span className="status-idle">
-                    ਬੋਲਣ ਲਈ ਮਾਈਕ ਦਬਾਓ / Tap mic to speak
+                    🎙️ ਬੋਲਣ ਲਈ ਮਾਈਕ ਦਬਾਓ<br />
+                    <small style={{ fontWeight: 'normal', color: '#64748b' }}>Tap microphone to speak in Punjabi</small>
                   </span>
                 )}
               </div>
 
-              {/* Audio Volume Level Meter */}
+              {/* Sound Wave Intensity Bar */}
               {micState === 'recording' && (
                 <div className="audio-level-meter" aria-hidden="true">
                   <div
                     className="audio-level-bar"
-                    style={{ width: `${Math.max(5, audioLevel)}%` }}
+                    style={{ width: `${Math.max(8, audioLevel)}%` }}
                   />
                 </div>
               )}
@@ -449,7 +560,7 @@ export default function VoiceBookingPage() {
         </div>
       )}
 
-      {/* Bottom Fallback Bar */}
+      {/* Bottom Switch Bar */}
       <div className="voice-bottom-bar">
         <Link to="/intake" className="voice-type-link" id="voice-bottom-intake-link">
           ਕੀਬੋਰਡ ਨਾਲ ਲਿਖੋ / Type your booking instead &rarr;
