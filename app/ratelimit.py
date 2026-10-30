@@ -93,7 +93,6 @@ lockout = LoginLockout()
 _UPLOAD_PATHS = [
     re.compile(r"^/api/intake/register-photo$"),
     re.compile(r"^/api/slots/[^/]+/(start|done)$"),
-    re.compile(r"^/api/voice/turn$"),
 ]
 
 

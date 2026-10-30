@@ -24,7 +24,6 @@ class RequestSource(str, Enum):
     FORM = "form"
     REGISTER = "register"
     SEED = "seed"
-    VOICE = "voice"
 
 
 class SlotStatus(str, Enum):

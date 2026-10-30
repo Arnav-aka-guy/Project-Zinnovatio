@@ -412,12 +412,6 @@ def task_smoke() -> int:
     return run_cmd([str(py), "-m", "pytest", "-q", "tests/api/test_smoke.py"])
 
 
-def task_voice_eval() -> int:
-    """Run the voice understanding evaluation on examples/voice/SCRIPT.md."""
-    py = get_venv_python()
-    return run_cmd([str(py), "-m", "app.voice.eval"])
-
-
 def task_reader_eval() -> int:
     """Run the configured reader on examples/register_pages/ and print counts."""
     py = get_venv_python()
@@ -507,9 +501,6 @@ def _run_e2e_pass(mode: str, spec_args: list[str]) -> int:
     env["VAARI_PUBLIC_BASE_URL"] = f"http://127.0.0.1:{port}"
     env["VAARI_READER"] = "mock"
     env["VAARI_ALLOW_HOSTED_READER"] = "false"
-    env["VAARI_VOICE"] = "mock"
-    env["VAARI_VOICE_BOOKING"] = "true"
-    env["VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION"] = "true"
     if mode == "production":
         import secrets
 
@@ -605,49 +596,13 @@ def task_e2e(args: list[str]) -> int:
     return dev_code or prod_code
 
 
-def task_voice_serve() -> int:
-    """Start local voice service on 127.0.0.1:8100 using voice_service/.venv."""
-    if os.name == "nt":
-        voice_py = ROOT / "voice_service" / ".venv" / "Scripts" / "python.exe"
-    else:
-        voice_py = ROOT / "voice_service" / ".venv" / "bin" / "python"
-    if not voice_py.exists():
-        print(f"Error: voice_service virtual environment not found at {voice_py}")
-        print("Please follow docs/VOICE.md to create voice_service/.venv and install requirements-voice.txt")
-        return 1
-    cmd = [
-        str(voice_py),
-        "-m",
-        "uvicorn",
-        "voice_service.server:app",
-        "--host",
-        "127.0.0.1",
-        "--port",
-        "8100",
-    ]
-    return run_cmd(cmd, cwd=ROOT)
-
-
-def task_voice_cache(args: list[str]) -> int:
-    """Pre-generate fixed Punjabi spoken replies with IndicF5 into voice_service/cache/."""
-    if os.name == "nt":
-        voice_py = ROOT / "voice_service" / ".venv" / "Scripts" / "python.exe"
-    else:
-        voice_py = ROOT / "voice_service" / ".venv" / "bin" / "python"
-    if not voice_py.exists():
-        print(f"Error: voice_service virtual environment not found at {voice_py}")
-        return 1
-    cmd = [str(voice_py), "voice_service/cache_gen.py"] + args
-    return run_cmd(cmd, cwd=ROOT)
-
-
 def main():
     if len(sys.argv) < 2:
         print("Usage: python tasks.py <task> [args]")
         print(
             "Available tasks: setup, dev, test, seed, reset, smoke, serve, tunnel, "
             "build-web, e2e, reader-eval, purge-images, screenshots, check-config, "
-            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voice-serve, voice-cache, voice-eval"
+            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore"
         )
         sys.exit(1)
 
@@ -656,12 +611,6 @@ def main():
 
     if task == "setup":
         sys.exit(task_setup())
-    elif task == "voice-serve":
-        sys.exit(task_voice_serve())
-    elif task == "voice-cache":
-        sys.exit(task_voice_cache(extra_args))
-    elif task == "voice-eval":
-        sys.exit(task_voice_eval())
     elif task == "dev":
         sys.exit(task_dev())
     elif task == "test":

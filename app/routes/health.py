@@ -73,9 +73,6 @@ def get_health(session: Session = Depends(get_db)):
     except Exception:
         db_status = "error"
 
-    from app.voice.engine import get_voice_engine
-    voice_status = get_voice_engine().health()
-
     return {
         "status": "ok",
         "database": db_status,
@@ -87,6 +84,5 @@ def get_health(session: Session = Depends(get_db)):
         "version": "0.1",
         "env": settings.env,
         "auth": settings.auth_mode,
-        "voice": voice_status,
         "reader_detail": reader_detail(),
     }

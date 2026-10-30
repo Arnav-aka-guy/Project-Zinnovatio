@@ -54,16 +54,6 @@ def get_dashboard_summary(
         v_name = p.village_name if p else "Unknown"
         by_village[v_name] = by_village.get(v_name, 0) + 1
 
-    by_source: dict[str, int] = {
-        "form": 0,
-        "register": 0,
-        "voice": 0,
-        "seed": 0,
-    }
-    for r in all_requests:
-        src = r.source or "form"
-        by_source[src] = by_source.get(src, 0) + 1
-
     slot_query = session.query(Slot)
     if date:
         slot_query = slot_query.filter(Slot.service_date == date)
@@ -146,7 +136,6 @@ def get_dashboard_summary(
         "capacity_used_pct": capacity_used_pct,
         "by_reason": by_reason,
         "by_village": by_village,
-        "by_source": by_source,
         "today": today.isoformat(),
         "flagged_jobs": flagged_jobs,
     }

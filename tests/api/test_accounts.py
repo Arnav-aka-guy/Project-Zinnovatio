@@ -131,16 +131,7 @@ def test_every_protected_route_requires_auth(users):
     # Walk the live route table: every non-public /api route must answer 401 with no credentials.
     from app.main import app
 
-    public_prefixes = (
-        "/api/health",
-        "/api/ready",
-        "/api/auth/login",
-        "/api/auth/logout",
-        "/api/driver/",
-        "/api/records/",
-        "/api/test-",
-        "/api/voice/",
-    )
+    public_prefixes = ("/api/health", "/api/ready", "/api/auth/login", "/api/auth/logout", "/api/driver/", "/api/records/", "/api/test-")
     checked = 0
     for path, ops in app.openapi()["paths"].items():
         if not path.startswith("/api/") or path.startswith(public_prefixes):

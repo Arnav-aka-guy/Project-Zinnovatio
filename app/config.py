@@ -205,33 +205,5 @@ class Settings:
     def reader_timeout_s(self) -> int:
         return int(os.environ.get("VAARI_READER_TIMEOUT_S", "20"))
 
-    # ── Voice Booking (V1-V10) ──────────────────────────────────
-    @property
-    def voice(self) -> str:
-        """VAARI_VOICE: 'mock' (default), 'local' (talks to voice service), or 'off'."""
-        return os.environ.get("VAARI_VOICE", "mock").strip().lower() or "mock"
-
-    @property
-    def voice_booking(self) -> bool:
-        """VAARI_VOICE_BOOKING: default true in development, false in production."""
-        val = os.environ.get("VAARI_VOICE_BOOKING")
-        if val is not None:
-            return val.strip().lower() in ("true", "1")
-        return not self.is_production
-
-    @property
-    def allow_voice_booking_in_production(self) -> bool:
-        """VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION: override required in production."""
-        return os.environ.get("VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION", "false").strip().lower() in ("true", "1")
-
-    @property
-    def voice_service_url(self) -> str:
-        """Endpoint of local voice microservice (default http://127.0.0.1:8100)."""
-        return os.environ.get("VAARI_VOICE_SERVICE_URL", "http://127.0.0.1:8100").strip().rstrip("/")
-
-    @property
-    def voice_timeout_s(self) -> float:
-        return float(os.environ.get("VAARI_VOICE_TIMEOUT_S", "5.0"))
-
 
 settings = Settings()

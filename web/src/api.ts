@@ -26,7 +26,6 @@ import type {
   SlotEvidenceOut,
   SlotMessage,
   SlotOut,
-  VoiceSessionOut,
   WillMissItem,
 } from './types';
 
@@ -458,70 +457,5 @@ export function confirmIntakeDraft(
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...authHeaders('passcode') },
     body: JSON.stringify({ rows }),
-  });
-}
-
-// ── Voice Booking (Public / No passcode required) ───────────────
-export function createVoiceSession(): Promise<VoiceSessionOut> {
-  return request<VoiceSessionOut>('/api/voice/session', {
-    method: 'POST',
-  });
-}
-
-export function sendVoiceConsent(sessionId: string): Promise<VoiceSessionOut> {
-  return request<VoiceSessionOut>('/api/voice/consent', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ session_id: sessionId }),
-  });
-}
-
-export async function sendVoiceTurn(
-  sessionId: string,
-  audioWavBlob?: Blob | null,
-  text?: string,
-): Promise<VoiceSessionOut> {
-  const formData = new FormData();
-  formData.append('session_id', sessionId);
-  if (audioWavBlob) {
-    formData.append('audio', audioWavBlob, 'recording.wav');
-  }
-  if (text) {
-    formData.append('text', text);
-  }
-
-  let res: Response;
-  try {
-    res = await fetch('/api/voice/turn', {
-      method: 'POST',
-      body: formData,
-    });
-  } catch {
-    throw new ApiError(
-      { error_code: 'NETWORK_DOWN', message: 'Cannot reach the voice server.', details: {} },
-      0,
-    );
-  }
-
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({
-      error_code: 'VOICE_ERROR',
-      message: res.statusText,
-      details: {},
-    }));
-    throw new ApiError(body as ApiErrorShape, res.status);
-  }
-
-  return (await res.json()) as VoiceSessionOut;
-}
-
-export function sendVoiceAnswer(
-  sessionId: string,
-  answer: 'yes' | 'no',
-): Promise<VoiceSessionOut> {
-  return request<VoiceSessionOut>('/api/voice/answer', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ session_id: sessionId, answer }),
   });
 }

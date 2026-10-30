@@ -102,11 +102,6 @@ vaari/
 | `VAARI_VISION_MODEL` | empty | Phase 3: a current vision model name from the provider. *(Pilot v0.2: required when the hosted reader is on; no default in the code.)* |
 | `GEMINI_API_KEY`, `ANTHROPIC_API_KEY` | empty | Phase 3 |
 | `VAARI_READER_TIMEOUT_S` | `20` | Phase 3 |
-| `VAARI_VOICE` | `mock` | `mock` (default for tests/CI), `local` (talks to voice service at port 8100), or `off` |
-| `VAARI_VOICE_BOOKING` | `true` in dev, `false` in prod | Voice booking feature toggle |
-| `VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION` | `false` | Required override when `VAARI_VOICE_BOOKING=true` in production |
-| `VAARI_VOICE_SERVICE_URL` | `http://127.0.0.1:8100` | Local speech-to-text and text-to-speech microservice URL |
-| `VAARI_VOICE_TIMEOUT_S` | `5.0` | Timeout in seconds for requests to the local voice service |
 
 ## 5. Units, time and identifiers
 
@@ -157,13 +152,13 @@ Tier 2 tables (`trace`, `orbit_check`, `review`) live in `app/optional/` and are
 | `service_type` | `super_seeder`, `happy_seeder`, `baler`, `mulcher` |
 | `buffer_days(service_type)` | `super_seeder` 0, `happy_seeder` 0, `baler` 2, `mulcher` 2 |
 | `request.status` | `needs_info`, `open`, `scheduled`, `done`, `will_miss`, `cancelled` |
-| `request.source` | `form`, `register`, `seed`, `voice` |
+| `request.source` | `form`, `register`, `seed` |
 | `slot.status` | `scheduled`, `in_progress`, `done`, `not_served`, `cancelled` |
 | Will-miss `reason_code` | `INVALID_REQUEST`, `DEADLINE_PASSED`, `NO_COMPATIBLE_MACHINE`, `MACHINE_UNAVAILABLE`, `TRAVEL_INFEASIBLE`, `NO_CAPACITY` |
 | `not_served_reason` | `FIELD_NOT_READY`, `FARMER_ABSENT`, `MACHINE_BROKEN`, `WEATHER`, `OTHER` |
 | Evidence `flags` (phase 3) | `position_mismatch`, `too_fast`, `exact_duplicate_photo`, `code_missing`, `code_wrong` |
 | Record position state | `plausible`, `mismatch`, `not_checked`, `not_given` |
-| Badges (exact display text) | `seeded request`, `replayed real job`, `historical imagery`, `position self-reported`, `position not checked`, `consent simulated`, `reader: mock`, `exported by hand`, `demo clock`, `voice booking` |
+| Badges (exact display text) | `seeded request`, `replayed real job`, `historical imagery`, `position self-reported`, `position not checked`, `consent simulated`, `reader: mock`, `exported by hand`, `demo clock` |
 
 **`needs_info` and `needs_review` are different things.** `needs_info` is a request with no harvest date yet, so it cannot be planned. `needs_review` is a finished or running job whose evidence raised a flag. The Desk counts `needs_info`. The Officer counts `needs_review`.
 
@@ -509,62 +504,3 @@ With `VAARI_ENV=production` the app refuses to start, and lists every problem, w
 - **Intake banner.** `/intake` always shows `#intake-privacy-banner`, naming the reader in use (`#intake-reader-name`) and where photos go (`#intake-reader-destination`): for `gemini_demo`, "Photos you upload here are sent to Google, a third party. Use synthetic pages only." (red); for `custom`, the host; for `mock`, "No photo leaves this server." When the reader is `down` it adds the type-the-rows fallback. `IntakeOut` adds `reader_name` and `third_party` (additive).
 - **Preprocessing** (`app/intake/preprocess.py`) runs before every reader: EXIF orientation (applied when the upload is cleaned), an optional operator turn (`POST /api/intake/register-photo` adds form field `rotate`: 0, 90, 180 or 270 clockwise, else 422; applied to the stored page too), long side brought to 1000-2000 px (under 400 px left alone), greyscale and a 1% autocontrast stretch. The stored page keeps its colours; only the reader's copy is changed. The intake screen has a "Turn the photo before reading" choice (`#intake-rotate`).
 - **Gurmukhi digits and mixed entries** (`app/intake/normalize.py`, used by `validate_row` for every reader and for typed rows). Gurmukhi (੦–੯) and Devanagari digits become 0–9 in phones, acres and dates. Phones: labels (ਫ਼ੋਨ:, Mob.), spaces, dashes, brackets and the danda are dropped; a leading +91, 91 or 0 is removed. Acres: unit words ਏਕੜ, ਕਿੱਲੇ/ਕਿੱਲਾ, acre(s), killa/kille are dropped; ½ ¼ ¾ and "2 1/2" are read; **kanal is converted at 8 kanal = 1 acre with a warning that highlights the cell but does not block** (new non-blocking issue text "acres: converted from N kanal (8 kanal = 1 acre), check the register"). Service: Gurmukhi and English words in any mix (ਸੁਪਰ seeder, Super ਸੀਡਰ, ਸੁਪਰਸੀਡਰ, ਬੇਲਰ (baler), S.S.). Dates: Punjabi and English month names ("੧੮ ਅਕਤੂਬਰ", "18 Oct", "Oct 18"). Names and villages are kept as written. Nothing is guessed: unreadable cells stay as written and are flagged.
-
-## 16. Voice booking (v0.3): local voice booking flow
-
-### 16.1 Architecture and Engine Interface
-- **Microservice.** Speech models run in an independent local service (`voice_service/`, port `8100`, own Python virtual environment, own `requirements-voice.txt`). Started with `python tasks.py voice-serve`.
-  - **Speech-to-Text (STT):** AI4Bharat IndicConformer (`ai4bharat/indic-conformer-600m-multilingual`, language code `"pa"`).
-  - **Text-to-Speech (TTS):** AI4Bharat IndicF5 (`ai4bharat/IndicF5`). Due to CPU inference latency (~217s per sentence), 16 standard conversational prompts are pre-synthesized into `voice_service/cache/` using the exact reference audio and prompt catalog (`app/voice/replies.py`), allowing instant sub-millisecond playback.
-- **VoiceEngine Interface** (`app/voice/engine.py`):
-  - Defines `transcribe(audio_bytes: bytes) -> str` and `synthesize(text: str) -> bytes`.
-  - Implementations: `mock` (default for tests and CI; deterministic mock transcripts), `local` (HTTP calls to `voice_service/`), and `off`.
-- **Settings:**
-  - `VAARI_VOICE`: `"mock"` | `"local"` | `"off"`.
-  - `VAARI_VOICE_BOOKING`: `"true"` | `"false"` (default `true` in development, `false` in production).
-  - `VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION`: `"false"` (default). Production refuses to start if `VAARI_VOICE_BOOKING=true` without this override set to `true`.
-  - `VAARI_VOICE_SERVICE_URL`: `"http://127.0.0.1:8100"` (URL of local voice microservice).
-  - `VAARI_VOICE_TIMEOUT_S`: `5.0` (client timeout for voice service requests).
-- **Health check:** `GET /api/health` includes additive field `voice: "mock" | "local" | "down" | "off"`.
-
-### 16.2 API Endpoints
-All voice booking routes are unauthenticated public endpoints under `/api/voice/`:
-- `POST /api/voice/session` -> `{session_id: str, state: str, prompt_key: str, prompt_pa: str, prompt_en: str}`: Initializes an in-memory voice session.
-- `POST /api/voice/consent` -> `{session_id: str, consented: bool}` -> `{status: str, state: str, prompt_key: str, prompt_pa: str, prompt_en: str}`: Records user consent.
-- `POST /api/voice/turn` -> Multipart form: `session_id` (str) and `audio` (UploadFile WAV 16 kHz mono 16-bit PCM, max 2 MB and 15 seconds). Returns `{session_id, transcript, state, prompt_key, prompt_pa, prompt_en, draft, error}`.
-- `POST /api/voice/answer` -> `{session_id: str, button_value: str}` ("yes" | "no"): Handles explicit touch/click confirmation or rejection of read-back summaries.
-- `GET /api/voice/reply/{reply_key}.wav`: Streams pre-synthesized Punjabi voice prompt WAV audio.
-- **Error Codes:** `400` `VALIDATION_ERROR`, `404` `SESSION_NOT_FOUND`, `413` `FILE_TOO_LARGE` (>2 MB or >15 s), `429` `RATE_LIMITED` (checked against the upload rate limit bucket in `app/ratelimit.py`), `503` `VOICE_SERVICE_UNAVAILABLE`.
-
-### 16.3 Deterministic Natural Language Understanding (`app/voice/understand.py`)
-Understanding is completely rule-based and deterministic using regular expressions and dictionary normalization (no LLM):
-- **Phone:** Extracts 10-digit Indian numbers starting with 6, 7, 8, 9 from spoken digits (ASCII or Gurmukhi), removing prefixes (+91, 0, 91).
-- **Acres:** Extracts acreage with unit markers (ਏਕੜ, ਕਿੱਲਾ, ਕਿੱਲੇ, acre, killa), fractions (ਅੱਧਾ=0.5, ਡੇਢ=1.5, ਢਾਈ=2.5, ਸਵਾ=+0.25, ਪੌਣੇ=-0.25, ½, ¼, ¾), and kanals (8 kanal = 1 acre). Explicit units take precedence over ambiguous numeric tokens.
-- **Service Type:** Maps spoken Punjabi and English terms to `super_seeder`, `happy_seeder`, `baler`, `mulcher`.
-- **Date:** Resolves relative days ("ਅੱਜ", "ਕੱਲ੍ਹ", "ਭਲਕੇ"), ordinals ("੧੦ ਤਰੀਕ", "10th"), and Punjabi/English month names ("੧੮ ਅਕਤੂਬਰ", "18 Oct").
-- **Village:** Fuzzy-matches against known operational villages.
-- **Confirmation:** Distinguishes positive affirmations ("ਹਾਂ", "yes", "haan", "ਸਹੀ", "ਠੀਕ") from rejections ("ਨਹੀਂ", "no", "nahi", "ਗ਼ਲਤ").
-
-### 16.4 Conversation State Machine & 2-Failed-Tries Fallback
-- **States:** `idle`, `consented`, `listening`, `confirming`, `confirmed`, `cancelled`, `needs_info`.
-- **Read-back & Explicit Confirmation:** No booking is ever created until the farmer explicitly confirms the complete read-back summary (either by speaking "ਹਾਂ" / "yes" or clicking the UI ✓ button).
-- **Turn-by-turn clarification:** Missing or invalid fields are asked one at a time.
-- **Two-failed-tries rule:** If the user fails to provide an intelligible or valid answer for the same field twice in succession:
-  - If a valid phone number was already captured and confirmed, Vaari saves the draft as a `needs_info` request with `request.source = "voice"` so centre staff can call the farmer back, and plays prompt `FAILED_FALLBACK_PHONE_SAVED`.
-  - If no valid phone number has been confirmed, Vaari drops the session without saving any partial data to SQLite, and plays prompt `FAILED_FALLBACK_NO_PHONE`.
-- **Assistant Persona:** The first sentence of the greeting clearly declares an automated assistant ("ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਜੀ, ਮੈਂ ਵਾਰੀ ਦਾ ਸਵੈ-ਚਾਲਿਤ ਵੌਇਸ ਸਹਾਇਕ ਹਾਂ..."); it never claims to be human.
-
-### 16.5 Privacy & Security Guarantees
-- **In-memory Processing:** Uploaded audio is transcribed in memory and discarded immediately. No audio files or raw transcripts are saved to disk in Vaari.
-- **No PII Logging:** Follows `app/logging_setup.py` redaction rules. Audio bytes, transcripts, farmer names, and phone numbers are never written to logs.
-- **Session Expiry:** In-memory voice sessions are automatically evicted after 30 minutes of inactivity, or on confirmation/cancellation.
-- **Pre-Recording Consent:** The voice interface presents and speaks an explicit consent notice ("your voice is converted to text on this computer and deleted; we only store booking details") with a mandatory "I agree" confirmation button before recording starts.
-- **Rate Limiting & Payload Caps:** Audio upload route `/api/voice/turn` is rate-limited in the upload bucket (30 requests/minute per client). Enforces a 15-second duration limit and 2 MB file size limit, accepting only 16 kHz mono 16-bit PCM WAV.
-
-### 16.6 Desk & Officer UI Integration
-- **Source Enum:** `request.source` includes `"voice"`.
-- **Badges:** Voice bookings carry the `"voice booking"` badge.
-- **Desk Filtering:** The Desk source filter supports `All | Paper register | Form | Voice`.
-- **Officer Oversight:** `GET /api/dashboard/summary` includes `by_source` (`voice`, `form`, `register`, `seed`) without exposing PII. The Officer dashboard includes an "Intake Channels" card displaying channel counts.
-- **Visible Fallback:** If the voice service is down or unresponsive, `/voice` displays an alert banner in Punjabi and English with a direct link to the standard typed intake form (`/intake`), and `/api/health` reports `voice: "down"`.
-

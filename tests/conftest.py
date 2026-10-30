@@ -21,17 +21,14 @@ from app.main import app
 
 @pytest.fixture(autouse=True)
 def _reset_rate_limits():
-    """Each test starts with empty rate-limit, lockout counters and default voice engine."""
+    """Each test starts with empty rate-limit and lockout counters."""
     from app.ratelimit import limiter, lockout
-    from app.voice.engine import set_voice_engine
 
     limiter.reset()
     lockout.reset()
-    set_voice_engine(None)
     yield
     limiter.reset()
     lockout.reset()
-    set_voice_engine(None)
 
 
 def _sqlite_engine(path: str):
