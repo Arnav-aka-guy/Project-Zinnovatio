@@ -17,6 +17,7 @@ const BADGE_STYLES: Record<string, { bg: string; color: string; border?: string 
   'historical imagery': { bg: '#f3e8ff', color: '#6b21a8', border: '#e9d5ff' },
   'reader: mock': { bg: '#fef9c3', color: '#854d0e', border: '#fef08a' },
   'exported by hand': { bg: '#f1f5f9', color: '#334155', border: '#cbd5e1' },
+  'voice booking': { bg: '#ecfdf5', color: '#047857', border: '#a7f3d0' },
 };
 
 export default function Badge({ name, detail, id, className = '' }: BadgeProps) {

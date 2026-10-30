@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from app import clock
 from app.config import settings
-from app.enums import from_x100
+from app.enums import RequestSource, from_x100
 from app.models import Centre, Farmer, Machine, Plot, Request, ServiceRecord, Slot
 from app.schemas import (
     ExplanationBrief,
@@ -58,6 +58,8 @@ def serialize_request(session: Session, req: Request) -> RequestOut:
     badges = []
     if req.source == "seed":
         badges.append("seeded request")
+    elif req.source == "voice" or req.source == RequestSource.VOICE:
+        badges.append("voice booking")
     if farmer and farmer.consent_simulated:
         badges.append("consent simulated")
 

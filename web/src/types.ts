@@ -286,6 +286,7 @@ export interface DashboardSummary {
   capacity_used_pct: number;
   by_reason: Record<string, number>;
   by_village: Record<string, number>;
+  by_source?: Record<string, number>;
   today: string;
   flagged_jobs?: FlaggedJobSummary[];
 }

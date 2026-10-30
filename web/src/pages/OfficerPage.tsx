@@ -293,6 +293,41 @@ export default function OfficerPage() {
         </div>
       </section>
 
+      {/* Booking Sources (Voice, Paper Register, Manual Form) */}
+      {summary?.by_source && (
+        <section className="card" id="officer-booking-sources" style={{ marginBottom: '1.5rem' }}>
+          <div className="card-header">
+            <div>
+              <h2>Intake Channels</h2>
+              <p className="card-subtitle">
+                Requests received across paper registers, manual desk entries, and automated voice bookings
+              </p>
+            </div>
+            <span className="badge badge-neutral">Booking Sources</span>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', padding: '1rem' }}>
+            <div className="metric-card" id="source-metric-register">
+              <span className="metric-num">{summary.by_source.register ?? 0}</span>
+              <span className="metric-tag">Paper Register</span>
+            </div>
+            <div className="metric-card" id="source-metric-form">
+              <span className="metric-num">{summary.by_source.form ?? 0}</span>
+              <span className="metric-tag">Manual Form</span>
+            </div>
+            <div className="metric-card" id="source-metric-voice">
+              <span className="metric-num">{summary.by_source.voice ?? 0}</span>
+              <span className="metric-tag">Voice Booking</span>
+            </div>
+            {summary.by_source.seed ? (
+              <div className="metric-card" id="source-metric-seed">
+                <span className="metric-num">{summary.by_source.seed}</span>
+                <span className="metric-tag">Demo Seed</span>
+              </div>
+            ) : null}
+          </div>
+        </section>
+      )}
+
       {/* Flagged Jobs for Review Section (Step 07: village, machine, flags, link to record — no names or phones) */}
       <section className="card" id="officer-flagged-jobs-section">
         <div className="card-header">

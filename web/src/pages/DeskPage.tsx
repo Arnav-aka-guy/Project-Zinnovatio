@@ -35,6 +35,7 @@ export default function DeskPage() {
   const [activeTab, setActiveTab] = useState<'requests' | 'will_miss' | 'machines' | 'map'>('requests');
   const [statusFilter, setStatusFilter] = useState('all');
   const [villageFilter, setVillageFilter] = useState('all');
+  const [sourceFilter, setSourceFilter] = useState('all');
   const [selectedRequest, setSelectedRequest] = useState<RequestOut | null>(null);
 
   const [loading, setLoading] = useState(true);
@@ -111,9 +112,10 @@ export default function DeskPage() {
     return requests.filter(r => {
       if (statusFilter !== 'all' && r.status !== statusFilter) return false;
       if (villageFilter !== 'all' && r.village !== villageFilter) return false;
+      if (sourceFilter !== 'all' && r.source !== sourceFilter) return false;
       return true;
     });
-  }, [requests, statusFilter, villageFilter]);
+  }, [requests, statusFilter, villageFilter, sourceFilter]);
 
   const handleSelectRequestId = (id: number) => {
     const found = requests.find(r => r.id === id);
@@ -268,6 +270,20 @@ export default function DeskPage() {
                     {v}
                   </option>
                 ))}
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label htmlFor="filter-source">Source:</label>
+              <select
+                id="filter-source"
+                value={sourceFilter}
+                onChange={e => setSourceFilter(e.target.value)}
+              >
+                <option value="all">All sources</option>
+                <option value="register">Paper register</option>
+                <option value="form">Form</option>
+                <option value="voice">Voice</option>
               </select>
             </div>
 

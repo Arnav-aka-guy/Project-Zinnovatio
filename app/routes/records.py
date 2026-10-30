@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from app import clock
 from app.db import get_db
-from app.enums import from_x100
+from app.enums import RequestSource, from_x100
 from app.errors import VaariError
 from app.evidence.record import verify
 from app.models import Evidence, Farmer, Machine, Plot, Request, ServiceRecord, Slot
@@ -64,6 +64,8 @@ def get_service_record(
     badges = []
     if req.source == "seed":
         badges.append("seeded request")
+    elif req.source == "voice" or req.source == RequestSource.VOICE:
+        badges.append("voice booking")
     if farmer.consent_simulated:
         badges.append("consent simulated")
 
