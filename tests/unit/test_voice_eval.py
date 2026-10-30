@@ -18,5 +18,5 @@ def test_voice_evaluation_all_scripts_pass():
 
 
 def test_voice_evaluation_runner():
-    exit_code = run_evaluation()
+    exit_code = run_evaluation(write_report=False)
     assert exit_code == 0

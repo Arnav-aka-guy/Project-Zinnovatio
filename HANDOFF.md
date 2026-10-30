@@ -315,3 +315,64 @@ Production: follow [`docs/DEPLOY.md`](docs/DEPLOY.md) (Docker, `.env` from `.env
 6. **Logs.** Never pass personal data into a log call. `extra={"fields": ...}` only lets allow-listed keys through (`app/logging_setup.ALLOWED_FIELDS`), and `test_no_names_phones_tokens_or_images_in_logs` will catch most mistakes.
 7. **The e2e screenshot spec rewrites `docs/screenshots/`** on every run. Revert those files unless you meant to update them.
 8. **Branches.** Each part branch starts from the one before. `part-8-followups` contains everything plus `main` up to 23aac6a, so merging it into `main` is a fast-forward.
+
+---
+
+## Voice booking (v0.3): local Punjabi voice booking flow
+
+Built as an additive local voice booking flow for Punjabi farmers on branch `voice-booking`. The feature allows a farmer to open `/voice`, press one big button, speak Punjabi (with natural code-switching and English technical terms), hear what Vaari understood read back in a natural Punjabi voice, confirm with spoken "ਹਾਂ"/"yes" or touch buttons, and hear the booking status and date confirmation.
+
+### Built by, date, tag
+- **Built by:** Antigravity (Voice Booking v0.3)
+- **Date:** 2026-10-30
+- **Tag:** `voice-booking-v0.3`
+
+### How to run (exact commands)
+
+**Development & Local Demo:**
+1. In one terminal, start the local voice service (STT & TTS microservice):
+   ```powershell
+   python tasks.py voice-serve
+   ```
+   (Listens on `http://127.0.0.1:8100`, serves `POST /stt`, `POST /tts`, `GET /health`).
+2. In a second terminal, start the Vaari app:
+   ```powershell
+   python tasks.py serve
+   ```
+   (Listens on `http://127.0.0.1:8000`).
+3. Open `http://localhost:8000/voice` in Chrome/Edge, accept the mic prompt, and try speaking Punjabi.
+
+**Evaluation and Testing:**
+```powershell
+python tasks.py test         # All unit and API tests (uses mock voice engine; never loads models)
+python tasks.py voice-eval   # Runs the 5 realistic Punjabi farmer dialogue evaluation suite
+python tasks.py e2e          # Full Playwright suite including web/e2e/voice_booking.spec.ts
+```
+
+### What works (each item with the test that proves it)
+1. **Benchmark & local microservice (V1 & V2):** `voice_service/server.py` implements `/stt` (AI4Bharat IndicConformer, `pa`) and `/tts` (AI4Bharat IndicF5). Benchmark confirmed STT ~1.03s on CPU; TTS CPU synthesis is ~217s, leading to the pre-cached prompt architecture.
+2. **Fixed Punjabi Prompts & Caching (V3):** 16 standard prompts catalogued in `app/voice/replies.py` and pre-synthesized into `voice_service/cache/` for instant playback (<2ms latency).
+3. **Voice UI (V4):** Single 120×120px accessible microphone button, Web Audio waveform/analyser, 15-second auto-stop, client-side WAV 16 kHz mono encoding, consent disclaimer before recording, and visible fallback link to `/intake`.
+4. **Deterministic Punjabi NLU (V5):** `app/voice/understand.py` extracts phone numbers (ASCII/Gurmukhi), acres (including fractions and kanals), equipment services, harvest/available dates, village names, and confirmation intents without any LLM (`tests/unit/test_voice_understand.py`, 42 test cases).
+5. **State Machine & Voice Engine (V6):** `app/voice/engine.py` (MockVoiceEngine, LocalVoiceEngine), endpoints `POST /api/voice/session`, `POST /api/voice/consent`, `POST /api/voice/turn`, `POST /api/voice/answer`, `GET /api/voice/reply/{reply_key}.wav`, rate limit integration, and health check integration (`tests/api/test_voice_routes.py`, `tests/api/test_health.py`).
+6. **2-Failed-Tries Fallback:** After two consecutive failed clarification attempts on a missing field, Vaari offers a callback from the centre and saves a `needs_info` request with `source = "voice"` ONLY if the phone number was confirmed; otherwise it discards the session without saving (`tests/api/test_voice_routes.py::test_voice_turn_two_failed_tries_fallback_with_phone` and `...without_phone`).
+7. **Desk & Officer Integration (V7):** Added `source = "voice"` and `"voice booking"` badge, Desk filter for Voice bookings, and Officer dashboard `Intake Channels` summary card (`tests/unit/test_voice_desk.py`, `tests/api/test_dashboard_voice.py`).
+8. **Evaluation Suite (V8):** Evaluated against 5 realistic farmer dialogues in `examples/voice/SCRIPT.md` achieving 100% pass bar (`python tasks.py voice-eval`, `docs/VOICE_EVAL.md`, `tests/unit/test_voice_eval.py`).
+9. **Browser E2E (V9):** Automated Playwright end-to-end test verifying full voice booking lifecycle with synthetic microphone audio stream (`web/e2e/voice_booking.spec.ts`).
+
+### Contract changes (additive only, with the reason)
+- Settings added: `VAARI_VOICE` (`mock`|`local`|`off`), `VAARI_VOICE_BOOKING` (`true`|`false`), `VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION` (`false`), `VAARI_VOICE_SERVICE_URL` (`http://127.0.0.1:8100`), `VAARI_VOICE_TIMEOUT_S` (`5.0`).
+- Health check: `GET /api/health` adds `voice: "mock" | "local" | "down" | "off"`.
+- Request source: `request.source` adds `"voice"`.
+- Badges: Added `"voice booking"`.
+- Routes: `POST /api/voice/session`, `POST /api/voice/consent`, `POST /api/voice/turn`, `POST /api/voice/answer`, `GET /api/voice/reply/{reply_key}.wav`.
+- Dashboard: `GET /api/dashboard/summary` adds `by_source` map (`voice`, `form`, `register`, `seed`).
+- Rate limiting: `/api/voice/turn` included in the upload rate limiter bucket.
+
+### Things the next person must know
+1. **Tests never load models:** All pytest runs and CI use `VAARI_VOICE=mock` by default. No heavy machine learning models are downloaded during standard test runs.
+2. **Local Voice Service:** To demo real voice recognition, ensure the Python 3.10 virtualenv in `voice_service/.venv` is installed and run `python tasks.py voice-serve`.
+3. **Pre-cached Prompts:** IndicF5 voice synthesis takes ~217s per sentence on CPU. To provide a responsive dialogue experience, 16 fixed Punjabi prompts are pre-synthesized into `voice_service/cache/`.
+4. **Zero Audio Logging:** Incoming audio bytes and speech transcripts are never logged and never stored on disk in the Vaari server.
+5. **Production Safety:** Voice booking is disabled by default in production (`VAARI_VOICE_BOOKING=false`). Enabling it requires `VAARI_ALLOW_VOICE_BOOKING_IN_PRODUCTION=true`.
+

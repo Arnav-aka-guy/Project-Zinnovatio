@@ -4,6 +4,17 @@ All notable changes are recorded here. The format follows Keep a Changelog, and 
 
 ## [Unreleased]
 
+### Voice Booking v0.3 (30 Oct 2026)
+- **Local speech service (`voice_service/`)**: Isolated FastAPI service running on port 8100 with AI4Bharat IndicConformer (STT, Punjabi `pa`) and IndicF5 (TTS, Punjabi).
+- **Pre-cached voice responses (`voice_service/cache/`)**: 16 fixed conversational Punjabi prompts pre-synthesized using IndicF5 for instant (<2ms) CPU playback without generation latency.
+- **VoiceEngine interface (`app/voice/engine.py`)**: Pluggable interface with `mock`, `local` (microservice), and `off` modes; all tests and CI use mock without downloading models.
+- **Punjabi voice booking screen (`/voice`, `web/src/pages/VoiceBookingPage.tsx`)**: High-contrast, single-touch 120px mic button, Web Audio visualizer, 15s auto-stop, client-side 16 kHz mono WAV encoding, audible read-back summary, touch confirmation buttons, and fallback link to `/intake`.
+- **Deterministic Punjabi NLU (`app/voice/understand.py`)**: Pure Python regex and fuzzy matching (no LLM) extracting 10-digit phones (Gurmukhi and ASCII), acres, unit fractions, kanals, services, relative and ordinal dates, villages, and confirmations.
+- **Two-failed-tries fallback**: After 2 consecutive failed attempts to clarify a field, Vaari offers a callback from the centre and saves a `needs_info` request if the phone number was confirmed; otherwise discards the session without saving.
+- **Privacy & zero-storage guarantees**: Uploaded audio is transcribed in memory and discarded immediately (zero disk storage); no PII or transcripts in logs; 30-minute in-memory session expiry; upfront bilingual consent notice.
+- **Desk & Officer integration**: Added `source = "voice"` and `"voice booking"` badge, Desk filter for Voice bookings, and Officer dashboard `Intake Channels` summary card (`by_source`).
+- **Evaluation suite & Playwright E2E**: Dialogue evaluation suite (`python tasks.py voice-eval`) achieving 100% on 5 realistic farmer dialogues (`docs/VOICE_EVAL.md`), plus automated browser test (`web/e2e/voice_booking.spec.ts`).
+
 ### Pilot build v0.2 (30 Oct 2026)
 - **A1 Production mode**: `VAARI_ENV=production` refuses to start with unsafe settings; new `python tasks.py check-config`.
 - **A2 Accounts and roles**: operator and officer accounts (argon2id), signed expiring sessions, role checks on every protected route, `create-user` / `disable-user` / `list-users`, sign-in screen in production, production-mode Playwright pass.

@@ -177,7 +177,7 @@ def probe_voice_service() -> Dict[str, Any]:
     return {"online": False, "detail": None}
 
 
-def run_evaluation() -> int:
+def run_evaluation(write_report: bool = True) -> int:
     print("\n" + "=" * 70)
     print("  VAARI VOICE UNDERSTANDING EVALUATION (Step V8)")
     print("=" * 70 + "\n")
@@ -214,8 +214,9 @@ def run_evaluation() -> int:
         print("  Local Voice Service (http://127.0.0.1:8100): OFFLINE (Mock / Rule mode active)")
     print("-" * 70 + "\n")
 
-    # Generate/update docs/VOICE_EVAL.md
-    write_eval_report(results, accuracy_pct, service_status)
+    # Generate/update docs/VOICE_EVAL.md if requested
+    if write_report:
+        write_eval_report(results, accuracy_pct, service_status)
 
     return 0 if passed_dialogues == total_dialogues else 1
 
