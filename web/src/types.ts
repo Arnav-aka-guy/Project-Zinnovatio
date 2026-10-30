@@ -19,7 +19,36 @@ export interface Health {
   version: string;
   env?: 'development' | 'production';
   auth?: 'passcode' | 'accounts';
+  voice?: 'mock' | 'local' | 'down' | 'off';
   reader_detail?: ReaderDetail;
+}
+
+export interface VoiceFields {
+  phone?: string;
+  village?: string;
+  acres?: number;
+  machine?: string;
+  harvest_date?: string;
+}
+
+export interface VoicePrompt {
+  key: string;
+  text_pa: string;
+  text_en: string;
+  audio_url: string;
+}
+
+export interface VoiceSessionOut {
+  session_id: string;
+  state: 'idle' | 'consented' | 'listening' | 'confirming' | 'confirmed' | 'cancelled' | 'needs_info';
+  current_field?: 'phone' | 'village' | 'acres' | 'machine' | 'harvest_date' | 'confirm' | string;
+  collected_fields: VoiceFields;
+  prompt: VoicePrompt;
+  transcript?: string;
+  request_id?: string;
+  slot_assigned?: boolean;
+  slot_date?: string;
+  will_miss_reason?: string;
 }
 
 export interface ReaderDetail {

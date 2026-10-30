@@ -182,3 +182,308 @@
     border-right-color: var(--border);
   }
 }
+
+/* ── Voice Booking Page (Mobile-first) ────────────────────────── */
+.voice-booking-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.voice-top-bar, .voice-bottom-bar {
+  text-align: center;
+  padding: 8px;
+}
+
+.voice-type-link {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2563eb;
+  background: #eff6ff;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid #bfdbfe;
+}
+.voice-type-link:hover {
+  background: #dbeafe;
+}
+
+.voice-down-alert {
+  background: #fef2f2;
+  border: 2px solid #ef4444;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.voice-down-alert h3 {
+  color: #b91c1c;
+  margin-top: 0;
+}
+.voice-down-alert .en-sub {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.voice-card {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.voice-consent-card {
+  text-align: center;
+}
+.assistant-tag {
+  display: inline-block;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.consent-punjabi {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #111827;
+  font-weight: 500;
+}
+.consent-english {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+.voice-consent-btn {
+  font-size: 16px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.voice-progress-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+.prog-item {
+  color: #9ca3af;
+}
+.prog-item.active {
+  color: #2563eb;
+  font-weight: bold;
+}
+.prog-item.done {
+  color: #16a34a;
+  font-weight: 600;
+}
+.prog-sep {
+  color: #d1d5db;
+}
+
+.voice-prompt-card {
+  text-align: center;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+.prompt-pa {
+  font-size: 20px;
+  font-weight: 600;
+  color: #15803d;
+  line-height: 1.5;
+}
+.prompt-en {
+  font-size: 14px;
+  color: #4b5563;
+  margin-top: 6px;
+}
+.prompt-transcript {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #bbf7d0;
+  color: #374151;
+}
+
+.voice-mic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.giant-mic-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.giant-mic-btn.idle {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+.giant-mic-btn.idle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.45);
+}
+.giant-mic-btn.recording {
+  background: #dc2626;
+  color: #ffffff;
+  animation: micPulse 1.2s infinite;
+}
+.giant-mic-btn.speaking {
+  background: #16a34a;
+  color: #ffffff;
+  animation: speakPulse 1.4s infinite;
+}
+.giant-mic-btn.processing {
+  background: #d97706;
+  color: #ffffff;
+}
+
+@keyframes micPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+  70% { transform: scale(1.06); box-shadow: 0 0 0 22px rgba(220, 38, 38, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+@keyframes speakPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
+  70% { transform: scale(1.04); box-shadow: 0 0 0 18px rgba(22, 163, 74, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+}
+
+.mic-status-label {
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  min-height: 24px;
+}
+.status-recording {
+  color: #dc2626;
+  font-weight: 600;
+}
+.status-speaking {
+  color: #16a34a;
+}
+.status-processing {
+  color: #d97706;
+}
+
+.audio-level-meter {
+  width: 200px;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.audio-level-bar {
+  height: 100%;
+  background: #10b981;
+  transition: width 0.08s ease-out;
+}
+
+.voice-summary-card {
+  border-color: #93c5fd;
+  background: #f8fafc;
+}
+.voice-summary-card h3 {
+  margin-top: 0;
+  text-align: center;
+  color: #1e3a8a;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  row-gap: 8px;
+  margin: 16px 0;
+  font-size: 15px;
+}
+.grid-label {
+  font-weight: 600;
+  color: #4b5563;
+}
+.grid-val {
+  color: #111827;
+  font-weight: 500;
+}
+
+.confirm-buttons-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+.btn-confirm-yes, .btn-confirm-no {
+  flex: 1;
+  min-height: 64px;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-weight: 600;
+}
+.btn-confirm-yes {
+  background: #16a34a;
+  color: #ffffff;
+}
+.btn-confirm-yes:hover {
+  background: #15803d;
+}
+.btn-confirm-no {
+  background: #dc2626;
+  color: #ffffff;
+}
+.btn-confirm-no:hover {
+  background: #b91c1c;
+}
+.btn-icon {
+  font-size: 28px;
+}
+.btn-text {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.voice-success-card {
+  text-align: center;
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+.success-badge {
+  font-size: 48px;
+  color: #16a34a;
+}
+.voice-error-banner {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
