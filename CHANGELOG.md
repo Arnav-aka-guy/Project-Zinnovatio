@@ -4,14 +4,16 @@ All notable changes are recorded here. The format follows Keep a Changelog, and 
 
 ## [Unreleased]
 
-### Notifications (31 Oct 2026)
-- **Real sender**: farmer SMS (Twilio, MSG91 with DLT templates) and WhatsApp (Cloud API), Punjabi first, for turn booked or changed, will miss, cancelled, work started, work done with the record link, and not served. Default `simulate` mode records messages and sends nothing.
-- **Staff alerts**: a bell with unread count and inbox on every staff screen, and phone/desktop push alerts after **Turn on**. Operators hear about requests that will miss, jobs not served, machines taken off and failed farmer messages; officers about flagged jobs and locked accounts. Tapping an alert opens the request.
+### Notifications, inside Vaari only (31 Oct 2026)
+- **Every message is delivered inside Vaari**: the web app on phones and computers, and phone/desktop alerts from it. No SMS and no WhatsApp; the "Open WhatsApp" button is gone (Copy text and Call stay).
+- **Farmer page** `/farmer/<link>`, Punjabi first with English on a tap: the farmer's bookings, the turn date and machine, the code for the driver, every message, a Call the centre button, and **ਚਾਲੂ ਕਰੋ / Turn on** for phone alerts. It installs to the Home Screen and opens straight to their bookings.
+- **QR code for the farmer** in the request details (with a large view to scan at the counter) and at the end of a voice booking; the card shows whether the farmer's alerts are on. **New link…** turns an old link and its phones off.
+- **Staff alerts**: a bell with unread count and inbox on every staff screen, and phone/desktop alerts after **Turn on**. Operators hear about requests that will miss, jobs not served, machines taken off, and changed turns that no farmer phone received; officers about flagged jobs and locked accounts. Tapping an alert opens the request.
 - **Driver job alerts** from the driver link: new or removed jobs and a morning job list.
-- **Safe by default**: consent check, no out-of-date messages, demo data never sent, test numbers only outside production, quiet hours 21:00 to 07:00, retries with backoff, WhatsApp-to-SMS fallback, and an operator alert to call the farmer when every channel fails.
-- **Visible**: "Messages sent" in request details (with Send again), "Message delivery" on the Officer page, `notifications` in `/api/health`, `python tasks.py notify`.
-- New tables `notification` and `push_subscription` (migration 0003); new routes under `/api/notify/` and `/api/driver/{token}/push`; `python tasks.py vapid-keys`.
-- Tests: 50 backend tests and `web/e2e/notifications.spec.ts`.
+- **Safe by default**: consent check, no out-of-date messages, quiet hours 21:00 to 07:00 for farmers' phones (the message is on their page at once), retries with backoff, dead devices removed.
+- **Visible**: "Messages sent" in request details (with Send again), "Message delivery" on the Officer page, "Messaging: in-app" in the status strip, `notifications` in `/api/health`, `python tasks.py notify`.
+- New tables `notification`, `push_subscription`, `farmer_link` (migrations 0003, 0004); new routes under `/api/notify/`, `/api/farmer/{token}`, `/api/requests/{id}/farmer-link` and `/api/driver/{token}/push`; `python tasks.py vapid-keys`.
+- Tests: 54 backend tests and `web/e2e/notifications.spec.ts` (7).
 
 ### Phone web app (31 Oct 2026)
 - **Works on phones**: bottom tab bar and More sheet, compact top bar, request cards, full-screen request detail, Desk form behind one button, sticky Desk tabs, camera and gallery buttons for register photos, card layout for every table, sticky Confirm button, compact voice booking, glove-sized driver controls. Nothing wider than the screen from 320 px to desktop; tap targets 44 px; inputs at 16 px (no iPhone zoom); notch and home-bar safe areas.

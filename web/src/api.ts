@@ -10,6 +10,8 @@ import type {
   DashboardSummary,
   DriverResponse,
   Health,
+  FarmerLinkOut,
+  FarmerPageData,
   Inbox,
   IntakeConfirmResult,
   IntakeConfirmRowIn,
@@ -586,4 +588,55 @@ export function retryOutbox(id: number): Promise<OutboxItem> {
 
 export function getNotifySummary(): Promise<NotifySummary> {
   return request<NotifySummary>('/api/notify/summary', { headers: authHeaders('passcode') });
+}
+
+// ── Farmer app ───────────────────────────────────────────────
+/** Operator: the farmer's private page for this request's farmer (made on first use). */
+export function getFarmerLink(requestId: number): Promise<FarmerLinkOut> {
+  return request<FarmerLinkOut>(`/api/requests/${requestId}/farmer-link`, { headers: authHeaders('passcode') });
+}
+
+/** Operator: turn the old farmer link off (and its phones) and make a new one. */
+export function rotateFarmerLink(requestId: number): Promise<FarmerLinkOut> {
+  return request<FarmerLinkOut>(`/api/requests/${requestId}/farmer-link/rotate`, {
+    method: 'POST',
+    headers: authHeaders('passcode'),
+  });
+}
+
+/** The farmer's own page (the link token is the key). */
+export function getFarmerPage(token: string): Promise<FarmerPageData> {
+  return request<FarmerPageData>(`/api/farmer/${encodeURIComponent(token)}`);
+}
+
+export function markFarmerRead(token: string, ids: number[] | 'all'): Promise<{ updated: number }> {
+  return request(`/api/farmer/${encodeURIComponent(token)}/read`, {
+    method: 'POST',
+    headers: JSON_HEADERS,
+    body: JSON.stringify(ids === 'all' ? { all: true } : { ids }),
+  });
+}
+
+export function addFarmerPush(token: string, body: PushSubscriptionBody): Promise<{ id: number; devices: number }> {
+  return request(`/api/farmer/${encodeURIComponent(token)}/push`, {
+    method: 'POST',
+    headers: JSON_HEADERS,
+    body: JSON.stringify(body),
+  });
+}
+
+export function removeFarmerPush(token: string, endpoint: string): Promise<void> {
+  return request(`/api/farmer/${encodeURIComponent(token)}/push`, {
+    method: 'DELETE',
+    headers: JSON_HEADERS,
+    body: JSON.stringify({ endpoint }),
+  });
+}
+
+export function sendFarmerTestAlert(token: string, endpoint?: string): Promise<PushTestResult> {
+  return request(`/api/farmer/${encodeURIComponent(token)}/push/test`, {
+    method: 'POST',
+    headers: JSON_HEADERS,
+    body: JSON.stringify({ endpoint: endpoint ?? null }),
+  });
 }

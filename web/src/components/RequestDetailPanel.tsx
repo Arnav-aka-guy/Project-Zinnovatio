@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import FarmerMessages from './FarmerMessages';
+import FarmerAppCard from './FarmerAppCard';
 import { getSlotMessage, markMessageOpened, patchRequest, deleteRequest, revokeRecordLink, reissueRecordLink, ApiError } from '../api';
 import { friendlyError } from '../errors';
 import Badge from './Badge';
@@ -86,7 +87,7 @@ export default function RequestDetailPanel({ request, onClose, onUpdate }: Props
           language: 'pa',
           body: `ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ। ਤੁਹਾਡੇ ${request.village} ਵਾਲੇ ${request.acres} ਏਕੜ ਖੇਤ ਲਈ ${request.slot!.machine_name} ${request.slot!.service_date} ਨੂੰ ਆਵੇਗੀ। ਕੋਈ ਗੱਲ ਹੋਵੇ ਤਾਂ ਫ਼ੋਨ ਕਰੋ।`,
           body_en: `Sat Sri Akal ji. ${request.slot!.machine_name} will come on ${request.slot!.service_date} for your ${request.acres}-acre field in ${request.village}.`,
-          wa_link: `https://wa.me/91${request.farmer.phone}`,
+          wa_link: '',
           tel_link: `tel:+91${request.farmer.phone}`,
           service_code: '----',
         });
@@ -107,16 +108,6 @@ export default function RequestDetailPanel({ request, onClose, onUpdate }: Props
     } catch {
       // Fallback
     }
-  };
-
-  const handleOpenWhatsApp = async () => {
-    if (!messageData || !request.slot) return;
-    try {
-      await markMessageOpened(request.slot.id, 'wa_link');
-    } catch {
-      // If network fails, still proceed to open link
-    }
-    window.open(messageData.wa_link, '_blank');
   };
 
   const handleSaveEdit = async () => {
@@ -299,7 +290,11 @@ export default function RequestDetailPanel({ request, onClose, onUpdate }: Props
           {/* Message Modal / Expander */}
           {showMessage && (
             <div className="panel-card message-card" id="slot-message-container">
-              <h3>Farmer Notification Message</h3>
+              <h3>Message for the farmer</h3>
+              <p className="message-note">
+                This message is on the farmer&apos;s Vaari page and goes to their phone as a Vaari alert when alerts
+                are on. Nothing is sent by SMS or WhatsApp.
+              </p>
               {loadingMessage ? (
                 <p>Generating slot message…</p>
               ) : messageData ? (
@@ -326,18 +321,11 @@ export default function RequestDetailPanel({ request, onClose, onUpdate }: Props
                       {isCopied ? '✓ Copied' : 'Copy Text'}
                     </button>
                     <a
-                      id="btn-whatsapp-msg"
-                      href={messageData.wa_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary"
-                      onClick={handleOpenWhatsApp}
-                    >
-                      Open WhatsApp
-                    </a>
-                    <a
                       id="btn-call-farmer"
                       href={messageData.tel_link}
+                      onClick={() => {
+                        if (request.slot) void markMessageOpened(request.slot.id, 'tel').catch(() => undefined);
+                      }}
                       className="btn btn-secondary"
                     >
                       Call
@@ -347,6 +335,8 @@ export default function RequestDetailPanel({ request, onClose, onUpdate }: Props
               ) : null}
             </div>
           )}
+
+          <FarmerAppCard requestId={request.id} />
 
           <FarmerMessages requestId={request.id} refreshKey={`${request.status}:${request.slot?.id ?? ''}:${request.slot?.status ?? ''}`} />
 

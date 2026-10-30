@@ -13,6 +13,7 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { ApiError, createRequest, getVoiceScript, understandVoice } from '../api';
+import FarmerQrInline from '../components/FarmerQrInline';
 import { friendlyError } from '../errors';
 import type { RequestOut } from '../types';
 import { VoicePlayer } from '../voice/player';
@@ -891,6 +892,7 @@ export default function VoiceBookingPage() {
               </>
             )}
           </p>
+          {outcome.req.status !== 'cancelled' && <FarmerQrInline requestId={outcome.req.id} />}
           <div className="vb-row">
             <button type="button" className="vb-btn vb-btn-outline" onClick={() => void replay()}>
               🔊 ਦੁਬਾਰਾ ਸੁਣੋ / Hear again

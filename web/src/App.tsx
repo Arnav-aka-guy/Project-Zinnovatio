@@ -10,6 +10,7 @@ import RecordPage from './pages/RecordPage';
 import DriverPickerPage from './pages/DriverPickerPage';
 import RecordPickerPage from './pages/RecordPickerPage';
 import IntakePage from './pages/IntakePage';
+import FarmerPage from './pages/FarmerPage';
 import VoiceBookingPage from './pages/VoiceBookingPage';
 import {
   IconCamera,
@@ -28,8 +29,8 @@ import {
 } from './shell/icons';
 import { useInstall, useOnline } from './shell/useInstall';
 
-/** Driver and record links are opened by drivers and farmers: no staff menu there. */
-const PUBLIC_PAGE = /^\/(driver|record)\/[^/]+/;
+/** Driver, record and farmer links are opened by drivers and farmers: no staff menu there. */
+const PUBLIC_PAGE = /^\/(driver|record|farmer)\/[^/]+/;
 
 const PAGE_TITLES: Record<string, string> = {
   '/desk': 'Desk',
@@ -280,6 +281,7 @@ function Shell() {
             }
           />
           <Route path="/record/:token" element={<RecordPage />} />
+          <Route path="/farmer/:token" element={<FarmerPage />} />
           <Route path="*" element={<Navigate to="/desk" replace />} />
         </Routes>
       </main>

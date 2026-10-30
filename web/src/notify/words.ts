@@ -12,22 +12,17 @@ export const KIND_WORDS: Record<string, string> = {
   needs_review: 'Needs review',
   machine_inactive: 'Machine off',
   login_locked: 'Account locked',
-  delivery_failed: 'Message failed',
+  farmer_unreachable: 'Farmer not reachable',
   driver_job_added: 'New job',
   driver_job_removed: 'Job removed',
   driver_day_plan: 'Morning job list',
 };
 
 const REASON_WORDS: Record<string, string> = {
-  simulate_mode: 'demo mode, not sent',
-  demo_data: 'demo data, not sent',
-  no_provider: 'no SMS/WhatsApp service set up',
   out_of_date: 'no longer true, not sent',
-  not_a_test_number: 'not a test number, not sent',
   no_consent: 'farmer did not agree to messages',
-  notifications_off: 'messages turned off',
-  no_devices: 'no device has alerts on',
-  quiet_hours: 'waiting for morning (quiet hours)',
+  no_devices: 'no phone has Vaari alerts on yet',
+  quiet_hours: 'phone alert waits for morning (quiet hours)',
   retry_by_operator: 'sending again',
   device_unsubscribed: 'device turned alerts off',
   internal_error: 'server problem',
@@ -49,9 +44,8 @@ export function reasonWords(reason: string | null): string {
 }
 
 export function channelWords(item: Pick<OutboxItem, 'channel' | 'provider'>): string {
-  if (item.channel === 'sms') return 'SMS';
-  if (item.channel === 'whatsapp') return 'WhatsApp';
-  if (item.channel === 'webpush') return 'Phone alert';
+  if (item.channel === 'webpush') return 'Vaari phone alert';
+  if (item.channel === 'inapp') return 'Vaari page';
   return item.channel;
 }
 

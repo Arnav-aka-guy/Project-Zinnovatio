@@ -1,21 +1,23 @@
-"""Deliver queued notifications: farmer SMS/WhatsApp, staff and driver web push.
+"""Deliver queued notifications as phone/desktop alerts from the Vaari app (web push).
+
+Nothing is sent by SMS or WhatsApp. Farmers, staff and drivers each get
+alerts on the devices where they pressed "Turn on" in Vaari; the farmer's
+page and the staff bell also keep every message (the `inapp` rows).
 
 A small background thread (`start_worker`) calls `process_due` every few
 seconds. Each notification is claimed with a conditional UPDATE, so two
-server processes never send the same message twice.
+server processes never send the same alert twice.
 
-Safety rules, in the order they are applied to a farmer message:
+Rules for a farmer's phone alert, in this order:
 
-1. `VAARI_NOTIFY_MODE=off` -> skipped.
-2. Out of date (the slot was cancelled, the request is no longer at risk...)
-   -> skipped, so a farmer never gets a message that is no longer true.
-3. Simulated: mode `simulate`, provider `log`, or a seeded demo request ->
-   recorded as `simulated` at once, nothing leaves the server.
-4. Outside production, live mode only messages VAARI_NOTIFY_TEST_NUMBERS.
-5. Quiet hours (default 21:00-07:00 local) -> waits until morning.
-6. Sent. A temporary error retries after 30 s, 2 min, 10 min, 1 h, 6 h.
-   A permanent error tries the next farmer channel; if none is left the
-   operators get a "please call the farmer" alert.
+1. No consent to service messages -> skipped.
+2. Out of date (the turn was cancelled, the request is no longer at risk...)
+   -> skipped, so a farmer never gets an alert that is no longer true.
+3. Quiet hours (default 21:00-07:00 local) -> the phone alert waits until
+   morning. The message is already on the farmer's page.
+4. No phone with alerts on -> skipped. For a changed turn the operators are
+   asked to call the farmer.
+5. Sent. A temporary error retries after 30 s, 2 min, 10 min, 1 h, 6 h.
 """
 
 from __future__ import annotations
@@ -31,10 +33,9 @@ from sqlalchemy.orm import Session
 
 from app import clock
 from app.config import settings
-from app.models import Farmer, Machine, MessageLog, Notification, Plot, PushSubscription, Request, Slot
-from app.notify import messages as M
-from app.notify import providers, webpush
-from app.notify.rules import queue, queue_driver_day_plans, queue_staff
+from app.models import Farmer, FarmerLink, Notification, Plot, PushSubscription, Request, Slot
+from app.notify import webpush
+from app.notify.rules import queue_driver_day_plans, queue_staff
 
 log = logging.getLogger("vaari.notify")
 
@@ -117,7 +118,7 @@ def _stale_reason(session: Session, n: Notification) -> str | None:
         slot = session.get(Slot, n.slot_id)
         if slot is None or slot.status not in _SLOT_STATES[n.kind]:
             return "out_of_date"
-    if n.kind in ("driver_job_added",) and n.slot_id:
+    if n.kind == "driver_job_added" and n.slot_id:
         slot = session.get(Slot, n.slot_id)
         if slot is None or slot.status != "scheduled":
             return "out_of_date"
@@ -128,137 +129,82 @@ def _stale_reason(session: Session, n: Notification) -> str | None:
     return None
 
 
-# ── Farmer: SMS / WhatsApp ───────────────────────────────────────────────
-def _farmer_message(session: Session, n: Notification, farmer: Farmer) -> providers.OutgoingText:
-    req = session.get(Request, n.request_id) if n.request_id else None
-    slot = session.get(Slot, n.slot_id) if n.slot_id else None
-    variables: list[str] = []
-    if req is not None:
-        plot = session.get(Plot, req.plot_id)
-        machine = session.get(Machine, slot.machine_id) if slot else None
-        ctx = M.farmer_context(plot=plot, req=req, slot=slot, machine=machine)
-        variables = ctx.variables(n.lang)
-    return providers.OutgoingText(kind=n.kind, phone=farmer.phone, body=n.body, lang=n.lang, variables=variables)
-
-
-def _fallback(session: Session, n: Notification, reason: str) -> None:
-    """A farmer message could not be delivered: try the next channel, else tell the operators."""
-    channels = settings.farmer_channels
-    later = channels[channels.index(n.channel) + 1 :] if n.channel in channels else []
-    base = n.dedupe_key.split(":fallback:", 1)[0]
-    if later:
-        queue(
-            session,
-            key=f"{base}:fallback:{later[0]}",
-            kind=n.kind,
-            audience="farmer",
-            channel=later[0],
-            farmer_id=n.farmer_id,
-            request_id=n.request_id,
-            slot_id=n.slot_id,
-            machine_id=n.machine_id,
-            lang=n.lang,
-            body=n.body,
-            urgency=n.urgency,
-        )
-        return
-    queue_staff(
-        session,
-        "delivery_failed",
-        "operator",
-        f"{n.id}",
-        url=f"/desk?request={n.request_id}" if n.request_id else "/desk",
-        urgency="high",
-        request_id=n.request_id or 0,
-        channel=n.channel,
-        reason=reason[:80],
-    )
-
-
-def _deliver_farmer(session: Session, n: Notification, now: datetime, client: httpx.Client | None) -> None:
-    if settings.notify_mode == "off":
-        _finish(n, "skipped", "notifications_off", now=now)
-        return
-    farmer = session.get(Farmer, n.farmer_id) if n.farmer_id else None
-    if farmer is None or not farmer.consent_service:
-        _finish(n, "skipped", "no_consent", now=now)
-        return
-    stale = _stale_reason(session, n)
-    if stale:
-        _finish(n, "skipped", stale, now=now)
-        return
-    req = session.get(Request, n.request_id) if n.request_id else None
-    provider = settings.sms_provider if n.channel == "sms" else settings.whatsapp_provider
-    if settings.notify_mode == "simulate" or provider == "log" or (req is not None and req.source == "seed"):
-        why = (
-            "demo_data"
-            if req is not None and req.source == "seed"
-            else ("simulate_mode" if settings.notify_mode == "simulate" else "no_provider")
-        )
-        _finish(n, "simulated", why, now=now, provider="log")
-        return
-    if not settings.is_production and farmer.phone[-10:] not in settings.notify_test_numbers:
-        _finish(n, "skipped", "not_a_test_number", now=now)
-        return
-    wait = quiet_until(now)
-    if wait is not None:
-        n.status = "queued"
-        n.status_reason = "quiet_hours"
-        n.next_attempt_at = wait
-        return
-
-    n.attempts += 1
-    msg = _farmer_message(session, n, farmer)
-    send = providers.send_sms if n.channel == "sms" else providers.send_whatsapp
-    try:
-        res = send(msg, provider, client=client)
-    except Exception as exc:  # noqa: BLE001 - a provider bug must not stop the worker
-        res = providers.SendResult(ok=False, provider=provider, retry=True, detail=type(exc).__name__)
-
-    if res.ok:
-        _finish(n, "sent", "", now=now, provider=res.provider, ref=res.ref)
-        if n.slot_id:
-            session.add(
-                MessageLog(
-                    slot_id=n.slot_id,
-                    farmer_id=farmer.id,
-                    channel=n.channel,
-                    template=n.kind,
-                    body=n.body,
-                    status="sent",
-                    created_at=now,
-                )
-            )
-            slot = session.get(Slot, n.slot_id)
-            if slot is not None and n.kind in ("slot_scheduled", "slot_changed") and slot.notified_at is None:
-                slot.notified_at = now
-        return
-    n.provider = res.provider
-    if res.retry and _retry_later(n, res.detail or "temporary_error", now=now):
-        return
-    _finish(n, "failed", res.detail or "rejected", now=now)
-    _fallback(session, n, res.detail or "rejected")
-
-
 # ── Staff and drivers: web push ──────────────────────────────────────────
+def _live_farmer_links(session: Session, farmer_id: int) -> list[FarmerLink]:
+    now = _naive(clock.now_utc())
+    return [
+        link
+        for link in session.query(FarmerLink).filter(FarmerLink.farmer_id == farmer_id, FarmerLink.revoked_at.is_(None))
+        if link.expires_at is None or _naive(link.expires_at) > now
+    ]
+
+
 def _subscriptions(session: Session, n: Notification) -> list[PushSubscription]:
     q = session.query(PushSubscription).filter(PushSubscription.revoked_at.is_(None))
     if n.audience == "driver":
         return q.filter(PushSubscription.machine_id == n.machine_id).all()
-    return [s for s in q.filter(PushSubscription.machine_id.is_(None)).all() if n.audience in (s.roles_json or [])]
+    if n.audience == "farmer":
+        link_ids = [link.id for link in _live_farmer_links(session, n.farmer_id)] if n.farmer_id else []
+        return q.filter(PushSubscription.farmer_link_id.in_(link_ids)).all() if link_ids else []
+    q = q.filter(PushSubscription.machine_id.is_(None), PushSubscription.farmer_link_id.is_(None))
+    return [s for s in q.all() if n.audience in (s.roles_json or [])]
 
 
-def push_payload(n: Notification) -> dict:
+def _url_for(session: Session, n: Notification) -> str:
+    if n.url:
+        return n.url
+    if n.audience == "farmer" and n.farmer_id:
+        links = _live_farmer_links(session, n.farmer_id)
+        if links:
+            return f"/farmer/{max(links, key=lambda x: x.id).token}"
+    return "/"
+
+
+def push_payload(n: Notification, url: str | None = None) -> dict:
     return {
         "id": n.id,
         "kind": n.kind,
         "audience": n.audience,
         "title": n.title or "Vaari",
         "body": n.body,
-        "url": n.url or "/",
+        "url": url or n.url or "/",
         "tag": f"vaari-{n.kind}-{n.request_id or n.slot_id or n.machine_id or n.id}",
         "urgency": n.urgency,
+        "lang": n.lang,
     }
+
+
+def _farmer_checks(session: Session, n: Notification, now: datetime) -> bool:
+    """Farmer-only rules before the phone alert. False means stop (already finished or deferred)."""
+    farmer = session.get(Farmer, n.farmer_id) if n.farmer_id else None
+    if farmer is None or not farmer.consent_service:
+        _finish(n, "skipped", "no_consent", now=now)
+        return False
+    wait = quiet_until(now)
+    if wait is not None:
+        n.status = "queued"
+        n.status_reason = "quiet_hours"
+        n.next_attempt_at = wait
+        return False
+    return True
+
+
+def _farmer_unreachable(session: Session, n: Notification) -> None:
+    """A changed turn that no farmer phone received: ask the operators to call."""
+    if n.audience != "farmer" or n.kind != "slot_changed" or not n.request_id:
+        return
+    req = session.get(Request, n.request_id)
+    plot = session.get(Plot, req.plot_id) if req else None
+    queue_staff(
+        session,
+        "farmer_unreachable",
+        "operator",
+        f"{n.id}",
+        url=f"/desk?request={n.request_id}",
+        urgency="high",
+        request_id=n.request_id,
+        village=plot.village_name if plot else "",
+    )
 
 
 def _deliver_push(session: Session, n: Notification, now: datetime, client: httpx.Client | None) -> None:
@@ -266,12 +212,15 @@ def _deliver_push(session: Session, n: Notification, now: datetime, client: http
     if stale:
         _finish(n, "skipped", stale, now=now)
         return
+    if n.audience == "farmer" and not _farmer_checks(session, n, now):
+        return
     subs = _subscriptions(session, n)
     if not subs:
         _finish(n, "skipped", "no_devices", now=now)
+        _farmer_unreachable(session, n)
         return
     n.attempts += 1
-    payload = push_payload(n)
+    payload = push_payload(n, _url_for(session, n))
     ok = retry = 0
     last = ""
     for sub in subs:
@@ -295,17 +244,24 @@ def _deliver_push(session: Session, n: Notification, now: datetime, client: http
             sub.revoked_at = now
             last = "device_unsubscribed"
         else:
-            sub.failures = (sub.failures or 0) + 1
-            if sub.failures >= MAX_PUSH_FAILURES:
-                sub.revoked_at = now
+            # A busy push service (429/5xx) is not the device's fault; only refusals count against it.
+            if not res.retry:
+                sub.failures = (sub.failures or 0) + 1
+                if sub.failures >= MAX_PUSH_FAILURES:
+                    sub.revoked_at = now
             retry += int(res.retry)
             last = res.detail or f"http_{res.status}"
     if ok:
         _finish(n, "sent", f"{ok}/{len(subs)} devices", now=now, provider="webpush")
+        if n.audience == "farmer" and n.slot_id and n.kind in ("slot_scheduled", "slot_changed"):
+            slot = session.get(Slot, n.slot_id)
+            if slot is not None and slot.notified_at is None:
+                slot.notified_at = now
     elif retry and _retry_later(n, last, now=now):
         n.provider = "webpush"
     else:
         _finish(n, "failed", last or "no_device_accepted", now=now, provider="webpush")
+        _farmer_unreachable(session, n)
 
 
 # ── The loop ─────────────────────────────────────────────────────────────
@@ -315,10 +271,7 @@ def deliver(session: Session, n: Notification, now: datetime | None = None, clie
         if n.status != "delivered":
             _finish(n, "delivered", "", now=now)
         return
-    if n.audience == "farmer":
-        _deliver_farmer(session, n, now, client)
-    else:
-        _deliver_push(session, n, now, client)
+    _deliver_push(session, n, now, client)
 
 
 def _claim(session: Session, n_id: int, now: datetime) -> bool:
@@ -448,7 +401,7 @@ class Worker:
         return counts
 
     def _run(self) -> None:
-        with httpx.Client(timeout=providers.TIMEOUT) as client:
+        with httpx.Client(timeout=15.0) as client:
             while not self._stop.is_set():
                 try:
                     self.tick(client)

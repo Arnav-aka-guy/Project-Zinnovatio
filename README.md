@@ -61,7 +61,7 @@ Open `http://localhost:8000` and enter the passcode from `.env`. After `reset` y
 3. The operator confirms or corrects each row. Nothing is saved unconfirmed.
 4. The scheduler assigns machines against sowing deadlines.
 5. The dashboard shows the requests that will miss, each with a reason code and a next step.
-6. The operator opens a prefilled Punjabi WhatsApp message for the farmer.
+6. The farmer gets the Punjabi message inside Vaari: on their own page (opened from a QR code) and as a phone alert. No SMS or WhatsApp.
 7. The driver opens the slot and submits Start and Done evidence: time, position, photo.
 8. Vaari generates the service record and the officer dashboard updates.
 
@@ -132,7 +132,7 @@ Every component is labelled by its honest status in v0.1.
 | **Register reader** (`app/intake/`) | Mock by default; Gemini for demonstration only; custom model later | Behind one `RegisterReader` interface. The mock (badged `reader: mock`) refuses in production. `gemini_demo` is off unless `VAARI_ALLOW_HOSTED_READER=true`, needs `VAARI_VISION_MODEL`, and is for synthetic pages only; the intake screen always says where photos go. `custom` is a stub for a future model on your own server ([docs/FUTURE_CUSTOM_READER.md](docs/FUTURE_CUSTOM_READER.md)). Every row is still confirmed by a person |
 | **Farmer consent** | Simulated | Ticked by the operator during intake. Every screen and record carries the `consent simulated` badge |
 | **Device position** | Self-reported by the phone | From the browser Geolocation API. If it is denied, the job still closes with a `position self-reported` badge |
-| **WhatsApp message** (`app/messaging/`) | Shortcut | Bilingual Punjabi/English text on screen plus a prefilled `wa.me` link. No paid messaging API |
+| **Notifications** (`app/notify/`) | Built | Every message is delivered inside Vaari: the farmer's own page and phone alerts, the staff bell and alerts, driver job alerts. No SMS, no WhatsApp, no paid messaging API. See [docs/NOTIFICATIONS.md](docs/NOTIFICATIONS.md) |
 | **Access control** (`app/auth.py`) | Accounts in production; passcode in development | `operator` and `officer` accounts (argon2id), signed sessions that expire, role checks, sign-in rate limits and lockout. Driver and record links are 128-bit tokens that expire and can be turned off. The shared passcode works only when `VAARI_ENV=development` |
 | **Demo data** (`app/seed/`) | Fictional | 40 requests generated relative to today's date, each badged `seeded request` |
 | **Tier 2 extras** | Built | Usage CSV export, an offline-safe map panel, and rescue options (nearest compatible centres) on will-miss requests |
@@ -171,7 +171,7 @@ Every unreliable dependency sits behind an interface with a mock, so each part c
 | --- | --- | --- | --- |
 | `RegisterReader` | Mock, hosted vision model | Local OCR, Ollama | The manual form, with the photo beside it |
 | Scheduler | Greedy deadline-first | Routing solver | The greedy scheduler is the default |
-| Notifier | On-screen panel, `wa.me` link | WhatsApp Business | The on-screen panel always renders |
+| Notifier | Farmer page, staff bell, web push alerts (in Vaari only) | | The message is always on the farmer's page and in the bell, even when no phone has alerts on |
 | Position check | shapely + pyproj geometry | | The job closes, badged "position self-reported" |
 | Harvest sensor | Satellite: future (v0.7), not built | `HarvestSensor` (Sentinel-2 / Sentinel-1), see [docs/FUTURE_SATELLITE.md](docs/FUTURE_SATELLITE.md) | Not needed by the core loop |
 
@@ -182,7 +182,7 @@ Every fallback shows a visible status. The app never pretends the primary depend
 | Dependency | Fallback | What the screen says |
 | --- | --- | --- |
 | Vision model | Manual form with the photo beside it | "Reader unavailable: type the rows" |
-| WhatsApp | `wa.me` link, then the on-screen message | "Not sent: copy or call" |
+| Phone alerts (push service) | The farmer page and the staff bell still show every message | "Messages sent" shows "Not sent" with the reason; a changed turn no farmer phone received asks the operator to call |
 | Phone position denied or no HTTPS | Start and Done still close | Badge: "position self-reported" |
 | Database deleted | `python tasks.py reset` rebuilds it in under a minute | Status strip shows the state |
 

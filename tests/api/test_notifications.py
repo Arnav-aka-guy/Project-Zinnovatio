@@ -1,4 +1,6 @@
-"""Notifications: who is told what, and how it is delivered (outbox, SMS/WhatsApp, web push)."""
+"""Notifications: who is told what, and how it is delivered inside Vaari (outbox, farmer page, bell, web push).
+
+Nothing is sent by SMS or WhatsApp."""
 
 from __future__ import annotations
 
@@ -11,7 +13,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import ec
 
 from app import clock
-from app.models import MessageLog, Notification, PushSubscription, Slot
+from app.models import Notification, PushSubscription, Slot
 from app.notify import dispatch, webpush
 from tests.fixtures.synthetic_photos import TINY_JPEG
 
@@ -23,8 +25,6 @@ FCM = "https://fcm.googleapis.com/fcm/send/device-"
 @pytest.fixture(autouse=True)
 def _defaults(monkeypatch):
     monkeypatch.setenv("VAARI_FARMER_QUIET_HOURS", "")
-    monkeypatch.delenv("VAARI_NOTIFY_MODE", raising=False)
-    monkeypatch.delenv("VAARI_FARMER_CHANNELS", raising=False)
     monkeypatch.setenv("VAARI_DRIVER_DIGEST_HOUR", "-1")
     webpush.reset_vapid_cache()
     yield
@@ -116,15 +116,6 @@ class Recorder:
         return httpx.Client(transport=httpx.MockTransport(self))
 
 
-def live_twilio(monkeypatch, numbers=PHONE):
-    monkeypatch.setenv("VAARI_NOTIFY_MODE", "live")
-    monkeypatch.setenv("VAARI_SMS_PROVIDER", "twilio")
-    monkeypatch.setenv("VAARI_TWILIO_ACCOUNT_SID", "ACtest")
-    monkeypatch.setenv("VAARI_TWILIO_AUTH_TOKEN", "secret")
-    monkeypatch.setenv("VAARI_TWILIO_FROM", "+15550001111")
-    monkeypatch.setenv("VAARI_NOTIFY_TEST_NUMBERS", numbers)
-
-
 def finish_job(client, h, slot_id, token):
     sh = {"X-Vaari-Slot-Token": token}
     assert (
@@ -141,13 +132,41 @@ def slot_of(client, h, rid):
     return next(s for s in client.get("/api/slots", headers=h).json() if s["id"] == req["slot"]["id"])
 
 
+def farmer_token(client, h, rid):
+    r = client.get(f"/api/requests/{rid}/farmer-link", headers=h)
+    assert r.status_code == 200, r.text
+    return r.json()["path"].rsplit("/", 1)[1]
+
+
+def farmer_phone_on(client, token, n="farmer"):
+    """The farmer opens their page and presses Turn on: this phone now gets Vaari alerts."""
+    key = ec.generate_private_key(ec.SECP256R1())
+    pub = key.public_key().public_bytes(serialization.Encoding.X962, serialization.PublicFormat.UncompressedPoint)
+    auth = b"fedcba9876543210"
+    r = client.post(f"/api/farmer/{token}/push", json={
+        "endpoint": f"{FCM}{n}", "keys": {"p256dh": webpush.b64u_encode(pub), "auth": webpush.b64u_encode(auth)}})
+    assert r.status_code == 201, r.text
+    return key, auth
+
+
+def decrypt(call, key, auth):
+    import http_ece
+
+    return json.loads(http_ece.decrypt(call.content, private_key=key, auth_secret=auth, version="aes128gcm"))
+
+
 # ── rules: an event queues the right messages ────────────────────────────
-def test_booking_queues_farmer_sms_and_driver_push(client, auth_headers, temp_db):
+def test_booking_puts_the_message_on_the_farmer_page_and_queues_phone_alerts(client, auth_headers, temp_db):
     machine(client, auth_headers)
     rid = request(client, auth_headers)["id"]
     farmer = rows(temp_db, audience="farmer")
-    assert [(r["kind"], r["channel"], r["status"]) for r in farmer] == [("slot_scheduled", "sms", "queued")]
+    assert [(r["kind"], r["channel"], r["status"]) for r in farmer] == [
+        ("slot_scheduled", "inapp", "delivered"),  # on the farmer's page at once
+        ("slot_scheduled", "webpush", "queued"),  # and a phone alert for each phone with alerts on
+    ]
+    assert farmer[0]["title"].startswith("ਮਸ਼ੀਨ ਦੀ ਵਾਰੀ ਪੱਕੀ")
     assert "Pind Test" in farmer[0]["body"] and "ਸਤ ਸ੍ਰੀ ਅਕਾਲ" in farmer[0]["body"]
+    assert {r["channel"] for r in rows(temp_db)} <= {"inapp", "webpush"}  # never SMS or WhatsApp
     driver = rows(temp_db, audience="driver")
     assert [(r["kind"], r["channel"]) for r in driver] == [("driver_job_added", "webpush")]
     assert driver[0]["title"] == "New job: Pind Test"
@@ -162,22 +181,23 @@ def test_english_texts_for_english_speaking_farmers():
     req = NS(acres_x100=250, service_type="super_seeder")
     plot = NS(village_name="Pind Test")
     ctx = M.farmer_context(plot=plot, req=req)
-    for kind in ("will_miss", "cancelled", "not_served"):
+    for kind in ("will_miss", "cancelled", "not_served", "job_done"):
         en = M.farmer_text(kind, "en", ctx)
         assert en.startswith("Sat Sri Akal ji.") and "Pind Test" in en
         assert M.farmer_text(kind, "pa", ctx).startswith("ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ।")
+        assert M.farmer_title(kind, "en", ctx) and M.farmer_title(kind, "pa", ctx)
 
 
-def test_full_job_queues_started_and_done_with_record_link(client, auth_headers, temp_db, monkeypatch):
-    monkeypatch.setenv("VAARI_PUBLIC_BASE_URL", "https://vaari.example.org")
+def test_full_job_tells_the_farmer_started_and_done_with_the_record(client, auth_headers, temp_db):
     machine(client, auth_headers)
     rid = request(client, auth_headers)["id"]
     s = slot_of(client, auth_headers, rid)
     assert finish_job(client, auth_headers, s["id"], s["link_token"]).status_code == 200
-    kinds = [r["kind"] for r in rows(temp_db, audience="farmer")]
-    assert kinds == ["slot_scheduled", "job_started", "job_done"]
-    done = rows(temp_db, kind="job_done")[0]["body"]
-    assert "https://vaari.example.org/record/" in done
+    page = rows(temp_db, audience="farmer", channel="inapp")
+    assert [r["kind"] for r in page] == ["slot_scheduled", "job_started", "job_done"]
+    with temp_db() as db:
+        done = db.query(Notification).filter_by(kind="job_done", channel="inapp").one()
+        assert done.url.startswith("/record/")
 
 
 def test_will_miss_is_told_once_to_farmer_and_operators(client, auth_headers, temp_db):
@@ -186,7 +206,7 @@ def test_will_miss_is_told_once_to_farmer_and_operators(client, auth_headers, te
         assert client.post("/api/schedule/run", headers=auth_headers).status_code == 200
     farmer = rows(temp_db, audience="farmer", kind="will_miss")
     staff = rows(temp_db, audience="operator", kind="will_miss")
-    assert len(farmer) == 1
+    assert sorted(r["channel"] for r in farmer) == ["inapp", "webpush"]
     assert sorted(r["channel"] for r in staff) == ["inapp", "webpush"]
     inapp = next(r for r in staff if r["channel"] == "inapp")
     assert inapp["status"] == "delivered" and inapp["title"] == f"VR-{rid} will miss its deadline"
@@ -204,171 +224,208 @@ def test_flagged_job_alerts_officer_once(client, auth_headers, temp_db):
 
 def test_no_consent_no_farmer_message(client, auth_headers, temp_db):
     machine(client, auth_headers)
-    r = client.post(
-        "/api/requests",
-        json={
-            "phone": PHONE,
-            "village": "Pind Test",
-            "acres": 2,
-            "service_type": "super_seeder",
-            "harvest_date": str(clock.today()),
-            "consent_service": False,
-            "consent_evidence": False,
-            "consent_share": False,
-        },
-        headers=auth_headers,
-    )
+    r = client.post("/api/requests", json={
+        "phone": PHONE, "village": "Pind Test", "acres": 2, "service_type": "super_seeder",
+        "harvest_date": str(clock.today()), "consent_service": False, "consent_evidence": False,
+        "consent_share": False}, headers=auth_headers)
     if r.status_code == 201:
         assert rows(temp_db, audience="farmer") == []
 
 
-def test_mode_off_queues_no_farmer_messages(client, auth_headers, temp_db, monkeypatch):
-    monkeypatch.setenv("VAARI_NOTIFY_MODE", "off")
+# ── the farmer's page and link ───────────────────────────────────────────
+def test_operator_gets_one_link_per_farmer_and_the_farmer_page_shows_bookings(client, auth_headers, temp_db):
     machine(client, auth_headers)
-    request(client, auth_headers)
-    assert rows(temp_db, audience="farmer") == []
-    assert rows(temp_db, audience="driver")  # staff and driver alerts still work
+    rid = request(client, auth_headers)["id"]
+    first = client.get(f"/api/requests/{rid}/farmer-link", headers=auth_headers).json()
+    again = client.get(f"/api/requests/{rid}/farmer-link", headers=auth_headers).json()
+    assert first["path"] == again["path"] and first["path"].startswith("/farmer/")
+    assert first["devices"] == 0
+    token = first["path"].rsplit("/", 1)[1]
+    page = client.get(f"/api/farmer/{token}").json()
+    assert page["lang"] == "pa" and page["centre"]["phone"]
+    booking = page["bookings"][0]
+    assert booking["id"] == rid and booking["village"] == "Pind Test" and booking["acres"] == 2.5
+    assert booking["slot"]["machine"] == "SS 1" and len(booking["slot"]["service_code"]) == 4
+    assert page["unread"] == 1 and page["messages"][0]["kind"] == "slot_scheduled"
+    assert PHONE not in json.dumps(page) and "Test Farmer" not in json.dumps(page)  # no phone or name on the page
+    r = client.post(f"/api/farmer/{token}/read", json={"all": True})
+    assert r.json() == {"updated": 1}
+    assert client.get(f"/api/farmer/{token}").json()["unread"] == 0
+    with temp_db() as db:
+        from app.models import FarmerLink
+
+        assert db.query(FarmerLink).one().last_opened_at is not None
 
 
-# ── dispatch: simulate, live, safety rules ───────────────────────────────
-def test_simulate_mode_records_but_sends_nothing(client, auth_headers, temp_db):
+def test_farmer_link_needs_operator_sign_in(client, auth_headers):
+    machine(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    assert client.get(f"/api/requests/{rid}/farmer-link").status_code == 401
+
+
+def test_farmer_routes_refuse_unknown_expired_and_turned_off_links(client, auth_headers, temp_db):
+    machine(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    token = farmer_token(client, auth_headers, rid)
+    for path in ("", "/manifest.webmanifest"):
+        assert client.get(f"/api/farmer/not-a-token{path}").status_code == 404
+    assert client.post("/api/farmer/not-a-token/read", json={"all": True}).status_code == 404
+    with temp_db() as db:
+        from app.models import FarmerLink
+
+        db.query(FarmerLink).one().expires_at = clock.now_utc() - timedelta(minutes=1)
+        db.commit()
+    r = client.get(f"/api/farmer/{token}")
+    assert r.status_code == 410 and r.json()["error_code"] == "LINK_EXPIRED"
+
+
+def test_farmer_phone_gets_an_encrypted_alert_that_opens_their_page(client, auth_headers, temp_db):
+    machine(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    token = farmer_token(client, auth_headers, rid)
+    key, auth = farmer_phone_on(client, token)
+    rec = Recorder()
+    run(temp_db, client=rec.client())
+    farmer_calls = [c for c in rec.calls if c.url.path.endswith("farmer")]
+    assert len(farmer_calls) == 1
+    data = decrypt(farmer_calls[0], key, auth)
+    assert data["title"].startswith("ਮਸ਼ੀਨ ਦੀ ਵਾਰੀ ਪੱਕੀ") and "Pind Test" in data["body"]
+    assert data["url"] == f"/farmer/{token}" and data["lang"] == "pa"
+    assert farmer_calls[0].headers["urgency"] == "high"
+    assert rows(temp_db, audience="farmer", channel="webpush")[0]["status"] == "sent"
+    with temp_db() as db:
+        assert db.query(Slot).filter_by(request_id=rid).one().notified_at is not None
+    assert client.get(f"/api/requests/{rid}/farmer-link", headers=auth_headers).json()["devices"] == 1
+
+
+def test_no_farmer_phone_means_the_page_only(client, auth_headers, temp_db):
     machine(client, auth_headers)
     request(client, auth_headers)
     rec = Recorder()
     counts = run(temp_db, client=rec.client())
     assert rec.calls == []
-    farmer = rows(temp_db, audience="farmer")[0]
-    assert (farmer["status"], farmer["reason"]) == ("simulated", "simulate_mode")
-    driver = rows(temp_db, audience="driver")[0]
-    assert (driver["status"], driver["reason"]) == ("skipped", "no_devices")
-    assert counts == {"simulated": 1, "skipped": 1}
+    farmer = rows(temp_db, audience="farmer", channel="webpush")[0]
+    assert (farmer["status"], farmer["reason"]) == ("skipped", "no_devices")
+    assert rows(temp_db, audience="farmer", channel="inapp")[0]["status"] == "delivered"
+    assert counts == {"skipped": 2}  # the farmer alert and the driver alert: nobody has turned alerts on
+    assert rows(temp_db, kind="farmer_unreachable") == []  # a first booking does not alarm the desk
 
 
-def test_live_twilio_sends_sms_logs_it_and_marks_slot_notified(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch)
+def test_changed_turn_with_no_farmer_phone_asks_operators_to_call(client, auth_headers, temp_db):
     machine(client, auth_headers)
     rid = request(client, auth_headers)["id"]
-    rec = Recorder()
-    run(temp_db, client=rec.client())
-    assert len(rec.calls) == 1
-    call = rec.calls[0]
-    assert call.url.host == "api.twilio.com" and "/Accounts/ACtest/Messages.json" in call.url.path
-    form = dict(x.split("=", 1) for x in call.content.decode().split("&"))
-    assert form["To"] == "%2B91" + PHONE
-    farmer = rows(temp_db, audience="farmer")[0]
-    assert (farmer["status"], farmer["provider"]) == ("sent", "twilio")
-    with temp_db() as s:
-        slot = s.query(Slot).filter_by(request_id=rid).one()
-        assert slot.notified_at is not None
-        log = s.query(MessageLog).filter_by(slot_id=slot.id).one()
-        assert (log.channel, log.status, log.template) == ("sms", "sent", "slot_scheduled")
+    run(temp_db)
+    r = client.patch(f"/api/requests/{rid}", json={"acres": 3}, headers=auth_headers)  # its old turn is cancelled
+    assert r.status_code == 200, r.text
+    assert client.post("/api/schedule/run", headers=auth_headers).status_code == 200  # a new turn
+    assert rows(temp_db, audience="farmer", kind="slot_changed", channel="inapp")
+    run(temp_db)
+    alert = rows(temp_db, kind="farmer_unreachable", channel="inapp")
+    assert len(alert) == 1 and alert[0]["audience"] == "operator"
+    assert "Please call" in alert[0]["body"]
 
 
-def test_live_outside_production_only_messages_test_numbers(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch, numbers="9000000000")
+def test_turning_the_link_off_silences_its_phones(client, auth_headers, temp_db):
     machine(client, auth_headers)
-    request(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    old = farmer_token(client, auth_headers, rid)
+    farmer_phone_on(client, old)
+    new = client.post(f"/api/requests/{rid}/farmer-link/rotate", headers=auth_headers).json()
+    assert new["devices"] == 0 and new["path"] != f"/farmer/{old}"
+    assert client.get(f"/api/farmer/{old}").status_code == 410
     rec = Recorder()
     run(temp_db, client=rec.client())
-    assert rec.calls == []
-    assert rows(temp_db, audience="farmer")[0]["reason"] == "not_a_test_number"
+    assert not [c for c in rec.calls if c.url.path.endswith("farmer")]
+    assert rows(temp_db, audience="farmer", channel="webpush")[0]["reason"] == "no_devices"
 
 
-def test_quiet_hours_wait_for_morning(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch)
+def test_farmer_turns_alerts_off_and_can_test(client, auth_headers, temp_db, monkeypatch):
+    machine(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    token = farmer_token(client, auth_headers, rid)
+    farmer_phone_on(client, token)
+    sent = []
+    monkeypatch.setattr(webpush, "send", lambda e, p, a, payload, **kw: sent.append(payload) or webpush.PushResult(
+        ok=True, status=201, gone=False, retry=False, detail=""))
+    r = client.post(f"/api/farmer/{token}/push/test", json={"endpoint": f"{FCM}farmer"})
+    assert r.json()["sent"] == 1 and sent[0]["title"] == "ਵਾਰੀ ਦੇ ਸੁਨੇਹੇ ਚਾਲੂ ਹਨ"
+    assert client.request("DELETE", f"/api/farmer/{token}/push", json={"endpoint": f"{FCM}farmer"}).status_code == 204
+    assert client.get(f"/api/farmer/{token}").json()["devices"] == 0
+
+
+def test_farmer_page_installs_as_its_own_app(client, auth_headers):
+    machine(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    token = farmer_token(client, auth_headers, rid)
+    r = client.get(f"/api/farmer/{token}/manifest.webmanifest")
+    assert r.status_code == 200 and r.headers["content-type"].startswith("application/manifest+json")
+    m = r.json()
+    assert m["start_url"] == f"/farmer/{token}" and m["scope"] == "/farmer/" and m["display"] == "standalone"
+
+
+# ── dispatch: safety rules ───────────────────────────────────────────────
+def test_quiet_hours_hold_the_phone_alert_not_the_message(client, auth_headers, temp_db, monkeypatch):
     monkeypatch.setenv("VAARI_FARMER_QUIET_HOURS", "21-7")
     machine(client, auth_headers)
-    request(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    farmer_phone_on(client, farmer_token(client, auth_headers, rid))
     night = clock.now_utc().replace(hour=17, minute=30, second=0, microsecond=0)  # 23:00 in India
     if night < clock.now_utc():
         night += timedelta(days=1)
     rec = Recorder()
     run(temp_db, client=rec.client(), now=night)
-    assert rec.calls == []
+    assert not [c for c in rec.calls if c.url.path.endswith("farmer")]
+    assert rows(temp_db, audience="farmer", channel="inapp")[0]["status"] == "delivered"
     with temp_db() as s:
-        n = s.query(Notification).filter_by(audience="farmer").one()
+        n = s.query(Notification).filter_by(audience="farmer", channel="webpush").one()
         assert n.status == "queued" and n.status_reason == "quiet_hours"
-        assert n.next_attempt_at.replace(tzinfo=None) == (night + timedelta(hours=8)).replace(tzinfo=None)  # 07:00 IST
+        assert n.next_attempt_at.replace(tzinfo=None) == (night + timedelta(hours=8)).replace(tzinfo=None)  # 07:00
     run(temp_db, client=rec.client(), now=night + timedelta(hours=8))
-    assert len(rec.calls) == 1
+    assert len([c for c in rec.calls if c.url.path.endswith("farmer")]) == 1
 
 
-def test_temporary_error_retries_with_backoff_then_falls_back(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch)
+def test_temporary_push_error_retries_with_backoff(client, auth_headers, temp_db):
     machine(client, auth_headers)
-    request(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    farmer_phone_on(client, farmer_token(client, auth_headers, rid))
     now = clock.now_utc()
     rec = Recorder(status=503)
     run(temp_db, client=rec.client(), now=now)
     with temp_db() as s:
-        n = s.query(Notification).filter_by(audience="farmer").one()
+        n = s.query(Notification).filter_by(audience="farmer", channel="webpush").one()
         assert (n.status, n.attempts) == ("queued", 1)
         assert n.next_attempt_at.replace(tzinfo=None) == (now + timedelta(seconds=30)).replace(tzinfo=None)
     t = now
     for _ in range(10):
         t += timedelta(hours=7)
         run(temp_db, client=rec.client(), now=t)
-    farmer = rows(temp_db, audience="farmer")[0]
+    farmer = rows(temp_db, audience="farmer", channel="webpush")[0]
     assert (farmer["status"], farmer["attempts"]) == ("failed", dispatch.MAX_ATTEMPTS)
-    # No other channel: the operators are asked to call the farmer.
-    alert = rows(temp_db, kind="delivery_failed", channel="inapp")
-    assert len(alert) == 1 and "Please call the farmer" in alert[0]["body"]
 
 
-def test_rejected_whatsapp_falls_back_to_sms(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch)
-    monkeypatch.setenv("VAARI_FARMER_CHANNELS", "whatsapp,sms")
-    monkeypatch.setenv("VAARI_WHATSAPP_PROVIDER", "cloud")
-    monkeypatch.setenv("VAARI_WHATSAPP_TOKEN", "wa-token")
-    monkeypatch.setenv("VAARI_WHATSAPP_PHONE_NUMBER_ID", "1234")
-    machine(client, auth_headers)
-    request(client, auth_headers)
-    rec = Recorder(status=lambda r: 400 if r.url.host == "graph.facebook.com" else 201)
-    run(temp_db, client=rec.client())
-    run(temp_db, client=rec.client())
-    farmer = rows(temp_db, audience="farmer")
-    assert [(r["channel"], r["status"]) for r in farmer] == [("whatsapp", "failed"), ("sms", "sent")]
-    assert rows(temp_db, kind="delivery_failed") == []
-
-
-def test_cancelled_booking_never_sends_the_old_slot_message(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch)
+def test_cancelled_booking_never_sends_the_old_turn(client, auth_headers, temp_db):
     machine(client, auth_headers)
     rid = request(client, auth_headers)["id"]
+    key, auth = farmer_phone_on(client, farmer_token(client, auth_headers, rid))
     assert client.delete(f"/api/requests/{rid}", headers=auth_headers).status_code == 200
     rec = Recorder()
     run(temp_db, client=rec.client())
-    farmer = {r["kind"]: r for r in rows(temp_db, audience="farmer")}
+    farmer = {r["kind"]: r for r in rows(temp_db, audience="farmer", channel="webpush")}
     assert (farmer["slot_scheduled"]["status"], farmer["slot_scheduled"]["reason"]) == ("skipped", "out_of_date")
     assert farmer["cancelled"]["status"] == "sent"
-    assert len(rec.calls) == 1
+    calls = [c for c in rec.calls if c.url.path.endswith("farmer")]
+    assert len(calls) == 1 and decrypt(calls[0], key, auth)["title"] == "ਬੁਕਿੰਗ ਰੱਦ"
     assert rows(temp_db, kind="driver_job_removed")
 
 
-def test_seeded_requests_are_always_simulated(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch)
+def test_a_message_is_claimed_once(client, auth_headers, temp_db):
     machine(client, auth_headers)
-    request(client, auth_headers)
-    with temp_db() as s:
-        from app.models import Request
-
-        for r in s.query(Request).all():
-            r.source = "seed"
-        s.commit()
-    rec = Recorder()
-    run(temp_db, client=rec.client())
-    assert rec.calls == []
-    assert rows(temp_db, audience="farmer")[0]["reason"] == "demo_data"
-
-
-def test_a_message_is_claimed_once(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch)
-    machine(client, auth_headers)
-    request(client, auth_headers)
+    rid = request(client, auth_headers)["id"]
+    farmer_phone_on(client, farmer_token(client, auth_headers, rid))
     rec = Recorder()
     run(temp_db, client=rec.client())
     run(temp_db, client=rec.client())
-    assert len(rec.calls) == 1
+    assert len([c for c in rec.calls if c.url.path.endswith("farmer")]) == 1
 
 
 # ── web push for staff and drivers ───────────────────────────────────────
@@ -509,42 +566,41 @@ def test_inbox_unread_and_mark_read(client, auth_headers):
     assert client.get("/api/notify/inbox", headers=auth_headers).json()["unread"] == 0
 
 
-def test_outbox_shows_farmer_messages_and_retry(client, auth_headers, temp_db, monkeypatch):
-    live_twilio(monkeypatch)
+def test_outbox_shows_farmer_alerts_and_retry(client, auth_headers, temp_db):
     machine(client, auth_headers)
     rid = request(client, auth_headers)["id"]
+    farmer_phone_on(client, farmer_token(client, auth_headers, rid))
     run(temp_db, client=Recorder(status=400).client())
     items = client.get(f"/api/notify/outbox?request_id={rid}&audience=farmer", headers=auth_headers).json()["items"]
+    assert [i["channel"] for i in items] == ["webpush"]  # the farmer page copy is not in the outbox
     assert items[0]["status"] == "failed" and items[0]["status_reason"] == "http 400"
     r = client.post(f"/api/notify/outbox/{items[0]['id']}/retry", headers=auth_headers)
     assert r.status_code == 200 and r.json()["status"] == "queued"
     assert client.post(f"/api/notify/outbox/{items[0]['id']}/retry", headers=auth_headers).status_code == 409
     rec = Recorder()
     run(temp_db, client=rec.client())
-    assert len(rec.calls) == 1
-    assert (
-        client.get(f"/api/notify/outbox?request_id={rid}&audience=farmer", headers=auth_headers).json()["items"][0][
-            "status"
-        ]
-        == "sent"
-    )
+    assert len([c for c in rec.calls if c.url.path.endswith("farmer")]) == 1
+    out = client.get(f"/api/notify/outbox?request_id={rid}&audience=farmer", headers=auth_headers).json()
+    assert out["items"][0]["status"] == "sent"
 
 
 def test_summary_counts(client, auth_headers, temp_db):
     machine(client, auth_headers)
-    request(client, auth_headers)
-    run(temp_db)
+    rid = request(client, auth_headers)["id"]
+    farmer_phone_on(client, farmer_token(client, auth_headers, rid))
+    run(temp_db, client=Recorder().client())
     s = client.get("/api/notify/summary", headers=auth_headers).json()
-    assert s["farmer_mode"] == "simulate"
-    assert s["last_7_days"]["farmer"] == {"simulated": 1}
-    assert s["devices"] == {"staff": 0, "driver": 0}
+    assert s["delivery"] == "app"
+    assert s["last_7_days"]["farmer"] == {"sent": 1}
+    assert s["devices"] == {"staff": 0, "driver": 0, "farmer": 1}
 
 
 def test_health_reports_notifications(client):
     data = client.get("/api/health").json()
-    assert data["messaging"] == "screen+wa_link"
+    assert data["messaging"] == "screen+wa_link"  # the contract's old field keeps its value
     n = data["notifications"]
-    assert n["farmer_mode"] == "simulate" and n["staff"] == "inapp+webpush"
+    assert n["delivery"] == "app" and n["farmer"] == "inapp+webpush" and n["staff"] == "inapp+webpush"
+    assert "sms_provider" not in n and "whatsapp_provider" not in n
     assert len(webpush.b64u_decode(n["vapid_public_key"])) == 65
 
 
@@ -627,10 +683,10 @@ def test_background_worker_sends_soon_after_commit(client, auth_headers, temp_db
         request(client, auth_headers)  # the commit wakes the worker; no 30 s wait
         deadline = time.monotonic() + 5
         while time.monotonic() < deadline:
-            if rows(temp_db, audience="farmer")[0]["status"] == "simulated":
+            if rows(temp_db, audience="farmer", channel="webpush")[0]["status"] == "skipped":
                 break
             time.sleep(0.05)
-        assert rows(temp_db, audience="farmer")[0]["status"] == "simulated"
+        assert rows(temp_db, audience="farmer", channel="webpush")[0]["reason"] == "no_devices"
         assert worker.last_run_at is not None
     finally:
         dispatch.stop_worker()
@@ -654,8 +710,8 @@ def test_machine_taken_off_alerts_operators(client, auth_headers, temp_db):
     assert r.status_code == 200, r.text
     alert = rows(temp_db, kind="machine_inactive", channel="inapp")
     assert len(alert) == 1 and alert[0]["title"] == "SS 1 marked inactive"
-    # The farmer whose turn was on that machine is told it will miss (or gets a new turn).
-    kinds = {r["kind"] for r in rows(temp_db, audience="farmer")}
+    # The farmer whose turn was on that machine is told it will miss (or gets a new turn) on their page.
+    kinds = {r["kind"] for r in rows(temp_db, audience="farmer", channel="inapp")}
     assert kinds & {"will_miss", "slot_changed"}
 
 

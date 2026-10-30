@@ -1,4 +1,7 @@
-/** Every message Vaari sent (or held back) for one request: SMS/WhatsApp to the farmer and alerts to the driver. */
+/**
+ * Every Vaari alert for one request: to the farmer's phone and to the driver's phone.
+ * The farmer's page always has the message too. Nothing is sent by SMS or WhatsApp.
+ */
 import { useCallback, useEffect, useState } from 'react';
 import { ApiError, getOutbox, retryOutbox } from '../api';
 import type { OutboxItem } from '../types';
@@ -57,11 +60,11 @@ export default function FarmerMessages({ requestId, refreshKey }: { requestId: n
               <span>
                 <span className="msg-item-kind">{KIND_WORDS[m.kind] ?? m.kind}</span>
                 {' · '}
-                {m.audience === 'driver' ? 'to driver' : 'to farmer'} by {channelWords(m)}
+                {m.audience === 'driver' ? 'to driver' : 'to farmer'} · {channelWords(m)}
               </span>
               <span className={`msg-status s-${m.status}`}>{STATUS_WORDS[m.status] ?? m.status}</span>
             </div>
-            <div className="msg-item-body">{m.audience === 'driver' ? `${m.title ?? ''} — ${m.body}` : m.body}</div>
+            <div className="msg-item-body">{m.title ? `${m.title} — ${m.body}` : m.body}</div>
             <div className="msg-item-foot">
               <span>
                 {shortTime(m.sent_at || m.created_at)}

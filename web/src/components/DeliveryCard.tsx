@@ -1,4 +1,4 @@
-/** Officer and desk view: are messages and alerts actually going out? Counts only, no farmer details. */
+/** Officer view: are Vaari alerts reaching phones? Counts only, no farmer details. Nothing goes by SMS or WhatsApp. */
 import { useEffect, useState } from 'react';
 import { getNotifySummary } from '../api';
 import type { NotificationStatus, NotifySummary } from '../types';
@@ -41,25 +41,24 @@ export default function DeliveryCard() {
   }, []);
 
   if (failed || !data) return null;
-  const mode =
-    data.farmer_mode === 'live'
-      ? `Live: farmers get ${data.farmer_channels.map(c => (c === 'sms' ? 'SMS' : 'WhatsApp')).join(', then ')}`
-      : data.farmer_mode === 'off'
-        ? 'Farmer messages are turned off'
-        : 'Demo mode: farmer messages are recorded, not sent';
-
   return (
     <section className="card" id="delivery-card">
       <div className="card-header">
         <div>
           <h2>Message delivery</h2>
           <p className="card-subtitle">
-            {mode}.{data.quiet_hours ? ` No farmer messages between ${data.quiet_hours.replace('-', ':00 and ')}:00.` : ''}
+            Every message is sent inside Vaari: the farmer&apos;s page, the staff bell, and phone alerts. No SMS or
+            WhatsApp.
+            {data.quiet_hours ? ` Farmers' phones are not woken between ${data.quiet_hours.replace('-', ':00 and ')}:00.` : ''}
           </p>
         </div>
       </div>
       <div className="delivery-grid">
-        <Cell title="To farmers (SMS/WhatsApp)" counts={data.last_7_days.farmer} />
+        <Cell
+          title="To farmers (phone alerts)"
+          counts={data.last_7_days.farmer}
+          hint={data.devices.farmer === 0 ? 'No farmer phone has alerts on yet. Show the farmer their QR code.' : undefined}
+        />
         <Cell
           title="To staff (phone alerts)"
           counts={data.last_7_days.staff}
@@ -72,7 +71,8 @@ export default function DeliveryCard() {
         />
       </div>
       <p className="delivery-note">
-        Devices with alerts on: {data.devices.staff} staff, {data.devices.driver} driver.
+        Phones and computers with alerts on: {data.devices.farmer} farmer, {data.devices.staff} staff,{' '}
+        {data.devices.driver} driver.
         {data.worker_running
           ? data.worker_last_run_at
             ? ` Sender last ran ${shortTime(data.worker_last_run_at)}.`

@@ -8,7 +8,9 @@
 | GET  /notify/inbox, POST /notify/inbox/read | staff (alerts for their role) |
 | GET  /notify/summary | staff (counts only, no farmer details) |
 | POST /notify/test | staff: a test alert to this device |
-| GET  /notify/outbox, POST /notify/outbox/{id}/retry | operator (farmer messages) |
+| GET  /notify/outbox, POST /notify/outbox/{id}/retry | operator (farmer, staff and driver alerts) |
+
+Farmer pages and their alerts are in app/routes/farmer.py. Nothing is sent by SMS or WhatsApp.
 """
 
 from __future__ import annotations
@@ -89,7 +91,13 @@ def _check_subscription(body: SubscriptionIn) -> None:
 
 
 def _save_subscription(
-    session: Session, body: SubscriptionIn, *, roles: list[str], user_id: int | None, machine_id: int | None
+    session: Session,
+    body: SubscriptionIn,
+    *,
+    roles: list[str],
+    user_id: int | None,
+    machine_id: int | None,
+    farmer_link_id: int | None = None,
 ) -> PushSubscription:
     _check_subscription(body)
     now = clock.now_utc()
@@ -102,6 +110,7 @@ def _save_subscription(
     sub.roles_json = roles
     sub.user_id = user_id
     sub.machine_id = machine_id
+    sub.farmer_link_id = farmer_link_id
     sub.label = (body.label or "").strip() or None
     sub.revoked_at = None
     sub.failures = 0
@@ -172,7 +181,7 @@ def remove_subscription(
     body: EndpointIn, session: Session = Depends(get_db), _principal: Principal = Depends(require_staff)
 ) -> Response:
     sub = session.query(PushSubscription).filter_by(endpoint=body.endpoint).first()
-    if sub is not None and sub.machine_id is None and sub.revoked_at is None:
+    if sub is not None and sub.machine_id is None and sub.farmer_link_id is None and sub.revoked_at is None:
         sub.revoked_at = clock.now_utc()
         session.commit()
     return Response(status_code=204)
@@ -183,7 +192,9 @@ def send_test(
     body: TestIn, session: Session = Depends(get_db), principal: Principal = Depends(require_staff)
 ) -> dict[str, Any]:
     q = session.query(PushSubscription).filter(
-        PushSubscription.revoked_at.is_(None), PushSubscription.machine_id.is_(None)
+        PushSubscription.revoked_at.is_(None),
+        PushSubscription.machine_id.is_(None),
+        PushSubscription.farmer_link_id.is_(None),
     )
     subs = (
         q.filter(PushSubscription.endpoint == body.endpoint).all()
@@ -297,21 +308,12 @@ def get_summary(session: Session = Depends(get_db), _principal: Principal = Depe
         group = "farmer" if audience == "farmer" else ("driver" if audience == "driver" else "staff")
         by.setdefault(group, {})
         by[group][st] = by[group].get(st, 0) + count
-    devices = (
-        session.query(PushSubscription.machine_id.is_(None), func.count(PushSubscription.id))
-        .filter(PushSubscription.revoked_at.is_(None))
-        .group_by(PushSubscription.machine_id.is_(None))
-        .all()
-    )
-    dev = {"staff": 0, "driver": 0}
-    for is_staff, count in devices:
-        dev["staff" if is_staff else "driver"] += count
+    dev = {"staff": 0, "driver": 0, "farmer": 0}
+    for sub in session.query(PushSubscription).filter(PushSubscription.revoked_at.is_(None)).all():
+        dev["farmer" if sub.farmer_link_id else "driver" if sub.machine_id else "staff"] += 1
     worker = dispatch.current_worker()
     return {
-        "farmer_mode": settings.notify_mode,
-        "farmer_channels": settings.farmer_channels,
-        "sms_provider": settings.sms_provider,
-        "whatsapp_provider": settings.whatsapp_provider,
+        "delivery": "app",
         "quiet_hours": "-".join(str(h) for h in settings.farmer_quiet_hours) if settings.farmer_quiet_hours else None,
         "last_7_days": by,
         "devices": dev,
@@ -320,7 +322,7 @@ def get_summary(session: Session = Depends(get_db), _principal: Principal = Depe
     }
 
 
-# ── Farmer messages (operator only: the desk already shows phone numbers) ──
+# ── Outbox (operator only) ───────────────────────────────────────────────
 def _outbox_out(n: Notification) -> dict[str, Any]:
     return {
         "id": n.id,

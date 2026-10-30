@@ -90,7 +90,7 @@ def get_health(session: Session = Depends(get_db)):
 
 
 def notifications_detail() -> dict:
-    """How alerts and farmer messages go out. `messaging` above keeps its old meaning (the screen + wa.me link)."""
+    """How notifications reach people. `messaging` above is the contract's old field and keeps its value."""
     from app.notify.dispatch import current_worker
     from app.notify.webpush import vapid_keys
 
@@ -100,10 +100,10 @@ def notifications_detail() -> dict:
         public_key = None
     return {
         "vapid_public_key": public_key,
-        "farmer_mode": settings.notify_mode,
-        "farmer_channels": settings.farmer_channels,
-        "sms_provider": settings.sms_provider,
-        "whatsapp_provider": settings.whatsapp_provider,
+        # Every notification is delivered inside Vaari: no SMS, no WhatsApp.
+        "delivery": "app",
+        "farmer": "inapp+webpush",
         "staff": "inapp+webpush",
+        "driver": "webpush",
         "worker": current_worker() is not None,
     }

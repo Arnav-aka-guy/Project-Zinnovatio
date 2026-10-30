@@ -55,8 +55,9 @@ export default function StatusStrip() {
       ? 'pill-red'
       : 'pill-grey';
 
-  const msgStatus = health?.messaging || 'screen+wa_link';
-  const msgTone = msgStatus === 'live' ? 'pill-green' : msgStatus === 'mock' ? 'pill-amber' : 'pill-grey';
+  // Every message goes through Vaari itself (farmer page, bell, phone alerts); no SMS or WhatsApp.
+  const msgStatus = health?.notifications ? (health.notifications.worker ? 'in-app' : 'in-app (sender off)') : health?.messaging || 'in-app';
+  const msgTone = health?.notifications ? (health.notifications.worker ? 'pill-green' : 'pill-amber') : 'pill-grey';
 
   const satStatus = health?.satellite === 'live' ? 'ok' : health?.satellite === 'mock' ? 'mock' : 'disabled';
   const satTone = satStatus === 'ok' ? 'pill-green' : satStatus === 'mock' ? 'pill-amber' : 'pill-grey';

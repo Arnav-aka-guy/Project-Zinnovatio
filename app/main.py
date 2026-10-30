@@ -22,6 +22,8 @@ from app.routes.auth import router as auth_router
 from app.routes.common import get_or_create_home_centre
 from app.routes.dashboard import router as dashboard_router
 from app.routes.driver import router as driver_router
+from app.routes.farmer import operator_router as farmer_link_router
+from app.routes.farmer import router as farmer_router
 from app.routes.health import router as health_router
 from app.routes.intake import router as intake_router
 from app.routes.machines import router as machines_router
@@ -89,6 +91,8 @@ app.include_router(intake_router, prefix="/api")
 app.include_router(voice_router, prefix="/api")
 app.include_router(notify_router, prefix="/api")
 app.include_router(driver_push_router, prefix="/api")
+app.include_router(farmer_link_router, prefix="/api")
+app.include_router(farmer_router, prefix="/api")
 
 web_dist = Path(__file__).parent.parent / "web" / "dist"
 

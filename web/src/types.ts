@@ -373,11 +373,10 @@ export interface PatchRequestBody {
 // ── Notifications ───────────────────────────────────────────
 export interface HealthNotifications {
   vapid_public_key: string | null;
-  farmer_mode: 'simulate' | 'live' | 'off';
-  farmer_channels: string[];
-  sms_provider: string;
-  whatsapp_provider: string;
+  delivery: 'app';
+  farmer: string;
   staff: string;
+  driver: string;
   worker: boolean;
 }
 
@@ -428,13 +427,10 @@ export interface OutboxItem {
 }
 
 export interface NotifySummary {
-  farmer_mode: 'simulate' | 'live' | 'off';
-  farmer_channels: string[];
-  sms_provider: string;
-  whatsapp_provider: string;
+  delivery: 'app';
   quiet_hours: string | null;
   last_7_days: Record<string, Partial<Record<NotificationStatus, number>>>;
-  devices: { staff: number; driver: number };
+  devices: { staff: number; driver: number; farmer: number };
   worker_running: boolean;
   worker_last_run_at: string | null;
 }
@@ -443,4 +439,52 @@ export interface PushTestResult {
   devices: number;
   sent: number;
   detail: string | null;
+}
+
+// ── Farmer app (the farmer's own page) ──────────────────────
+export interface FarmerLinkOut {
+  path: string;
+  url: string | null;
+  expires_at: string | null;
+  last_opened_at: string | null;
+  devices: number;
+}
+
+export interface FarmerBooking {
+  id: number;
+  village: string;
+  acres: number;
+  service_type: string;
+  service_name: string;
+  status: string;
+  deadline_date: string | null;
+  slot: {
+    service_date: string;
+    machine: string;
+    seq: number;
+    status: string;
+    service_code: string | null;
+  } | null;
+  record_path: string | null;
+}
+
+export interface FarmerMessage {
+  id: number;
+  kind: string;
+  title: string;
+  body: string;
+  url: string | null;
+  request_id: number | null;
+  created_at: string;
+  read: boolean;
+}
+
+export interface FarmerPageData {
+  lang: 'pa' | 'en';
+  centre: { name: string; phone: string };
+  bookings: FarmerBooking[];
+  messages: FarmerMessage[];
+  unread: number;
+  devices: number;
+  expires_at: string | null;
 }

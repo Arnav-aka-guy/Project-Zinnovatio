@@ -331,12 +331,11 @@ def task_vapid_keys() -> int:
 
 
 def task_notify(args: list[str]) -> int:
-    """Notification status (default), or --run to send everything that is due now."""
+    """Notification status (default), or --run to send every phone alert that is due now."""
     if str(ROOT) not in sys.path:
         sys.path.insert(0, str(ROOT))
     from sqlalchemy import func
 
-    from app.config import settings
     from app.db import get_session_factory
     from app.migrate import ensure_schema
     from app.models import Notification, PushSubscription
@@ -346,8 +345,7 @@ def task_notify(args: list[str]) -> int:
     with get_session_factory()() as session:
         if "--run" in args:
             print(f"Sent: {process_due(session) or 'nothing was due'}")
-        print(f"Farmer messages: {settings.notify_mode} via {', '.join(settings.farmer_channels)} "
-              f"(sms={settings.sms_provider}, whatsapp={settings.whatsapp_provider})")
+        print("All notifications go through the Vaari app (bell, farmer page, phone alerts). No SMS or WhatsApp.")
         rows = (
             session.query(Notification.audience, Notification.channel, Notification.status, func.count())
             .group_by(Notification.audience, Notification.channel, Notification.status)
@@ -356,8 +354,10 @@ def task_notify(args: list[str]) -> int:
         )
         for audience, channel, status, count in rows:
             print(f"  {audience:9} {channel:9} {status:10} {count}")
-        devices = session.query(PushSubscription).filter(PushSubscription.revoked_at.is_(None)).count()
-        print(f"Devices with alerts on: {devices}")
+        subs = session.query(PushSubscription).filter(PushSubscription.revoked_at.is_(None)).all()
+        farmer = sum(1 for s in subs if s.farmer_link_id)
+        driver = sum(1 for s in subs if s.machine_id)
+        print(f"Devices with alerts on: {len(subs) - farmer - driver} staff, {driver} driver, {farmer} farmer")
     return 0
 
 

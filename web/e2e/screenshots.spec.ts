@@ -48,10 +48,9 @@ test('Capture application screenshots for documentation', async ({ page, context
   await page.locator('#req-row-1').click();
   await expect(page.locator('#request-detail-panel')).toBeVisible();
   await page.locator('#btn-panel-message').click();
-  const waBtn = page.locator('#btn-whatsapp-msg');
-  await expect(waBtn).toBeVisible();
-  const waHref = (await waBtn.getAttribute('href'))!;
-  const decodedMsg = decodeURIComponent(new URL(waHref).searchParams.get('text') || '');
+  const msgBody = page.locator('#slot-message-container .message-punjabi');
+  await expect(msgBody).toBeVisible();
+  const decodedMsg = (await msgBody.textContent()) || '';
   const serviceCode = decodedMsg.match(/\b\d{4}\b/)![0];
 
   await page.locator('.panel-close-btn').click();

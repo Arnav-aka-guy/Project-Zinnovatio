@@ -17,7 +17,7 @@ is used; wider screens keep the desktop layout.
 | Register photo | **Take photo** opens the camera; **Choose from gallery** picks a saved photo. Drafted rows show as cards with full-width fields; **Confirm rows** stays above the tab bar. |
 | Voice booking | Step chips scroll in one row; the question, mic and answer fit one screen. |
 | Officer | Tables show as one card per row with labelled fields. |
-| Driver and record links | No staff menu: these links are for drivers and farmers. The job sheet slides up from the bottom; buttons are glove-sized. Records have a **Share** button (WhatsApp etc.) where the phone supports it. |
+| Driver and record links | No staff menu: these links are for drivers and farmers. The job sheet slides up from the bottom; buttons are glove-sized. Records have a **Share** button (the phone's own share sheet) where the phone supports it. |
 | Sign in | A simple card; works the same on all sizes. |
 
 Rules kept everywhere on phones: nothing wider than the screen, tap targets at

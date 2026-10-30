@@ -1,10 +1,11 @@
 import { test, expect, type Page } from '@playwright/test';
 
 /**
- * Notifications end to end: the staff bell and inbox, the deep link to a request,
- * "Messages sent" in the request details, the officer delivery card, turning on
- * device alerts (staff and driver), and a real push event reaching the service
- * worker and showing a system notification.
+ * Notifications end to end, all inside Vaari (no SMS, no WhatsApp): the staff bell and
+ * inbox, the deep link to a request, the farmer's QR code and page, "Messages sent" in
+ * the request details, the officer delivery card, turning on alerts (staff, driver and
+ * farmer), and a real push event reaching the service worker and showing a system
+ * notification.
  *
  * Runs in the `push` project (service workers allowed, notifications granted).
  * The browser's own push service (FCM) is not reachable from a test machine, so
@@ -103,20 +104,97 @@ test.describe('notifications', () => {
     await expect(page.locator('#alerts-count')).toHaveCount(0);
   });
 
-  test('request details list the messages sent to the farmer', async ({ page }) => {
+  test('request details show the farmer QR code and the alerts sent, never SMS or WhatsApp', async ({ page }) => {
     await page.goto('/desk');
     await signIn(page);
-    const scheduled = page.locator('tr.clickable-row', { hasText: /scheduled/i }).first();
-    await scheduled.click();
+    await page.locator('tr.clickable-row', { hasText: /scheduled/i }).first().click();
+    const card = page.locator('#farmer-app-card');
+    await expect(card).toBeVisible();
+    await expect(card.locator('.qr-code')).toBeVisible();
+    const qrText = await card.locator('.qr-code').getAttribute('data-qr-text');
+    expect(qrText).toMatch(/\/farmer\/[\w-]+$/);
+    await expect(page.locator('#farmer-app-state')).toContainText('has not turned on alerts yet');
+
     const msgs = page.locator('#farmer-messages');
     await expect(msgs).toBeVisible();
-    // Demo data is never sent to a real phone: each farmer message is simulated (or held back if out of date).
-    const item = msgs.locator('.msg-item[data-status="simulated"]').first();
-    await expect(item).toContainText('to farmer by SMS');
-    await expect(item).toContainText('ਸਤ ਸ੍ਰੀ ਅਕਾਲ');
-    await expect(item.locator('.msg-status')).toHaveText('Simulated');
-    await expect(item).toContainText('demo data, not sent');
-    await expect(msgs.locator('.msg-status.s-sent')).toHaveCount(0);
+    await expect(msgs.locator('.msg-item').first()).toContainText('Vaari phone alert');
+    const panelText = (await page.locator('#request-detail-panel').textContent()) ?? '';
+    expect(panelText).not.toMatch(/\bSMS\b|Open WhatsApp/);
+    await expect(page.locator('#btn-whatsapp-msg')).toHaveCount(0);
+
+    // The big QR for the farmer to scan at the counter.
+    await page.locator('#btn-farmer-qr').click();
+    await expect(page.locator('#farmer-qr-overlay')).toContainText('ਆਪਣੇ ਫ਼ੋਨ ਨਾਲ ਸਕੈਨ ਕਰੋ');
+  });
+
+  test('farmer scans the QR, turns on messages, and a Vaari alert shows on their phone', async ({ page, context }) => {
+    await fakePushService(page);
+    // The operator's QR code for request VR-1.
+    const link = await (await page.request.get('/api/requests/1/farmer-link', { headers: PASS })).json();
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(link.path);
+
+    // Punjabi first: bookings with the date, machine and the code for the driver.
+    await expect(page.locator('#farmer-page h1')).toHaveText('ਮੇਰੀ ਮਸ਼ੀਨ ਦੀ ਵਾਰੀ');
+    const booking = page.locator('[id^="farmer-booking-"]').first();
+    await expect(booking).toBeVisible();
+    await expect(page.locator('#farmer-messages-list .alert-item').first()).toBeVisible();
+    await expect(page.locator('#btn-alerts')).toHaveCount(0); // no staff bell on a farmer page
+    const scrollW = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(scrollW).toBeLessThanOrEqual(391);
+
+    // Install as an app: the manifest opens this farmer page, not the staff desk.
+    const manifestHref = await page.locator('link[rel="manifest"]').getAttribute('href');
+    expect(manifestHref).toContain('/manifest.webmanifest');
+    const manifest = await (await page.request.get(manifestHref!)).json();
+    expect(manifest.start_url).toBe(link.path);
+
+    await page.locator('#btn-farmer-alerts-on').click();
+    await expect(page.locator('#farmer-alerts')).toContainText('ਸੁਨੇਹੇ ਚਾਲੂ ਹਨ');
+    const after = await (await page.request.get('/api/requests/1/farmer-link', { headers: PASS })).json();
+    expect(after.devices).toBe(1);
+
+    // English on a tap.
+    await page.locator('#btn-farmer-lang-en').click();
+    await expect(page.locator('#farmer-page h1')).toHaveText('My machine turn');
+    await expect(page.locator('#farmer-alerts')).toContainText('Messages are on');
+
+    // A push to the farmer's phone (service worker at /farmer/) shows a system notification.
+    const cdp = await context.newCDPSession(page);
+    const regs: { registrationId: string; scopeURL: string }[] = [];
+    cdp.on('ServiceWorker.workerRegistrationUpdated', e => regs.push(...e.registrations));
+    await cdp.send('ServiceWorker.enable');
+    await expect.poll(() => regs.find(r => new URL(r.scopeURL).pathname === '/farmer/')?.registrationId).toBeTruthy();
+    const reg = regs.find(r => new URL(r.scopeURL).pathname === '/farmer/')!;
+    await cdp.send('ServiceWorker.deliverPushMessage', {
+      origin: new URL(page.url()).origin,
+      registrationId: reg.registrationId,
+      data: JSON.stringify({
+        id: 2,
+        kind: 'slot_changed',
+        title: 'ਵਾਰੀ ਬਦਲੀ: 2 ਨਵੰਬਰ',
+        body: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ। ਤੁਹਾਡੀ ਮਸ਼ੀਨ ਦੀ ਵਾਰੀ ਬਦਲ ਗਈ ਹੈ।',
+        url: link.path,
+        tag: 'vaari-slot_changed-1',
+        urgency: 'high',
+      }),
+    });
+    await expect
+      .poll(() =>
+        page.evaluate(async () => {
+          const r = await navigator.serviceWorker.getRegistration('/farmer/x');
+          const list = r ? await r.getNotifications() : [];
+          return list.map(n => n.title);
+        }),
+      )
+      .toContain('ਵਾਰੀ ਬਦਲੀ: 2 ਨਵੰਬਰ');
+
+    // Back on the desk, the operator sees the farmer is reachable.
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/desk');
+    await signIn(page);
+    await page.locator('#req-row-1').click();
+    await expect(page.locator('#farmer-app-state')).toContainText('Alerts are on for 1 phone');
   });
 
   test('officer sees whether messages are going out', async ({ page }) => {
@@ -124,9 +202,9 @@ test.describe('notifications', () => {
     await signIn(page);
     const card = page.locator('#delivery-card');
     await expect(card).toBeVisible();
-    await expect(card).toContainText('Demo mode: farmer messages are recorded, not sent');
-    await expect(card).toContainText('To farmers (SMS/WhatsApp)');
-    await expect(card).toContainText('Simulated');
+    await expect(card).toContainText('Every message is sent inside Vaari');
+    await expect(card).toContainText('No SMS or WhatsApp');
+    await expect(card).toContainText('To farmers (phone alerts)');
   });
 
   test('staff turn on alerts, and a push event shows a system notification', async ({ page, context }) => {

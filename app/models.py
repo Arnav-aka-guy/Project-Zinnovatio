@@ -284,7 +284,7 @@ class Notification(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     kind = Column(String, nullable=False)  # slot_scheduled, will_miss, job_done, ...
     audience = Column(String, nullable=False, index=True)  # farmer | driver | operator | officer
-    channel = Column(String, nullable=False)  # inapp | webpush | sms | whatsapp
+    channel = Column(String, nullable=False)  # inapp (bell, farmer page) | webpush (phone/desktop alert)
     dedupe_key = Column(String, unique=True, nullable=False)
     farmer_id = Column(Integer, ForeignKey("farmer.id"), nullable=True)
     machine_id = Column(Integer, ForeignKey("machine.id"), nullable=True)
@@ -307,7 +307,7 @@ class Notification(Base):
 
 
 class PushSubscription(Base):
-    """A browser or installed app that accepts web push (staff devices and driver phones)."""
+    """A browser or installed app that accepts web push (staff devices, driver phones, farmer phones)."""
 
     __tablename__ = "push_subscription"
 
@@ -318,8 +318,24 @@ class PushSubscription(Base):
     roles_json = Column(JsonText, nullable=False, default=list)  # ["operator"], ["officer"], ["driver"]
     user_id = Column(Integer, ForeignKey("user_account.id"), nullable=True)
     machine_id = Column(Integer, ForeignKey("machine.id"), nullable=True)
+    # Farmer phones: the farmer link they turned alerts on from. Turning the link off silences them.
+    farmer_link_id = Column(Integer, ForeignKey("farmer_link.id"), nullable=True, index=True)
     label = Column(String, nullable=True)
     created_at = Column(DateTime, nullable=False)
     last_success_at = Column(DateTime, nullable=True)
     failures = Column(Integer, nullable=False, default=0)
     revoked_at = Column(DateTime, nullable=True)
+
+
+class FarmerLink(Base):
+    """A farmer's private page (/farmer/<token>): their bookings, messages, and phone alerts."""
+
+    __tablename__ = "farmer_link"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    farmer_id = Column(Integer, ForeignKey("farmer.id"), nullable=False, index=True)
+    token = Column(String, unique=True, nullable=False)
+    created_at = Column(DateTime, nullable=False)
+    expires_at = Column(DateTime, nullable=True)
+    revoked_at = Column(DateTime, nullable=True)
+    last_opened_at = Column(DateTime, nullable=True)

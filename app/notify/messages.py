@@ -1,9 +1,9 @@
 """The words of every notification, for farmers (Punjabi first) and for staff.
 
-Farmer texts are short enough for SMS and never blame the farmer. The slot
-message reuses the approved text in `app/messaging/templates.json`.
-`variables` are the values an approved SMS (DLT) or WhatsApp template needs,
-always in this order: village, acres, machine, date, code, centre phone, link.
+Every notification is delivered inside Vaari itself (the farmer's page, the
+staff bell, and phone/desktop alerts from the Vaari app). Nothing is sent by
+SMS or WhatsApp. Farmer texts are short, never blame the farmer, and the slot
+message reuses the text in `app/messaging/templates.json`.
 """
 
 from __future__ import annotations
@@ -38,8 +38,8 @@ FARMER_TEXT: dict[str, dict[str, str]] = {
         "When it is done, tell the driver code {code}.",
     },
     "job_done": {
-        "pa": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ। ਤੁਹਾਡੇ {village} ਵਾਲੇ ਖੇਤ ਦਾ ਕੰਮ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ। ਧੰਨਵਾਦ ਜੀ।{link}",
-        "en": "Sat Sri Akal ji. The work on your field in {village} is done. Thank you.{link}",
+        "pa": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ। ਤੁਹਾਡੇ {village} ਵਾਲੇ ਖੇਤ ਦਾ ਕੰਮ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ। ਧੰਨਵਾਦ ਜੀ। ਰਿਕਾਰਡ ਦੇਖਣ ਲਈ ਛੂਹੋ।",
+        "en": "Sat Sri Akal ji. The work on your field in {village} is done. Thank you. Tap to see the record.",
     },
     "not_served": {
         "pa": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ। ਅੱਜ ਤੁਹਾਡੇ {village} ਵਾਲੇ ਖੇਤ ਦਾ ਕੰਮ ਨਹੀਂ ਹੋ ਸਕਿਆ। "
@@ -49,7 +49,16 @@ FARMER_TEXT: dict[str, dict[str, str]] = {
     },
 }
 
-RECORD_LINK = {"pa": " ਰਿਕਾਰਡ: {url}", "en": " Record: {url}"}
+# Short titles for the farmer's phone alert; the text above is the body.
+FARMER_TITLE: dict[str, dict[str, str]] = {
+    "slot_scheduled": {"pa": "ਮਸ਼ੀਨ ਦੀ ਵਾਰੀ ਪੱਕੀ: {date}", "en": "Machine booked: {date}"},
+    "slot_changed": {"pa": "ਵਾਰੀ ਬਦਲੀ: {date}", "en": "Turn changed: {date}"},
+    "will_miss": {"pa": "ਹਾਲੇ ਮਸ਼ੀਨ ਖ਼ਾਲੀ ਨਹੀਂ", "en": "No machine free yet"},
+    "cancelled": {"pa": "ਬੁਕਿੰਗ ਰੱਦ", "en": "Booking cancelled"},
+    "job_started": {"pa": "ਕੰਮ ਸ਼ੁਰੂ: ਕੋਡ {code}", "en": "Work started: code {code}"},
+    "job_done": {"pa": "ਕੰਮ ਪੂਰਾ ਹੋ ਗਿਆ", "en": "Work done"},
+    "not_served": {"pa": "ਅੱਜ ਕੰਮ ਨਹੀਂ ਹੋ ਸਕਿਆ", "en": "Work could not be done today"},
+}
 
 SERVICE_NAMES = {"super_seeder": "Super Seeder", "happy_seeder": "Happy Seeder", "baler": "Baler", "mulcher": "Mulcher"}
 
@@ -64,7 +73,6 @@ class FarmerContext:
     code: str
     centre_name: str
     centre_phone: str
-    url: str = ""
 
     def as_format(self, lang: str) -> dict[str, str]:
         return {
@@ -75,18 +83,10 @@ class FarmerContext:
             "code": self.code,
             "centre_name": self.centre_name,
             "centre_phone": self.centre_phone,
-            "url": self.url,
         }
 
-    def variables(self, lang: str) -> list[str]:
-        f = self.as_format(lang)
-        return [f["village"], f["acres"], f["machine"], f["date"], f["code"], f["centre_phone"], f["url"]]
 
-
-def farmer_context(*, plot, req, slot=None, machine=None, record_token: str | None = None) -> FarmerContext:
-    url = ""
-    if record_token and settings.public_base_url:
-        url = f"{settings.public_base_url}/record/{record_token}"
+def farmer_context(*, plot, req, slot=None, machine=None) -> FarmerContext:
     return FarmerContext(
         village=plot.village_name if plot else "",
         acres=f"{from_x100(req.acres_x100):g}",
@@ -96,7 +96,6 @@ def farmer_context(*, plot, req, slot=None, machine=None, record_token: str | No
         code=slot.service_code if slot else "",
         centre_name=settings.centre_name,
         centre_phone=settings.centre_phone,
-        url=url,
     )
 
 
@@ -112,9 +111,12 @@ def farmer_text(kind: str, lang: str, ctx: FarmerContext) -> str:
                 else (FARMER_TEXT["slot_changed"][lang] + body.split(". ", 1)[-1])
             )
         return body
-    fmt = dict(fmt)
-    fmt["link"] = RECORD_LINK[lang].format(url=ctx.url) if ctx.url else ""
     return FARMER_TEXT[kind][lang].format(**fmt)
+
+
+def farmer_title(kind: str, lang: str, ctx: FarmerContext) -> str:
+    lang = "pa" if lang == "pa" else "en"
+    return FARMER_TITLE[kind][lang].format(**ctx.as_format(lang))
 
 
 # ── Staff alerts (English, short) ────────────────────────────────────────
@@ -139,10 +141,10 @@ def staff_alert(kind: str, **v) -> tuple[str, str]:
         return (f"{v['machine']} marked inactive", "Its jobs were planned again. Check the Will Miss list.")
     if kind == "login_locked":
         return ("Staff account locked", f"'{v['username']}' was locked after repeated wrong passwords.")
-    if kind == "delivery_failed":
+    if kind == "farmer_unreachable":
         return (
-            f"Message to farmer failed · VR-{v['request_id']}",
-            f"{v['channel'].upper()} could not be delivered ({v['reason']}). Please call the farmer.",
+            f"Tell the farmer: VR-{v['request_id']} turn changed",
+            f"{v['village']}: the farmer has no phone with Vaari alerts on. Please call and tell them the new turn.",
         )
     if kind == "test":
         return ("Vaari alerts are on", "This device will get alerts for new problems.")

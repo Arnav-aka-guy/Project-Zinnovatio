@@ -78,18 +78,18 @@ test('Full Phase 3 End-to-End Scenario (TESTING.md Section 7: Steps 1 to 8)', as
   ).toHaveText('active');
   await page.locator('#btn-run-scheduler').click();
 
-  // 5. Open a slot's message. The wa.me link contains the Punjabi text and 4-digit service code.
+  // 5. Open a slot's message. It is shown in Punjabi with the 4-digit service code, and it reaches
+  //    the farmer inside Vaari (their page and phone alerts), never by WhatsApp or SMS.
   await page.locator('#tab-requests').click();
   await page.locator('#req-row-1').click();
   await expect(page.locator('#request-detail-panel')).toBeVisible();
   await page.locator('#btn-panel-message').click();
 
-  const waBtn = page.locator('#btn-whatsapp-msg');
-  await expect(waBtn).toBeVisible();
-  const waHref = (await waBtn.getAttribute('href'))!;
-  expect(waHref).toContain('https://wa.me/91');
-  const decodedMsg = decodeURIComponent(new URL(waHref).searchParams.get('text') || '');
-  expect(decodedMsg).toContain('ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ');
+  const msgBody = page.locator('#slot-message-container .message-punjabi');
+  await expect(msgBody).toContainText('ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ');
+  await expect(page.locator('#btn-whatsapp-msg')).toHaveCount(0);
+  await expect(page.locator('#farmer-app-card .qr-code')).toBeVisible();
+  const decodedMsg = (await msgBody.textContent()) || '';
   const serviceCode = decodedMsg.match(/\b\d{4}\b/)![0];
 
   await page.locator('.panel-close-btn').click();

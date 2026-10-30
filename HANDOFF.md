@@ -353,32 +353,44 @@ The frontend now works on phones and installs to the home screen. Details: [docs
 - Real devices. Checked in Chromium with Pixel 7, iPhone 13, iPhone SE, Galaxy S8, iPad and desktop sizes, touch and mobile user agents. Safari's own engine (WebKit) was not run; try the app on a real iPhone before the demo.
 
 
-## Notifications (31 Oct 2026)
+## Notifications, inside Vaari only (31 Oct 2026)
 
-Vaari now actually sends messages. Before this there was no sender: the slot message was only shown on screen with a `wa.me` link, and staff got no alerts at all (the `notify()` adapter in DECISIONS.md was never built). Full notes: [docs/NOTIFICATIONS.md](docs/NOTIFICATIONS.md).
+Vaari now actually tells people when something changes, and **every message is delivered inside Vaari** (the web app on phones and computers, and phone/desktop alerts from it). **No SMS, no WhatsApp**: the owner asked for that, so the SMS/WhatsApp senders and the app's "Open WhatsApp" button were removed. Before this there was no sender at all, only the on-screen message with a `wa.me` link. Full notes: [docs/NOTIFICATIONS.md](docs/NOTIFICATIONS.md).
 
-- **Farmers**: SMS (Twilio or MSG91 with DLT templates) or WhatsApp Cloud API, Punjabi first, for turn booked or changed, will miss, cancelled, work started, work done with the record link, not served. Default mode is `simulate`: recorded, never sent.
-- **Staff**: a bell with an inbox on every staff screen (desktop dropdown, phone sheet), and web push to any phone or computer that turns alerts on. Operators: will miss, not served, machine taken off, farmer message failed. Officers: flagged job, locked account.
-- **Drivers**: web push from the driver link for new or removed jobs (today or tomorrow) and a morning job list.
+- **Farmers**: their own page `/farmer/<link>` (Punjabi first) with their bookings, the code for the driver, and every message; phone alerts after **Turn on**. The operator shows the farmer a QR code from the request details (and at the end of a voice booking).
+- **Staff**: a bell with an inbox on every staff screen (desktop dropdown, phone sheet), and phone/desktop alerts. Operators: will miss, not served, machine taken off, a changed turn no farmer phone received. Officers: flagged job, locked account.
+- **Drivers**: phone alerts from the driver link for new or removed jobs and a morning job list.
 
 ### Contract changes (additive only, with the reason)
-- **New tables** `notification` and `push_subscription`, migration `0003`. Reason: an outbox, so a message exists only if its change was saved, and devices that asked for alerts.
-- **New routes**: `POST/DELETE /api/notify/subscriptions`, `POST /api/notify/test`, `GET /api/notify/inbox`, `POST /api/notify/inbox/read`, `GET /api/notify/summary` (staff); `GET /api/notify/outbox`, `POST /api/notify/outbox/{id}/retry` (operator); `POST/DELETE /api/driver/{machine_token}/push`, `POST /api/driver/{machine_token}/push/test` (driver link, under `/api/driver/` like the rest of the driver link). `EXPECTED_PATH_COUNT` went from 35 to 44.
-- **`GET /api/health`** has a new `notifications` object (mode, channels, providers, `vapid_public_key`, whether the sender runs). `messaging` keeps its old value, `screen+wa_link`, because the on-screen message and `wa.me` link still exist.
-- **`log_event`** now also queues notifications through `app/notify/rules.py`, inside the same transaction. Any error there is logged and swallowed; it can never undo the action.
-- **`docs/openapi.json`**: only the new paths and schemas were added. The rest was left byte for byte, because this machine's FastAPI/pydantic write a few existing schemas slightly differently (`additionalProperties`, `const`/`enum`). Regenerate it with `python tasks.py openapi` on the versions the team uses.
+- **New tables**: `notification`, `push_subscription` (migration `0003`) and `farmer_link`, plus `push_subscription.farmer_link_id` (migration `0004`). Reason: an outbox, the devices that asked for alerts, and the farmer's private page.
+- **New routes**:
+  - Staff: `POST/DELETE /api/notify/subscriptions`, `POST /api/notify/test`, `GET /api/notify/inbox`, `POST /api/notify/inbox/read`, `GET /api/notify/summary`.
+  - Operator: `GET /api/notify/outbox`, `POST /api/notify/outbox/{id}/retry`, `GET /api/requests/{id}/farmer-link`, `POST /api/requests/{id}/farmer-link/rotate`.
+  - Driver link: `POST/DELETE /api/driver/{machine_token}/push`, `POST /api/driver/{machine_token}/push/test`.
+  - Farmer link (public, guarded by the link token like driver and record links): `GET /api/farmer/{token}`, `POST /api/farmer/{token}/read`, `POST/DELETE /api/farmer/{token}/push`, `POST /api/farmer/{token}/push/test`, `GET /api/farmer/{token}/manifest.webmanifest`.
+  - `EXPECTED_PATH_COUNT` went from 35 to 51.
+  - `tests/api/test_accounts.py::test_every_protected_route_requires_auth` now lists `/api/farmer/` with the other token-guarded public prefixes. `tests/api/test_notifications.py` checks that unknown, expired and turned-off farmer links are refused.
+- **`GET /api/health`** has a new `notifications` object (`delivery: "app"`, `vapid_public_key`, whether the sender runs). `messaging` keeps its old value `screen+wa_link` so the contract does not break; the status strip now shows "Messaging: in-app" from `notifications`.
+- **`GET /api/slots/{id}/message`** is unchanged and still returns `wa_link`, but the app no longer shows an "Open WhatsApp" button (Copy text and Call stay; Call now records `opened` with channel `tel`). The e2e specs that read the service code from the WhatsApp link now read it from the message text.
+- **`log_event`** also queues notifications through `app/notify/rules.py`, inside the same transaction. Any error there is logged and swallowed; it can never undo the action.
+- **`docs/openapi.json`**: only the new paths and schemas were added; the rest was left byte for byte (this machine's FastAPI/pydantic write a few old schemas slightly differently). Regenerate with `python tasks.py openapi` on the team's versions.
 
 ### Libraries added beyond the contract, and why
-- **`cryptography`** (runtime): web push needs P-256 ECDH, HKDF, AES-128-GCM and ES256 signatures. It was already installed as a dependency of other packages; now it is listed. No push library was added; the protocol is about 200 lines in `app/notify/webpush.py`.
-- **`http-ece`** (dev only): the reference decryptor that proves our push encryption is right (`tests/unit/test_notify_webpush.py`, `tests/api/test_notifications.py`).
+- **`cryptography`** (runtime): web push needs P-256 ECDH, HKDF, AES-128-GCM and ES256 signatures. It was already installed as a dependency of other packages; now it is listed. No push library: the protocol is about 200 lines in `app/notify/webpush.py`.
+- **`http-ece`** (dev only): the reference decryptor that proves the push encryption is right.
+- No QR library: `web/src/shell/qr.ts` is a small QR encoder (byte mode, level M, versions 1 to 15). Its output was checked with OpenCV's QR reader for every version.
 
 ### Things the next person must know
 - Delivery happens in a background thread started in the app lifespan (`app/notify/dispatch.py`). Tests set `VAARI_NOTIFY_WORKER=false` and call `process_due` directly.
-- Logs never contain phone numbers or message text; one line per delivery: `event=notify:<audience>:<kind>:<channel>`, `ok`, `where=<status>`, `provider`.
-- Read state in the bell is shared by the team (one operator marking an alert read clears it for all operators).
-- The staff pages use the service worker at scope `/`, the driver links a second one at `/driver/`, so a phone can be both without one turning the other off. Push needs https (or localhost). On iPhone it needs the app on the Home Screen.
+- Logs never contain phone numbers or message text: one line per delivery with `event=notify:<audience>:<kind>:<channel>`, `ok`, `where=<status>`, `provider`.
+- Read state in the bell is shared by the team.
+- Service workers: staff pages use scope `/`, driver links `/driver/`, farmer pages `/farmer/`. Each gets its own push address, so one phone can be all three in a demo. Push needs https (or localhost). iPhone needs the page on the Home Screen; the farmer page sets its own manifest so it installs to open the farmer's bookings.
 - New commands: `python tasks.py vapid-keys`, `python tasks.py notify [--run]`.
-- Tests: `tests/api/test_notifications.py` (39), `tests/unit/test_notify_webpush.py` (11), `web/e2e/notifications.spec.ts` (6, Playwright project `push` with service workers allowed and a real push event sent through Chrome DevTools).
+- Existing bug, not changed here: editing a request (`PATCH /api/requests/{id}`) cancels its turn but the scheduler run inside the same request does not see that yet, so the request stays "open" until the next scheduler run. The farmer gets "turn changed" when the new turn is made.
+- Tests:
+  - `tests/api/test_notifications.py` (42 tests).
+  - `tests/unit/test_notify_webpush.py` (11 tests).
+  - `web/e2e/notifications.spec.ts` (7 tests). It runs in the Playwright project `push`, with service workers allowed and real push events sent through Chrome DevTools.
 
 ### What was not verified
-- No real SMS, WhatsApp or push message left the test machine. See the last section of docs/NOTIFICATIONS.md.
+- No alert went through Google, Mozilla or Apple from the test machine. Try a real Android phone and a real iPhone before the demo.

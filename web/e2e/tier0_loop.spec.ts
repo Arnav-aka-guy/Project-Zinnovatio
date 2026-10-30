@@ -52,7 +52,7 @@ test('Tier 0 full loop: Desk -> Driver -> Record -> Officer', async ({ page, con
   await page.locator('#btn-run-scheduler').click();
   await expect(page.locator('#btn-run-scheduler')).toBeEnabled();
 
-  // 3. Open the demo slot's message: wa.me link contains URL-encoded Punjabi text and service code
+  // 3. Open the demo slot's message: Punjabi text with the service code (sent to the farmer in Vaari)
   await page.locator('#tab-requests').click();
   await expect(page.locator('#requests-tab-content')).toBeVisible();
 
@@ -69,18 +69,12 @@ test('Tier 0 full loop: Desk -> Driver -> Record -> Officer', async ({ page, con
   const msgContainer = page.locator('#slot-message-container');
   await expect(msgContainer).toBeVisible();
 
-  const waBtn = page.locator('#btn-whatsapp-msg');
-  await expect(waBtn).toBeVisible();
-  const waLink = await waBtn.getAttribute('href');
-  expect(waLink).toBeTruthy();
-  expect(waLink).toContain('https://wa.me/91');
-  expect(waLink).toContain('text=');
+  // The message reaches the farmer inside Vaari (their page and phone alerts), never by WhatsApp or SMS.
+  await expect(page.locator('#btn-whatsapp-msg')).toHaveCount(0);
+  const decodedText = (await msgContainer.locator('.message-punjabi').textContent()) || '';
+  expect(decodedText).toContain('ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਜੀ');
 
-  // Decode the Punjabi text and find 4-digit service code
-  const urlObj = new URL(waLink!);
-  const decodedText = decodeURIComponent(urlObj.searchParams.get('text') || '');
-  expect(decodedText).toBeTruthy();
-
+  // Find the 4-digit service code in the Punjabi text
   const codeMatch = decodedText.match(/\b\d{4}\b/);
   expect(codeMatch).toBeTruthy();
   const serviceCode = codeMatch![0];

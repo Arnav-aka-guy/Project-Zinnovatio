@@ -7,7 +7,7 @@
  *   heard again with a weak signal. Each manifest.json is network first.
  * - /api/*: never cached and never touched here. Requests, photos and records
  *   always go to the server.
- * - Push: staff alerts and driver job alerts arrive here (encrypted end to end;
+ * - Push: staff alerts, driver job alerts and farmer messages arrive here (encrypted end to end;
  *   the push service cannot read them) and show as a phone/desktop notification.
  *   Tapping one opens the right screen. Open Vaari windows are told to refresh.
  */

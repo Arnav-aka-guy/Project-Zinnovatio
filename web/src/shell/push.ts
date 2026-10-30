@@ -2,24 +2,27 @@
  * Web push on this device: turn alerts on or off, and keep the server's copy fresh.
  *
  * Staff pages use the service worker at scope "/"; driver links use a second
- * registration at scope "/driver/". A browser gives each registration its own
- * push address, so one phone can be both a desk and a driver phone in a demo
- * without one switching the other off.
+ * registration at scope "/driver/" and farmer pages a third at "/farmer/".
+ * A browser gives each registration its own push address, so one phone can be
+ * a desk, a driver and a farmer phone in a demo without one switching another off.
  */
 import { useCallback, useEffect, useState } from 'react';
 import {
   addDriverPush,
+  addFarmerPush,
   addPushSubscription,
   getHealth,
   removeDriverPush,
+  removeFarmerPush,
   removePushSubscription,
   sendDriverTestAlert,
+  sendFarmerTestAlert,
   sendTestAlert,
 } from '../api';
 import type { PushSubscriptionBody, PushTestResult } from '../types';
 import { isIOS, isStandalone } from './useInstall';
 
-export type PushTarget = { kind: 'staff' } | { kind: 'driver'; token: string };
+export type PushTarget = { kind: 'staff' } | { kind: 'driver'; token: string } | { kind: 'farmer'; token: string };
 
 /** What this device can do. */
 export type PushState =
@@ -31,7 +34,7 @@ export type PushState =
   | 'insecure' // needs https (or localhost)
   | 'unsupported';
 
-const scopeFor = (t: PushTarget) => (t.kind === 'driver' ? '/driver/' : '/');
+const scopeFor = (t: PushTarget) => (t.kind === 'staff' ? '/' : `/${t.kind}/`);
 
 export function pushSupported(): boolean {
   return typeof window !== 'undefined' && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
@@ -47,7 +50,7 @@ function base64UrlToBytes(b64: string): Uint8Array<ArrayBuffer> {
 
 async function registration(target: PushTarget, create: boolean): Promise<ServiceWorkerRegistration | null> {
   const scope = scopeFor(target);
-  const probe = target.kind === 'driver' ? `/driver/${target.token}` : '/';
+  const probe = target.kind === 'staff' ? '/' : `/${target.kind}/${target.token}`;
   const found = await navigator.serviceWorker.getRegistration(probe);
   if (found && new URL(found.scope).pathname === scope) return found;
   if (!create) return null;
@@ -82,6 +85,7 @@ function deviceLabel(): string {
 async function save(target: PushTarget, sub: PushSubscription): Promise<void> {
   const body = toBody(sub);
   if (target.kind === 'driver') await addDriverPush(target.token, body);
+  else if (target.kind === 'farmer') await addFarmerPush(target.token, body);
   else await addPushSubscription(body);
 }
 
@@ -130,15 +134,16 @@ export async function disablePush(target: PushTarget): Promise<void> {
   const endpoint = sub.endpoint;
   await sub.unsubscribe().catch(() => undefined);
   if (target.kind === 'driver') await removeDriverPush(target.token, endpoint).catch(() => undefined);
+  else if (target.kind === 'farmer') await removeFarmerPush(target.token, endpoint).catch(() => undefined);
   else await removePushSubscription(endpoint).catch(() => undefined);
 }
 
 export async function testPush(target: PushTarget): Promise<PushTestResult> {
   const reg = await registration(target, false);
   const sub = reg ? await reg.pushManager.getSubscription() : null;
-  return target.kind === 'driver'
-    ? sendDriverTestAlert(target.token, sub?.endpoint)
-    : sendTestAlert(sub?.endpoint);
+  if (target.kind === 'driver') return sendDriverTestAlert(target.token, sub?.endpoint);
+  if (target.kind === 'farmer') return sendFarmerTestAlert(target.token, sub?.endpoint);
+  return sendTestAlert(sub?.endpoint);
 }
 
 /** Re-send an existing subscription (after sign-in, a role change, or a server restore). Quiet on errors. */
@@ -153,7 +158,7 @@ export function usePush(target: PushTarget | null) {
   const [state, setState] = useState<PushState>('checking');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const key = target ? (target.kind === 'driver' ? `d:${target.token}` : 'staff') : '';
+  const key = target ? (target.kind === 'staff' ? 'staff' : `${target.kind}:${target.token}`) : '';
 
   const refresh = useCallback(async () => {
     if (!target) return;

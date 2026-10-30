@@ -1,5 +1,9 @@
 """Who is told what, when. Called from `log_event`, inside the same transaction.
 
+Every message is delivered inside Vaari: the farmer's page and phone alerts
+for farmers, the bell and phone/desktop alerts for staff, phone alerts for
+drivers. Nothing goes out by SMS or WhatsApp.
+
 Every important change in Vaari already writes an event_log row (a slot
 planned, a request that will miss, a job started or done, a flagged job, a
 machine taken off, an account locked). This module turns those events into
@@ -12,12 +16,11 @@ action that caused it (`log_event` catches every error).
 
 from __future__ import annotations
 
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from sqlalchemy.orm import Session
 
 from app import clock
-from app.config import settings
 from app.models import Farmer, Machine, Notification, Plot, Request, ServiceRecord, Slot, UserAccount
 from app.notify import messages as M
 
@@ -56,39 +59,42 @@ def queue(session: Session, *, key: str, **fields) -> Notification | None:
 
 
 # ── Audiences ────────────────────────────────────────────────────────────
+FARMER_CHANNELS = ("inapp", "webpush")
+
+
 def queue_farmer(session: Session, kind: str, req: Request, *, slot: Slot | None = None, extra_key: str = "") -> None:
-    if settings.notify_mode == "off":
-        return
+    """One message in the farmer's page (inapp) and one phone alert (webpush) for each phone they turned on."""
     farmer = session.get(Farmer, req.farmer_id)
     if farmer is None or not farmer.consent_service:
         return
     plot = session.get(Plot, req.plot_id)
     machine = session.get(Machine, slot.machine_id) if slot else None
-    record = None
+    url = None  # the farmer's own page, worked out when the alert is sent
     if kind == "job_done" and slot is not None:
         with session.no_autoflush:
             record = session.query(ServiceRecord).filter_by(slot_id=slot.id).first()
+        if record is not None:
+            url = f"/record/{record.token}"
     lang = "pa" if (farmer.language or "pa") == "pa" else "en"
-    ctx = M.farmer_context(
-        plot=plot, req=req, slot=slot, machine=machine, record_token=record.token if record else None
-    )
-    body = M.farmer_text(kind, lang, ctx)
-    channel = settings.farmer_channels[0]
+    ctx = M.farmer_context(plot=plot, req=req, slot=slot, machine=machine)
     ref = f"slot:{slot.id}" if slot else f"request:{req.id}"
-    queue(
-        session,
-        key=f"farmer:{kind}:{ref}{extra_key}:{channel}",
-        kind=kind,
-        audience="farmer",
-        channel=channel,
-        farmer_id=farmer.id,
-        request_id=req.id,
-        slot_id=slot.id if slot else None,
-        machine_id=slot.machine_id if slot else None,
-        lang=lang,
-        body=body,
-        urgency="high" if kind in ("slot_scheduled", "slot_changed", "job_started") else "normal",
-    )
+    for channel in FARMER_CHANNELS:
+        queue(
+            session,
+            key=f"farmer:{kind}:{ref}{extra_key}:{channel}",
+            kind=kind,
+            audience="farmer",
+            channel=channel,
+            farmer_id=farmer.id,
+            request_id=req.id,
+            slot_id=slot.id if slot else None,
+            machine_id=slot.machine_id if slot else None,
+            lang=lang,
+            title=M.farmer_title(kind, lang, ctx),
+            body=M.farmer_text(kind, lang, ctx),
+            url=url,
+            urgency="high" if kind in ("slot_scheduled", "slot_changed", "job_started", "not_served") else "normal",
+        )
 
 
 def queue_staff(
@@ -369,12 +375,3 @@ def queue_driver_day_plans(session: Session, today: date | None = None) -> int:
         )
         made += len(session.new) - before
     return made
-
-
-def staff_test(session: Session) -> None:
-    """Used by POST /api/notify/test (not queued: sent straight away)."""
-    return None
-
-
-def utcnow() -> datetime:
-    return clock.now_utc()
