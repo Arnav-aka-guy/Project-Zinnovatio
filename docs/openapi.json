@@ -67,7 +67,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
                   "type": "object",
                   "title": "Response Login Api Auth Login Post"
                 }
@@ -177,7 +176,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Me Api Auth Me Get"
                 }
               }
@@ -1271,7 +1269,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Trigger Schedule Run Api Schedule Run Post"
                 }
               }
@@ -1372,8 +1369,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "additionalProperties": true
+                    "type": "object"
                   },
                   "title": "Response Get Schedule Api Schedule Get"
                 }
@@ -1442,8 +1438,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "additionalProperties": true
+                    "type": "object"
                   },
                   "title": "Response Get Will Miss Requests Api Schedule Will Miss Get"
                 }
@@ -1638,7 +1633,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Get Slot Message Api Slots  Id  Message Get"
                 }
               }
@@ -2090,7 +2084,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Revoke Record Link Api Slots  Id  Record Revoke Post"
                 }
               }
@@ -2167,7 +2160,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Reissue Record Link Api Slots  Id  Record Reissue Post"
                 }
               }
@@ -2228,7 +2220,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Get Driver View Api Driver  Machine Token  Get"
                 }
               }
@@ -2314,7 +2305,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Verify Service Record Api Records  Token  Verify Get"
                 }
               }
@@ -2446,7 +2436,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Get Dashboard Summary Api Dashboard Summary Get"
                 }
               }
@@ -2586,7 +2575,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Upload Register Photo Api Intake Register Photo Post"
                 }
               }
@@ -2662,7 +2650,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Get Intake Draft Api Intake  Id  Get"
                 }
               }
@@ -2809,7 +2796,6 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "additionalProperties": true,
                 "title": "Payload"
               }
             }
@@ -2822,7 +2808,6 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "additionalProperties": true,
                   "title": "Response Confirm Intake Api Intake  Id  Confirm Post"
                 }
               }
@@ -2850,7 +2835,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "contentMediaType": "application/octet-stream"
+                "format": "binary"
               },
               {
                 "type": "null"
@@ -2912,7 +2897,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "contentMediaType": "application/octet-stream"
+                "format": "binary"
               },
               {
                 "type": "null"
@@ -2963,7 +2948,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "contentMediaType": "application/octet-stream"
+                "format": "binary"
               },
               {
                 "type": "null"
@@ -3090,7 +3075,6 @@
           "data_used": {
             "anyOf": [
               {
-                "additionalProperties": true,
                 "type": "object"
               },
               {
@@ -4420,13 +4404,6 @@
           "type": {
             "type": "string",
             "title": "Error Type"
-          },
-          "input": {
-            "title": "Input"
-          },
-          "ctx": {
-            "type": "object",
-            "title": "Context"
           }
         },
         "type": "object",

@@ -50,3 +50,12 @@ vaari-phase-3/
 # Backups contain personal data (pilot v0.2)
 backups/
 *.pre-restore-*
+
+# Voice booking service (V1-V10)
+voice_service/.venv/
+voice_service/reference/
+voice_service/cache/
+voice_service/test_clips/
+voice_service/bench_output/
+examples/voice/*.wav
+
