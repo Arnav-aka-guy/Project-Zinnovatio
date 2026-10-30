@@ -4,6 +4,13 @@ All notable changes are recorded here. The format follows Keep a Changelog, and 
 
 ## [Unreleased]
 
+### Phone web app (31 Oct 2026)
+- **Works on phones**: bottom tab bar and More sheet, compact top bar, request cards, full-screen request detail, Desk form behind one button, sticky Desk tabs, camera and gallery buttons for register photos, card layout for every table, sticky Confirm button, compact voice booking, glove-sized driver controls. Nothing wider than the screen from 320 px to desktop; tap targets 44 px; inputs at 16 px (no iPhone zoom); notch and home-bar safe areas.
+- **Installable**: web app manifest, Vaari icon set, service worker (offline app shell, cached voice clips, API never cached), install button and iPhone steps in More, "No signal" bar.
+- **Driver and record links** no longer show the staff menu. Records have a Share button on phones.
+- **Fixes (all sizes)**: Acres fields refused whole numbers and halves such as 3 or 2.5 (`step="0.1"` with `min="0.25"`); now any value from 0.25 to 200 is accepted. Evidence flags on the driver screen ran together; each is now its own line. Finished driver jobs said "Ready"; they now say "Finished". The sign-in card is styled.
+- Tests: `web/e2e/mobile.spec.ts` (7 tests × Android and iPhone sizes).
+
 - Removed the old voice service, replaced by the voice booking pack.
 
 ### Voice booking in Punjabi and English (pilot v0.3, 30 Oct 2026)

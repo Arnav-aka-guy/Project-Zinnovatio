@@ -336,3 +336,18 @@ A farmer books by talking, in Punjabi or English (picked on the start screen, sw
 ### What was not verified
 - **Real speech recognition.** The e2e spec scripts the recogniser. Chrome's `pa-IN` and `en-IN` recognition should be tried with real farmers; the engine already accepts digits, Gurmukhi digits and number words in both languages.
 - **Punjabi wording** of the 42 prompts should be read by a native speaker before the pilot.
+
+
+## Phone web app (31 Oct 2026)
+
+The frontend now works on phones and installs to the home screen. Details: [docs/MOBILE.md](docs/MOBILE.md).
+
+- **No contract change.** No route, schema or API change. New static files: `web/public/manifest.webmanifest`, `web/public/sw.js`, `web/public/icons/*`.
+- **Layout** lives in `web/src/mobile.css` (loaded after `index.css`); the touch layout is `max-width: 900px`, matching `useIsPhone()` in `web/src/shell/useInstall.ts`.
+- **Tables** become cards on phones with no markup change: `web/src/shell/tableLabels.ts` copies each column name into `data-label` on the cells. New tables get this for free if they use `data-table` or `will-miss-table`.
+- **Service worker** registers only in the built app and never caches `/api/*`. If you change caching rules, bump `VERSION` in `web/public/sw.js`.
+- **Playwright**: projects `chromium` (desktop, service worker blocked), `mobile-android`, `mobile-iphone` (both run `e2e/mobile.spec.ts`).
+- **Fixed for every screen size**: acres step bug (3 and 2.5 acres were refused), run-together evidence flags, finished driver jobs labelled "Ready", unstyled sign-in.
+
+### What was not verified
+- Real devices. Checked in Chromium with Pixel 7, iPhone 13, iPhone SE, Galaxy S8, iPad and desktop sizes, touch and mobile user agents. Safari's own engine (WebKit) was not run; try the app on a real iPhone before the demo.

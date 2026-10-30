@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { useIsPhone } from '../shell/useInstall';
 import StatusStrip from '../components/StatusStrip';
 import Badge from '../components/Badge';
 import NewRequestForm from '../components/NewRequestForm';
@@ -33,6 +34,8 @@ export default function DeskPage() {
   const [todayDate, setTodayDate] = useState<string>('');
 
   const [activeTab, setActiveTab] = useState<'requests' | 'will_miss' | 'machines' | 'map'>('requests');
+  const isPhone = useIsPhone();
+  const [newFormOpen, setNewFormOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState('all');
   const [villageFilter, setVillageFilter] = useState('all');
   const [selectedRequest, setSelectedRequest] = useState<RequestOut | null>(null);
@@ -115,6 +118,15 @@ export default function DeskPage() {
     });
   }, [requests, statusFilter, villageFilter]);
 
+  // Phones: keep the tab row in view so the chosen list starts right under it.
+  const selectTab = (tab: typeof activeTab) => {
+    setActiveTab(tab);
+    if (isPhone) {
+      const bar = document.getElementById('desk-tabs-bar');
+      if (bar && bar.getBoundingClientRect().top > 120) bar.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
+  };
+
   const handleSelectRequestId = (id: number) => {
     const found = requests.find(r => r.id === id);
     if (found) {
@@ -182,23 +194,42 @@ export default function DeskPage() {
         </div>
       )}
 
-      {/* 15-Second New Request Form */}
-      <NewRequestForm
-        villages={villagesList}
-        onSuccess={() => {
-          loadDeskData();
-        }}
-      />
+      {/* 15-Second New Request Form (on phones it opens from one button) */}
+      {!isPhone || newFormOpen ? (
+        <NewRequestForm
+          villages={villagesList}
+          autoFocus={!isPhone || newFormOpen}
+          onClose={isPhone ? () => setNewFormOpen(false) : undefined}
+          onSuccess={() => {
+            loadDeskData();
+          }}
+        />
+      ) : (
+        <button
+          type="button"
+          id="btn-open-new-request"
+          className="new-request-launcher"
+          onClick={() => setNewFormOpen(true)}
+        >
+          <span className="launcher-plus" aria-hidden>
+            +
+          </span>
+          <span className="launcher-text">
+            <strong>New request</strong>
+            <small>Phone, village, acres, machine, harvest date</small>
+          </span>
+        </button>
+      )}
 
       {/* Tabs Row */}
-      <div className="desk-tabs-bar" role="tablist">
+      <div className="desk-tabs-bar" role="tablist" id="desk-tabs-bar">
         <button
           id="tab-requests"
           type="button"
           role="tab"
           aria-selected={activeTab === 'requests'}
           className={`tab-btn ${activeTab === 'requests' ? 'active' : ''}`}
-          onClick={() => setActiveTab('requests')}
+          onClick={() => selectTab('requests')}
         >
           All Requests ({requests.length})
         </button>
@@ -208,7 +239,7 @@ export default function DeskPage() {
           role="tab"
           aria-selected={activeTab === 'will_miss'}
           className={`tab-btn ${activeTab === 'will_miss' ? 'active' : ''}`}
-          onClick={() => setActiveTab('will_miss')}
+          onClick={() => selectTab('will_miss')}
         >
           Will Miss ({summary?.will_miss ?? 0})
         </button>
@@ -218,7 +249,7 @@ export default function DeskPage() {
           role="tab"
           aria-selected={activeTab === 'machines'}
           className={`tab-btn ${activeTab === 'machines' ? 'active' : ''}`}
-          onClick={() => setActiveTab('machines')}
+          onClick={() => selectTab('machines')}
         >
           Machines ({machines.length})
         </button>
@@ -228,7 +259,7 @@ export default function DeskPage() {
           role="tab"
           aria-selected={activeTab === 'map'}
           className={`tab-btn ${activeTab === 'map' ? 'active' : ''}`}
-          onClick={() => setActiveTab('map')}
+          onClick={() => selectTab('map')}
         >
           Map ({todaySchedule.reduce((acc, d) => acc + d.slots.length, 0)} today)
         </button>
@@ -284,7 +315,7 @@ export default function DeskPage() {
             </div>
           ) : (
             <div className="table-responsive">
-              <table className="data-table" id="desk-requests-table">
+              <table className="data-table desk-table" id="desk-requests-table">
                 <thead>
                   <tr>
                     <th>Farmer</th>
@@ -305,20 +336,20 @@ export default function DeskPage() {
                       onClick={() => setSelectedRequest(r)}
                       id={`req-row-${r.id}`}
                     >
-                      <td>
+                      <td className="td-farmer">
                         <div className="farmer-cell">
                           <strong className="farmer-name">{r.farmer.name || r.farmer.phone}</strong>
                           {r.farmer.name && <span className="farmer-phone-sub">{r.farmer.phone}</span>}
                         </div>
                       </td>
-                      <td>{r.village}</td>
-                      <td>{r.acres}</td>
-                      <td className="text-capitalize">{r.service_type.replace('_', ' ')}</td>
-                      <td>{r.deadline_date || '—'}</td>
-                      <td>
-                        <span className={`status-pill pill-${r.status}`}>{r.status}</span>
+                      <td className="td-village">{r.village}</td>
+                      <td className="td-acres">{r.acres}</td>
+                      <td className="td-service text-capitalize">{r.service_type.replace('_', ' ')}</td>
+                      <td className="td-deadline">{r.deadline_date || '—'}</td>
+                      <td className="td-status">
+                        <span className={`status-pill pill-${r.status}`}>{r.status.replace('_', ' ')}</span>
                       </td>
-                      <td>
+                      <td className="td-slot">
                         {r.slot ? (
                           <div className="slot-cell">
                             <span className="slot-date">{r.slot.service_date}</span>
@@ -328,7 +359,7 @@ export default function DeskPage() {
                           <span className="text-muted">—</span>
                         )}
                       </td>
-                      <td>
+                      <td className="td-badges">
                         {r.badges?.map(b => (
                           <Badge key={b} name={b} />
                         ))}

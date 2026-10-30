@@ -371,7 +371,8 @@ export default function RequestDetailPanel({ request, onClose, onUpdate }: Props
                 <label>Acres</label>
                 <input
                   type="number"
-                  step="0.1"
+                  inputMode="decimal"
+                  step="any"
                   min="0.25"
                   value={editAcres}
                   onChange={e => setEditAcres(e.target.value)}

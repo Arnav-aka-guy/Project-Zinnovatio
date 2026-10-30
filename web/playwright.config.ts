@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+// iPhone 13 size, touch and user agent, run on the Chromium that is installed.
+const { defaultBrowserType: _webkit, ...iphone } = devices['iPhone 13'];
+void _webkit;
+
 export default defineConfig({
   testDir: './e2e',
   timeout: 45000,
@@ -23,7 +27,20 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      testIgnore: /mobile\.spec\.ts/,
+      // The app's service worker would hide requests from page.route() mocks.
+      use: { ...devices['Desktop Chrome'], serviceWorkers: 'block' },
+    },
+    // Phone web app (e2e/mobile.spec.ts), Chromium engine at phone sizes with touch.
+    {
+      name: 'mobile-android',
+      testMatch: /mobile\.spec\.ts/,
+      use: { ...devices['Pixel 7'], serviceWorkers: 'block' },
+    },
+    {
+      name: 'mobile-iphone',
+      testMatch: /mobile\.spec\.ts/,
+      use: { ...iphone, serviceWorkers: 'block' },
     },
   ],
 });

@@ -386,33 +386,49 @@ export default function IntakePage() {
             </span>
           </div>
         </div>
-        <div className="mt-2">
+        <div className="mt-2 intake-rotate-row">
           <label className="attr-label" htmlFor="intake-rotate">
             Turn the photo before reading{' '}
-            <select
-              id="intake-rotate"
-              value={rotate}
-              onChange={e => setRotate(Number(e.target.value) as 0 | 90 | 180 | 270)}
-              disabled={uploading}
-            >
-              <option value={0}>No turn (upright)</option>
-              <option value={90}>Turn right (90°)</option>
-              <option value={180}>Upside down (180°)</option>
-              <option value={270}>Turn left (90°)</option>
-            </select>
           </label>
+          <select
+            id="intake-rotate"
+            value={rotate}
+            onChange={e => setRotate(Number(e.target.value) as 0 | 90 | 180 | 270)}
+            disabled={uploading}
+          >
+            <option value={0}>No turn (upright)</option>
+            <option value={90}>Turn right (90°)</option>
+            <option value={180}>Upside down (180°)</option>
+            <option value={270}>Turn left (90°)</option>
+          </select>
         </div>
-        <div className="mt-2">
+        <div className="upload-actions">
+          {/* Camera on phones; a file chooser on computers. */}
+          <label htmlFor="intake-file-input" className={`btn btn-primary upload-btn ${uploading ? 'is-disabled' : ''}`}>
+            📷 Take photo
+          </label>
+          <label htmlFor="intake-gallery-input" className={`btn btn-secondary upload-btn ${uploading ? 'is-disabled' : ''}`}>
+            🖼️ Choose from gallery
+          </label>
           <input
             id="intake-file-input"
+            className="sr-only-input"
             type="file"
             accept="image/*"
             capture="environment"
             onChange={handleFileChange}
             disabled={uploading}
           />
-          {uploading && <span className="ml-2 text-muted">Reading register page…</span>}
+          <input
+            id="intake-gallery-input"
+            className="sr-only-input"
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            disabled={uploading}
+          />
         </div>
+        {uploading && <p className="mt-2 text-muted">Reading register page…</p>}
       </div>
 
       {/* Error or Fallback Notice */}
@@ -613,7 +629,8 @@ export default function IntakePage() {
                           <input
                             id={`intake-acres-${r.row}`}
                             type="number"
-                            step="0.1"
+                            inputMode="decimal"
+                            step="any"
                             min="0.25"
                             max="200"
                             value={r.acres}

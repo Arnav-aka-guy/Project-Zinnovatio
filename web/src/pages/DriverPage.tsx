@@ -348,7 +348,11 @@ export default function DriverPage() {
                   <span className="job-deadline">
                     Sow Deadline: <strong>{s.deadline_date || '—'}</strong>
                   </span>
-                  {s.link_token ? (
+                  {s.status === 'done' ? (
+                    <span className="job-ready-indicator job-finished">Finished ✓</span>
+                  ) : s.status === 'in_progress' ? (
+                    <span className="job-ready-indicator">Continue ➔</span>
+                  ) : s.link_token ? (
                     <span className="job-ready-indicator">Ready ➔</span>
                   ) : (
                     <span className="text-muted">Token required</span>

@@ -156,6 +156,20 @@ export default function RecordPage() {
             >
               🖨️ Print Receipt / PDF
             </button>
+            {typeof navigator !== 'undefined' && 'share' in navigator && (
+              <button
+                id="btn-share-record"
+                type="button"
+                className="btn btn-primary btn-sm"
+                onClick={() =>
+                  void navigator
+                    .share({ title: 'Service Completion Record', text: 'ਸੇਵਾ ਪੂਰੀ ਹੋਣ ਦਾ ਰਿਕਾਰਡ / Service record', url: window.location.href })
+                    .catch(() => undefined)
+                }
+              >
+                ↗ Share
+              </button>
+            )}
           </div>
         </header>
 

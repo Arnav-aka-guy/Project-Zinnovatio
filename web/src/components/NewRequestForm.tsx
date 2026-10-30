@@ -7,6 +7,10 @@ import type { RequestOut } from '../types';
 interface Props {
   villages: string[];
   onSuccess: (newReq: RequestOut) => void;
+  /** Focus the phone field on open (off on phones until the form is opened, so the keyboard does not pop up). */
+  autoFocus?: boolean;
+  /** Phones: the form opens from a button and can be closed again. */
+  onClose?: () => void;
 }
 
 const SERVICE_TYPES = [
@@ -16,7 +20,7 @@ const SERVICE_TYPES = [
   { id: 'mulcher', label: 'Mulcher' },
 ];
 
-export default function NewRequestForm({ villages, onSuccess }: Props) {
+export default function NewRequestForm({ villages, onSuccess, autoFocus = true, onClose }: Props) {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
   const [village, setVillage] = useState('');
@@ -133,6 +137,11 @@ export default function NewRequestForm({ villages, onSuccess }: Props) {
           <h2>New Request</h2>
           <span className="card-subtitle">Quick intake — fill in 15 seconds during a call</span>
         </div>
+        {onClose && (
+          <button type="button" className="icon-btn" id="btn-close-new-request" aria-label="Close new request" onClick={onClose}>
+            ✕
+          </button>
+        )}
       </div>
 
       {outcomeMessage && (
@@ -160,7 +169,7 @@ export default function NewRequestForm({ villages, onSuccess }: Props) {
               placeholder="10-digit number"
               value={phone}
               onChange={handlePhoneChange}
-              autoFocus
+              autoFocus={autoFocus}
               required
               className={fieldErrors.phone ? 'input-error' : ''}
             />
@@ -206,7 +215,8 @@ export default function NewRequestForm({ villages, onSuccess }: Props) {
             <input
               id="req-acres"
               type="number"
-              step="0.1"
+              inputMode="decimal"
+              step="any"
               min="0.25"
               max="200"
               placeholder="e.g. 3.2"

@@ -178,6 +178,7 @@ export default function PasscodeGate({ children, roles = ['operator'] }: Props) 
               value={username}
               onChange={e => setUsername(e.target.value)}
               placeholder="Username"
+              aria-label="Username"
               autoFocus
               autoComplete="username"
             />
@@ -187,6 +188,7 @@ export default function PasscodeGate({ children, roles = ['operator'] }: Props) 
               value={password}
               onChange={e => setPassword(e.target.value)}
               placeholder="Password"
+              aria-label="Password"
               autoComplete="current-password"
             />
             <button id="login-submit" type="submit" disabled={checking || !username.trim() || !password}>
@@ -211,6 +213,7 @@ export default function PasscodeGate({ children, roles = ['operator'] }: Props) 
             value={input}
             onChange={e => setInput(e.target.value)}
             placeholder="Passcode"
+            aria-label="Passcode"
             autoFocus
             autoComplete="off"
           />
