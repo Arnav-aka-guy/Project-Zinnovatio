@@ -619,13 +619,26 @@ def task_voice_serve() -> int:
     return run_cmd(cmd, cwd=ROOT)
 
 
+def task_voice_cache(args: list[str]) -> int:
+    """Pre-generate fixed Punjabi spoken replies with IndicF5 into voice_service/cache/."""
+    if os.name == "nt":
+        voice_py = ROOT / "voice_service" / ".venv" / "Scripts" / "python.exe"
+    else:
+        voice_py = ROOT / "voice_service" / ".venv" / "bin" / "python"
+    if not voice_py.exists():
+        print(f"Error: voice_service virtual environment not found at {voice_py}")
+        return 1
+    cmd = [str(voice_py), "voice_service/cache_gen.py"] + args
+    return run_cmd(cmd, cwd=ROOT)
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python tasks.py <task> [args]")
         print(
             "Available tasks: setup, dev, test, seed, reset, smoke, serve, tunnel, "
             "build-web, e2e, reader-eval, purge-images, screenshots, check-config, "
-            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voice-serve"
+            "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voice-serve, voice-cache"
         )
         sys.exit(1)
 
@@ -636,6 +649,8 @@ def main():
         sys.exit(task_setup())
     elif task == "voice-serve":
         sys.exit(task_voice_serve())
+    elif task == "voice-cache":
+        sys.exit(task_voice_cache(extra_args))
     elif task == "dev":
         sys.exit(task_dev())
     elif task == "test":
