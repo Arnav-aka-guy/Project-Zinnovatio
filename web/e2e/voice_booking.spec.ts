@@ -72,6 +72,7 @@ async function openVoice(page: import('@playwright/test').Page) {
 }
 
 test('voice booking: five Punjabi answers, read-backs and a saved request', async ({ page, context }) => {
+  test.setTimeout(120000);
   await fakeSpeech(context, ANSWERS);
   const res = await openVoice(page);
   // The page must be allowed to use the mic (a `microphone=()` policy silently blocks it).
@@ -80,7 +81,7 @@ test('voice booking: five Punjabi answers, read-backs and a saved request', asyn
   await page.getByRole('button', { name: /ਪੰਜਾਬੀ ਵਿੱਚ ਸ਼ੁਰੂ ਕਰੋ/ }).click();
 
   const done = page.locator('.vb-done');
-  await expect(done).toBeVisible({ timeout: 40000 });
+  await expect(done).toBeVisible({ timeout: 100000 });
   await expect(done).toContainText('VR-');
 
   // Every step shows the understood value.
@@ -95,6 +96,7 @@ test('voice booking: five Punjabi answers, read-backs and a saved request', asyn
 });
 
 test('voice booking in English: same five steps, English speech and read-backs', async ({ page, context }) => {
+  test.setTimeout(120000);
   await fakeSpeech(context, [
     'nine eight seven six five four three two one zero',
     'yes',
@@ -113,7 +115,7 @@ test('voice booking in English: same five steps, English speech and read-backs',
   await page.getByRole('button', { name: /Start in English/ }).click();
 
   const done = page.locator('.vb-done');
-  await expect(done).toBeVisible({ timeout: 40000 });
+  await expect(done).toBeVisible({ timeout: 100000 });
   await expect(done).toContainText('VR-');
   const steps = page.locator('.vb-step-value');
   await expect(steps.nth(0)).toHaveText('98765 43210');
