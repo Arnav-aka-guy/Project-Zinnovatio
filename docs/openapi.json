@@ -2896,7 +2896,7 @@
           "voice"
         ],
         "summary": "Process Voice Turn",
-        "description": "Process farmer spoken turn.",
+        "description": "Process farmer spoken turn or direct text turn.",
         "operationId": "process_voice_turn_api_voice_turn_post",
         "requestBody": {
           "content": {
@@ -3087,15 +3087,32 @@
             "title": "Session Id"
           },
           "audio": {
-            "type": "string",
-            "format": "binary",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "binary"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Audio"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text"
           }
         },
         "type": "object",
         "required": [
-          "session_id",
-          "audio"
+          "session_id"
         ],
         "title": "Body_process_voice_turn_api_voice_turn_post"
       },

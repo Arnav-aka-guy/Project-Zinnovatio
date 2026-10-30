@@ -478,11 +478,17 @@ export function sendVoiceConsent(sessionId: string): Promise<VoiceSessionOut> {
 
 export async function sendVoiceTurn(
   sessionId: string,
-  audioWavBlob: Blob,
+  audioWavBlob?: Blob | null,
+  text?: string,
 ): Promise<VoiceSessionOut> {
   const formData = new FormData();
   formData.append('session_id', sessionId);
-  formData.append('audio', audioWavBlob, 'recording.wav');
+  if (audioWavBlob) {
+    formData.append('audio', audioWavBlob, 'recording.wav');
+  }
+  if (text) {
+    formData.append('text', text);
+  }
 
   let res: Response;
   try {

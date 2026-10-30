@@ -20,6 +20,8 @@ export default function VoiceBookingPage() {
   const [audioLevel, setAudioLevel] = useState<number>(0);
   const [recordingSeconds, setRecordingSeconds] = useState<number>(0);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [isMicBlocked, setIsMicBlocked] = useState<boolean>(false);
+  const [typedText, setTypedText] = useState<string>('');
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -55,54 +57,116 @@ export default function VoiceBookingPage() {
       if (audioElementRef.current) {
         audioElementRef.current.pause();
       }
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
     };
   }, []);
 
-  // Helper to play prompt audio
-  const playPromptAudio = (url?: string) => {
-    const audioUrl = url || session?.prompt?.audio_url;
-    if (!audioUrl) return;
+  // Pre-load voices for SpeechSynthesis
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+    }
+  }, []);
 
-    if (audioElementRef.current) {
-      audioElementRef.current.pause();
-      audioElementRef.current.currentTime = 0;
+  // Native Web Speech synthesis for loud, natural, immediate audio
+  const speakWithSpeechSynthesis = (text: string) => {
+    try {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voices = window.speechSynthesis.getVoices();
+      const punjabiVoice = voices.find(
+        (v) =>
+          v.lang.startsWith('pa') ||
+          v.name.toLowerCase().includes('punjabi') ||
+          v.lang.includes('pa-IN'),
+      );
+      const hindiVoice = voices.find((v) => v.lang.startsWith('hi'));
+      if (punjabiVoice) {
+        utterance.voice = punjabiVoice;
+        utterance.lang = punjabiVoice.lang;
+      } else if (hindiVoice) {
+        utterance.voice = hindiVoice;
+        utterance.lang = hindiVoice.lang;
+      } else {
+        utterance.lang = 'pa-IN';
+      }
+      utterance.rate = 0.9;
+      utterance.volume = 1.0;
+      utterance.pitch = 1.0;
+
+      utterance.onstart = () => {
+        setMicState('speaking');
+      };
+      utterance.onend = () => {
+        setMicState('idle');
+      };
+      utterance.onerror = () => {
+        setMicState('idle');
+      };
+
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      // SpeechSynthesis optional
+    }
+  };
+
+  // Dual playback: browser speech synthesis + server WAV
+  const playPromptAudio = (url?: string, text?: string) => {
+    const audioUrl = url || session?.prompt?.audio_url;
+    const textPa = text || session?.prompt?.text_pa;
+
+    // 1. Play crystal-clear natural speech via browser's built-in engine
+    if (textPa) {
+      speakWithSpeechSynthesis(textPa);
     }
 
-    const audio = new Audio(audioUrl);
-    audio.volume = 1.0;
-    audioElementRef.current = audio;
-    setMicState('speaking');
+    // 2. Also play audio file through standard HTML5 audio
+    if (audioUrl) {
+      if (audioElementRef.current) {
+        audioElementRef.current.pause();
+        audioElementRef.current.currentTime = 0;
+      }
 
-    audio.onended = () => {
-      setMicState('idle');
-    };
-    audio.onerror = (e) => {
-      console.warn('Audio playback error:', e);
-      setMicState('idle');
-    };
+      const audio = new Audio(audioUrl);
+      audio.volume = 1.0;
+      audioElementRef.current = audio;
 
-    audio.play().catch((err) => {
-      console.warn('Autoplay prevented by browser:', err);
-      setMicState('idle');
-    });
+      audio.onended = () => {
+        // SpeechSynthesis handles micState when active
+      };
+      audio.onerror = (e) => {
+        console.warn('Audio playback error:', e);
+      };
+
+      audio.play().catch((err) => {
+        console.warn('HTML5 audio play blocked:', err);
+      });
+    }
   };
 
   // Play prompt audio when question changes after consent
   useEffect(() => {
-    if (!session?.prompt?.audio_url || !consented) return;
-    playPromptAudio(session.prompt.audio_url);
+    if (!session?.prompt?.key || !consented) return;
+    playPromptAudio(session.prompt.audio_url, session.prompt.text_pa);
 
     return () => {
       if (audioElementRef.current) {
         audioElementRef.current.pause();
       }
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
     };
-  }, [session?.prompt?.key, session?.prompt?.audio_url, consented]);
+  }, [session?.prompt?.key, consented]);
 
   const handleConsent = async () => {
     if (!session) return;
     try {
       setMicState('processing');
+
       // Unlock browser audio context in direct user gesture
       try {
         const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
@@ -118,9 +182,9 @@ export default function VoiceBookingPage() {
       setSession(updated);
       setConsented(true);
 
-      // Play prompt audio immediately
+      // Play prompt audio immediately in this user-activated flow
       if (updated.prompt?.audio_url) {
-        playPromptAudio(updated.prompt.audio_url);
+        playPromptAudio(updated.prompt.audio_url, updated.prompt.text_pa);
       } else {
         setMicState('idle');
       }
@@ -145,7 +209,7 @@ export default function VoiceBookingPage() {
       source.connect(analyser);
       analyserRef.current = analyser;
 
-      // Direct Float32 PCM sample collection for 100% reliable WAV encoding
+      // Direct Float32 PCM sample collection
       pcmChunksRef.current = [];
       try {
         const scriptNode = ctx.createScriptProcessor(4096, 1, 1);
@@ -200,7 +264,10 @@ export default function VoiceBookingPage() {
   const startRecording = async () => {
     if (!consented || !session) return;
 
-    // If assistant is currently speaking, stop audio immediately
+    // Stop ongoing audio or speech immediately
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
     if (audioElementRef.current) {
       audioElementRef.current.pause();
       audioElementRef.current.currentTime = 0;
@@ -211,6 +278,7 @@ export default function VoiceBookingPage() {
       return;
     }
     setErrorMsg(null);
+    setIsMicBlocked(false);
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -243,7 +311,7 @@ export default function VoiceBookingPage() {
         setMicState('processing');
 
         let wavBlob: Blob;
-        // Priority 1: Direct Float32 PCM recording from ScriptProcessor (no decoding needed)
+        // Priority 1: Direct Float32 PCM recording from ScriptProcessor (100% reliable)
         if (pcmChunksRef.current.length > 0) {
           const merged = mergeFloat32Arrays(pcmChunksRef.current);
           const sampleRate = audioCtxRef.current?.sampleRate || 48000;
@@ -292,7 +360,17 @@ export default function VoiceBookingPage() {
         }
       }, 1000);
     } catch (err: any) {
-      setErrorMsg('Microphone access denied or unavailable: ' + (err.message || err));
+      const isBlocked =
+        err.name === 'NotAllowedError' ||
+        err.name === 'PermissionDeniedError' ||
+        String(err).toLowerCase().includes('permission denied') ||
+        String(err).toLowerCase().includes('denied');
+      setIsMicBlocked(isBlocked);
+      if (isBlocked) {
+        setErrorMsg('Microphone access is blocked by your browser. Please allow microphone access or type your answer below.');
+      } else {
+        setErrorMsg('Microphone access denied or unavailable: ' + (err.message || err));
+      }
       setMicState('idle');
     }
   };
@@ -311,6 +389,22 @@ export default function VoiceBookingPage() {
       setSession(updated);
     } catch (err: any) {
       setErrorMsg(err.message || 'Confirmation submission failed.');
+    } finally {
+      setMicState('idle');
+    }
+  };
+
+  const handleTextSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!typedText.trim() || !session) return;
+    setErrorMsg(null);
+    setMicState('processing');
+    try {
+      const updated = await sendVoiceTurn(session.session_id, null, typedText.trim());
+      setSession(updated);
+      setTypedText('');
+    } catch (err: any) {
+      setErrorMsg(err.message || 'Failed to submit response.');
     } finally {
       setMicState('idle');
     }
@@ -407,7 +501,7 @@ export default function VoiceBookingPage() {
                   id="voice-replay-btn"
                   className={`voice-play-prompt-btn ${micState === 'speaking' ? 'playing' : ''}`}
                   onClick={() => playPromptAudio()}
-                  title="Click to hear the question again"
+                  title="Click to hear the question spoken out loud"
                 >
                   <span>{micState === 'speaking' ? '🔊' : '▶️'}</span>
                   <span>{micState === 'speaking' ? 'ਸਹਾਇਕ ਬੋਲ ਰਿਹਾ ਹੈ... / Playing Voice...' : '🔊 ਸਵਾਲ ਸੁਣੋ / Listen to Question'}</span>
@@ -497,6 +591,28 @@ export default function VoiceBookingPage() {
             </div>
           )}
 
+          {/* Permission Blocked Guide */}
+          {isMicBlocked && (
+            <div className="voice-permission-box" role="alert">
+              <h4>🔒 ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ / Microphone Permission Required</h4>
+              <p>
+                ਬ੍ਰਾਊਜ਼ਰ ਨੇ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਬੰਦ ਕੀਤਾ ਹੋਇਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦਿੱਤੇ ਕਦਮਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ:
+              </p>
+              <ol>
+                <li>ਬ੍ਰਾਊਜ਼ਰ ਦੀ ਐਡਰੈੱਸ ਬਾਰ (URL bar) ਵਿੱਚ <strong>localhost:8000</strong> ਦੇ ਖੱਬੇ ਪਾਸੇ <strong>🔒 ਜਾਂ ⚙️</strong> ਆਈਕਨ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।</li>
+                <li><strong>Microphone</strong> ਨੂੰ <strong>"Allow" (ਚਾਲੂ)</strong> ਕਰੋ।</li>
+                <li>ਫਿਰ ਹੇਠਾਂ "ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ" ਬਟਨ ਦਬਾਓ ਜਾਂ ਪੇਜ ਰੀਲੋਡ ਕਰੋ।</li>
+              </ol>
+              <button
+                type="button"
+                className="btn-retry"
+                onClick={startRecording}
+              >
+                🔄 ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ / Try Microphone Again
+              </button>
+            </div>
+          )}
+
           {/* Giant Interactive Microphone Button */}
           {session?.state !== 'confirmed' && session?.state !== 'cancelled' && (
             <div className="voice-mic-container">
@@ -549,10 +665,44 @@ export default function VoiceBookingPage() {
                   />
                 </div>
               )}
+
+              {/* Inline Text Fallback Box */}
+              <div className="voice-text-fallback">
+                <div className="voice-text-fallback-label">
+                  ⌨️ ਜਾਂ ਇੱਥੇ ਲਿਖ ਕੇ ਜਵਾਬ ਦਿਓ / Or type your reply directly:
+                </div>
+                <form onSubmit={handleTextSubmit} className="voice-text-fallback-form">
+                  <input
+                    type="text"
+                    className="voice-text-fallback-input"
+                    placeholder={
+                      session?.current_field === 'phone'
+                        ? 'ਮੋਬਾਈਲ ਨੰਬਰ (e.g. 9876543210)'
+                        : session?.current_field === 'village'
+                        ? 'ਪਿੰਡ ਦਾ ਨਾਮ (e.g. ਪਿੰਡ ਕਲਾਂ)'
+                        : session?.current_field === 'acres'
+                        ? 'ਕਿੰਨੇ ਏਕੜ (e.g. 3 ਏਕੜ)'
+                        : session?.current_field === 'machine'
+                        ? 'ਮਸ਼ੀਨ (e.g. ਸੁਪਰ ਸੀਡਰ)'
+                        : 'ਤਾਰੀਖ਼ (e.g. ਕੱਲ੍ਹ ਜਾਂ 31 ਅਕਤੂਬਰ)'
+                    }
+                    value={typedText}
+                    onChange={(e) => setTypedText(e.target.value)}
+                    disabled={micState === 'processing'}
+                  />
+                  <button
+                    type="submit"
+                    className="voice-text-fallback-btn"
+                    disabled={!typedText.trim() || micState === 'processing'}
+                  >
+                    ਭੇਜੋ / Send ↵
+                  </button>
+                </form>
+              </div>
             </div>
           )}
 
-          {errorMsg && (
+          {errorMsg && !isMicBlocked && (
             <div className="voice-error-banner" role="alert">
               {errorMsg}
             </div>

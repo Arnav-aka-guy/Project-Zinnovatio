@@ -2600,6 +2600,118 @@ body {
   text-align: center;
 }
 
+/* Permission Blocked Box */
+.voice-permission-box {
+  background: #fef2f2;
+  border: 1.5px solid #f87171;
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.voice-permission-box h4 {
+  color: #b91c1c;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.voice-permission-box p {
+  font-size: 0.9375rem;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.voice-permission-box ol {
+  margin: 0.5rem 0 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+.voice-permission-box .btn-retry {
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.voice-permission-box .btn-retry:hover {
+  background: #b91c1c;
+}
+
+/* Inline Text Fallback */
+.voice-text-fallback {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.voice-text-fallback-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.voice-text-fallback-form {
+  display: flex;
+  gap: 8px;
+}
+
+.voice-text-fallback-input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+}
+
+.voice-text-fallback-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.voice-text-fallback-btn {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.voice-text-fallback-btn:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.voice-text-fallback-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 
 
 

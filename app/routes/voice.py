@@ -205,42 +205,48 @@ def find_next_missing_field(collected: Dict[str, Any]) -> Optional[str]:
 @router.post("/turn", response_model=VoiceSessionOut)
 async def process_voice_turn(
     session_id: str = Form(...),
-    audio: UploadFile = File(...),
+    audio: Optional[UploadFile] = File(None),
+    text: Optional[str] = Form(None),
     db: Session = Depends(get_db),
 ):
-    """Process farmer spoken turn."""
+    """Process farmer spoken turn or direct text turn."""
     sess = sessions.get(session_id)
     if not sess:
         raise HTTPException(status_code=404, detail="Session not found or expired")
 
-    # Read uploaded bytes (cap at 2 MB)
-    wav_bytes = await audio.read()
-    if len(wav_bytes) > 2 * 1024 * 1024:
-        raise HTTPException(status_code=413, detail="Audio file exceeds 2 MB limit")
-    if len(wav_bytes) == 0:
-        raise HTTPException(status_code=400, detail="Empty audio recording")
+    if text and text.strip():
+        transcript = text.strip()
+    elif audio is not None:
+        # Read uploaded bytes (cap at 2 MB)
+        wav_bytes = await audio.read()
+        if len(wav_bytes) > 2 * 1024 * 1024:
+            raise HTTPException(status_code=413, detail="Audio file exceeds 2 MB limit")
+        if len(wav_bytes) == 0:
+            raise HTTPException(status_code=400, detail="Empty audio recording")
 
-    # Verify duration from WAV header if possible (15 seconds cap)
-    if len(wav_bytes) >= 44 and wav_bytes[:4] == b"RIFF":
+        # Verify duration from WAV header if possible (15 seconds cap)
+        if len(wav_bytes) >= 44 and wav_bytes[:4] == b"RIFF":
+            try:
+                byte_rate = struct.unpack("<I", wav_bytes[28:32])[0]
+                data_size = struct.unpack("<I", wav_bytes[40:44])[0]
+                if byte_rate > 0:
+                    duration_s = data_size / byte_rate
+                    if duration_s > 15.0:
+                        raise HTTPException(status_code=400, detail="Audio exceeds 15-second cap")
+            except (struct.error, IndexError):
+                pass
+
+        engine = get_voice_engine()
         try:
-            byte_rate = struct.unpack("<I", wav_bytes[28:32])[0]
-            data_size = struct.unpack("<I", wav_bytes[40:44])[0]
-            if byte_rate > 0:
-                duration_s = data_size / byte_rate
-                if duration_s > 15.0:
-                    raise HTTPException(status_code=400, detail="Audio exceeds 15-second cap")
-        except (struct.error, IndexError):
-            pass
-
-    engine = get_voice_engine()
-    try:
-        transcript, _ = engine.transcribe(wav_bytes)
-    except VoiceServiceUnavailable:
-        sess.prompt_key = "service_down"
-        return serialize_session(sess)
-    finally:
-        # Immediately discard audio bytes from memory
-        del wav_bytes
+            transcript, _ = engine.transcribe(wav_bytes)
+        except VoiceServiceUnavailable:
+            sess.prompt_key = "service_down"
+            return serialize_session(sess)
+        finally:
+            # Immediately discard audio bytes from memory
+            del wav_bytes
+    else:
+        raise HTTPException(status_code=400, detail="Either audio or text must be provided")
 
     sess.last_transcript = transcript
 
