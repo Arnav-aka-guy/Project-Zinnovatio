@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 .venv/
+venv/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -13,9 +14,15 @@ web/dist/
 
 # Data that must never be committed
 .env
+.env.*
+!.env.example
+!.env.production.example
+vapid.json
 *.sqlite
+*.sqlite-*
 *.sqlite-wal
 *.sqlite-shm
+*.db
 data/
 data/photos/
 data/cache/
@@ -42,10 +49,14 @@ dump*.txt
 web/test-results/
 web/playwright-report/
 
-# Phase bundles
+# Phase bundles and delivery packages
 vaari-phase-1/
 vaari-phase-2/
 vaari-phase-3/
+vaari-voice-pack/
+Vaari-main-notifications-in-app/
+*.patch
+*.zip
 
 # Backups contain personal data (pilot v0.2)
 backups/
