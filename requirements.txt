@@ -1,6 +1,9 @@
-fastapi>=0.115.0
+# fastapi and pydantic are pinned: tests/api/test_openapi_fresh.py checks docs/openapi.json against
+# the live schema, and new releases change how it is written. To upgrade, change both here, then
+# run `python tasks.py openapi` and commit docs/openapi.json.
+fastapi==0.162.0
 uvicorn[standard]>=0.32.0
-pydantic>=2.9.0
+pydantic==2.14.2
 sqlalchemy>=2.0.35
 python-multipart>=0.0.12
 python-dotenv>=1.0.1

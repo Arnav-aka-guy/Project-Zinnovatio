@@ -52,7 +52,11 @@ export default defineConfig({
         serviceWorkers: 'allow',
         permissions: ['notifications'],
         headless: process.platform === 'win32' ? false : true,
-        launchOptions: process.platform === 'win32' ? { args: ['--window-position=-2400,-2400'] } : {},
+        // Keep the shared launch options (PLAYWRIGHT_CHROMIUM_EXECUTABLE) and add the Windows window offset.
+        launchOptions: {
+          ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE } : {}),
+          ...(process.platform === 'win32' ? { args: ['--window-position=-2400,-2400'] } : {}),
+        },
       },
     },
   ],
