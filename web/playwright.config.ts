@@ -43,10 +43,17 @@ export default defineConfig({
       use: { ...iphone, serviceWorkers: 'block' },
     },
     // Alerts (e2e/notifications.spec.ts): needs the real service worker and notification permission.
+    // On Windows, Chromium requires a window handle for the notification platform bridge.
     {
       name: 'push',
       testMatch: /notifications\.spec\.ts/,
-      use: { ...devices['Desktop Chrome'], serviceWorkers: 'allow', permissions: ['notifications'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        serviceWorkers: 'allow',
+        permissions: ['notifications'],
+        headless: process.platform === 'win32' ? false : true,
+        launchOptions: process.platform === 'win32' ? { args: ['--window-position=-2400,-2400'] } : {},
+      },
     },
   ],
 });
