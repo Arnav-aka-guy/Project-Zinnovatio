@@ -4584,6 +4584,12 @@
    "sha": "f62b27a476c9",
    "text": "ਸਵਾ"
   },
+  "prompt/keep_trying": {
+   "bytes": 41904,
+   "file": "prompt/keep_trying.mp3",
+   "sha": "d2b902529c26",
+   "text": "ਕੋਈ ਗੱਲ ਨਹੀਂ ਜੀ। ਹੌਲੀ ਹੌਲੀ ਸਾਫ਼ ਬੋਲੋ ਜਾਂ ਹੇਠਾਂ ਚੁਣ ਲਓ।"
+  },
   "prompt/machine_unknown": {
    "bytes": 55584,
    "file": "prompt/machine_unknown.mp3",
@@ -4613,6 +4619,12 @@
    "file": "prompt/ok_next.mp3",
    "sha": "f5aa6a38caea",
    "text": "ਠੀਕ ਹੈ ਜੀ।"
+  },
+  "prompt/paused": {
+   "bytes": 38448,
+   "file": "prompt/paused.mp3",
+   "sha": "ee6a37ea2f55",
+   "text": "ਮੈਂ ਰੁਕ ਗਿਆ ਹਾਂ ਜੀ। ਜਦੋਂ ਤਿਆਰ ਹੋਵੋ ਮਾਈਕ ਦਬਾ ਕੇ ਬੋਲੋ।"
   },
   "prompt/phone_continue": {
    "bytes": 28656,
@@ -4747,7 +4759,7 @@
    "text": "ਪਿੰਡ ਟਿੱਬੀ"
   }
  },
- "generated_at": "2026-10-30T19:49:25+00:00",
+ "generated_at": "2026-10-31T04:45:31+00:00",
  "lang": "pa-IN",
  "pitch": "+0Hz",
  "rate": "-5%",

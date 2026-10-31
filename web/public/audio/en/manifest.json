@@ -4584,6 +4584,12 @@
    "sha": "7c557cccd470",
    "text": "Your request is saved, but no machine is free in time yet. The centre will call you soon."
   },
+  "prompt/keep_trying": {
+   "bytes": 37296,
+   "file": "prompt/keep_trying.mp3",
+   "sha": "7637f8aa8a09",
+   "text": "No problem. Speak slowly and clearly, or choose below."
+  },
   "prompt/machine_unknown": {
    "bytes": 46800,
    "file": "prompt/machine_unknown.mp3",
@@ -4613,6 +4619,12 @@
    "file": "prompt/ok_next.mp3",
    "sha": "079013af5339",
    "text": "Okay."
+  },
+  "prompt/paused": {
+   "bytes": 28512,
+   "file": "prompt/paused.mp3",
+   "sha": "ba8a0a2e91af",
+   "text": "I have paused. Tap the mic when you are ready."
   },
   "prompt/phone_continue": {
    "bytes": 26784,
@@ -4747,7 +4759,7 @@
    "text": "Tibbi Far"
   }
  },
- "generated_at": "2026-10-30T19:32:57+00:00",
+ "generated_at": "2026-10-31T04:45:40+00:00",
  "lang": "en-IN",
  "pitch": "+0Hz",
  "rate": "-5%",
