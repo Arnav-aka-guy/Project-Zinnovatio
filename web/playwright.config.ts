@@ -43,12 +43,14 @@ export default defineConfig({
       use: { ...iphone, serviceWorkers: 'block' },
     },
     // Alerts (e2e/notifications.spec.ts): needs the real service worker and notification permission.
+    // Use the full Chromium browser channel so headless mode grants notification permissions.
     // On Windows, Chromium requires a window handle for the notification platform bridge.
     {
       name: 'push',
       testMatch: /notifications\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
+        channel: 'chromium',
         serviceWorkers: 'allow',
         permissions: ['notifications'],
         headless: process.platform === 'win32' ? false : true,
