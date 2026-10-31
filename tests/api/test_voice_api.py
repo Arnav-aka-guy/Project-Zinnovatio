@@ -73,6 +73,6 @@ def test_understand_in_english(client, auth_headers):
     assert [r["clip"] for r in body["readback"]] == ["acres/4500", "prompt/and_quarter", "prompt/confirm_q"]
 
 
-def test_script_lists_both_languages(client, auth_headers):
+def test_script_lists_all_three_languages(client, auth_headers):
     langs = client.get("/api/voice/script", headers=auth_headers).json()["languages"]
-    assert [(lang["id"], lang["speech"]) for lang in langs] == [("pa", "pa-IN"), ("en", "en-IN")]
+    assert [(lang["id"], lang["speech"]) for lang in langs] == [("pa", "pa-IN"), ("hi", "hi-IN"), ("en", "en-IN")]

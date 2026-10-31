@@ -86,7 +86,15 @@ def get_health(session: Session = Depends(get_db)):
         "auth": settings.auth_mode,
         "reader_detail": reader_detail(),
         "notifications": notifications_detail(),
+        "voice": voice_detail(),
     }
+
+
+def voice_detail() -> dict:
+    """How spoken answers become text, and what Google said last time (never the key)."""
+    from app.voice import google
+
+    return google.status()
 
 
 def notifications_detail() -> dict:

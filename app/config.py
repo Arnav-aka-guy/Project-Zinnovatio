@@ -60,6 +60,36 @@ class Settings:
         return float(os.environ.get("VAARI_LOGIN_LOCKOUT_MINUTES", "15"))
 
     @property
+    def google_api_key(self) -> str:
+        """VAARI_GOOGLE_API_KEY: a Google Cloud API key with Speech-to-Text and/or Cloud Translation turned on.
+        Used only by the server; it is never sent to a browser."""
+        return os.environ.get("VAARI_GOOGLE_API_KEY", "").strip()
+
+    @property
+    def voice_speech(self) -> str:
+        """VAARI_VOICE_SPEECH: 'google' (Google Cloud Speech-to-Text: Punjabi, Hindi and English in one go, works
+        on every browser), 'browser' (the browser's own speech recognition) or 'auto' (default: google when a key
+        is set, else browser)."""
+        v = os.environ.get("VAARI_VOICE_SPEECH", "auto").strip().lower()
+        if v not in ("google", "browser", "auto"):
+            v = "auto"
+        if v == "auto":
+            return "google" if self.google_api_key else "browser"
+        return v
+
+    @property
+    def voice_translate(self) -> bool:
+        """VAARI_VOICE_TRANSLATE: when the app's own rules cannot read an answer, ask Google Translate for an
+        English version and try again (default true when a key is set). Never used for phone numbers."""
+        default = "true" if self.google_api_key else "false"
+        return os.environ.get("VAARI_VOICE_TRANSLATE", default).strip().lower() in ("true", "1", "yes")
+
+    @property
+    def voice_rate_per_min(self) -> int:
+        """Spoken answers sent to speech-to-text per client address per minute."""
+        return int(os.environ.get("VAARI_VOICE_RATE_PER_MIN", "60"))
+
+    @property
     def upload_rate_per_min(self) -> int:
         """Photo uploads (register pages, start and done photos) per client address per minute."""
         return int(os.environ.get("VAARI_UPLOAD_RATE_PER_MIN", "30"))

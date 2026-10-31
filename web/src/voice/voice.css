@@ -254,3 +254,47 @@
   .vb-mic { width: 7.5rem; height: 7.5rem; font-size: 2.8rem; }
   .vb-row { flex-direction: column; }
 }
+
+/* Google speech: live loudness bar, which recogniser is in use, translated answers, paused mic */
+.vb-level {
+  width: min(220px, 70%);
+  height: 6px;
+  border-radius: 999px;
+  background: var(--border-subtle);
+  overflow: hidden;
+}
+.vb-level span {
+  display: block;
+  height: 100%;
+  background: var(--primary);
+  transform-origin: left center;
+  transition: transform 0.09s linear;
+}
+.vb-provider {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--border-subtle);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.vb-provider.is-cloud {
+  color: var(--badge-success-text);
+  background: var(--badge-success-bg);
+}
+.vb-via {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--badge-info-text);
+}
+.vb-mic.is-paused {
+  animation: vb-pause-pulse 1.6s ease-in-out infinite;
+}
+@keyframes vb-pause-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(21 128 61 / 0.35); }
+  50% { box-shadow: 0 0 0 14px rgb(21 128 61 / 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vb-mic.is-paused { animation: none; }
+  .vb-level span { transition: none; }
+}

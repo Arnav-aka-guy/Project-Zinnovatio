@@ -1,6 +1,6 @@
-/** Types for the Punjabi voice booking flow (GET /api/voice/script, POST /api/voice/understand). */
+/** Types for the voice booking flow (GET /api/voice/script, POST /api/voice/understand, POST /api/voice/transcribe). */
 
-export type VoiceLang = 'pa' | 'en';
+export type VoiceLang = 'pa' | 'hi' | 'en';
 
 export type VoiceStepId = 'phone' | 'village' | 'acres' | 'machine' | 'date';
 export type VoiceParseStep = VoiceStepId | 'confirm';
@@ -19,6 +19,9 @@ export interface VoiceStepInfo {
   ask_en: string;
   hint_pa: string;
   hint_en: string;
+  title_hi: string;
+  ask_hi: string;
+  hint_hi: string;
 }
 
 export interface VoiceScript {
@@ -26,15 +29,18 @@ export interface VoiceScript {
   languages: { id: VoiceLang; speech: string; label: string }[];
   today: string;
   steps: VoiceStepInfo[];
-  prompts: Record<string, { pa: string; en: string }>;
-  villages: { name: string; name_pa: string }[];
-  machines: { id: string; name_pa: string; name_en: string }[];
+  prompts: Record<string, { pa: string; en: string; hi: string }>;
+  villages: { name: string; name_pa: string; name_hi: string }[];
+  machines: { id: string; name_pa: string; name_en: string; name_hi: string }[];
+  /** How spoken answers become text: Google Cloud (POST /api/voice/transcribe) or the browser's own recogniser. */
+  speech: { provider: 'google' | 'browser'; translate: boolean };
 }
 
 export interface VoiceAlternative {
   value: string;
   display_pa: string;
   display_en: string;
+  display_hi?: string;
 }
 
 export interface VoiceResult {
@@ -44,6 +50,7 @@ export interface VoiceResult {
   value: string | number | boolean | null;
   display_pa: string;
   display_en: string;
+  display_hi: string;
   readback: PlayItem[];
   prompt: string | null;
   error_code: string | null;
@@ -51,6 +58,16 @@ export interface VoiceResult {
   alternatives: VoiceAlternative[];
   partial: string | null;
   correction: VoiceResult | null;
+  /** "rules" or "translate" (Google Translate helped). */
+  via?: 'rules' | 'translate';
+  translated?: string;
+}
+
+export interface VoiceTranscript {
+  texts: string[];
+  language: string | null;
+  provider: 'google';
+  error: string | null;
 }
 
 export interface VoiceContext {

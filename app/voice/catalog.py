@@ -1,8 +1,8 @@
 """The voice script: every clip the voice booking flow can play.
 
-One clip = one id + the exact Punjabi sentence spoken for it. The generator
-(`scripts/make_voice_clips.py`) turns this list into audio files under
-`web/public/audio/pa/`, and the engine (`app/voice/understand.py`) answers
+One clip = one id + the exact sentence spoken for it, in Punjabi, Hindi and
+English. The generator (`scripts/make_voice_clips.py`) turns this list into
+audio files under `web/public/audio/<pa|hi|en>/`, and the engine (`app/voice/understand.py`) answers
 with lists of these ids, so the two can never drift apart.
 
 Clip id rules (the frontend relies on them):
@@ -19,7 +19,17 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-from app.voice.lexicon import MACHINES, MONTH_WORDS, NUMBER_WORDS, VILLAGES_PA, VillageEntry
+from app.voice.lexicon import (
+    MACHINE_NAMES_HI,
+    MACHINES,
+    MONTH_WORDS,
+    MONTHS_HI,
+    NUMBER_WORDS,
+    NUMBER_WORDS_HI,
+    VILLAGES_PA,
+    VillageEntry,
+    guru_to_deva,
+)
 
 # key -> (Punjabi, English). The Punjabi line is what the voice says.
 # Written as one breath each: few commas, so the voice does not pause mid-line.
@@ -86,6 +96,9 @@ PROMPTS: dict[str, tuple[str, str]] = {
     "confirm_unknown": ("ਹਾਂ ਜਾਂ ਨਹੀਂ ਵਿੱਚ ਜਵਾਬ ਦਿਓ ਜੀ।", "Please answer yes or no."),
     "say_again": ("ਠੀਕ ਹੈ ਜੀ ਫਿਰ ਤੋਂ ਦੱਸੋ।", "Okay, tell me again."),
     "mic_off": ("ਮਾਈਕ ਬੰਦ ਹੈ ਜੀ। ਤੁਸੀਂ ਹੇਠਾਂ ਲਿਖ ਕੇ ਵੀ ਜਵਾਬ ਦੇ ਸਕਦੇ ਹੋ।", "The mic is off. You can type your answer below."),
+    # After a few answers that were not understood: keep going, kindly.
+    "keep_trying": ("ਕੋਈ ਗੱਲ ਨਹੀਂ ਜੀ। ਹੌਲੀ ਹੌਲੀ ਸਾਫ਼ ਬੋਲੋ ਜਾਂ ਹੇਠਾਂ ਚੁਣ ਲਓ।", "No problem. Speak slowly and clearly, or choose below."),
+    "paused": ("ਮੈਂ ਰੁਕ ਗਿਆ ਹਾਂ ਜੀ। ਜਦੋਂ ਤਿਆਰ ਹੋਵੋ ਮਾਈਕ ਦਬਾ ਕੇ ਬੋਲੋ।", "I have paused. Tap the mic when you are ready."),
     # Outcomes after saving.
     "done_sched_pre": ("ਤੁਹਾਡੀ ਵਾਰੀ ਲੱਗ ਗਈ ਹੈ ਜੀ। ਮਸ਼ੀਨ", "Your turn is booked. The machine will come to your field on"),
     "done_sched_post": ("ਨੂੰ ਤੁਹਾਡੇ ਖੇਤ ਆਵੇਗੀ। ਧੰਨਵਾਦ ਜੀ।", "Thank you."),
@@ -96,11 +109,63 @@ PROMPTS: dict[str, tuple[str, str]] = {
     "booking_cancelled": ("ਠੀਕ ਹੈ ਜੀ ਬੁਕਿੰਗ ਨਹੀਂ ਕੀਤੀ। ਕੋਈ ਜਾਣਕਾਰੀ ਬਦਲਣੀ ਹੋਵੇ ਤਾਂ ਉੱਪਰੋਂ ਚੁਣੋ।", "Okay, nothing was booked. Pick any step above to change it."),
 }
 
+# key -> Hindi. Same keys as PROMPTS (checked by the tests). Hindi reads back like Punjabi
+# ("सवा पाँच", "साढ़े पाँच", "पौने छह"), so the Punjabi-only pieces are used for Hindi too.
+PROMPTS_HI: dict[str, str] = {
+    "welcome": "नमस्ते जी! वारी में आपका स्वागत है। बस पाँच सवालों में आपकी मशीन की बारी बुक हो जाएगी।",
+    "ask_phone": "कृपया अपना दस अंकों का मोबाइल नंबर बताइए जी।",
+    "ask_village": "आपका खेत किस गाँव में है जी? गाँव का नाम बताइए।",
+    "ask_acres": "कितने एकड़ में काम करवाना है जी? जैसे पाँच एकड़ या साढ़े तीन एकड़।",
+    "ask_machine": "आपको कौन सी मशीन चाहिए जी? सुपर सीडर हैप्पी सीडर बेलर या मल्चर?",
+    "ask_date": "धान की कटाई कब हुई है या कब होगी जी? जैसे आज कल या पंद्रह नवंबर। अगर पता नहीं तो कहिए पता नहीं।",
+    "ask_consent": "आपका नंबर और खेत की जानकारी सिर्फ़ मशीन की बारी और काम के रिकॉर्ड के लिए इस्तेमाल होगी। क्या बुकिंग पक्की कर दें जी?",
+    "rb_phone": "आपका नंबर है",
+    "confirm_q": "क्या यह सही है जी?",
+    "rel_today": "आज",
+    "rel_yesterday": "बीता हुआ कल",
+    "rel_tomorrow": "आने वाला कल",
+    "date_not_yet": "कटाई की तारीख़ अभी तय नहीं।",
+    "frac_sava": "सवा",
+    "frac_saadhe": "साढ़े",
+    "frac_paune": "पौने",
+    "and_quarter": "और चौथाई",
+    "and_half": "और आधा",
+    "and_three_quarters": "और पौना",
+    "about": "लगभग",
+    "ok_next": "ठीक है जी।",
+    "retry_generic": "माफ़ कीजिए जी बात समझ नहीं आई। एक बार फिर बोलिए।",
+    "no_speech": "कोई आवाज़ नहीं आई जी। माइक दबाकर फिर बोलिए।",
+    "phone_short": "नंबर पूरा नहीं आया जी। दसों अंक धीरे धीरे दोबारा बोलिए।",
+    "phone_continue": "ठीक है जी। अब बाकी अंक बोलिए।",
+    "phone_long": "नंबर में दस से ज़्यादा अंक आ गए जी। सिर्फ़ दस अंक दोबारा बोलिए।",
+    "phone_start": "मोबाइल नंबर छह सात आठ या नौ से शुरू होता है जी। नंबर दोबारा बोलिए।",
+    "village_unknown": "यह गाँव सूची में नहीं मिला जी। नाम दोबारा बोलिए या नीचे सूची में से चुनिए।",
+    "acres_unknown": "एकड़ समझ नहीं आए जी। जैसे बोलिए पाँच एकड़।",
+    "acres_range": "एकड़ चौथाई से दो सौ के बीच होने चाहिए जी। दोबारा बताइए।",
+    "machine_unknown": "मशीन का नाम समझ नहीं आया जी। सुपर सीडर हैप्पी सीडर बेलर या मल्चर में से एक बोलिए।",
+    "machine_which_seeder": "सुपर सीडर चाहिए या हैप्पी सीडर जी?",
+    "date_unknown": "तारीख़ समझ नहीं आई जी। जैसे बोलिए आज कल या पंद्रह नवंबर।",
+    "date_range": "यह तारीख़ बहुत दूर है जी। दो महीने के अंदर की तारीख़ बताइए।",
+    "date_which_kal": "बीता हुआ कल या आने वाला कल जी?",
+    "confirm_unknown": "हाँ या नहीं में जवाब दीजिए जी।",
+    "say_again": "ठीक है जी फिर से बताइए।",
+    "mic_off": "माइक बंद है जी। आप नीचे लिखकर भी जवाब दे सकते हैं।",
+    "keep_trying": "कोई बात नहीं जी। धीरे धीरे साफ़ बोलिए या नीचे से चुन लीजिए।",
+    "paused": "मैं रुक गया हूँ जी। जब तैयार हों माइक दबाकर बोलिए।",
+    "done_sched_pre": "आपकी बारी लग गई है जी। मशीन",
+    "done_sched_post": "को आपके खेत आएगी। धन्यवाद जी।",
+    "done_open": "आपका अनुरोध दर्ज हो गया है जी। बारी लगने पर सेंटर से आपको बताया जाएगा। धन्यवाद जी।",
+    "done_needs_info": "आपका अनुरोध दर्ज हो गया है जी। कटाई की तारीख़ तय होने पर बारी लगेगी। धन्यवाद जी।",
+    "done_will_miss": "आपका अनुरोध दर्ज हो गया है जी पर अभी समय पर मशीन ख़ाली नहीं है। सेंटर वाले आपसे जल्दी बात करेंगे।",
+    "submit_failed": "माफ़ कीजिए जी बुकिंग सेव नहीं हुई। दोबारा कोशिश कीजिए या सेंटर पर बात कीजिए।",
+    "booking_cancelled": "ठीक है जी बुकिंग नहीं की। कोई जानकारी बदलनी हो तो ऊपर से चुनिए।",
+}
+
 # Pieces that only make sense in one language (word order differs).
 PA_ONLY_PROMPTS = {"frac_sava", "frac_saadhe", "frac_paune"}
 EN_ONLY_PROMPTS = {"and_quarter", "and_half", "and_three_quarters"}
 
-LANGS: tuple[str, ...] = ("pa", "en")
+LANGS: tuple[str, ...] = ("pa", "hi", "en")
 
 STEPS: tuple[str, ...] = ("phone", "village", "acres", "machine", "date")
 
@@ -112,6 +177,8 @@ STEP_TITLES: dict[str, tuple[str, str]] = {
     "date": ("ਤਾਰੀਖ਼", "Date"),
 }
 
+STEP_TITLES_HI: dict[str, str] = {"phone": "फ़ोन", "village": "गाँव", "acres": "एकड़", "machine": "मशीन", "date": "तारीख़"}
+
 # What to type, shown under the mic.
 STEP_HINTS: dict[str, tuple[str, str]] = {
     "phone": ("ਮੋਬਾਈਲ ਨੰਬਰ (ਜਿਵੇਂ 9876543210)", "Mobile number (e.g. 9876543210)"),
@@ -120,6 +187,20 @@ STEP_HINTS: dict[str, tuple[str, str]] = {
     "machine": ("ਮਸ਼ੀਨ ਚੁਣੋ", "Choose a machine"),
     "date": ("ਕਟਾਈ ਦੀ ਤਾਰੀਖ਼", "Harvest date"),
 }
+
+STEP_HINTS_HI: dict[str, str] = {
+    "phone": "मोबाइल नंबर (जैसे 9876543210)",
+    "village": "गाँव का नाम",
+    "acres": "एकड़ (जैसे 5 या साढ़े 3)",
+    "machine": "मशीन चुनिए",
+    "date": "कटाई की तारीख़",
+}
+
+
+def prompt_text(key: str, lang: str) -> str:
+    pa, en = PROMPTS[key]
+    return en if lang == "en" else PROMPTS_HI[key] if lang == "hi" else pa
+
 
 # The acreages that get a whole clip of their own (best prosody):
 #   every quarter up to 30, every half up to 99.5, every whole number up to 200.
@@ -143,6 +224,17 @@ def number_words(n: int) -> str:
     if n == 200:
         return "ਦੋ ਸੌ"
     return f"ਇੱਕ ਸੌ {NUMBER_WORDS[n - 100][0]}"
+
+
+def number_words_hi(n: int) -> str:
+    """0..200 as spoken Hindi."""
+    if n < 0 or n > 200:
+        raise ValueError(f"number out of range: {n}")
+    if n <= 100:
+        return NUMBER_WORDS_HI[n][0]
+    if n == 200:
+        return "दो सौ"
+    return f"एक सौ {NUMBER_WORDS_HI[n - 100][0]}"
 
 
 def acres_has_own_clip(x100: int) -> bool:
@@ -171,6 +263,23 @@ def acres_words(x100: int) -> str:
         return f"ਸਾਢੇ {number_words(whole)} ਏਕੜ"
     if part == 75:
         return f"ਪੌਣੇ {number_words(whole + 1)} ਏਕੜ"
+    raise ValueError(f"acres not on a quarter step: {x100}")
+
+
+def acres_words_hi(x100: int) -> str:
+    """Spoken Hindi for an acreage that has its own clip (quarter steps)."""
+    whole, part = divmod(x100, 100)
+    special = {25: "चौथाई एकड़", 50: "आधा एकड़", 75: "पौना एकड़", 125: "सवा एकड़", 150: "डेढ़ एकड़", 250: "ढाई एकड़"}
+    if x100 in special:
+        return special[x100]
+    if part == 0:
+        return f"{number_words_hi(whole)} एकड़"
+    if part == 25:
+        return f"सवा {number_words_hi(whole)} एकड़"
+    if part == 50:
+        return f"साढ़े {number_words_hi(whole)} एकड़"
+    if part == 75:
+        return f"पौने {number_words_hi(whole + 1)} एकड़"
     raise ValueError(f"acres not on a quarter step: {x100}")
 
 
@@ -210,6 +319,11 @@ def date_words(month: int, day: int) -> str:
     return f"{day_word} {MONTH_WORDS[month][0]}"
 
 
+def date_words_hi(month: int, day: int) -> str:
+    day_word = "पहली" if day == 1 else number_words_hi(day)
+    return f"{day_word} {MONTHS_HI[month]}"
+
+
 def ordinal_en(n: int) -> str:
     suffix = "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
     return f"{n}{suffix}"
@@ -241,28 +355,40 @@ def village_words(entry: VillageEntry) -> str:
     return entry.name_pa if entry.name_pa.startswith("ਪਿੰਡ") else f"ਪਿੰਡ {entry.name_pa}"
 
 
+def village_words_hi(entry: VillageEntry) -> str:
+    name = guru_to_deva(entry.name_pa) if entry.name_pa else entry.name
+    return name if name.startswith("पिंड") else f"गाँव {name}"
+
+
 def machine_clip(service_type: str) -> str:
     return f"machine/{service_type}"
 
 
 def build_clips(villages: list[VillageEntry] | None = None, lang: str = "pa") -> list[Clip]:
-    """Every clip the flow can play in one language, in a stable order. Same ids in both languages."""
+    """Every clip the flow can play in one language, in a stable order. Same ids in every language."""
     if lang not in LANGS:
         raise ValueError(f"unknown language: {lang}")
-    en = lang == "en"
+    en, hi = lang == "en", lang == "hi"
     skip = PA_ONLY_PROMPTS if en else EN_ONLY_PROMPTS
-    clips: list[Clip] = [Clip(f"prompt/{k}", e if en else pa) for k, (pa, e) in PROMPTS.items() if k not in skip]
-    clips += [Clip(f"digit/{d}", EN_DIGITS[d] if en else NUMBER_WORDS[d][0]) for d in range(10)]
-    for entry in villages if villages is not None else list(VILLAGES_PA):
-        clips.append(Clip(village_clip(entry.name), entry.name if en else village_words(entry)))
-    clips += [Clip(machine_clip(m.id), m.name_en if en else m.name_pa) for m in MACHINES]
+    clips: list[Clip] = [Clip(f"prompt/{k}", prompt_text(k, lang)) for k in PROMPTS if k not in skip]
     clips += [
-        Clip(f"acres/{x}", acres_words_en(x) if en else acres_words(x))
+        Clip(f"digit/{d}", EN_DIGITS[d] if en else NUMBER_WORDS_HI[d][0] if hi else NUMBER_WORDS[d][0])
+        for d in range(10)
+    ]
+    for entry in villages if villages is not None else list(VILLAGES_PA):
+        text = entry.name if en else village_words_hi(entry) if hi else village_words(entry)
+        clips.append(Clip(village_clip(entry.name), text))
+    clips += [
+        Clip(machine_clip(m.id), m.name_en if en else MACHINE_NAMES_HI[m.id] if hi else m.name_pa) for m in MACHINES
+    ]
+    clips += [
+        Clip(f"acres/{x}", acres_words_en(x) if en else acres_words_hi(x) if hi else acres_words(x))
         for x in range(ACRES_MIN_X100, ACRES_MAX_X100 + 1, 25)
         if acres_has_own_clip(x)
     ]
     days_in_month = {1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
     for month, days in days_in_month.items():
         for day in range(1, days + 1):
-            clips.append(Clip(date_clip(month, day), date_words_en(month, day) if en else date_words(month, day)))
+            text = date_words_en(month, day) if en else date_words_hi(month, day) if hi else date_words(month, day)
+            clips.append(Clip(date_clip(month, day), text))
     return clips

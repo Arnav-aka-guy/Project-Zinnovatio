@@ -1,12 +1,17 @@
 /**
- * useSpeechInput — Punjabi speech-to-text with the browser's Web Speech API.
+ * useSpeechInput — speech-to-text with the browser's own Web Speech API (Chrome, Edge,
+ * Android). Used when the server has no Google key, or when Google is not answering.
+ *
+ * - Listens continuously and decides by itself when the answer is finished (a short
+ *   silence after the last words), so an answer said with a pause, like a phone number
+ *   in two halves, is not cut off at the first breath.
  *
  * - Watches the microphone permission live, so when someone switches it to
  *   "Allow" in the address bar the page recovers without a reload.
  * - Detects the two silent killers: a page opened over plain http on a LAN IP
  *   (browsers block the mic there) and browsers with no speech support.
  * - Returns up to 5 guesses per answer; the server tries each in order.
- * - Language is a BCP-47 tag: 'pa-IN' (Punjabi, Gurmukhi text) or 'en-IN' (Indian English).
+ * - Language is a BCP-47 tag: 'pa-IN' (Punjabi, Gurmukhi), 'hi-IN' (Hindi, Devanagari) or 'en-IN'.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -20,6 +25,7 @@ export type ListenError =
   | 'NO_SPEECH'
   | 'NETWORK'
   | 'ABORTED'
+  | 'CLOUD_DOWN'
   | 'UNKNOWN';
 
 export type ListenOutcome = { ok: true; texts: string[] } | { ok: false; error: ListenError };
@@ -61,7 +67,23 @@ function getRecognizer(): SRCtor | null {
   return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null;
 }
 
-const MAX_LISTEN_MS = 12000;
+const MAX_LISTEN_MS = 15000;
+const DEFAULT_END_SILENCE_MS = 1500;
+
+/** All final pieces of one answer joined; up to 5 versions using each piece's other guesses. */
+export function joinPieces(pieces: string[][]): string[] {
+  const usable = pieces.filter(p => p.length);
+  if (!usable.length) return [];
+  const best = usable.map(p => p[0]).join(' ').trim();
+  const out = [best];
+  usable.forEach((p, i) => {
+    for (let a = 1; a < p.length && out.length < 5; a++) {
+      const v = usable.map((q, j) => (j === i ? p[a] : q[0])).join(' ').trim();
+      if (v && !out.includes(v)) out.push(v);
+    }
+  });
+  return out;
+}
 
 export function useSpeechInput(lang = 'pa-IN') {
   const supported = typeof window !== 'undefined' && getRecognizer() !== null;
@@ -126,7 +148,7 @@ export function useSpeechInput(lang = 'pa-IN') {
   }, []);
 
   /** Listen for one answer. `langOverride` wins over the hook's language (used right after a switch). */
-  const listen = useCallback((langOverride?: string): Promise<ListenOutcome> => {
+  const listen = useCallback((langOverride?: string, opts: { endSilenceMs?: number } = {}): Promise<ListenOutcome> => {
     abort();
     const Ctor = getRecognizer();
     if (!Ctor) return Promise.resolve({ ok: false, error: 'NOT_SUPPORTED' });
@@ -136,26 +158,35 @@ export function useSpeechInput(lang = 'pa-IN') {
       const r = new Ctor();
       current.current = r;
       r.lang = langOverride ?? lang;
-      r.continuous = false;
+      r.continuous = true;
       r.interimResults = true;
       r.maxAlternatives = 5;
 
-      let finals: string[] = [];
+      const pieces: string[][] = [];
       let lastInterim = '';
       let error: ListenError | null = null;
       let settled = false;
-      const timer = window.setTimeout(() => {
+      const endSilence = opts.endSilenceMs ?? DEFAULT_END_SILENCE_MS;
+      const stop = () => {
         try {
           r.stop();
         } catch {
           /* ignore */
         }
-      }, MAX_LISTEN_MS);
+      };
+      const timer = window.setTimeout(stop, MAX_LISTEN_MS);
+      let quiet: number | undefined;
+      // Each new word restarts the countdown; a short silence after speech ends the answer.
+      const heardWords = () => {
+        window.clearTimeout(quiet);
+        quiet = window.setTimeout(stop, endSilence);
+      };
 
       const settle = (out: ListenOutcome) => {
         if (settled) return;
         settled = true;
         window.clearTimeout(timer);
+        window.clearTimeout(quiet);
         if (current.current === r) current.current = null;
         setListening(false);
         setInterim('');
@@ -165,7 +196,7 @@ export function useSpeechInput(lang = 'pa-IN') {
       r.onspeechstart = () => setHeardSomething(true);
       r.onresult = e => {
         let text = '';
-        for (let i = e.resultIndex; i < e.results.length; i++) {
+        for (let i = 0; i < e.results.length; i++) {
           const res = e.results[i];
           if (res.isFinal) {
             const alts: string[] = [];
@@ -173,13 +204,15 @@ export function useSpeechInput(lang = 'pa-IN') {
               const t = res[a]?.transcript?.trim();
               if (t) alts.push(t);
             }
-            finals = alts.length ? alts : finals;
+            pieces[i] = alts;
           } else {
             text += res[0]?.transcript ?? '';
           }
         }
+        const sofar = [...pieces.filter(Boolean).map(p => p[0] ?? ''), text.trim()].join(' ').trim();
         lastInterim = text.trim() || lastInterim;
-        setInterim(text.trim());
+        setInterim(sofar);
+        heardWords();
       };
       r.onerror = e => {
         error =
@@ -197,6 +230,7 @@ export function useSpeechInput(lang = 'pa-IN') {
         if (error === 'MIC_DENIED') setPermission('denied');
       };
       r.onend = () => {
+        const finals = joinPieces(pieces.filter(Boolean));
         if (finals.length) return settle({ ok: true, texts: finals });
         if (!error && lastInterim) return settle({ ok: true, texts: [lastInterim] });
         settle({ ok: false, error: error ?? 'NO_SPEECH' });

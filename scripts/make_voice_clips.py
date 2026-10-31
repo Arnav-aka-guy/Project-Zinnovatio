@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Make the Punjabi and English voice clips for voice booking.
+"""Make the Punjabi, Hindi and English voice clips for voice booking.
 
-    python tasks.py voices                 # both languages, female voices, only new or changed clips
-    python tasks.py voices --lang en       # English only (or --lang pa)
+    python tasks.py voices                 # all three languages, female voices, only new or changed clips
+    python tasks.py voices --lang hi       # Hindi only (or --lang pa, --lang en)
     python tasks.py voices --voice male    # male voices
     python tasks.py voices --force         # remake everything
     python tasks.py voices --dry-run       # list what would be made, no network
     python tasks.py voices --check         # report clips missing from the manifests
 
 Uses Microsoft's neural voices through the free `edge-tts` package (no key,
-needs internet once): Punjabi pa-IN (Vaani / Ojas) and Indian English en-IN
-(Neerja / Prabhat). Clips go to web/public/audio/<pa|en>/ with a
+needs internet once): Punjabi pa-IN (Vaani / Ojas), Hindi hi-IN (Swara / Madhur)
+and Indian English en-IN (Neerja / Prabhat). Clips go to web/public/audio/<pa|hi|en>/ with a
 manifest.json each, so they ship inside the built web app and play offline.
 
 The text of every clip comes from app/voice/catalog.py, the same file the
@@ -47,9 +47,10 @@ VILLAGES_JSON = ROOT / "app" / "seed" / "villages.json"
 # Known neural voices per language. The live voice list is checked first.
 FALLBACK_VOICES = {
     "pa": {"female": "pa-IN-VaaniNeural", "male": "pa-IN-OjasNeural"},
+    "hi": {"female": "hi-IN-SwaraNeural", "male": "hi-IN-MadhurNeural"},
     "en": {"female": "en-IN-NeerjaNeural", "male": "en-IN-PrabhatNeural"},
 }
-LOCALES = {"pa": "pa-in", "en": "en-in"}
+LOCALES = {"pa": "pa-in", "hi": "hi-in", "en": "en-in"}
 DEFAULT_RATE = "-5%"  # a touch slower than default: clearer on a phone speaker
 
 
@@ -185,7 +186,7 @@ async def synth_one(edge_tts, clip: Clip, voice: str, rate: str, pitch: str, des
 
 
 async def run(args: argparse.Namespace) -> int:
-    langs = ["pa", "en"] if args.lang == "all" else [args.lang]
+    langs = ["pa", "hi", "en"] if args.lang == "all" else [args.lang]
     code = 0
     for lang in langs:
         print(f"── {lang} ──")
@@ -290,7 +291,7 @@ async def run_lang(args: argparse.Namespace, lang: str) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--lang", default="all", choices=["all", "pa", "en"], help="which language to make")
+    p.add_argument("--lang", default="all", choices=["all", "pa", "hi", "en"], help="which language to make")
     p.add_argument("--voice", default="female", help="female | male | a voice ShortName (pa-IN-... or en-IN-...)")
     p.add_argument("--rate", default=DEFAULT_RATE, help="speaking rate, e.g. -5%% or +0%%")
     p.add_argument("--pitch", default="+0Hz", help="pitch shift, e.g. +0Hz")

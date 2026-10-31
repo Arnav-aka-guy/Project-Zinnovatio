@@ -2977,6 +2977,80 @@
         }
       }
     },
+    "/api/voice/transcribe": {
+      "post": {
+        "tags": [
+          "voice"
+        ],
+        "summary": "Voice Transcribe",
+        "description": "One spoken answer -> text guesses (Google Speech-to-Text). 503 when Google cannot be used: the page\nthen falls back to the browser's own speech recognition, or typing.",
+        "operationId": "voice_transcribe_api_voice_transcribe_post",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "name": "X-Vaari-Passcode",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Vaari-Passcode"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_voice_transcribe_api_voice_transcribe_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/notify/subscriptions": {
       "post": {
         "tags": [
@@ -4364,6 +4438,49 @@
         },
         "type": "object",
         "title": "Body_upload_register_photo_api_intake_register_photo_post"
+      },
+      "Body_voice_transcribe_api_voice_transcribe_post": {
+        "properties": {
+          "audio": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "Audio"
+          },
+          "lang": {
+            "type": "string",
+            "enum": [
+              "pa",
+              "hi",
+              "en"
+            ],
+            "title": "Lang",
+            "default": "pa"
+          },
+          "step": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "phone",
+                  "village",
+                  "acres",
+                  "machine",
+                  "date",
+                  "confirm"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Step"
+          }
+        },
+        "type": "object",
+        "required": [
+          "audio"
+        ],
+        "title": "Body_voice_transcribe_api_voice_transcribe_post"
       },
       "EndpointIn": {
         "properties": {
@@ -6019,6 +6136,7 @@
             "type": "string",
             "enum": [
               "pa",
+              "hi",
               "en"
             ],
             "title": "Lang",

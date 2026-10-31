@@ -56,6 +56,7 @@ test('Full Phase 3 End-to-End Scenario (TESTING.md Section 7: Steps 1 to 8)', as
   await expect(page.locator('#desk-page')).toBeVisible();
 
   await page.locator('#btn-run-scheduler').click();
+  await expect(page.locator('#btn-run-scheduler')).toBeEnabled();
   await expect(page.locator('#summary-metrics-bar')).toContainText('45');
 
   // 4. Set one machine inactive. The plan reflows and a will-miss reason appears.
@@ -77,6 +78,7 @@ test('Full Phase 3 End-to-End Scenario (TESTING.md Section 7: Steps 1 to 8)', as
     page.locator('#machine-card-2 .machine-title-row .status-pill'),
   ).toHaveText('active');
   await page.locator('#btn-run-scheduler').click();
+  await expect(page.locator('#btn-run-scheduler')).toBeEnabled();
 
   // 5. Open a slot's message. It is shown in Punjabi with the 4-digit service code, and it reaches
   //    the farmer inside Vaari (their page and phone alerts), never by WhatsApp or SMS.

@@ -6,7 +6,13 @@ village list. Speech-to-text often returns several guesses; they are tried in
 order and the first one that makes sense wins.
 
 Every answer carries `readback`: the clip ids to play so the farmer hears the
-value back in Punjabi and can say yes or no.
+value back (in Punjabi, Hindi or English: the clip ids are the same in all three)
+and can say yes or no.
+
+Answers are understood in Punjabi, Hindi and English, in any of the three
+modes. Hindi written in Devanagari is first turned into Gurmukhi letters
+(`deva_to_guru`), so the Punjabi rules and the Hindi word lists in
+`lexicon.py` both apply to it.
 """
 
 from __future__ import annotations
@@ -39,8 +45,10 @@ from app.voice.lexicon import (
     HUNDRED_WORDS,
     KAL_WORDS,
     LAND_UNITS,
+    MACHINE_NAMES_HI,
     MACHINES,
     MONTH_WORDS,
+    MONTHS_HI,
     NO_WORDS,
     NOT_YET_PHRASES,
     NUMBER_WORDS,
@@ -54,12 +62,15 @@ from app.voice.lexicon import (
     VILLAGES_PA,
     WEEK_WORDS,
     WEEKDAY_WORDS,
+    WEEKDAYS_HI,
     WORD_TO_MONTH,
     WORD_TO_NUMBER,
     WORD_TO_WEEKDAY,
     YES_WORDS,
     MachineEntry,
     VillageEntry,
+    deva_to_guru,
+    guru_to_deva,
 )
 
 STEPS = ("phone", "village", "acres", "machine", "date", "confirm")
@@ -85,6 +96,7 @@ class Understanding:
     value: Any = None
     display_pa: str = ""
     display_en: str = ""
+    display_hi: str = ""
     readback: list[dict] = field(default_factory=list)
     prompt: str | None = None
     error_code: str | None = None
@@ -101,6 +113,7 @@ class Understanding:
             "value": self.value,
             "display_pa": self.display_pa,
             "display_en": self.display_en,
+            "display_hi": self.display_hi or self.display_pa,
             "readback": self.readback,
             "prompt": self.prompt,
             "error_code": self.error_code,
@@ -131,7 +144,8 @@ _PUNCT = re.compile(r"[,!?;:\"'()\[\]{}…|_“”‘’।॥*#+=<>~`]")
 
 def normalize(text: str) -> str:
     """Lower-case, ASCII digits, punctuation to spaces, digits split from letters."""
-    t = unicodedata.normalize("NFC", text or "").translate(DIGIT_TRANSLATE).lower()
+    t = unicodedata.normalize("NFC", deva_to_guru(unicodedata.normalize("NFC", text or "")))
+    t = t.translate(DIGIT_TRANSLATE).lower()
     for g in GREETING_PHRASES:
         t = t.replace(g, " ")
     t = re.sub(r"(?<=\d),(?=\d{1,2}\b)", ".", t)  # "5,5" -> "5.5" (decimal comma)
@@ -219,6 +233,20 @@ def fold(text: str) -> str:
     return re.sub(r"\s+", " ", t).strip().lower()
 
 
+_FOLDED_NUMBERS: dict[str, int] = {}
+
+
+def number_word(token: str) -> int | None:
+    """A number word in any spelling: 'ਪੰਜ', 'पाँच' (as ਪਾਂਚ), 'ਪਂਦ੍ਰਹ', 'paanch'."""
+    n = WORD_TO_NUMBER.get(token)
+    if n is not None:
+        return n
+    if not _FOLDED_NUMBERS:
+        for w, v in WORD_TO_NUMBER.items():
+            _FOLDED_NUMBERS.setdefault(fold(w), v)
+    return _FOLDED_NUMBERS.get(fold(token))
+
+
 _ROMAN = {
     "ਕ": "k", "ਖ": "kh", "ਗ": "g", "ਘ": "gh", "ਙ": "n", "ਚ": "ch", "ਛ": "chh", "ਜ": "j", "ਝ": "jh",
     "ਞ": "n", "ਟ": "t", "ਠ": "th", "ਡ": "d", "ਢ": "dh", "ਣ": "n", "ਤ": "t", "ਥ": "th", "ਦ": "d",
@@ -264,8 +292,8 @@ def _read_number(tokens: list[str], i: int) -> tuple[float, int] | None:
     if re.fullmatch(r"\d+(\.\d+)?", t):
         return float(t), 1
     base: float | None = None
-    if t in WORD_TO_NUMBER:
-        base = float(WORD_TO_NUMBER[t])
+    if number_word(t) is not None:
+        base = float(number_word(t))
     elif t in FRACTION_ALONE:
         base = FRACTION_ALONE[t]
     if base is None:
@@ -275,8 +303,9 @@ def _read_number(tokens: list[str], i: int) -> tuple[float, int] | None:
     if base < 100 and i + 1 < len(tokens) and tokens[i + 1] in HUNDRED_WORDS:
         base *= 100
         used = 2
-        if i + 2 < len(tokens) and tokens[i + 2] in WORD_TO_NUMBER and WORD_TO_NUMBER[tokens[i + 2]] < 100:
-            base += WORD_TO_NUMBER[tokens[i + 2]]
+        nxt = number_word(tokens[i + 2]) if i + 2 < len(tokens) else None
+        if nxt is not None and nxt < 100:
+            base += nxt
             used = 3
     return base, used
 
@@ -301,8 +330,8 @@ def _phone_digits(text: str) -> str:
             chunk = re.sub(r"\D", "", t)
         elif t in PHONE_EXTRA_DIGIT_WORDS:
             chunk = str(PHONE_EXTRA_DIGIT_WORDS[t])
-        elif t in WORD_TO_NUMBER and WORD_TO_NUMBER[t] < 100:
-            n = WORD_TO_NUMBER[t]
+        elif number_word(t) is not None and number_word(t) < 100:
+            n = number_word(t)
             chunk = str(n)  # people often read numbers in pairs: "ਅਠਾਨਵੇਂ" = 98
         if chunk:
             if repeat > 1:
@@ -334,13 +363,13 @@ def parse_phone(text: str, context: dict) -> Understanding:
     if len(digits) < 10:
         # Keep what we have and ask for the rest: farmers often say a number in two goes.
         return _fail("phone", heard, "PHONE_TOO_SHORT", "phone_continue", partial=digits,
-                     display_pa=digits, display_en=digits)
+                     display_pa=digits, display_en=digits, display_hi=digits)
     readback = [{"clip": "prompt/rb_phone", "gap_ms": 120}]
     for idx, d in enumerate(digits):
         readback.append({"clip": f"digit/{d}", "gap_ms": GAP_GROUP if idx == 4 else GAP_WORD})
     pretty = f"{digits[:5]} {digits[5:]}"
     return Understanding(
-        step="phone", ok=True, heard=heard, value=digits, display_pa=pretty, display_en=pretty,
+        step="phone", ok=True, heard=heard, value=digits, display_pa=pretty, display_en=pretty, display_hi=pretty,
         readback=_with_question(readback), confidence=1.0,
     )
 
@@ -390,8 +419,12 @@ def _village_score(entry: VillageEntry, raw: str, tokens: list[str]) -> float:
     return best
 
 
+def village_hi(v: VillageEntry) -> str:
+    return guru_to_deva(v.name_pa) if v.name_pa else v.name
+
+
 def _village_alt(v: VillageEntry) -> dict:
-    return {"value": v.name, "display_pa": v.name_pa or v.name, "display_en": v.name}
+    return {"value": v.name, "display_pa": v.name_pa or v.name, "display_en": v.name, "display_hi": village_hi(v)}
 
 
 def parse_village(text: str, villages: list[VillageEntry]) -> Understanding:
@@ -410,7 +443,7 @@ def parse_village(text: str, villages: list[VillageEntry]) -> Understanding:
     readback = _with_question(_items(catalog.village_clip(best.name)))
     return Understanding(
         step="village", ok=True, heard=heard, value=best.name, display_pa=best.name_pa or best.name,
-        display_en=best.name, readback=readback, confidence=best_score,
+        display_en=best.name, display_hi=village_hi(best), readback=readback, confidence=best_score,
         alternatives=[_village_alt(v) for s, v in scored[1:3] if s >= 0.6],
     )
 
@@ -495,7 +528,7 @@ def parse_acres(text: str, lang: str = "pa") -> Understanding:
     if x100 % 25:
         items = _items("prompt/about") + items
     return Understanding(
-        step="acres", ok=True, heard=heard, value=acres, display_pa=f"{shown} ਏਕੜ",
+        step="acres", ok=True, heard=heard, value=acres, display_pa=f"{shown} ਏਕੜ", display_hi=f"{shown} एकड़",
         display_en=f"{shown} acre" if acres == 1 else f"{shown} acres", readback=_with_question(items), confidence=0.95,
     )
 
@@ -547,12 +580,13 @@ def parse_machine(text: str) -> Understanding:
     m = unique[0]
     return Understanding(
         step="machine", ok=True, heard=heard, value=m.id, display_pa=m.name_pa, display_en=m.name_en,
+        display_hi=MACHINE_NAMES_HI[m.id],
         readback=_with_question(_items(catalog.machine_clip(m.id))), confidence=0.95,
     )
 
 
 def _machine_alt(m: MachineEntry) -> dict:
-    return {"value": m.id, "display_pa": m.name_pa, "display_en": m.name_en}
+    return {"value": m.id, "display_pa": m.name_pa, "display_en": m.name_en, "display_hi": MACHINE_NAMES_HI[m.id]}
 
 
 # ── Date ─────────────────────────────────────────────────────────────────
@@ -574,9 +608,7 @@ def _number_at(tokens: list[str], i: int) -> int | None:
         return int(t)
     if t in ORDINAL_WORDS:
         return ORDINAL_WORDS[t]
-    if t in WORD_TO_NUMBER:
-        return WORD_TO_NUMBER[t]
-    return None
+    return number_word(t)
 
 
 def _safe_date(y: int, m: int, d: int) -> date | None:
@@ -737,17 +769,20 @@ def _resolve_date(text: str, today: date, context: dict) -> tuple[str, Any, floa
     return "none", None, 0.0, []
 
 
-def _date_display(d: date) -> tuple[str, str]:
+def _date_display(d: date) -> tuple[str, str, str]:
     pa = f"{d.day} {MONTH_WORDS[d.month][0]} {d.year} ({WEEKDAY_WORDS[d.weekday()][0]})"
     en = f"{WEEKDAYS_EN[d.weekday()]} {d.day} {MONTHS_EN[d.month]} {d.year}"
-    return pa, en
+    hi = f"{d.day} {MONTHS_HI[d.month]} {d.year} ({WEEKDAYS_HI[d.weekday()]})"
+    return pa, en, hi
 
 
 def _date_alt(d: date, today: date) -> dict:
-    pa, en = _date_display(d)
+    pa, en, hi = _date_display(d)
     label_pa = "ਬੀਤਿਆ ਕੱਲ੍ਹ" if d < today else "ਆਉਣ ਵਾਲਾ ਕੱਲ੍ਹ"
     label_en = "Yesterday" if d < today else "Tomorrow"
-    return {"value": d.isoformat(), "display_pa": f"{label_pa} · {pa}", "display_en": f"{label_en} · {en}"}
+    label_hi = "बीता हुआ कल" if d < today else "आने वाला कल"
+    return {"value": d.isoformat(), "display_pa": f"{label_pa} · {pa}", "display_en": f"{label_en} · {en}",
+            "display_hi": f"{label_hi} · {hi}"}
 
 
 def date_readback(d: date, today: date) -> list[dict]:
@@ -768,7 +803,7 @@ def parse_date(text: str, today: date, context: dict) -> Understanding:
     if kind == "not_yet":
         return Understanding(
             step="date", ok=True, heard=heard, value="not_cut_yet", display_pa="ਹਾਲੇ ਪੱਕੀ ਨਹੀਂ",
-            display_en="Not fixed yet", readback=_with_question(_items("prompt/date_not_yet")), confidence=conf,
+            display_en="Not fixed yet", display_hi="अभी तय नहीं", readback=_with_question(_items("prompt/date_not_yet")), confidence=conf,
         )
     if kind == "which_kal":
         return _fail("date", heard, "DATE_WHICH_KAL", "date_which_kal", alternatives=alts, confidence=conf)
@@ -777,9 +812,9 @@ def parse_date(text: str, today: date, context: dict) -> Understanding:
     d: date = value
     if d < today - timedelta(days=DATE_PAST_LIMIT_DAYS) or d > today + timedelta(days=DATE_FUTURE_LIMIT_DAYS):
         return _fail("date", heard, "DATE_OUT_OF_RANGE", "date_range")
-    pa, en = _date_display(d)
+    pa, en, hi = _date_display(d)
     return Understanding(
-        step="date", ok=True, heard=heard, value=d.isoformat(), display_pa=pa, display_en=en,
+        step="date", ok=True, heard=heard, value=d.isoformat(), display_pa=pa, display_en=en, display_hi=hi,
         readback=_with_question(date_readback(d, today)), confidence=conf,
     )
 
@@ -803,10 +838,10 @@ def parse_confirm(
             correction = attempt
     if no or (correction is not None and not yes):
         return Understanding(step="confirm", ok=True, heard=heard, value=False, display_pa="ਨਹੀਂ",
-                             display_en="No", confidence=0.95, correction=correction)
+                             display_en="No", display_hi="नहीं", confidence=0.95, correction=correction)
     if yes:
         return Understanding(step="confirm", ok=True, heard=heard, value=True, display_pa="ਹਾਂ",
-                             display_en="Yes", confidence=0.95)
+                             display_en="Yes", display_hi="हाँ", confidence=0.95)
     return _fail("confirm", heard, "NOT_UNDERSTOOD", "confirm_unknown")
 
 
@@ -844,7 +879,7 @@ def understand(
 ) -> Understanding:
     """Try each speech-to-text guess in order; return the first that works, else the best failure.
 
-    `lang` ("pa" or "en") only changes how a read-back is built; both languages are understood either way.
+    `lang` ("pa", "hi" or "en") only changes how a read-back is built; all three languages are understood either way.
     """
     context = context or {}
     villages = villages if villages is not None else list(VILLAGES_PA)

@@ -137,6 +137,8 @@ class RateLimitMiddleware:
             rule = ("login", settings.login_rate_per_min, "Too many sign-in attempts. Wait a minute and try again.")
         elif any(p.match(path) for p in _UPLOAD_PATHS):
             rule = ("upload", settings.upload_rate_per_min, "Too many uploads. Wait a minute and try again.")
+        elif path == "/api/voice/transcribe":
+            rule = ("voice", settings.voice_rate_per_min, "Too many spoken answers. Wait a minute and try again.")
         if rule is None:
             await self.app(scope, receive, send)
             return

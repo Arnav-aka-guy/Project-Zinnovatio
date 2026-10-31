@@ -457,8 +457,43 @@ def task_smoke() -> int:
     return run_cmd([str(py), "-m", "pytest", "-q", "tests/api/test_smoke.py"])
 
 
+def task_check_google() -> int:
+    """Check VAARI_GOOGLE_API_KEY against Speech-to-Text and Translation with two tiny requests."""
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    import struct
+
+    from app.config import settings
+    from app.voice import google
+
+    if not settings.google_api_key:
+        print("VAARI_GOOGLE_API_KEY is not set in .env. Voice booking uses the browser's speech recognition.")
+        return 1
+    print(f"Voice speech: {settings.voice_speech}   Translate fallback: {settings.voice_translate}")
+    # Half a second of silence, 16 kHz mono 16-bit WAV.
+    pcm = b"\x00\x00" * 8000
+    wav = b"RIFF" + struct.pack("<I", 36 + len(pcm)) + b"WAVEfmt " + struct.pack("<IHHIIHH", 16, 1, 1, 16000, 32000, 2, 16)
+    wav += b"data" + struct.pack("<I", len(pcm)) + pcm
+    stt = google.transcribe(wav, "pa")
+    stt_ok = stt.ok or stt.error == "no_speech"
+    print(f"Speech-to-Text: {'OK' if stt_ok else 'FAILED (' + str(stt.error) + ')'}")
+    tr = google.translate(["ਹਾਂ ਜੀ ਪੰਜ ਏਕੜ"]) if settings.voice_translate else None
+    if settings.voice_translate:
+        print(f"Translation:    {'OK -> ' + tr[0] if tr else 'FAILED (' + str(google.status()['last_translate']) + ')'}")
+    hints = {
+        "api_disabled": "Turn the API on in Google Cloud Console (APIs & Services -> Library) for the key's project.",
+        "key_invalid": "The key is wrong. Copy it again from Google Cloud Console -> Credentials.",
+        "permission": "The key is restricted. Allow Cloud Speech-to-Text API and Cloud Translation API for it.",
+        "quota": "Quota or billing limit reached. Check billing on the Google Cloud project.",
+    }
+    for reason in {stt.error, (google.status().get("last_translate") or {}).get("error")}:
+        if reason in hints:
+            print("  ->", hints[reason])
+    return 0 if stt_ok and (tr or not settings.voice_translate) else 1
+
+
 def task_voices(args: list[str]) -> int:
-    """Make the Punjabi voice clips into web/public/audio/pa/ (needs internet once)."""
+    """Make the Punjabi, Hindi and English voice clips into web/public/audio/<pa|hi|en>/ (needs internet once)."""
     py = get_venv_python()
     probe = subprocess.run([str(py), "-c", "import edge_tts"], cwd=ROOT, capture_output=True)
     if probe.returncode != 0 and not ({"--dry-run", "--check"} & set(args)):
@@ -660,7 +695,7 @@ def main():
             "Available tasks: setup, dev, test, seed, reset, smoke, serve, tunnel, "
             "build-web, e2e, reader-eval, purge-images, screenshots, check-config, "
             "create-user, disable-user, list-users, openapi, migrate, db-revision, backup, restore, voices, "
-            "vapid-keys, notify"
+            "vapid-keys, notify, check-google"
         )
         sys.exit(1)
 
@@ -687,6 +722,8 @@ def main():
         sys.exit(task_tunnel())
     elif task == "e2e":
         sys.exit(task_e2e(extra_args))
+    elif task == "check-google":
+        sys.exit(task_check_google())
     elif task == "voices":
         sys.exit(task_voices(extra_args))
     elif task == "reader-eval":

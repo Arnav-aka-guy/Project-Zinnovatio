@@ -394,3 +394,34 @@ Vaari now actually tells people when something changes, and **every message is d
 
 ### What was not verified
 - No alert went through Google, Mozilla or Apple from the test machine. Try a real Android phone and a real iPhone before the demo.
+
+
+## Voice booking v0.4: Hindi, Google speech, never gives up (31 Oct 2026)
+
+Fixes the three problems found in testing: answers in Hindi, English or Punjabi were often not understood, and a wrong answer stopped the conversation. Full notes: [docs/VOICE.md](docs/VOICE.md).
+
+- **Hindi** is a full third language: **हिंदी में शुरू करें** on the start screen, questions and read-backs in Hindi, Hindi screen text. Hindi answers (Devanagari, romanised, or Hindi words heard by the Punjabi recogniser) are understood in every mode.
+- **Google Speech-to-Text** (when `VAARI_GOOGLE_API_KEY` is set): the page records the answer and the server sends it to Google with Punjabi, Hindi and English together, so the farmer can answer in any of them; it also works on iPhone and Firefox. Without a key, or when Google fails, the browser's recogniser is used and the screen says so.
+- **Google Translate second chance** for answers the rules could not read (never phone numbers).
+- **Never gives up**: wrong answers are asked again without limit (a kinder hint after three); browser hiccups are retried; only three silent turns pause it. The browser recogniser no longer stops at the first breath.
+
+### Contract changes (additive only, with the reason)
+- **New route** `POST /api/voice/transcribe` (operator): multipart `audio` (16 kHz mono 16-bit WAV, at most 30 s), `lang` (`pa`, `hi` or `en`), optional `step` → `{texts, language, provider: "google", error}`. 503 `VOICE_CLOUD_OFF` (no key) or `VOICE_CLOUD_FAILED` (`details.reason`: `api_disabled`, `key_invalid`, `permission`, `quota`, `network`, ...); 422 for other audio. Rate limited per address (`VAARI_VOICE_RATE_PER_MIN`, 60). `EXPECTED_PATH_COUNT` 51 → 52.
+- `POST /api/voice/understand`: `lang` also takes `"hi"`; the answer has new fields `display_hi`, `via` (`"rules"` or `"translate"`) and, when translated, `translated`. Alternatives carry `display_hi`.
+- `GET /api/voice/script`: `languages` lists `hi`; steps have `title_hi`, `ask_hi`, `hint_hi`; prompts have `hi`; villages and machines have `name_hi`; new `speech: {provider, translate}`.
+- `GET /api/health`: new `voice` object (whether a key is set, which recogniser, the last result of each Google service; never the key).
+- Static audio: `web/public/audio/hi/` (made by `python tasks.py voices --lang hi`), and two new prompts in all three languages (`keep_trying`, `paused`). Until they are made, those lines are spoken by the device voice or shown as text.
+
+### Libraries added beyond the contract, and why
+- None. Google is called over HTTPS with `httpx`; the WAV recording and silence detection are about 250 lines in `web/src/voice/recorder.ts`.
+
+### Things the next person must know
+- The Google key is read only on the server (`app/config.py`, `app/voice/google.py`) and never logged; logs get `event=voice_transcribe`, `ok`, `latency_ms`, `where` (the error reason), no text.
+- `python tasks.py check-google` tells whether the key works for Speech-to-Text and Translation, and how to fix it if not.
+- Changed tests (for the new behaviour, not weaker): `test_script_lists_all_three_languages` (was both languages) and the clip-maker test now expects three languages.
+- `tests/api/test_notifications.py::test_background_worker_sends_soon_after_commit` was flaky (it read `last_run_at` a moment before the worker set it); it now waits for both.
+
+### What was not verified
+- **Real Google calls.** The requests follow Google's documented `v1p1beta1/speech:recognize` and `translate/v2` formats and are tested against mocks; no call reached Google from the test machine. Run `python tasks.py check-google`, then book once by voice in each language on a real phone.
+- **Hindi voice clips** were not made here (they need internet): run `python tasks.py voices --lang hi`.
+- **Hindi wording** of the questions should be read by a native speaker.

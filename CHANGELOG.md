@@ -4,6 +4,14 @@ All notable changes are recorded here. The format follows Keep a Changelog, and 
 
 ## [Unreleased]
 
+### Voice booking v0.4: Hindi, Google speech, never gives up (31 Oct 2026)
+- **Hindi**: a third start button (**हिंदी में शुरू करें**), Hindi questions, read-backs and screen text; Hindi answers understood in every mode (Devanagari, romanised, or as heard by the Punjabi recogniser).
+- **Google Speech-to-Text** with `VAARI_GOOGLE_API_KEY`: Punjabi, Hindi and English heard together, on every browser (iPhone and Firefox included), with village and machine names as hints. The page records and detects the end of the answer by itself. Falls back to the browser's recogniser, visibly, when Google is not answering.
+- **Google Translate second chance** for answers the rules could not read (never phone numbers).
+- **Never gives up**: no limit on retries after wrong answers (a kinder hint after three), browser hiccups retried, the browser recogniser no longer cuts an answer at the first pause; only three silent turns pause it.
+- Missing voice clips are spoken by the device voice when it has one; new `python tasks.py check-google`.
+- New route `POST /api/voice/transcribe`; tests: Hindi unit tests, Google API tests (mocked), `web/e2e/voice_hindi_cloud.spec.ts`.
+
 ### Notifications, inside Vaari only (31 Oct 2026)
 - **Every message is delivered inside Vaari**: the web app on phones and computers, and phone/desktop alerts from it. No SMS and no WhatsApp; the "Open WhatsApp" button is gone (Copy text and Call stay).
 - **Farmer page** `/farmer/<link>`, Punjabi first with English on a tap: the farmer's bookings, the turn date and machine, the code for the driver, every message, a Call the centre button, and **ਚਾਲੂ ਕਰੋ / Turn on** for phone alerts. It installs to the Home Screen and opens straight to their bookings.

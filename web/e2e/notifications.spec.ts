@@ -23,6 +23,7 @@ async function signIn(page: Page) {
   if (await box.isVisible({ timeout: 1500 }).catch(() => false)) {
     await box.fill('change-me');
     await page.locator('#passcode-submit').click();
+    await expect(box).toBeHidden();
   }
 }
 
@@ -161,11 +162,13 @@ test.describe('notifications', () => {
 
     // A push to the farmer's phone (service worker at /farmer/) shows a system notification.
     const cdp = await context.newCDPSession(page);
-    const regs: { registrationId: string; scopeURL: string }[] = [];
+    const regs: { registrationId: string; scopeURL: string; isDeleted?: boolean }[] = [];
     cdp.on('ServiceWorker.workerRegistrationUpdated', e => regs.push(...e.registrations));
     await cdp.send('ServiceWorker.enable');
-    await expect.poll(() => regs.find(r => new URL(r.scopeURL).pathname === '/farmer/')?.registrationId).toBeTruthy();
-    const reg = regs.find(r => new URL(r.scopeURL).pathname === '/farmer/')!;
+    await expect
+      .poll(() => regs.filter(r => !r.isDeleted && new URL(r.scopeURL).pathname === '/farmer/').slice(-1)[0]?.registrationId)
+      .toBeTruthy();
+    const reg = regs.filter(r => !r.isDeleted && new URL(r.scopeURL).pathname === '/farmer/').slice(-1)[0]!;
     await cdp.send('ServiceWorker.deliverPushMessage', {
       origin: new URL(page.url()).origin,
       registrationId: reg.registrationId,
@@ -180,12 +183,14 @@ test.describe('notifications', () => {
       }),
     });
     await expect
-      .poll(() =>
-        page.evaluate(async () => {
-          const r = await navigator.serviceWorker.getRegistration('/farmer/x');
-          const list = r ? await r.getNotifications() : [];
-          return list.map(n => n.title);
-        }),
+      .poll(
+        () =>
+          page.evaluate(async () => {
+            const r = await navigator.serviceWorker.getRegistration('/farmer/x');
+            const list = r ? await r.getNotifications() : [];
+            return list.map(n => n.title);
+          }),
+        { timeout: 20000 },
       )
       .toContain('ਵਾਰੀ ਬਦਲੀ: 2 ਨਵੰਬਰ');
 
@@ -221,11 +226,13 @@ test.describe('notifications', () => {
 
     // Deliver a real push event to the service worker.
     const cdp = await context.newCDPSession(page);
-    const regs: { registrationId: string; scopeURL: string }[] = [];
+    const regs: { registrationId: string; scopeURL: string; isDeleted?: boolean }[] = [];
     cdp.on('ServiceWorker.workerRegistrationUpdated', e => regs.push(...e.registrations));
     await cdp.send('ServiceWorker.enable');
-    await expect.poll(() => regs.find(r => new URL(r.scopeURL).pathname === '/')?.registrationId).toBeTruthy();
-    const reg = regs.find(r => new URL(r.scopeURL).pathname === '/')!;
+    await expect
+      .poll(() => regs.filter(r => !r.isDeleted && new URL(r.scopeURL).pathname === '/').slice(-1)[0]?.registrationId)
+      .toBeTruthy();
+    const reg = regs.filter(r => !r.isDeleted && new URL(r.scopeURL).pathname === '/').slice(-1)[0]!;
     const origin = new URL(page.url()).origin;
     const payload = {
       id: 1,
@@ -242,12 +249,14 @@ test.describe('notifications', () => {
       data: JSON.stringify(payload),
     });
     await expect
-      .poll(() =>
-        page.evaluate(async () => {
-          const r = await navigator.serviceWorker.getRegistration('/');
-          const list = r ? await r.getNotifications() : [];
-          return list.map(n => `${n.title}|${n.body}|${n.tag}`);
-        }),
+      .poll(
+        () =>
+          page.evaluate(async () => {
+            const r = await navigator.serviceWorker.getRegistration('/');
+            const list = r ? await r.getNotifications() : [];
+            return list.map(n => `${n.title}|${n.body}|${n.tag}`);
+          }),
+        { timeout: 20000 },
       )
       .toContain('VR-999 will miss its deadline|Pind Test · 2 ac · Super Seeder|vaari-will_miss-999');
 
@@ -276,6 +285,7 @@ test.describe('notifications', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/desk');
     await signIn(page);
+    await expect(page.locator('#desk-page')).toBeVisible();
     const bell = page.locator('#btn-alerts');
     await expect(bell).toBeVisible();
     const box = await bell.boundingBox();

@@ -35,7 +35,15 @@ import type {
   SlotOut,
   WillMissItem,
 } from './types';
-import type { VoiceLang, VoiceManifest, VoiceResult, VoiceScript, VoiceUnderstandBody } from './voice/types';
+import type {
+  VoiceLang,
+  VoiceManifest,
+  VoiceParseStep,
+  VoiceResult,
+  VoiceScript,
+  VoiceTranscript,
+  VoiceUnderstandBody,
+} from './voice/types';
 
 // ── ApiError ─────────────────────────────────────────────────
 export class ApiError extends Error {
@@ -482,6 +490,19 @@ export function understandVoice(body: VoiceUnderstandBody): Promise<VoiceResult>
 }
 
 /** The clip manifest made by `python tasks.py voices`. Null when the clips were never made. */
+/** One spoken answer (16 kHz mono WAV) -> text guesses, by Google Speech-to-Text on the server. */
+export function transcribeVoice(audio: Blob, lang: VoiceLang, step?: VoiceParseStep): Promise<VoiceTranscript> {
+  const fd = new FormData();
+  fd.append('audio', audio, 'answer.wav');
+  fd.append('lang', lang);
+  if (step) fd.append('step', step);
+  return request<VoiceTranscript>('/api/voice/transcribe', {
+    method: 'POST',
+    headers: { ...authHeaders('passcode') },
+    body: fd,
+  });
+}
+
 export async function getVoiceManifest(lang: VoiceLang): Promise<VoiceManifest | null> {
   try {
     const res = await fetch(`/audio/${lang}/manifest.json`, { cache: 'no-cache' });

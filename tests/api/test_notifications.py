@@ -683,7 +683,8 @@ def test_background_worker_sends_soon_after_commit(client, auth_headers, temp_db
         request(client, auth_headers)  # the commit wakes the worker; no 30 s wait
         deadline = time.monotonic() + 5
         while time.monotonic() < deadline:
-            if rows(temp_db, audience="farmer", channel="webpush")[0]["status"] == "skipped":
+            # The row is saved inside the run; last_run_at is set just after it, so wait for both.
+            if rows(temp_db, audience="farmer", channel="webpush")[0]["status"] == "skipped" and worker.last_run_at:
                 break
             time.sleep(0.05)
         assert rows(temp_db, audience="farmer", channel="webpush")[0]["reason"] == "no_devices"
